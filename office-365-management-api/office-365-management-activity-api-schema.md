@@ -5,12 +5,12 @@ description: Das Office 365-Verwaltungsaktivitäts-API-Schema wird als Datendien
 ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
-ms.openlocfilehash: 13d964eb7665c70719b9310c880974b7eea6c530
-ms.sourcegitcommit: 0d3abd151e8970b84735eea975792ae930de6995
+ms.openlocfilehash: e9a7c47f10c3926f7fd681db6a11bb74cc034226
+ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "26215302"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "27240652"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -46,12 +46,13 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Security &Compliance-Warnung-Schema](#security-and-compliance-alerts-schema)|Das alle Schema wird mit den für alle Office 365-Security & Compliance-Warnungen spezifischen Eigenschaften erweitert.|
 |[Yammer-Schema](#yammer-schema)|Das allgemeine Schema wird mit den für alle Yammer-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Sway-Schema](#sway-schema)|Das allgemeine Schema wird mit den für alle Sway-Ereignisse spezifischen Eigenschaften erweitert.|
-|[Rechenzentrum-Sicherheitsbasis-Schema](#data-center-security-base-schema)|Das allgemeine Schema wird mit den für alle Rechenzentrum-Sicherheitsüberwachungsdaten spezifischen Eigenschaften erweitert.|
+|[Rechenzentrum-Sicherheitsbasis-Schema](#data-center-security-base-schema)|Erweitert das allgemeine Schema mit den für alle Rechenzentrum-Sicherheitsüberwachungsdaten spezifischen Eigenschaften.|
 |[Rechenzentrum-Sicherheits-Cmdlet-Schema](#data-center-security-cmdlet-schema)|Das Datenzentrum-Sicherheitsbasis-Schema wird mit den für alle Rechenzentrum-Sicherheits-Cmdlet-Überwachungsdaten spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Schema](#microsoft-teams-schema)|Das allgemeine Schema wird mit den für alle Microsoft Teams-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Add-Ons-Schema](#microsoft-teams-add-ons-schema)|Das Microsoft Teams-Schema wird mit den für Microsoft Teams-Add-Ons spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Einstellungsschema](#microsoft-teams-settings-schema)|Das Microsoft Teams-Schema wird mit den für Microsoft Teams-Einstellungsänderungsereignisse spezifischen Eigenschaften erweitert.|
 |[Office 365 Advanced Threat Protection und Threat Intelligence-Schema](#office-365-advanced-threat-protection-and-threat-intelligence-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Intelligence spezifischen Daten erweitert.|
+|[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
 
 ## <a name="common-schema"></a>Allgemeines Schema
 
@@ -94,18 +95,23 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |15|AzureActiveDirectoryStsLogon|Secure Token Service (STS)-Anmeldeereignisse in Azure Active Directory.|
 |18|SecurityComplianceCenterEOPCmdlet|Administratoraktionen aus dem Security & Compliance Center.|
 |20|PowerBIAudit|Power BI-Ereignisse.|
-|22|Yammer|Yammer-Ereignisse|
+|21|CRM|Microsoft CRM-Ereignisse.|
+|22|Yammer|Yammer-Ereignisse.|
+|23|SkypeForBusinessCmdlets|Skype for Business-Ereignisse.|
 |24|Discovery|Ereignisse für eDiscovery-Aktivitäten, die durch die Ausführung von Inhaltssuchen und die Verwaltung von eDiscovery-Fällen im Security & Compliance Center durchgeführt werden.|
 |25|MicrosoftTeams|Ereignisse von Microsoft-Teams.|
 |26|MicrosoftTeamsAddOns|Ereignisse von Microsoft-Teams-Add-Ons.|
 |27|MicrosoftTeamsSettingsOperation|Änderungen an den Einstellungen von Microsoft-Teams.|
-|28|ThreatIntelligence|Office 365 Advanced Threat Protection und Threat Intelligence-Ereignisse|
+|28|ThreatIntelligence|Phishing- und Schadsoftwareereignisse aus Exchange Online Protection und Office 365 Advanced Threat Protection.|
 |30|MicrosoftFlow|Microsoft Flow-Ereignisse|
 |32|MicrosoftStream|Microsoft Stream-Ereignisse|
-|35|Project|Microsoft Project-Ereignisse|
+|35|Project|Microsoft Project-Ereignisse.|
+|36|SharepointListOperation|Sharepoint-Listenereignisse.|
 |40|SecurityComplianceAlerts|Security & Compliance-Warnsignale.|
+|41|ThreatIntelligenceUrl|Zeitblockereignisse für sichere Links und Ereignisse zur Außerkraftsetzung von Blöcken aus Office 365 Advanced Threat Protection.|
+|47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
 
-### <a name="enum-user-type---type-edmint32"></a>Enumeration: Benutzertyp - Typ: Edm.Int32
+### <a name="enum-user-type---type-edmint32"></a>Enumeration: Benutzertyp – Typ: Edm.Int32
 
 #### <a name="user-type"></a>Benutzertyp
 
@@ -702,7 +708,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 
 DLP-Ereignisse stehen für Exchange Online, SharePoint Online und OneDrive For Business zur Verfügung. Beachten Sie, dass DLP-Ereignisse in Exchange nur für Ereignisse basierend auf einer einheitlichen DLP-Richtlinie (z. B. über das Security & Compliance Center konfiguriert) verfügbar sind. Auf Exchange-Transportregeln basierende DLP-Ereignisse werden nicht unterstützt.
 
-DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten immer UserKey = "DlpAgent" im allgemeinen Schema. Es gibt drei Arten von DlpEvents, die als Wert für die Eigenschaft "Vorgang" des allgemeinen Schemas gespeichert sind:
+DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten immer UserKey = "DlpAgent" im allgemeinen Schema. Es gibt drei Arten von DlpEvents, die als Wert für die Operation-Eigenschaft des allgemeinen Schemas gespeichert sind:
 
 - DlpRuleMatch: Zeigt an, dass eine Regel abgeglichen wurde. Diese Ereignisse sind in Exchange, SharePoint Online und OneDrive for Business vorhanden. In Exchange enthalten sie falsch positive Ergebnisse und Informationen zur Außerkraftsetzung. In SharePoint Online und OneDrive for Business generieren falsch positive Ergebnisse und Außerkraftsetzungen separate Ereignisse.
 
@@ -1116,9 +1122,34 @@ Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse s
 |URL|Edm.String|Ja|Die URL, auf die der Benutzer geklickt hat.|
 |UserIp|Edm.String|Ja|Die IP-Adresse des Benutzer, der auf die URL geklickt hat. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.|
 
+## <a name="power-bi-schema"></a>Power BI-Schema
 
+Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](/power-bi/service-admin-auditing#activities-audited-by-power-bi) aufgelisteten Power BI-Ereignisse verwenden dieses Schema.
 
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+| AppName               | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name der App, in der das Ereignis aufgetreten ist. |
+| DashboardName         | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name des Dashboards, in dem das Ereignis aufgetreten ist. |
+| DataClassification    | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Die [Datenklassifizierung](/power-bi/service-data-classification), sofern vorhanden, für das Dashboard, in dem das Ereignis aufgetreten ist. |
+| DatasetName           | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name des Datasets, in dem das Ereignis aufgetreten ist. |
+| MembershipInformation | Collection([MembershipInformationType](#MembershipInformationType))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Mitgliedschaftsinformationen zu der Gruppe. |
+| OrgAppPermission      | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Berechtigungsliste für eine Organisations-App (gesamte Organisation, bestimmte Benutzer oder bestimmte Gruppen). |
+| ReportName            | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name des Berichts, in dem das Ereignis aufgetreten ist. |
+| SharingInformation    | Collection([SharingInformationType](#SharingInformationType))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"    |  Nein  | Informationen zu der Person, an die eine Einladung zur Freigabe gesendet wird. |
+| SwitchState           | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Informationen zum Status der verschiedener Mandantenebenenoptionen. |
+| WorkSpaceName         | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name des Arbeitsbereichs, in dem das Ereignis aufgetreten ist. |
 
+### <a name="membershipinformationtype-complex-type"></a>Komplexer Typ „MembershipInformationType“
 
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+| MemberEmail | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Die E-Mail-Adresse der Gruppe. |
+| Status      | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Derzeit nicht ausgefüllt. |
 
+### <a name="sharinginformationtype-complex-type"></a>Komplexer Typ „SharingInformationType“
 
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+| RecipientEmail    | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Die E-Mail-Adresse des Empfängers einer Freigabeeinladung. |
+| RecipientName    | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Der Name des Empfängers einer Freigabeeinladung. |
+| ResharePermission | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Die dem Empfänger erteilte Berechtigung. |

@@ -5,12 +5,12 @@ description: Häufig gestellte Fragen zur Verwendung der Office 365-Verwaltungsa
 ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: 09/21/2018
-ms.openlocfilehash: 612aac60ab421d79a1c866a4a79157ee255d167d
-ms.sourcegitcommit: 525c0d0e78cc44ea8cb6a4bdce1858cb4ef91d57
+ms.openlocfilehash: 8118f44b04beedf33e98edd5ebc63c85b8c0fbc5
+ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/27/2018
-ms.locfileid: "25834856"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "27240624"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365-Verwaltungsaktivitäts-API – Häufig gestellte Fragen
 
@@ -46,6 +46,11 @@ Nein. Webhook-Benachrichtigungen sind nicht in dem Sinn ereignisgesteuert, dass 
 
 Manchmal gibt es einen temporären Ausfall oder andere Probleme in den Office 365-Diensten. In diesen Fällen werden einige Überwachungsdatensätze gelöscht, und der Dienst versucht, sie abzugleichen. Obwohl dies nur für ungefähr 5 bis 10 % der Datensätze geschieht, werden diese Datensätze in bestimmten Situationen möglicherweise verzögert. Wenn die Verzögerung mehr als 5 Tage beträgt, überprüfen Sie das Service Health Dashboard im Office 365 Admin Center. Bei Bedarf können Sie auch ein Ticket beim [Microsoft-Support](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online) öffnen.
 
-#### <a name="i-am-encountering-a-throttling-error-in-the-management-activity-api-what-should-i-do"></a>In der Dienstaktivitäts-API tritt ein Einschränkungsfehler auf. Was soll ich machen?
+#### <a name="im-encountering-a-throttling-error-in-the-management-activity-api-what-should-i-do"></a>In der Verwaltungsaktivitäts-API tritt ein Einschränkungsfehler auf. Was soll ich machen?
 
 Öffnen Sie ein Ticket beim [Microsoft-Support](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online), fordern Sie einen neuen Einschränkungsgrenzwert an, und geben Sie dabei eine geschäftliche Begründung für die Erhöhung des Grenzwerts an. Die Anforderung wird ausgewertet, und wenn sie akzeptiert wird, wird der Einschränkungsgrenzwert erhöht.
+
+#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activty-api"></a>Was passiert, wenn ich für meine Office 365-Organisation die Überwachung deaktiviere? Erhalte ich weiterhin Ereignisse über die Verwaltungsaktivitäts-API?
+
+Nein. Die Überwachung muss für Ihre Organisation sein, damit Datensätze über die Verwaltungsaktivitäts-API abgerufen werden können.
+
