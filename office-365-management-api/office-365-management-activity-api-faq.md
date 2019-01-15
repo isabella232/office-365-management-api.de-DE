@@ -5,12 +5,13 @@ description: Häufig gestellte Fragen zur Verwendung der Office 365-Verwaltungsa
 ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: 09/21/2018
-ms.openlocfilehash: 8118f44b04beedf33e98edd5ebc63c85b8c0fbc5
-ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
+localization_priority: Priority
+ms.openlocfilehash: 8e341def7bc3a4f71eee23bc04d01e11d1390e1d
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27240624"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014287"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365-Verwaltungsaktivitäts-API – Häufig gestellte Fragen
 
@@ -50,7 +51,7 @@ Manchmal gibt es einen temporären Ausfall oder andere Probleme in den Office 36
 
 Öffnen Sie ein Ticket beim [Microsoft-Support](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online), fordern Sie einen neuen Einschränkungsgrenzwert an, und geben Sie dabei eine geschäftliche Begründung für die Erhöhung des Grenzwerts an. Die Anforderung wird ausgewertet, und wenn sie akzeptiert wird, wird der Einschränkungsgrenzwert erhöht.
 
-#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activty-api"></a>Was passiert, wenn ich für meine Office 365-Organisation die Überwachung deaktiviere? Erhalte ich weiterhin Ereignisse über die Verwaltungsaktivitäts-API?
+#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activity-api"></a>Was passiert, wenn ich für meine Office 365-Organisation die Überwachung deaktiviere? Erhalte ich weiterhin Ereignisse über die Verwaltungsaktivitäts-API?
 
 Nein. Die Überwachung muss für Ihre Organisation sein, damit Datensätze über die Verwaltungsaktivitäts-API abgerufen werden können.
 
