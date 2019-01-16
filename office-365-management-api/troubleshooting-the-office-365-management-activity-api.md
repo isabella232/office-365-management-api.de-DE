@@ -5,12 +5,13 @@ description: Enthält eine Zusammenfassung der am häufigsten gestellten Fragen,
 ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: 09/05/2018
-ms.openlocfilehash: 9267bd9e55be7605af72d9c77cf5ed415dcc5c9d
-ms.sourcegitcommit: 525c0d0e78cc44ea8cb6a4bdce1858cb4ef91d57
+localization_priority: Priority
+ms.openlocfilehash: ed84984dc3009d03e0bb7cacba16eafb687c93e0
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/27/2018
-ms.locfileid: "25834863"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014294"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
@@ -222,7 +223,7 @@ Wenn Sie versuchen, die verfügbaren Inhalts-Blobs abzurufen, sind bei vielen Ku
 Response Code 403: {'error':{'code':'AF429','message':'Too many requests. Method=GetBlob, PublisherId=00000000-0000-0000-0000-000000000000'}}
 ```
 
-Dies liegt wahrscheinlich an der Drosselung. Beachten Sie, das der Wert des Publisherid-Parameters wahrscheinlich darauf hinweist, dass der Client *PublisherIdentifier* in der Anforderung nicht angegeben hat. Darüber hinaus sollten Sie berücksichtigen, dass der richtige Parametername *PublisherIdentifier* lautet, auch wenn *PublisherId* in den 403-Fehlerantworten aufgeführt ist.
+Dies liegt wahrscheinlich an der Drosselung. Beachten Sie, das der Wert des PublisherId-Parameters wahrscheinlich darauf hinweist, dass der Client *PublisherIdentifier* in der Anforderung nicht angegeben hat. Darüber hinaus sollten Sie berücksichtigen, dass der richtige Parametername *PublisherIdentifier* lautet, auch wenn *PublisherId* in den 403-Fehlerantworten aufgeführt ist.
 
 > [!NOTE] 
 > In der API-Referenz ist der *PublisherIdentifier*-Parameter in jeder Operation der API aufgelistet, sollte jedoch auch beim Abruf des Inhalts-Blob in der GET-Anforderung zur contentUri-URL eingeschlossen werden.
@@ -231,7 +232,7 @@ Wenn Sie einfache API-Aufrufe zur Problembehebung ausführen (beispielsweise Pr�
 
 Wenn Sie einen Client für den Mandanten Ihres Unternehmens implementieren, ist *PublisherIdentifier* die GUID des Mandanten. Wenn Sie eine ISV-Anwendung oder ein Add-In für mehrere Kunden erstellen, sollte *PublisherIdentifier* die Mandanten-GUID des ISVs und nicht die Mandanten-GUID des Endbenutzerunternehmens sein.
 
-Wenn Sie die gültige *PublisherIdentifier* einschließen, befinden Sie sich in einem Pool, dem 60.000 Anforderungen pro Minute und Mandant zugewiesen werden. Dies ist eine außergewöhnlich große Anzahl von Anforderungen. Wenn Sie den *PublishisherIdentifier*-Parameter jedoch nicht einschließen, befinden Sie sich im allgemeinen Pool, dem 60.000 Anforderungen pro Minute für alle Mandanten zugewiesen werden. In diesem Fall werden Sie sehr wahrscheinlich feststellen, dass Ihre Aufrufe gedrosselt werden. Um dies zu verhindern, fordern Sie ein Inhalts-Blob mit *PublisherIdentifier* wie folgt an:
+Wenn Sie die gültige *PublisherIdentifier* einschließen, befinden Sie sich in einem Pool, dem 60.000 Anforderungen pro Minute und Mandant zugewiesen werden. Dies ist eine außergewöhnlich große Anzahl von Anforderungen. Wenn Sie den *PublisherIdentifier*-Parameter jedoch nicht einschließen, befinden Sie sich im allgemeinen Pool, dem 60.000 Anforderungen pro Minute für alle Mandanten zugewiesen werden. In diesem Fall werden Sie sehr wahrscheinlich feststellen, dass Ihre Aufrufe gedrosselt werden. Um dies zu verhindern, fordern Sie ein Inhalts-Blob mit *PublisherIdentifier* wie folgt an:
 
 ```powershell
 $contentUri = ($response.Content | ConvertFrom-Json).contentUri[0]
@@ -239,7 +240,7 @@ $uri = $contentUri + '?PublisherIdentifier=82b24b6d-0591-4604-827b-705d55d0992f'
 $contents = Invoke-WebRequest -Method GET -Headers $headerParams -Uri $uri
 ```
 
-Das vorherige Beispiel setzt voraus, dass die *$response*-Variable mit der Antwort auf eine Anforderung beim /content-Endpunkt gefüllt wurde und dass die *$hearderParams*-Variable ein gültiges Zugriffstoken enthält. Das Skript verwendet das erste Element im Array von Inhalts-URIs aus der Antwort und ruft dann GET auf,um dieses Blob herunterzuladen und es in der *$contents*-Variable zu platzieren. Der Code wird in der contentUri-Sammlung in einer Schleife ausgeführt, wobei GET für *contentUri* ausgegeben wird.
+Das vorherige Beispiel setzt voraus, dass die *$response*-Variable mit der Antwort auf eine Anforderung beim /content-Endpunkt gefüllt wurde und dass die *$headerParams*-Variable ein gültiges Zugriffstoken enthält. Das Skript verwendet das erste Element im Array von Inhalts-URIs aus der Antwort und ruft dann GET auf, um dieses Blob herunterzuladen und es in der *$contents*-Variable zu platzieren. Der Code wird in der contentUri-Sammlung in einer Schleife ausgeführt, wobei GET für *contentUri* ausgegeben wird.
 
 ## <a name="frequently-asked-questions-about-the-office-365-management-api"></a>Häufig gestellte Fragen zur Office 365-Verwaltungs-API
 
