@@ -5,12 +5,13 @@ description: Das Office 365-Verwaltungsaktivitäts-API-Schema wird als Datendien
 ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
-ms.openlocfilehash: e9a7c47f10c3926f7fd681db6a11bb74cc034226
-ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
+localization_priority: Priority
+ms.openlocfilehash: a8e8fdab103bcee6a5ea8de56dc91c45c1c20b43
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27240652"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014336"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -68,10 +69,10 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |UserType|Self.[UserType](#user-type)|Ja|Der Typ des Benutzers, der den Vorgang ausgeführt hat. In der Tabelle [UserType](#user-type) finden Sie Informationen zu den Typen von Benutzern.|
 |UserKey|Edm.String|Ja|Eine alternative ID für den in der UserId-Eigenschaft identifizierten Benutzer. Diese Eigenschaft wird z. B. mit der Passport Unique ID (PUID) bei Ereignissen ausgefüllt, die von Benutzern in SharePoint, OneDrive for Business und Exchange ausgeführt werden. Diese Eigenschaft kann den gleichen Wert spezifizieren wie die Eigenschaft "UserID" für Ereignisse, die in anderen Diensten auftreten, und Ereignisse, die von Systemkonten durchgeführt werden.|
 |Arbeitslast|Edm.String|Nein|Der Office 365-Dienst, in dem die Aktivität in der Zeichenfolge Arbeitslast aufgetreten ist. Gültige Werte für diese Eigenschaft sind:<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Exchange</p></li><li><p>SharePoint</p></li><li><p>OneDrive</p></li><li><p>Azure Active Directory</p></li><li><p>SecurityComplianceCenter</p></li><li><p>Sway</p></li><li><p>ThreatIntelligence</p></li></ul>|
-|ResultStatus|Edm.String|Nein|Gibt an, ob die Aktion (in der Eigenschaft "Operation" angegeben) erfolgreich war oder nicht. Mögliche Werte sind **Succeeded**, **PartiallySucceded** oder **Failed**. Für Exchange-Verwaltungsaktivitäten ist der Wert entweder **True** oder **False**.|
+|ResultStatus|Edm.String|Nein|Gibt an, ob die Aktion (in der Eigenschaft "Operation" angegeben) erfolgreich war oder nicht. Mögliche Werte sind **Succeeded**, **PartiallySucceeded** oder **Failed**. Für Exchange-Verwaltungsaktivitäten ist der Wert entweder **True** oder **False**.|
 |ObjectId|Edm.string|Nein|Für SharePoint- und OneDrive for Business-Aktivitäten der vollständige Pfadname der Datei oder des Ordners, auf die bzw. den der Benutzer zugegriffen hat. Für Exchange-Verwaltungsüberwachungsprotokolle der Name des Objekts, das vom Cmdlet geändert wurde.|
 |UserId|Edm.string|Ja|Der UPN (User Principal Name) des Benutzers, der die Aktion (in der Eigenschaft "Operation" angegeben), die zu einem Eintrag geführt hat, ausgeführt hat, zum Beispiel `my_name@my_domain_name`. Beachten Sie, dass auch von Systemkonten ausgeführte Datensätze (wie SHAREPOINT\system oder NT AUTHORITY\SYSTEM) enthalten sind.|
-|ClientIp|Edm.String|Ja|Die IP-Adresse des Geräts, das verwendet wurde, als die Aktivität protokolliert wurde. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.|
+|ClientIP|Edm.String|Ja|Die IP-Adresse des Geräts, das verwendet wurde, als die Aktivität protokolliert wurde. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.|
 |Bereich|Self.[AuditLogScope](#auditlogscope)|Nein|Wurde dieses Ereignis von einem gehosteten Office 365-Dienst oder einem lokalen Server erstellt? Mögliche Werte sind **online** und **onprem**. Beachten Sie, dass SharePoint die einzige Arbeitslast ist, die derzeit Ereignissen aus lokalen Umgebungen an O365 sendet.|
 
 ### <a name="enum-auditlogrecordtype---type-edmint32"></a>Enum: AuditLogRecordType - Typ: Edm.Int32
@@ -199,7 +200,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |CollaborationTypeModified*|Der für die Kollaboration auf Websites zulässige Typ (z. B. Intranet, Extranet oder Öffentlich) wurde geändert.|
 |ConnectedSiteSettingModified|Der Benutzer hat die Verknüpfung zwischen einem Projekt und einer Projektwebsite erstellt, geändert oder gelöscht oder der Benutzer ändert die Einstellung der Synchronisierung der Verknüpfung in der Project Web App.|
 |CreateSSOApplication*|Die Zielanwendung, die im Secure Store Service erstellt wurde.|
-|CustomFieldOrLookupTableCreated|Der Benutzer hat eine benutzerdefinierte Tabelle oder ein benutzerdefiniertes Element "Feld" oder "Nachschlagen" in der Project Web App erstellt.|
+|CustomFieldOrLookupTableCreated|Der Benutzer hat ein benutzerdefiniertes Feld oder eine benutzerdefinierte Suchtabelle/ein benutzerdefiniertes Element in der Project Web App erstellt.|
 |CustomFieldOrLookupTableDeleted|Der Benutzer hat eine benutzerdefinierte Tabelle oder ein benutzerdefiniertes Element "Feld" oder "Nachschlagen" in der Project Web App gelöscht.|
 |CustomFieldOrLookupTableModified|Der Benutzer hat eine benutzerdefinierte Tabelle oder ein benutzerdefiniertes Element "Feld" oder "Nachschlagen" in der Project Web App geändert.|
 |CustomizeExemptUsers*|Ein globaler Administrator hat die Liste der ausgenommenen Benutzer-Agents im SharePoint Admin Center angepasst. Sie können festlegen, welche Benutzer-Agents keine komplette Webseite zum Indizieren erhalten sollen. Dies bedeutet: Wenn ein Benutzer-Agent, den Sie als ausgenommen Benutzer festgelegt haben, auf ein InfoPath-Formular stößt, wird das Formular als XML-Datei und nicht als komplette Webseite zurückgegeben. Dadurch wird die Indizierung von InfoPath-Formularen beschleunigt.|
@@ -265,8 +266,8 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |PeopleResultsScopeSet*|Der Websiteadministrator erstellt oder ändert die Ergebnisquelle für Personensuchen für eine SharePoint-Website.|
 |PermissionSyncSettingModified|Ein Benutzer ändert die Synchronisierungseinstellungen für Projektberechtigungen in der Project Web App.|
 |PermissionTemplateModified|Ein Benutzer erstellt, ändert oder löscht eine Berechtigungsvorlage in der Project Web App.|
-|PortfolioDataAccessed|Ein Benutzer greift in der Project Web App auf Portfolio-Inhalte (Treiberbibliothek, Treiberpriorisierung, Portfolioanalysen) zu.|
-|PortfolioDataModified|Ein Benutzer erstellt, ändert oder löscht in der Project Web App Portfolio-Daten (Treiberbibliothek, Treiberpriorisierung, Portfolioanalysen).|
+|PortfolioDataAccessed|Ein Benutzer greift in der Project Web App auf Portfolioinhalte (Treiberbibliothek, Treiberpriorisierung, Portfolioanalysen) zu.|
+|PortfolioDataModified|Ein Benutzer erstellt, ändert oder löscht in der Project Web App Portfoliodaten (Treiberbibliothek, Treiberpriorisierung, Portfolioanalysen).|
 |PreviewModeEnabledSet*|Der Websiteadministrator aktiviert die Dokumentvorschau für eine SharePoint-Website.|
 |ProjectAccessed|Ein Benutzer greift über die Project Web App auf Inhalte zu.|
 |ProjectCheckedIn|Ein Benutzer checkt ein Projekt ein, das er aus einer Project Web App hat ausgecheckt.|
@@ -540,7 +541,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |SendAsUserSmtp|Edm.String|Nein|Die SMTP-Adresse des Benutzers, der imitiert wird.|
 |SendAsUserMailboxGuid|Edm.Guid|Nein|Die Exchange-GUID des Postfachs, auf das zum Senden von E-Mails zugegriffen wurde.|
 |SendOnBehalfOfUserSmtp|Edm.String|Nein|Die SMTP-Adresse des Benutzers, in dessen Auftrag die E-Mail gesendet wird.|
-|SendonBehalfOfUserMailboxGuid|Edm.Guid|Nein|Die Exchange-GUID des Postfachs, auf das zugegriffen wurde, um die E-Mail im Auftrag zu versenden.|
+|SendOnBehalfOfUserMailboxGuid|Edm.Guid|Nein|Die Exchange-GUID des Postfachs, auf das zugegriffen wurde, um die E-Mail im Auftrag zu versenden.|
 
 
 ### <a name="exchangeitem-complex-type"></a>Komplexer ExchangeItem-Typ
@@ -867,7 +868,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](h
 |FileId|Edm.Int32|Nein|Die ID der Datei innerhalb des Vorgangs. |
 |FileName|Edm.String|Nein|Der Name der Datei innerhalb des Vorgangs. Ist leer, falls nicht relevant für den Vorgang.|
 |GroupName|Edm.String|Nein|Der Name der Gruppe innerhalb des Vorgangs. Ist leer, falls nicht relevant für den Vorgang.|
-|IsSoftDelete|Edm.Boolean|Nein|Gibt "true" zurück, wenn die Datenaufbewahrungsrichtlinie des Netzwerks auf "Vorläufiges Löschen" festgelegt ist; gibt "false" zurück, wenn die Datenaufbewahrungsrichtlinie des Netzwerks auf "Endgültiges Löschen" festgelegt ist.|
+|IsSoftDelete|Edm.Boolean|Nein|Gibt „true“ zurück, wenn die Datenaufbewahrungsrichtlinie des Netzwerks auf „Vorläufiges Löschen“ festgelegt ist; gibt „false“ zurück, wenn die Datenaufbewahrungsrichtlinie des Netzwerks auf „Endgültiges Löschen“ festgelegt ist.|
 |MessageId|Edm.Int32|Nein|Die ID der Nachricht innerhalb des Vorgangs.|
 |YammerNetworkId|Edm.Int32|Nein|Die Netzwerk-ID des Benutzers, der den Vorgang ausgeführt hat.|
 |TargetUserId|Edm.String|Nein|Die E-Mail-Adresse des Zielbenutzers innerhalb des Vorgangs. Ist leer, falls nicht relevant für den Vorgang.|

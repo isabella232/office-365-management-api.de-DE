@@ -5,12 +5,13 @@ description: Verwenden Sie diese API, um Zugriff auf die folgenden Daten zu erha
 ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: 09/05/2018
-ms.openlocfilehash: cde34da7377c5d4820d6ca62dd3affe806eda229
-ms.sourcegitcommit: 525c0d0e78cc44ea8cb6a4bdce1858cb4ef91d57
+localization_priority: Priority
+ms.openlocfilehash: dc231a4fb19be7ac0e9248d5f4d709681ff0abfa
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/27/2018
-ms.locfileid: "25834857"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014308"
 ---
 # <a name="office-365-service-communications-api-reference-preview"></a>Office 365-Dienstkommunikations-API – Referenz (Vorschau)
 
@@ -380,7 +381,7 @@ Gibt Nachrichten über den Dienst über einen bestimmten Zeitraum zurück. Verwe
 |**Query-option**|$select|Wählen Sie eine Teilmenge der Eigenschaften.|
 ||$top|Wählen Sie die wichtigsten Ergebnisse (default und max $top=100).|
 ||$skip|Überspringen Sie die Anzahl der Ergebnisse (Standard: $skip=0).|
-|**Response**|Liste der „Message“-Entitäten.|Die „Message“-Entität enthält „Id“ (Zeichenfolge), „StartTime“ (DateTimeOffset), „EndTime“ (DateTimeOffset), „Status“ (Zeichenfolge), "Messages" (Liste mit „MessagHistory“-Entität), „LastUpdatedTime“ (DateTimeOffset), „Workload“ (String), „WorkloadDisplayName“ (String), „Feature“ (String), „FeatureDisplayName“ (String), „MessageType“ (Enum, Standard: alle).<br/><br/>„MessageHistory“-Entität enthält „PublishedTime“ (DateTimeOffset), „MessageText“ (Zeichenfolge).|
+|**Response**|Liste der „Message“-Entitäten.|Die „Message“-Entität enthält „Id“ (Zeichenfolge), „StartTime“ (DateTimeOffset), „EndTime“ (DateTimeOffset), „Status“ (Zeichenfolge), "Messages" (Liste mit „MessageHistory“-Entität), „LastUpdatedTime“ (DateTimeOffset), „Workload“ (String), „WorkloadDisplayName“ (String), „Feature“ (String), „FeatureDisplayName“ (String), „MessageType“ (Enum, Standard: alle).<br/><br/>„MessageHistory“-Entität enthält „PublishedTime“ (DateTimeOffset), „MessageText“ (Zeichenfolge).|
 
 #### <a name="sample-request"></a>Beispielanfrage
 
