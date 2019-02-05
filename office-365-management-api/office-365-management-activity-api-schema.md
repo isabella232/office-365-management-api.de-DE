@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: a8e8fdab103bcee6a5ea8de56dc91c45c1c20b43
-ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
+ms.openlocfilehash: 6fa95b7134bd5bb8ac6a8f07c87df747ae086a81
+ms.sourcegitcommit: 55264094d1ebc2f9968b2d29d5982b1ba4e29118
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "28014336"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "29735243"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -1053,18 +1053,20 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 
 ## <a name="office-365-advanced-threat-protection-and-threat-intelligence-schema"></a>Office 365 Advanced Threat Protection und Threat Intelligence-Schema
 
-Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse sind für Office 365-Kunden verfügbar, die ein ATP-, Threat Intelligence- oder E5-Abonnement besitzen. Jedes Ereignis im ATP- und Threat Intelligence-Feed entspricht folgenden Elementen, für die eine Bedrohung erkannt wurde:
+Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse sind für Office 365-Kunden verfügbar, die ein ATP-, Threat Intelligence- oder ein E5-Abonnement besitzen. Jedes Ereignis im ATP- und Threat Intelligence-Feed entspricht folgenden Elementen, für die eine Bedrohung erkannt wurde:
 
 - Eine E-Mail-Nachricht, die von einem Benutzer in der Organisation empfangen oder gesendet wurde, wobei die Erkennung zum Übermittlungszeitpunkt und von [Automatische Bereinigung zur Nullstunde](https://support.office.com/de-DE/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15) durchgeführt wurde. 
 
 - Von einem Benutzer in der Organisation angeklickte URLs, die beim Klicken basierend auf dem Schutz [ATP-sichere Links in Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) als böswillig erkannt wurden.  
+
+- Eine Datei in SharePoint Online, OneDrive for Business oder Microsoft Teams wurde von [Office 365 ATP](https://docs.microsoft.com/de-DE/office365/securitycompliance/atp-for-spo-odb-and-teams) als böswillig eingestuft.  
 
 ### <a name="email-message-events"></a>E-Mail-Nachricht-Ereignisse
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |AttachmentData|Collection(Self.[AttachmentData](#AttachmentData))|Nein|Daten zu Anlagen der E-Mail-Nachricht, die das Ereignis ausgelöst hat.|
-|DetectionType|Self.[DetectionType](#DetectionType)|Ja|Der Typ der Erkennung.|
+|DetectionType|Edm.String|Ja|Der Typ der Erkennung (z. B. **Inline** – erkannt zum Übermittlungszeitpunkt; **Verzögert** – erkannt nach Zustellung; **ZAP** – Nachrichten durch [Automatische Bereinigung zur Nullstunde](https://support.office.com/de-DE/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)) entfernt. In der Regel geht Ereignissen mit ZAP-Erkennungstyp eine Nachricht mit dem Erkennungstyp **Verzögert** voraus.|
 |DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Office 365 ATP für die Erkennung verwendet wurde.|
 |InternetMessageId|Edm.String|Ja|Die Internetnachrichten-ID.|
 |NetworkMessageId|Edm.String|Ja|Die Nachrichten-ID des Exchange Online-Netzwerks.|
@@ -1074,17 +1076,8 @@ Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse s
 |SenderIp|Edm.String|Ja|Die IP-Adresse, die die E-Mail über Office 365 übermittelt hat. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.|
 |Betreff|Edm.String|Ja|Die Betreffzeile der Nachricht.|
 |Verdict|Edm.String|Ja|Die Bewertung der Nachricht.|
-
-### <a name="enum-detectiontype---type-edmint32"></a>Enumeration: DetectionType - Typ: Edm.Int32
-
-#### <a name="detectiontype"></a>DetectionType
-
-|**Wert**|**Elementname**|**Beschreibung**|
-|:-----|:-----|:-----|
-|0|Inline|Die zum Übermittlungszeitpunkt erkannte Bedrohung.|
-|1|Delayed|Die nach der Zustellung erkannte Bedrohung.|
-|2|ZAP|Nachrichten, die durch [Automatische Bereinigung zur Nullstunde](https://support.office.com/de-DE/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15) gelöscht wurden. In der Regel geht Ereignissen mit diesem Erkennungstyp eine Nachricht mit dem Erkennungstyp "Verzögert" voraus.|
-
+|MessageTime|Edm.Date|Ja|Zeitpunkt in UTC, zu dem die E-Mail empfangen oder gesendet wurde.|
+|EventDeepLink|Edm.String|Ja|Deep-Link zum E-Mail-Ereignis im Explorer oder Echtzeit-Berichten im Office 365 Security & Compliance Center.|
 
 ### <a name="attachmentdata-complex-type"></a>Komplexer AttachmentData-Typ
 
@@ -1122,6 +1115,55 @@ Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse s
 |TimeOfClick|Edm.Date|Ja|Das Datum und die Uhrzeit in koordinierter Weltzeit (UTC), wann der Benutzer auf die URL geklickt hat.|
 |URL|Edm.String|Ja|Die URL, auf die der Benutzer geklickt hat.|
 |UserIp|Edm.String|Ja|Die IP-Adresse des Benutzer, der auf die URL geklickt hat. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.|
+
+### <a name="enum-urlclickaction---type-edmint32"></a>Enum: URLClickAction – Type: Edm.Int32
+
+#### <a name="urlclickaction"></a>URLClickAction
+
+|**Wert**|**Elementname**|**Beschreibung**|
+|:-----|:-----|:-----|
+|0|None|Keine Klicks erkannt.|
+|1|Allowed|Benutzer, die zur URL navigieren dürfen (da URL von der [Office 365 ATP-Funktion für sichere Links](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) als sicher eingestuft wurde).|
+|2|Blockpage|Benutzer, für die das Navigieren zur URL von der [Office 365 ATP-Funktion für sichere Links](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) blockiert wurden.|
+|3|PendingDetonationPage|Benutzer, die die Seite zur ausstehenden Denotation von der [Office 365 ATP-Funktion für sichere Links](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) sehen.|
+|4|BlockPageOverride|Benutzer, für die das Navigieren zur URL durch die [Office 365 ATP-Funktion für sichere Links](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) blockiert wurde; Benutzer haben jedoch die Sperre außer Kraft gesetzt, um zur URL zu navigieren.|
+|5|PendingDetonationPageOverride|Benutzer, die die Seite zur ausstehenden Detonation von der [Office 365 ATP-Funktion für sichere Links](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) sehen; Benutzer haben dies jedoch außer Kraft gesetzt, um zur URL zu navigieren.|
+
+
+### <a name="file-events"></a>Dateiereignisse
+
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+|FileData|Self.[FileData](#FileData)|Ja|Daten zu der Datei, die das Ereignis ausgelöst hat.|
+|SourceWorkload|Self.[SourceWorkload](#SourceWorkload)|Ja|Arbeitslast oder Dienst, in der bzw. in dem die Datei gefunden wurde (z. B. SharePoint Online, OneDrive for Business oder Microsoft Teams).
+|DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Office 365 ATP für die Erkennung verwendet wurde.|
+|LastModifiedDate|Edm.Date|Ja|Der Zeitpunkt in UTC, zu dem die Datei erstellt oder zuletzt geändert wurde.|
+|LastModifiedBy|Edm.String|Ja|Bezeichner (z. B. eine E-Mail-Adresse) für den Benutzer, der die Datei erstellt oder zuletzt geändert hat.|
+|EventDeepLink|Edm.String|Ja|Deep-Link zum Dateiereignis im Explorer oder Echtzeit-Berichten im Security & Compliance Center.|
+
+### <a name="filedata-complex-type"></a>Komplexer FileData-Typ
+
+#### <a name="filedata"></a>FileData
+
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+|DocumentId|Edm.String|Ja|Eindeutiger Bezeichner für die Datei in SharePoint, OneDrive oder Microsoft Teams.|
+|FileName|Edm.String|Ja|Name der Datei, die das Ereignis ausgelöst hat.|
+|FilePath|Edm.String|Ja|Pfad (Speicherort) zu der Datei in SharePoint, OneDrive oder Microsoft Teams|
+|FileVerdict||Self.[FileVerdict](#FileVerdict)|Ja|Die Bewertung der Schadsoftware der Datei.|
+|MalwareFamily|Edm.String|Nein|Die Familie der Schadsoftware.|
+|SHA256|Edm.String|Ja|Die Datei mit der Hash-Funktion SHA256.|
+|FileSize|Edm.String|Ja|Größe der Datei in Byte.|
+
+### <a name="enum-sourceworkload---type-edmint32"></a>Enum: SourceWorkload – Type: Edm.Int32
+
+#### <a name="sourceworkload"></a>SourceWorkload
+
+|**Wert**|**Elementname**|
+|:-----|:-----|
+|0|SharePoint Online|
+|1|OneDrive for Business|
+|2|Microsoft Teams|
 
 ## <a name="power-bi-schema"></a>Power BI-Schema
 
