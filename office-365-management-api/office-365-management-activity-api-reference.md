@@ -6,12 +6,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: 01/10/2018
 localization_priority: Priority
-ms.openlocfilehash: 76907cf9f22078a232cc20e65ba5fdc12c7f5d7e
-ms.sourcegitcommit: 55264094d1ebc2f9968b2d29d5982b1ba4e29118
+ms.openlocfilehash: e6675628a384ab4b2dac3342875332b50586526f
+ms.sourcegitcommit: 95a3313d95b79a2164008d32c4a4f03bf873a23c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "29735229"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "30379181"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365-Verwaltungsaktivitäts-API – Referenz
 
@@ -22,7 +22,7 @@ Sie können die Aktionen und Ereignisse aus den Office 365- und Microsoft Azure 
 Die Office 365-Verwaltungsaktivitäts-API ist ein REST-Webdienst, mit dem Sie Lösungen in einer beliebigen Sprache und mit jeder Hosting-Umgebung, die HTTPS- und X.509-Zertifikate unterstützt, entwickeln können. Die API basiert auf Azure AD und dem OAuth2-Protokoll für Authentifizierung und Autorisierung. Um von Ihrer Anwendung aus auf die API zugreifen zu können, müssen Sie diese zuerst in Azure AD registrieren und dann mit den entsprechenden Berechtigungen konfigurieren. Dadurch kann die Anwendung OAuth2-Zugriffstoken anfordern, die sie zum Aufrufen der API benötigt. Weitere Informationen finden Sie unter [Erste Schritte mit den Office 365-Verwaltungs-APIs](get-started-with-office-365-management-apis.md).
 
 > [!NOTE] 
-> Weitere Informationen über das Schema der Daten, die von der Office 365-Verwaltungsaktivitäts-API zurückgegeben werden, einschließlich bekannte Probleme und anstehende Änderungen, die sich auf die Implementierung auswirken können, finden Sie unter [Office 365-Verwaltungsaktivitäts-API-Schema](office-365-management-activity-api-schema.md).
+> Weitere Informationen über das Schema der Daten, die von der Office 365-Verwaltungsaktivitäts-API zurückgegeben werden, finden Sie unter [Office 365-Verwaltungsaktivitäts-API-Schema](office-365-management-activity-api-schema.md).
 
 
 ## <a name="working-with-the-office-365-management-activity-api"></a>Verwenden der Office 365-Verwaltungsaktivitäts-API

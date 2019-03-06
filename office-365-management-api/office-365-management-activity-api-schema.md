@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 6fa95b7134bd5bb8ac6a8f07c87df747ae086a81
-ms.sourcegitcommit: 55264094d1ebc2f9968b2d29d5982b1ba4e29118
+ms.openlocfilehash: 72392671dccec43b70684bbde6f53ac926b8d06e
+ms.sourcegitcommit: 95a3313d95b79a2164008d32c4a4f03bf873a23c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "29735243"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "30379195"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -108,9 +108,13 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |32|MicrosoftStream|Microsoft Stream-Ereignisse|
 |35|Project|Microsoft Project-Ereignisse.|
 |36|SharepointListOperation|Sharepoint-Listenereignisse.|
+|38|DataGovernance|Auf Aufbewahrungsrichtlinien und Aufbewahrungsbezeichnungen im Security & Compliance Center bezogene Ereignisse|
 |40|SecurityComplianceAlerts|Security & Compliance-Warnsignale.|
 |41|ThreatIntelligenceUrl|Zeitblockereignisse für sichere Links und Ereignisse zur Außerkraftsetzung von Blöcken aus Office 365 Advanced Threat Protection.|
+|44|WorkplaceAnalytics|Workplace Analytics-Ereignisse.|
+|45|PowerAppsApp|PowerApps-App-Ereignisse.|
 |47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
+||||
 
 ### <a name="enum-user-type---type-edmint32"></a>Enumeration: Benutzertyp – Typ: Edm.Int32
 
