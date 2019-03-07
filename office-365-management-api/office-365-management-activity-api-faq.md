@@ -4,14 +4,14 @@ title: Office 365-Verwaltungsaktivitäts-API – Häufig gestellte Fragen
 description: Häufig gestellte Fragen zur Verwendung der Office 365-Verwaltungsaktivitäts-API
 ms.ContentId: ''
 ms.topic: reference (API)
-ms.date: 09/21/2018
+ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 8e341def7bc3a4f71eee23bc04d01e11d1390e1d
-ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
+ms.openlocfilehash: 8954be1b9076eb2a6f640ee96cc2b612addcabc0
+ms.sourcegitcommit: c6a3d440a1ecc8f8f0b00b3fdd8e41127514a6f6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "28014287"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "30458514"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365-Verwaltungsaktivitäts-API – Häufig gestellte Fragen
 
@@ -55,3 +55,6 @@ Manchmal gibt es einen temporären Ausfall oder andere Probleme in den Office 36
 
 Nein. Die Überwachung muss für Ihre Organisation sein, damit Datensätze über die Verwaltungsaktivitäts-API abgerufen werden können.
 
+#### <a name="why-are-targetupdatedproperties-no-longer-in-extendedproperties-in-the-audit-logs-for-azure-active-directory-activities"></a>Warum werden in den Auditprotokollen für Azure Active Directory-Aktivitäten "TargetUpdatedProperties" nicht mehr in "ExtendedProperties" enthalten?
+
+"TargetUpdatedProperties" wurden in "ExtendedProperties" angezeigt. Sie wurden jedoch aus "ExtendedProperties" entfernt und werden nun in "ModifiedProperties"angezeigt.
