@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 72392671dccec43b70684bbde6f53ac926b8d06e
-ms.sourcegitcommit: 95a3313d95b79a2164008d32c4a4f03bf873a23c
+ms.openlocfilehash: de6a841339690c483ed58e38e0b691b00fadab4d
+ms.sourcegitcommit: b030dc1b7ca46280191dd2f54c8179795657d792
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 03/05/2019
-ms.locfileid: "30379195"
+ms.locfileid: "30409078"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -187,7 +187,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |:-----|:-----|
 |AccessInvitationAccepted*|Der Empfänger einer Einladung zum Anzeigen oder Bearbeiten einer freigegebenen Datei (oder eines Ordners) hat durch Klicken auf den Link in der Einladung auf die freigegebene Datei zugegriffen.|
 |AccessInvitationCreated*|Der Benutzer sendet eine Einladung an eine andere Person (innerhalb oder außerhalb seiner Organisation) zum Anzeigen oder Bearbeiten einer freigegebenen Datei oder eines Ordners auf einer SharePoint- oder OneDrive for Business-Website. Die Details des Ereigniseintrags geben Folgendes an: den Namen der Datei, die freigegeben wurde, den Benutzer, an den die Einladung gesendet wurde, und den Typ der Freigabeberechtigung, der von der Person ausgewählt wurde, die die Einladung gesendet hat.|
-|AccessInvitationExpired*|Eine an einen externen Benutzer gesendete Einladung läuft ab. Standardmäßig läuft eine Einladung, die an einen Benutzer außerhalb Ihrer Organisation gesendet wurde, nach 7 Tagen ab, wenn die Einladung nicht angenommen wird.|
+|AccessInvitationExpired*|Eine an einen externen Benutzer gesendete Einladung läuft ab. Standardmäßig läuft eine Einladung, die an einen Benutzer außerhalb der Organisation gesendet wurde, nach 7 Tagen ab, wenn die Einladung nicht angenommen wird.|
 |AccessInvitationRevoked*|Der Websiteadministrator oder Besitzer einer Website oder eines Dokuments in SharePoint oder OneDrive for Business zieht eine Einladung, die an einen Benutzer außerhalb Ihrer Organisation gesendet wurde, zurück. Eine Einladung kann nur zurückgezogen werden, bevor sie akzeptiert wurde.|
 |AccessInvitationUpdated*|Der Benutzer, der eine Einladung an eine andere Person zum Anzeigen oder Bearbeiten einer freigegebenen Datei oder eines Ordners auf einer SharePoint- oder OneDrive for Business-Website erstellt hat, sendet die Einladung erneut.|
 |AccessRequestApproved|Der Websiteadministrator oder Besitzer einer Website oder eines Dokuments in SharePoint oder OneDrive for Business genehmigt eine Benutzeranforderung für den Zugriff auf die Website oder das Dokument.|
@@ -223,7 +223,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |EntityForceCheckedIn|Der Benutzer erzwingt die Überprüfung eines Kalenders, eines benutzerdefinierten Felds oder einer Nachschlagetabelle in der Project Web App.|
 |ExemptUserAgentSet*|Ein globaler Administrator fügt einen Benutzer-Agent zu der Liste der ausgenommenen Benutzer-Agents im SharePoint Admin Center hinzu.|
 |FileAccessed|Der Benutzer oder das Systemkonto greift auf eine Datei auf einer SharePoint- oder OneDrive for Business-Website zu. Systemkonten können ebenfalls FileAccessed-Ereignisse generieren.|
-|FileCheckOutDiscarded*|Der Benutzer verwirft eine ausgecheckte Datei oder macht sie rückgängig. Das bedeutet, dass alle Änderungen, die beim Auschecken an der Datei vorgenommen wurden, verworfen und nicht in der Version des Dokuments in der Dokumentbibliothek gespeichert werden.|
+|FileCheckOutDiscarded*|Der Benutzer verwirft eine ausgecheckte Datei. Das bedeutet, dass alle Änderungen, die an der Datei vorgenommen wurden, während sie ausgecheckt war, verworfen und nicht in der Version des Dokuments in der Dokumentbibliothek gespeichert werden.|
 |FileCheckedIn*|Ein Benutzer checkt ein Dokument ein, das er aus der SharePoint- oder OneDrive for Business-Dokumentbibliothek ausgecheckt hat.|
 |FileCheckedOut*|Ein Benutzer checkt ein Dokument aus, das sich in einer SharePoint- oder OneDrive for Business-Dokumentbibliothek befindet. Benutzer können alle Dokumente, die für sie freigegeben wurden, auschecken oder ändern.|
 |FileCopied|Ein Benutzer kopiert ein Dokument von einer SharePoint- oder OneDrive for Business-Website. Die kopierte Datei kann in einem anderen Ordner auf der Website gespeichert werden.|
@@ -312,7 +312,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |SharedLinkCreated|Ein Benutzer erstellt einen Link zu einer freigegebenen Datei in SharePoint oder OneDrive for Business. Dieser Link kann an andere Personen gesendet werden, um ihnen Zugriff auf die Datei zu gewähren. Ein Benutzer kann zwei Arten von Links erstellen: einen Link, mit dem ein Benutzer die freigegebene Datei anzeigen oder bearbeiten kann, oder einen Link, mit dem ein Benutzer die Datei nur anzeigen kann.|
 |SharedLinkDisabled*|Ein Benutzer deaktiviert (dauerhaft) einen Link, der zum Freigeben einer Datei erstellt wurde.|
 |SharingInvitationAccepted*|Ein Benutzer akzeptiert eine Einladung zur Freigabe von Dateien oder Ordnern. Dieses Ereignis wird protokolliert, wenn ein Benutzer eine Datei für andere Benutzer freigibt.|
-|SharingRevoked*|Ein Benutzer hebt die Freigabe von Dateien oder Ordnern auf, die zuvor für andere Benutzer freigegeben wurden. Dieses Ereignis wird protokolliert, wenn ein Benutzer die Freigabe einer Datei für andere Benutzer aufhebt.|
+|SharingRevoked*|Der Benutzer hebt die Freigabe einer Datei oder eines Ordners auf, die bzw. der zuvor für andere Benutzer freigegeben wurde. Dieses Ereignis wird protokolliert, wenn ein Benutzer die Freigabe einer Datei für andere Benutzer beendet.|
 |SharingSet|Ein Benutzer gibt eine Datei oder einen Ordner in SharePoint oder OneDrive for Business für einen anderen Benutzer in der Organisation frei.|
 |SiteAdminChangeRequest*|Ein Benutzer fordert an, als Websitesammlungsadministrator für eine SharePoint-Websitesammlung hinzugefügt zu werden. Websitesammlungsadministratoren verfügen über Vollzugriff für die Websitesammlung und alle Unterwebsites.|
 |SiteCollectionAdminAdded*|Der Websitesammlungsadministrator oder -besitzer fügt eine Person als Websitesammlungsadministrator für eine SharePoint oder OneDrive for Business-Website hinzu. Websitesammlungsadministratoren verfügen über Vollzugriff für die Websitesammlung und alle Unterwebsites.|
@@ -1069,7 +1069,7 @@ Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse s
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
-|AttachmentData|Collection(Self.[AttachmentData](#AttachmentData))|Nein|Daten zu Anlagen der E-Mail-Nachricht, die das Ereignis ausgelöst hat.|
+|AttachmentData|Collection(Self.[AttachmentData](#attachmentdata)|Nein|Daten zu Anlagen der E-Mail-Nachricht, die das Ereignis ausgelöst hat.|
 |DetectionType|Edm.String|Ja|Der Typ der Erkennung (z. B. **Inline** – erkannt zum Übermittlungszeitpunkt; **Verzögert** – erkannt nach Zustellung; **ZAP** – Nachrichten durch [Automatische Bereinigung zur Nullstunde](https://support.office.com/de-DE/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)) entfernt. In der Regel geht Ereignissen mit ZAP-Erkennungstyp eine Nachricht mit dem Erkennungstyp **Verzögert** voraus.|
 |DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Office 365 ATP für die Erkennung verwendet wurde.|
 |InternetMessageId|Edm.String|Ja|Die Internetnachrichten-ID.|
@@ -1091,7 +1091,7 @@ Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse s
 |:-----|:-----|:-----|:-----|
 |FileName|Edm.String|Ja|Der Dateiname der Anlage.|
 |FileType|Edm.String|Ja|Der Dateityp der Anlage.|
-|FileVerdict|Self.[FileVerdict](#FileVerdict)|Ja|Die Bewertung der Schadsoftware der Datei.|
+|FileVerdict|Self.[FileVerdict](#fileverdict)|Ja|Die Bewertung der Schadsoftware der Datei.|
 |MalwareFamily|Edm.String|Nein|Die Familie der Schadsoftware.|
 |SHA256|Edm.String|Ja|Die Datei mit der Hash-Funktion SHA256.|
 
@@ -1113,8 +1113,7 @@ Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse s
 |:-----|:-----|:-----|:-----|
 |UserId|Edm.String|Ja|Bezeichner (z. B. E-Mail-Adresse) für den Benutzer, der auf die URL geklickt hat.|
 |AppName|Edm.String|Ja|Office 365-Dienst, von dem aus auf die URL geklickt wurde (z. B. E-Mail).|
-|Gesperrt|Edm.Boolean|Ja|Dies gilt, wenn die angeklickte URL durch den Schutz [ATP-sichere Links in Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) gesperrt wird.|
-|ClickedThrough|Edm.Boolean|Ja|Dies gilt, wenn die URL-Sperre durch Klicken des Benutzers basierend auf der Richtlinie der Organisation für den Schutz [ATP-sichere Links in Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) übersprungen (außer Kraft gesetzt) wird.|
+|URLClickAction|Self.[URLClickAction](#urlclickaction)|Ja|Klicken Sie auf die Aktion für die URL basierend auf den Richtlinien der Organisation für [ATP-sichere Links in Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links).|
 |SourceId|Edm.String|Ja|Bezeichner für den Office 365-Dienst, aus dem die URL angeklickt wurde (für E-Mail ist dies z. B. die Nachrichten-ID des Exchange Online-Netzwerks).|
 |TimeOfClick|Edm.Date|Ja|Das Datum und die Uhrzeit in koordinierter Weltzeit (UTC), wann der Benutzer auf die URL geklickt hat.|
 |URL|Edm.String|Ja|Die URL, auf die der Benutzer geklickt hat.|
@@ -1138,8 +1137,8 @@ Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse s
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
-|FileData|Self.[FileData](#FileData)|Ja|Daten zu der Datei, die das Ereignis ausgelöst hat.|
-|SourceWorkload|Self.[SourceWorkload](#SourceWorkload)|Ja|Arbeitslast oder Dienst, in der bzw. in dem die Datei gefunden wurde (z. B. SharePoint Online, OneDrive for Business oder Microsoft Teams).
+|FileData|Self.[FileData](#filedata)|Ja|Daten zu der Datei, die das Ereignis ausgelöst hat.|
+|SourceWorkload|Self.[SourceWorkload](#sourceworkload)|Ja|Arbeitslast oder Dienst, in der bzw. in dem die Datei gefunden wurde (z. B. SharePoint Online, OneDrive for Business oder Microsoft Teams).
 |DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Office 365 ATP für die Erkennung verwendet wurde.|
 |LastModifiedDate|Edm.Date|Ja|Der Zeitpunkt in UTC, zu dem die Datei erstellt oder zuletzt geändert wurde.|
 |LastModifiedBy|Edm.String|Ja|Bezeichner (z. B. eine E-Mail-Adresse) für den Benutzer, der die Datei erstellt oder zuletzt geändert hat.|
@@ -1154,7 +1153,7 @@ Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse s
 |DocumentId|Edm.String|Ja|Eindeutiger Bezeichner für die Datei in SharePoint, OneDrive oder Microsoft Teams.|
 |FileName|Edm.String|Ja|Name der Datei, die das Ereignis ausgelöst hat.|
 |FilePath|Edm.String|Ja|Pfad (Speicherort) zu der Datei in SharePoint, OneDrive oder Microsoft Teams|
-|FileVerdict||Self.[FileVerdict](#FileVerdict)|Ja|Die Bewertung der Schadsoftware der Datei.|
+|FileVerdict|Self.[FileVerdict](#fileverdict)|Ja|Die Bewertung der Schadsoftware der Datei.|
 |MalwareFamily|Edm.String|Nein|Die Familie der Schadsoftware.|
 |SHA256|Edm.String|Ja|Die Datei mit der Hash-Funktion SHA256.|
 |FileSize|Edm.String|Ja|Größe der Datei in Byte.|
