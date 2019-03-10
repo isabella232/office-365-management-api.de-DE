@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: de6a841339690c483ed58e38e0b691b00fadab4d
-ms.sourcegitcommit: b030dc1b7ca46280191dd2f54c8179795657d792
+ms.openlocfilehash: 41018718dd5890c5c628672828a2dd365a6bebe3
+ms.sourcegitcommit: c6a3d440a1ecc8f8f0b00b3fdd8e41127514a6f6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "30409078"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "30458528"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -54,6 +54,8 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Microsoft Teams-Einstellungsschema](#microsoft-teams-settings-schema)|Das Microsoft Teams-Schema wird mit den für Microsoft Teams-Einstellungsänderungsereignisse spezifischen Eigenschaften erweitert.|
 |[Office 365 Advanced Threat Protection und Threat Intelligence-Schema](#office-365-advanced-threat-protection-and-threat-intelligence-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Intelligence spezifischen Daten erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
+|[Workplace Analytics](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
+|||
 
 ## <a name="common-schema"></a>Allgemeines Schema
 
@@ -963,8 +965,6 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 
 ## <a name="data-center-security-base-schema"></a>Rechenzentrum-Sicherheitsbasis-Schema
 
-
-
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |DataCenterSecurityEventType|Self.[DataCenterSecurityEventType](#datacentersecurityeventtype)|Ja|Der Typ des Dmdlet-Ereignisses im Feld "Sperren".|
@@ -1199,3 +1199,14 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](/
 | RecipientEmail    | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Die E-Mail-Adresse des Empfängers einer Freigabeeinladung. |
 | RecipientName    | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Der Name des Empfängers einer Freigabeeinladung. |
 | ResharePermission | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Die dem Empfänger erteilte Berechtigung. |
+
+## <a name="workplace-analytics-schema"></a>Workplace Analytics-Schema
+
+Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://docs.microsoft.com/office365/securitycompliance/search-the-audit-log-in-security-and-compliance#microsoft-workplace-analytics-activities) aufgelisteten WorkPlace Analytics-Ereignisse verwenden dieses Schema.
+
+| **Parameter**     | **Typ**            | **Erforderlich?** | **Beschreibung**|
+|:------------------ | :------------------ | :--------------|:--------------|
+| WpaUserRole        | Edm.String | Nein     | Die Workplace Analytics-Rolle des Benutzers, der die Aktion ausgeführt hat.                                                                                            |
+| ModifiedProperties | Collection (Common.ModifiedProperty) | Nein | Diese Eigenschaft enthält den Namen der Eigenschaft, die geändert wurde, den neuen Wert der geänderten Eigenschaft und den vorherigen Wert der geänderten Eigenschaft.|
+| OperationDetails   | Collection (Common.NameValuePair)    | Nein | Eine Liste der erweiterten Eigenschaften für die geänderte Einstellung. Jede Eigenschaft besitzt einen **Namen** und einen **Wert**.|
+||||
