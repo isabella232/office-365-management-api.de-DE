@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 41018718dd5890c5c628672828a2dd365a6bebe3
-ms.sourcegitcommit: c6a3d440a1ecc8f8f0b00b3fdd8e41127514a6f6
+ms.openlocfilehash: 4604bd0aec3856b377a24d758a0961e8da1d9bf6
+ms.sourcegitcommit: 338c5c61687bc15ade48ecbae80d7f477640b68f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/07/2019
-ms.locfileid: "30458528"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575977"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -52,7 +52,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Microsoft Teams-Schema](#microsoft-teams-schema)|Das allgemeine Schema wird mit den für alle Microsoft Teams-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Add-Ons-Schema](#microsoft-teams-add-ons-schema)|Das Microsoft Teams-Schema wird mit den für Microsoft Teams-Add-Ons spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Einstellungsschema](#microsoft-teams-settings-schema)|Das Microsoft Teams-Schema wird mit den für Microsoft Teams-Einstellungsänderungsereignisse spezifischen Eigenschaften erweitert.|
-|[Office 365 Advanced Threat Protection und Threat Intelligence-Schema](#office-365-advanced-threat-protection-and-threat-intelligence-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Intelligence spezifischen Daten erweitert.|
+|[Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Investigation and Response spezifischen Daten erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
 |[Workplace Analytics](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
 |||
@@ -1055,21 +1055,24 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |ModifiedProperty|Common.ModifiedProperty|Nein|Die Eigenschaft, die geändert wurde. Sie enthält den **Namen**, **Alten Wert** und **Neuen Wert** der Eigenschaft.|
 |ExtendedProperties|Collection(Common.NameValuePair)|Nein|Eine Liste der erweiterten Eigenschaften der geänderten Einstellung. Jede Eigenschaft besitzt einen **Namen** und einen **Wert**.|
 
-## <a name="office-365-advanced-threat-protection-and-threat-intelligence-schema"></a>Office 365 Advanced Threat Protection und Threat Intelligence-Schema
+## <a name="office-365-advanced-threat-protection-and-threat-investigation-and-response-schema"></a>Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema
 
-Office 365 Advanced Threat Protection (ATP) und Threat Intelligence-Ereignisse sind für Office 365-Kunden verfügbar, die ein ATP-, Threat Intelligence- oder ein E5-Abonnement besitzen. Jedes Ereignis im ATP- und Threat Intelligence-Feed entspricht folgenden Elementen, für die eine Bedrohung erkannt wurde:
+Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Response-Ereignisse sind für Office 365-Kunden verfügbar, die über Office 365 Advanced Threat Protection Plan 1, Office 365 Advanced Threat Protection Plan 2 oder ein E5-Abonnement verfügen. Jedes Ereignis im Office 365 ATP-Feed entspricht folgenden Elementen, für die eine Bedrohung erkannt wurde:
 
 - Eine E-Mail-Nachricht, die von einem Benutzer in der Organisation empfangen oder gesendet wurde, wobei die Erkennung zum Übermittlungszeitpunkt und von [Automatische Bereinigung zur Nullstunde](https://support.office.com/de-DE/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15) durchgeführt wurde. 
 
 - Von einem Benutzer in der Organisation angeklickte URLs, die beim Klicken basierend auf dem Schutz [ATP-sichere Links in Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) als böswillig erkannt wurden.  
 
-- Eine Datei in SharePoint Online, OneDrive for Business oder Microsoft Teams wurde von [Office 365 ATP](https://docs.microsoft.com/de-DE/office365/securitycompliance/atp-for-spo-odb-and-teams) als böswillig eingestuft.  
+- Eine Datei in SharePoint Online, OneDrive for Business oder Microsoft Teams wurde von [Office 365 ATP](https://docs.microsoft.com/de-DE/office365/securitycompliance/atp-for-spo-odb-and-teams) als böswillig eingestuft.
+
+> [!NOTE]
+> Die Office 365 Advanced Threat Protection- und Office 365 Threat Investigation and Response-Funktionen (früher als "Office 365 Threat Intelligence" bezeichnet) sind nun Teil von Office 365 Advanced Threat Protection Plan 2 und weisen zusätzliche Funktionen zum Schutz vor Bedrohungen auf. Weitere Informationen finden Sie unter [Office 365 ATP-Pläne und -Preise](https://products.office.com/exchange/advance-threat-protection) und in der [Office 365 ATP-Dienstbeschreibung](https://docs.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description).
 
 ### <a name="email-message-events"></a>E-Mail-Nachricht-Ereignisse
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
-|AttachmentData|Collection(Self.[AttachmentData](#attachmentdata)|Nein|Daten zu Anlagen der E-Mail-Nachricht, die das Ereignis ausgelöst hat.|
+|AttachmentData|Collection(Self.[AttachmentData](#attachmentdata))|Nein|Daten zu Anlagen der E-Mail-Nachricht, die das Ereignis ausgelöst hat.|
 |DetectionType|Edm.String|Ja|Der Typ der Erkennung (z. B. **Inline** – erkannt zum Übermittlungszeitpunkt; **Verzögert** – erkannt nach Zustellung; **ZAP** – Nachrichten durch [Automatische Bereinigung zur Nullstunde](https://support.office.com/de-DE/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)) entfernt. In der Regel geht Ereignissen mit ZAP-Erkennungstyp eine Nachricht mit dem Erkennungstyp **Verzögert** voraus.|
 |DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Office 365 ATP für die Erkennung verwendet wurde.|
 |InternetMessageId|Edm.String|Ja|Die Internetnachrichten-ID.|
