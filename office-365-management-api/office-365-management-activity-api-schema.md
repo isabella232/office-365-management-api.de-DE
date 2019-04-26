@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 4604bd0aec3856b377a24d758a0961e8da1d9bf6
-ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
+ms.openlocfilehash: 580fc44cacea81bcc046bb16d434a309485bab77
+ms.sourcegitcommit: 336f901a6ed8eb75d99baa4af37d838aeec905c6
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "32223917"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "33311394"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -869,17 +869,17 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](h
 |**Parameter**|**Typ**|**Erforderlich**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |ActorUserId|Edm.String|Nein|Die E-Mail-Adresse des Benutzers, der den Vorgang ausgeführt hat.|
-|ActorYammerUserId|Edm.Int32|Nein|Die ID des Benutzers, der den Vorgang ausgeführt hat.|
+|ActorYammerUserId|Edm.Int64|Nein|Die ID des Benutzers, der den Vorgang ausgeführt hat.|
 |DataExportType|Edm.String|Nein|Gibt "Daten" zurück, wenn der Datenexport Nachrichten, Notizen, Dateien, Themen, Benutzer und Gruppen enthält; gibt "Benutzer" zurück, wenn der Datenexport nur Benutzer enthält.|
-|FileId|Edm.Int32|Nein|Die ID der Datei innerhalb des Vorgangs. |
+|FileId|Edm.Int64|Nein|Die ID der Datei innerhalb des Vorgangs. |
 |FileName|Edm.String|Nein|Der Name der Datei innerhalb des Vorgangs. Ist leer, falls nicht relevant für den Vorgang.|
 |GroupName|Edm.String|Nein|Der Name der Gruppe innerhalb des Vorgangs. Ist leer, falls nicht relevant für den Vorgang.|
 |IsSoftDelete|Edm.Boolean|Nein|Gibt „true“ zurück, wenn die Datenaufbewahrungsrichtlinie des Netzwerks auf „Vorläufiges Löschen“ festgelegt ist; gibt „false“ zurück, wenn die Datenaufbewahrungsrichtlinie des Netzwerks auf „Endgültiges Löschen“ festgelegt ist.|
-|MessageId|Edm.Int32|Nein|Die ID der Nachricht innerhalb des Vorgangs.|
-|YammerNetworkId|Edm.Int32|Nein|Die Netzwerk-ID des Benutzers, der den Vorgang ausgeführt hat.|
+|MessageId|Edm.Int64|Nein|Die ID der Nachricht innerhalb des Vorgangs.|
+|YammerNetworkId|Edm.Int64|Nein|Die Netzwerk-ID des Benutzers, der den Vorgang ausgeführt hat.|
 |TargetUserId|Edm.String|Nein|Die E-Mail-Adresse des Zielbenutzers innerhalb des Vorgangs. Ist leer, falls nicht relevant für den Vorgang.|
-|TargetYammerUserId|Edm.Int32|Nein|Die ID des Zielbenutzers innerhalb des Vorgangs.|
-|VersionId|Edm.Int32|Nein|Die Versions-ID der Datei innerhalb des Vorgangs.|
+|TargetYammerUserId|Edm.Int64|Nein|Die ID des Zielbenutzers innerhalb des Vorgangs.|
+|VersionId|Edm.Int64|Nein|Die Versions-ID der Datei innerhalb des Vorgangs.|
 
 ## <a name="sway-schema"></a>Sway-Schema
 
