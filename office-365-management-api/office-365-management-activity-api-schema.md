@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 580fc44cacea81bcc046bb16d434a309485bab77
-ms.sourcegitcommit: 336f901a6ed8eb75d99baa4af37d838aeec905c6
+ms.openlocfilehash: 567e17ca3dc701be6cb499f3bf36bcaba8912146
+ms.sourcegitcommit: 2a256e01834388711ba8c438a891c228877588a4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "33311394"
+ms.lasthandoff: 05/17/2019
+ms.locfileid: "34106166"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -40,7 +40,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Exchange-Postfachschema](#exchange-mailbox-schema)|Das allgemeine Schema wird mit den für alle Exchange-Postfachüberwachungsdaten spezifischen Eigenschaften erweitert.|
 |[Azure Active Directory-Basisschema](#azure-active-directory-base-schema)|Das allgemeine Schema wird mit den für alle Azure Active Directory-Überwachungsdaten spezifischen Eigenschaften erweitert.|
 |[Azure Active Directory-Kontoanmeldeschema](#azure-active-directory-account-logon-schema)|Das Azure Active Directory-Basisschema wird mit den für alle Azure Active Directory-Anmeldeereignisse spezifischen Eigenschaften erweitert.|
-|[Azure Active Directory-STS-Anmeldeschema](#azure-active-directory-sts-logon-schema)|Das Azure Active Directory-Basisschema wird mit den für alle Azure Active Directory-STS-Anmeldeereignisse spezifischen Eigenschaften erweitert.|
+|[Azure Active Directory-STS-Anmeldeschema](#azure-active-directory-secure-token-service-sts-logon-schema)|Das Azure Active Directory-Basisschema wird mit den für alle Azure Active Directory-Secure Token Service (STS)-Anmeldeereignisse spezifischen Eigenschaften erweitert.|
 |[Azure Active Directory-Schema](#azure-active-directory-schema)|Das allgemeine Schema wird mit den für alle Azure Active Directory-Überwachungsdaten spezifischen Eigenschaften erweitert.|
 |[DLP-Schema](#dlp-schema)|Das allgemeine Schema wird mit den für Verhinderung von Datenverlust-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Security & Compliance Center-Schema](#security-and-compliance-center-schema)|Das allgemeine Schema wird mit den für alle Security and Compliance Center-Ereignisse spezifischen Eigenschaften erweitert.|
@@ -70,8 +70,8 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |OrganizationId|Edm.Guid|Ja|Die GUID für den Office 365-Mandanten Ihrer Organisation. Dieser Wert ist für Ihre Organisation, unabhängig vom Office 365-Dienst, in dem er verwendet wird, immer gleich.|
 |UserType|Self.[UserType](#user-type)|Ja|Der Typ des Benutzers, der den Vorgang ausgeführt hat. In der Tabelle [UserType](#user-type) finden Sie Informationen zu den Typen von Benutzern.|
 |UserKey|Edm.String|Ja|Eine alternative ID für den in der UserId-Eigenschaft identifizierten Benutzer. Diese Eigenschaft wird z. B. mit der Passport Unique ID (PUID) bei Ereignissen ausgefüllt, die von Benutzern in SharePoint, OneDrive for Business und Exchange ausgeführt werden. Diese Eigenschaft kann den gleichen Wert spezifizieren wie die Eigenschaft "UserID" für Ereignisse, die in anderen Diensten auftreten, und Ereignisse, die von Systemkonten durchgeführt werden.|
-|Arbeitslast|Edm.String|Nein|Der Office 365-Dienst, in dem die Aktivität in der Zeichenfolge Arbeitslast aufgetreten ist. Gültige Werte für diese Eigenschaft sind:<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Exchange</p></li><li><p>SharePoint</p></li><li><p>OneDrive</p></li><li><p>Azure Active Directory</p></li><li><p>SecurityComplianceCenter</p></li><li><p>Sway</p></li><li><p>ThreatIntelligence</p></li></ul>|
-|ResultStatus|Edm.String|Nein|Gibt an, ob die Aktion (in der Eigenschaft "Operation" angegeben) erfolgreich war oder nicht. Mögliche Werte sind **Succeeded**, **PartiallySucceeded** oder **Failed**. Für Exchange-Verwaltungsaktivitäten ist der Wert entweder **True** oder **False**.|
+|Arbeitslast|Edm.String|Nein|Der Office 365-Dienst, in dem die Aktivität stattgefunden hat. 
+|ResultStatus|Edm.String|Nein|Gibt an, ob die Aktion (in der Eigenschaft "Operation" angegeben) erfolgreich war oder nicht. Mögliche Werte sind **Succeeded**, **PartiallySucceeded** oder **Failed**. Für Exchange-Verwaltungsaktivitäten ist der Wert entweder **True** oder **False**.<br/><br/>**Wichtig**: Unterschiedliche Workloads können den Wert der ResultStatus-Eigenschaft außer Kraft setzen. Beispielsweise zeigt ein Wert **Succeeded** für "ResultStatus" bei Azure Active Directory STS-Anmeldeereignissen nur an, dass die HTTP-Operation erfolgreich war; er bedeutet nicht, dass die Anmeldung erfolgreich war. Um festzustellen, ob die eigentliche Anmeldung erfolgreich war oder nicht, ziehen Sie die LogonError-Eigenschaft im [Azure Active Directory-STS-Anmeldeschema](#azure-active-directory-secure-token-service-sts-logon-schema) zurate. Wenn die Anmeldung fehlgeschlagen ist, enthält diese Eigenschaft den Grund für den fehlgeschlagenen Anmeldeversuch. |
 |ObjectId|Edm.string|Nein|Für SharePoint- und OneDrive for Business-Aktivitäten der vollständige Pfadname der Datei oder des Ordners, auf die bzw. den der Benutzer zugegriffen hat. Für Exchange-Verwaltungsüberwachungsprotokolle der Name des Objekts, das vom Cmdlet geändert wurde.|
 |UserId|Edm.string|Ja|Der UPN (User Principal Name) des Benutzers, der die Aktion (in der Eigenschaft "Operation" angegeben), die zu einem Eintrag geführt hat, ausgeführt hat, zum Beispiel `my_name@my_domain_name`. Beachten Sie, dass auch von Systemkonten ausgeführte Datensätze (wie SHAREPOINT\system oder NT AUTHORITY\SYSTEM) enthalten sind.|
 |ClientIP|Edm.String|Ja|Die IP-Adresse des Geräts, das verwendet wurde, als die Aktivität protokolliert wurde. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.|
@@ -107,6 +107,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |27|MicrosoftTeamsSettingsOperation|Änderungen an den Einstellungen von Microsoft-Teams.|
 |28|ThreatIntelligence|Phishing- und Schadsoftwareereignisse aus Exchange Online Protection und Office 365 Advanced Threat Protection.|
 |30|MicrosoftFlow|Microsoft Flow-Ereignisse|
+|31|AeD|Advanced eDiscovery-Ereignisse.|
 |32|MicrosoftStream|Microsoft Stream-Ereignisse|
 |35|Project|Microsoft Project-Ereignisse.|
 |36|SharepointListOperation|Sharepoint-Listenereignisse.|
@@ -116,6 +117,8 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |44|WorkplaceAnalytics|Workplace Analytics-Ereignisse.|
 |45|PowerAppsApp|PowerApps-App-Ereignisse.|
 |47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
+|54|SharePointListItemOperation|SharePoint-Listenereignisse.|
+|55|SharePointContentTypeOperation|SharePoint-Listeninhaltstyp-Ereignisse.|
 ||||
 
 ### <a name="enum-user-type---type-edmint32"></a>Enumeration: Benutzertyp – Typ: Edm.Int32
@@ -332,7 +335,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |TimesheetRejected|Ein Benutzer lehnt eine Arbeitszeittabelle in der Project Web App ab.|
 |TimesheetSaved|Ein Benutzer speichert eine Arbeitszeittabelle in der Project Web App.|
 |TimesheetSubmitted|Ein Benutzer übermittelt eine Arbeitszeittabelle in der Project Web App.|
-|UnmanagedSyncClientBlocked|Ein Benutzer versucht, eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website von einem Computer aus herzustellen, der kein Mitglied der Domäne Ihrer Organisation ist oder Mitglied einer Domäne ist, die nicht in die Liste der Domänen übernommen wurde, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt). Die Synchronisierungsbeziehung ist nicht zulässig, und der Computer des Benutzers ist für das Synchronisieren, Herunterladen oder Hochladen von Dateien der Dokumentbibliothek gesperrt. Informationen zu dieser Funktion finden Sie unter [Verwenden von Windows PowerShell-Cmdlets zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind](https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/index?view=sharepoint-ps).|
+|UnmanagedSyncClientBlocked|Ein Benutzer versucht, eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website von einem Computer aus herzustellen, der kein Mitglied der Domäne Ihrer Organisation ist oder Mitglied einer Domäne ist, die nicht in die Liste der Domänen übernommen wurde, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt). Die Synchronisierungsbeziehung ist nicht zulässig, und der Computer des Benutzers ist für das Synchronisieren, Herunterladen oder Hochladen von Dateien der Dokumentbibliothek gesperrt. Informationen zu dieser Funktion finden Sie unter [Verwenden von Windows PowerShell-Cmdlets zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind](https://docs.microsoft.com/de-DE/powershell/module/sharepoint-online/index?view=sharepoint-ps).|
 |UpdateSSOApplication*|Die Zielanwendung wurde im Secure Store Service aktualisiert.|
 |UserAddedToGroup*|Der Websiteadministrator oder -besitzer fügt eine Person zu einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website hinzu. Das Hinzufügen einer Person zu einer Gruppe gewährt dem Benutzer die Berechtigungen, die der Gruppe zugewiesen wurden. |
 |UserRemovedFromGroup*|Der Websiteadministrator oder -besitzer entfernt eine Person aus einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website. Nachdem die Person entfernt wurde, besitzt sie nicht mehr die Berechtigungen, die der Gruppe zugewiesen wurden. |
@@ -346,7 +349,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 
 ## <a name="sharepoint-file-operations"></a>SharePoint-Dateivorgänge
 
-Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordneraktivitäten" unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind, verwenden dieses Schema.
+Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordneraktivitäten" unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/de-DE/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind, verwenden dieses Schema.
 
 
 
@@ -366,7 +369,7 @@ Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordnerakt
 
 ## <a name="sharepoint-sharing-schema"></a>SharePoint-Freigabeschema
 
- Die auf die Freigabe der Datei bezogenen SharePoint-Ereignisse. Sie unterscheiden sich von den datei- und ordnerbezogenen Ereignissen dahingehend, dass ein Benutzer eine Aktion ausführt, die sich auf einen anderen Benutzer auswirkt. Informationen zum SharePoint-Freigabeschema finden Sie unter [Verwenden der Freigabeüberwachung im Office 365-Überwachungsprotokoll](https://support.office.com/en-us/article/Use-sharing-auditing-in-the-Office-365-audit-log-50bbf89f-7870-4c2a-ae14-42635e0cfc01?ui=en-US&amp;rs=en-US&amp;ad=US).
+ Die auf die Freigabe der Datei bezogenen SharePoint-Ereignisse. Sie unterscheiden sich von den datei- und ordnerbezogenen Ereignissen dahingehend, dass ein Benutzer eine Aktion ausführt, die sich auf einen anderen Benutzer auswirkt. Informationen zum SharePoint-Freigabeschema finden Sie unter [Verwenden der Freigabeüberwachung im Office 365-Überwachungsprotokoll](https://support.office.com/de-DE/article/Use-sharing-auditing-in-the-Office-365-audit-log-50bbf89f-7870-4c2a-ae14-42635e0cfc01?ui=en-US&amp;rs=en-US&amp;ad=US).
 
 
 
@@ -379,7 +382,7 @@ Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordnerakt
 
 ## <a name="sharepoint-schema"></a>SharePoint-Schema
 
-Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind (ausgenommen von den Datei- und Ordnerereignissen), verwenden dieses Schema.
+Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/de-DE/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind (ausgenommen von den Datei- und Ordnerereignissen), verwenden dieses Schema.
 
 
 
@@ -701,9 +704,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |UPN|Der Benutzerprinzipalname.|
 
 
-## <a name="azure-active-directory-sts-logon-schema"></a>Azure Active Directory-STS-Anmeldeschema
-
-
+## <a name="azure-active-directory-secure-token-service-sts-logon-schema"></a>Azure Active Directory-Secure Token Service (STS)-Anmeldeschema
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
@@ -723,8 +724,6 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 
 - DlpInfo: Nur in SharePoint Online und OneDrive for Business vorhanden. Gibt an, dass falsch positive Ergebnisse identifiziert wurden, aber keine Aktion "Rückgängig" durchgeführt wurde.
 
-
-
 |**Parameter**|**Typ**|**Erforderlich**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |SharePointMetaData|Self.[SharePointMetadata](#sharepointmetadata-complex-type)|Nein|Beschreibt Metadaten über das Dokument in SharePoint oder OneDrive for Business, die vertrauliche Informationen enthalten.|
@@ -732,9 +731,6 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 |ExceptionInfo|Edm.String|Nein|Gibt Gründe an, warum eine Richtlinie nicht mehr anwendbar ist und/oder enthält vom Endbenutzer vermerkte Informationen zu falsch positiven Ergebnissen und/oder zur Außerkraftsetzung.|
 |PolicyDetails|Sammlung (Self.[ PolicyDetails](#policydetails-complex-type))|Ja|Informationen zu 1 oder mehreren Richtlinien, die das DLP-Ereignis ausgelöst haben.|
 |SensitiveInfoDetectionIsIncluded|Boolesch|Ja|Gibt an, ob das Ereignis den Wert des vertraulichen Datentyps und umgebende Kontextinformationen aus dem Quellinhalt enthält. Für den Zugriff auf vertrauliche Daten wird die Berechtigung "Lesen von DLP-Richtlinienereignissen einschließlich vertraulicher Informationen" in Azure Active Directory benötigt.|
-
-
-
 
 ### <a name="sharepointmetadata-complex-type"></a>Komplexer SharePointMetadata-Typ
 
@@ -864,7 +860,7 @@ Die Benutzer-ID und der UserKey für diese Ereignisse sind immer SecurityComplia
 
 ## <a name="yammer-schema"></a>Yammer-Schema
 
-Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelisteten Yammer-Ereignisse verwenden dieses Schema.
+Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/de-DE/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelisteten Yammer-Ereignisse verwenden dieses Schema.
 
 |**Parameter**|**Typ**|**Erforderlich**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
@@ -883,7 +879,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](h
 
 ## <a name="sway-schema"></a>Sway-Schema
 
-Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind (ausgenommen von den Datei- und Ordnerereignissen), verwenden dieses Schema.
+Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/de-DE/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind (ausgenommen von den Datei- und Ordnerereignissen), verwenden dieses Schema.
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
@@ -1003,7 +999,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |:-----|:-----|:-----|:-----|
 |MessageId|Edm.String|Nein|Ein Bezeichner für eine Chat- oder Kanalnachricht.|
 |MeetupId|Edm.String|Nein|Ein Bezeichner für eine geplante oder eine Ad-hoc-Besprechung.|
-|Members|Collection(Self.[MicrosoftTeamsMember](#MicrosoftTeamsMember-complex-type))|Nein|Eine Liste der Benutzer innerhalb eines Teams.|
+|Members|Collection(Self.[MicrosoftTeamsMember](#microsoftteamsmember-complex-type))|Nein|Eine Liste der Benutzer innerhalb eines Teams.|
 |TeamName|Edm.String|Nein|Der Name des überwachten Teams.|
 |TeamGuid|Edm.Guid|Nein|Die eindeutige ID des überwachten Teams.|
 |ChannelName|Edm.String|Nein|Der Name des überwachten Kanals.|
@@ -1181,10 +1177,10 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](/
 | DashboardName         | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name des Dashboards, in dem das Ereignis aufgetreten ist. |
 | DataClassification    | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Die [Datenklassifizierung](/power-bi/service-data-classification), sofern vorhanden, für das Dashboard, in dem das Ereignis aufgetreten ist. |
 | DatasetName           | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name des Datasets, in dem das Ereignis aufgetreten ist. |
-| MembershipInformation | Collection([MembershipInformationType](#MembershipInformationType))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Mitgliedschaftsinformationen zu der Gruppe. |
+| MembershipInformation | Collection([MembershipInformationType](#membershipinformationtype-complex-type))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Mitgliedschaftsinformationen zu der Gruppe. |
 | OrgAppPermission      | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Berechtigungsliste für eine Organisations-App (gesamte Organisation, bestimmte Benutzer oder bestimmte Gruppen). |
 | ReportName            | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name des Berichts, in dem das Ereignis aufgetreten ist. |
-| SharingInformation    | Collection([SharingInformationType](#SharingInformationType))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"    |  Nein  | Informationen zu der Person, an die eine Einladung zur Freigabe gesendet wird. |
+| SharingInformation    | Collection([SharingInformationType](#sharinginformationtype-complex-type))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"    |  Nein  | Informationen zu der Person, an die eine Einladung zur Freigabe gesendet wird. |
 | SwitchState           | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Informationen zum Status der verschiedener Mandantenebenenoptionen. |
 | WorkSpaceName         | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name des Arbeitsbereichs, in dem das Ereignis aufgetreten ist. |
 
