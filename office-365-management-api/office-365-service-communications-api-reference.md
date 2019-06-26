@@ -6,12 +6,12 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 728cf632baa1f4a45b626677b1da862438562d90
-ms.sourcegitcommit: 490310e2718a7f9d827c945a78e940d936d15386
+ms.openlocfilehash: 1790baa6c941900a18488f338b02fc83a9b29a8b
+ms.sourcegitcommit: efd3dcdb3d190ca7b0f22a671867f0aede5d46c2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/16/2019
-ms.locfileid: "34102311"
+ms.lasthandoff: 06/25/2019
+ms.locfileid: "35226965"
 ---
 # <a name="office-365-service-communications-api-reference-preview"></a>Office 365-Dienstkommunikations-API – Referenz (Vorschau)
 
@@ -141,10 +141,10 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 
 ## <a name="get-current-status"></a>Get Current Status
 
-Gibt den Status des Diensts in den vorherigen 24 Stunden zurück.
+Gibt den Status des Diensts während der vorherigen 24 Stunden zurück.
 
 > [!NOTE] 
-> Der Status in der Dienstantwort bezieht sich auf den Zeitpunkt 24 Stunden nach der Anforderung. Der zurückgegebene StatusDate- oder StatusTime-Wert liegt genau 24 Stunden in der Vergangenheit. 
+> Die Dienstantwort enthält den Status und alle Vorkommnisse innerhalb der letzten 24 Stunden. Der zurückgegebene StatusDate- oder StatusTime-Wert liegt genau 24 Stunden in der Vergangenheit. 
 
 ||Dienst|Beschreibung|
 |:-----|:-----|:-----|
