@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c42f22fa1c4d07c25ed15bad7225f35c298075ff
-ms.sourcegitcommit: efa2f49c46a4dc2a296d0ecc510a8153f51c535b
+ms.openlocfilehash: 012d2951c12b5da0b5767ff3edd2dd7fb64fd695
+ms.sourcegitcommit: 1345cb6bd688ee7ca4320b073eacdf614dae9b08
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/06/2019
-ms.locfileid: "34741220"
+ms.lasthandoff: 07/09/2019
+ms.locfileid: "35601530"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -103,8 +103,6 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |23|SkypeForBusinessCmdlets|Skype for Business-Ereignisse.|
 |24|Discovery|Ereignisse für eDiscovery-Aktivitäten, die durch die Ausführung von Inhaltssuchen und die Verwaltung von eDiscovery-Fällen im Security & Compliance Center durchgeführt werden.|
 |25|MicrosoftTeams|Ereignisse von Microsoft-Teams.|
-|26|MicrosoftTeamsAddOns|Ereignisse von Microsoft-Teams-Add-Ons.|
-|27|MicrosoftTeamsSettingsOperation|Änderungen an den Einstellungen von Microsoft-Teams.|
 |28|ThreatIntelligence|Phishing- und Schadsoftwareereignisse aus Exchange Online Protection und Office 365 Advanced Threat Protection.|
 |30|MicrosoftFlow|Microsoft Flow-Ereignisse|
 |31|AeD|Advanced eDiscovery-Ereignisse.|
