@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 012d2951c12b5da0b5767ff3edd2dd7fb64fd695
-ms.sourcegitcommit: 1345cb6bd688ee7ca4320b073eacdf614dae9b08
+ms.openlocfilehash: 49ffb697575a63bce7a7eee8e539a30c733772a5
+ms.sourcegitcommit: c4674653f99c77b64115f8547f9e410dea3408f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/09/2019
-ms.locfileid: "35601530"
+ms.lasthandoff: 07/10/2019
+ms.locfileid: "35613585"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -50,8 +50,6 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Rechenzentrum-Sicherheitsbasis-Schema](#data-center-security-base-schema)|Erweitert das allgemeine Schema mit den für alle Rechenzentrum-Sicherheitsüberwachungsdaten spezifischen Eigenschaften.|
 |[Rechenzentrum-Sicherheits-Cmdlet-Schema](#data-center-security-cmdlet-schema)|Das Datenzentrum-Sicherheitsbasis-Schema wird mit den für alle Rechenzentrum-Sicherheits-Cmdlet-Überwachungsdaten spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Schema](#microsoft-teams-schema)|Das allgemeine Schema wird mit den für alle Microsoft Teams-Ereignisse spezifischen Eigenschaften erweitert.|
-|[Microsoft Teams-Add-Ons-Schema](#microsoft-teams-add-ons-schema)|Das Microsoft Teams-Schema wird mit den für Microsoft Teams-Add-Ons spezifischen Eigenschaften erweitert.|
-|[Microsoft Teams-Einstellungsschema](#microsoft-teams-settings-schema)|Das Microsoft Teams-Schema wird mit den für Microsoft Teams-Einstellungsänderungsereignisse spezifischen Eigenschaften erweitert.|
 |[Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Investigation and Response spezifischen Daten erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
 |[Workplace Analytics](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
@@ -76,6 +74,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |UserId|Edm.string|Ja|Der UPN (User Principal Name) des Benutzers, der die Aktion (in der Eigenschaft "Operation" angegeben), die zu einem Eintrag geführt hat, ausgeführt hat, zum Beispiel `my_name@my_domain_name`. Beachten Sie, dass auch von Systemkonten ausgeführte Datensätze (wie SHAREPOINT\system oder NT AUTHORITY\SYSTEM) enthalten sind.|
 |ClientIP|Edm.String|Ja|Die IP-Adresse des Geräts, das verwendet wurde, als die Aktivität protokolliert wurde. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.|
 |Bereich|Self.[AuditLogScope](#auditlogscope)|Nein|Wurde dieses Ereignis von einem gehosteten Office 365-Dienst oder einem lokalen Server erstellt? Mögliche Werte sind **online** und **onprem**. Beachten Sie, dass SharePoint die einzige Arbeitslast ist, die derzeit Ereignissen aus lokalen Umgebungen an O365 sendet.|
+|||||
 
 ### <a name="enum-auditlogrecordtype---type-edmint32"></a>Enum: AuditLogRecordType - Typ: Edm.Int32
 
@@ -132,6 +131,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |4|System|Ein Systemkonto.|
 |5|Anwendung|Eine Anwendung.|
 |6|ServicePrincipal|Ein Dienstprinzipal.|
+||||
 
 > [!NOTE] 
 > Nur Exchange-Vorgänge enthalten einen Benutzertyp. SharePoint-Vorgänge geben keinen Benutzertyp an. 
@@ -144,6 +144,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |:-----|:-----|:-----|
 |0|Online|Dieses Ereignis wurde von einem gehosteten O365-Dienst erstellt.|
 |1|Onprem|Dieses Ereignis wurde von einem lokalen Server erstellt.|
+||||
 
 
 ## <a name="sharepoint-base-schema"></a>SharePoint-Basisschema
@@ -157,7 +158,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |UserAgent|Edm.String|Nein|Informationen zum Client oder Browser des Benutzers. Diese Informationen werden vom Client oder Browser bereitgestellt.|
 |MachineDomainInfo|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|Nein|Informationen zu Synchronisierungsvorgängen von Geräten. Diese Informationen sind nur vorhanden, wenn sie in der Anforderung enthalten sind.|
 |MachineId|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|Nein|Informationen zu Synchronisierungsvorgängen von Geräten. Diese Informationen sind nur vorhanden, wenn sie in der Anforderung enthalten sind.|
-
+|||||
 
 ### <a name="enum-itemtype---type-edmint32"></a>Enumeration: ItemType - Typ: Edm.Int32
 
@@ -173,6 +174,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |8|Mandant|Das Element ist ein Mandant.|
 |9|DocumentLibrary|Das Element ist eine Dokumentbibliothek.|
 |11|Seite|Das Element ist eine Seite.|
+||||
 
 ### <a name="enum-eventsource---type-edmint32"></a>Enumeration: EventSource - Typ: Edm.Int32
 
@@ -182,6 +184,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |:-----|:-----|:-----|
 |0|SharePoint|Die Ereignisquelle ist SharePoint.|
 |1|ObjectModel|Die Ereignisquelle ist ObjectModel.|
+||||
 
 
 ### <a name="enum-sharepointauditoperation---type-edmint32"></a>Enumeration: SharePointAuditOperation - Typ: Edm.Int32
@@ -338,6 +341,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |UserAddedToGroup*|Der Websiteadministrator oder -besitzer fügt eine Person zu einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website hinzu. Das Hinzufügen einer Person zu einer Gruppe gewährt dem Benutzer die Berechtigungen, die der Gruppe zugewiesen wurden. |
 |UserRemovedFromGroup*|Der Websiteadministrator oder -besitzer entfernt eine Person aus einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website. Nachdem die Person entfernt wurde, besitzt sie nicht mehr die Berechtigungen, die der Gruppe zugewiesen wurden. |
 |WorkflowModified|Ein Benutzer erstellt, ändert oder löscht einen Enterprise-Projekttyp oder Workflowphasen oder Phasen in der Project Web App.|
+|||||
 
 
 > [!NOTE] 
@@ -362,7 +366,7 @@ Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordnerakt
 |DestinationFileExtension|Edm.String|Nein|Der Erweiterung der Datei, die kopiert oder verschoben wurde. Diese Eigenschaft wird nur bei Ereignissen "filecopied" und "filemoved" angezeigt.|
 |UserSharedWith|Edm.String|Nein|Der Benutzer, für den eine Ressource freigegeben wurde.|
 |SharingType|Edm.String|Nein|Der Typ der Freigabeberechtigungen, die dem Benutzer zugewiesen wurden, für den die Ressource freigegeben wurde. Dieser Benutzer wird anhand des Parameters _UserSharedWith_ identifiziert.|
-
+|||||
 
 
 ## <a name="sharepoint-sharing-schema"></a>SharePoint-Freigabeschema
@@ -376,6 +380,7 @@ Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordnerakt
 |TargetUserOrGroupName |Edm.String|Nein|Speichert die UPN oder den Namen des Zielbenutzers oder der Gruppe, für den bzw. die eine Ressource freigegeben wurde.|
 |TargetUserOrGroupType|Edm.String|Nein|Gibt an, ob der Zielbenutzer oder die Gruppe ein Mitglied, ein Gast, eine Gruppe oder ein Partner ist. |
 |EventData|XML-Code|Nein|Bietet nachträgliche Informationen zur stattgefundenen Freigabeaktion, wie z. B. das Hinzufügen eines Benutzers zu einer Gruppe oder das Erteilen von Bearbeitungsberechtigungen.|
+|||||
 
 
 ## <a name="sharepoint-schema"></a>SharePoint-Schema
@@ -383,13 +388,12 @@ Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordnerakt
 Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/de-DE/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind (ausgenommen von den Datei- und Ordnerereignissen), verwenden dieses Schema.
 
 
-
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |CustomEvent|Edm.String|Nein|Optionale Zeichenfolge für benutzerdefinierte Ereignisse.|
 |EventData|Edm.String|Nein|Optionale Nutzlast für benutzerdefinierte Ereignisse.|
 |ModifiedProperties|Collection(ModifiedProperty)|Nein|Diese Eigenschaft wird für Administratorereignisse einbezogen, wie z. B. das Hinzufügen eines Benutzers als Mitglied einer Website oder der Administratorgruppe einer Websitesammlung. Die Eigenschaft enthält den Namen der Eigenschaft, die geändert wurde (wie z. B. die Websiteadministratorgruppe), den neuen Wert der geänderten Eigenschaft (wie z. B. den Benutzer, der als Websiteadministrator hinzugefügt wurde) und den vorherigen Wert des geänderten Objekts.|
-
+|||||
 
 ## <a name="project-schema"></a>Projektschema
 
@@ -398,11 +402,11 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |Entität|Edm.String|Ja| [ProjectEntity](#project-entity) für die die Überwachung vorgesehen war.|
 |Aktion|Edm.String|Ja|[ProjectAction](#project-action), die durchgeführt wurde.|
 |OnBehalfOfResId|Edm.Guid|Nein|Die Ressourcen-ID, für die die Aktion durchgeführt wurde.|
-
-<a name="project-action"></a>
+|||||
 
 ### <a name="enum-project-action---type-edmint32"></a>Enumeration: Project Action - Typ: Edm.Int32
 
+#### <a name="project-action"></a>Projektaktion
 
 |**Elementname**|**Beschreibung**|
 |:-----|:-----|
@@ -426,9 +430,11 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |Gespeichert|Der Benutzer hat eine Entität gespeichert.|
 |Gesendet|Der Benutzer hat eine Entität gesendet.|
 |Übermittelt|Der Benutzer hat eine Entität zur Überprüfung oder für den Workflow übermittelt.|
+|||||
 
-<a name="project-entity"></a>
 ### <a name="enum-project-entity---type-edmint32"></a>Enumeration: Project Entity - Typ: Edm.Int32
+
+#### <a name="project-entity"></a>Projektentität
 
 |**Elementname**|**Beschreibung**|
 |:-----|:-----|
@@ -464,9 +470,9 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |View|Steht für eine Ansichtsdefinition.|
 |WorkflowPhase|Steht für eine Phase in einem Workflow.|
 |WorkflowStage|Steht für einen Status in einem Workflow.|
+|||||
 
 ## <a name="exchange-admin-schema"></a>Exchange-Verwaltungsschema
-
 
 
 |**Parameter**|**Typ**|**Erforderlich**|**Beschreibung**|
@@ -477,10 +483,9 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |ExternalAccess|Edm.Boolean|Ja|Gibt an, ob das Cmdlet von einem Benutzer Ihrer Organisation, von Mitarbeitern des Microsoft-Rechenzentrums, einem Rechenzentrum-Dienstkonto oder einem delegierten Administrator ausgeführt wurde. Der Wert **False** gibt an, dass das Cmdlet von einer Person in Ihrer Organisation ausgeführt wurde. Der Wert **True** gibt an, dass das Cmdlet von Mitarbeiter des Rechenzentrums, einem Rechenzentrum-Dienstkonto oder einem delegierten Administrator ausgeführt wurde.|
 |OriginatingServer|Edm.String|Nein|Der Name des Servers, aus dem das Cmdlet ausgeführt wurde.|
 |OrganizationName|Edm.String|Nein|Der Name des Mandanten.|
-
+|||||
 
 ## <a name="exchange-mailbox-schema"></a>Exchange-Postfachschema
-
 
 
 |**Parameter**|**Typ**|**Erforderlich**|**Beschreibung**|
@@ -501,7 +506,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |ClientMachineName|Edm.String|Nein|Der Name des Computers, auf dem der Outlook-Client gehostet wird.|
 |ClientProcessName|Edm.String|Nein|Der für den Zugriff auf das Postfach verwendete E-Mail-Client. |
 |ClientVersion|Edm.String|Nein|Die Version des E-Mail-Clients.|
-
+|||||
 
 ### <a name="enum-logontype---type-edmint32"></a>Enumeration: LogonType - Typ: Edm.Int32
 
@@ -517,10 +522,9 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |4|SystemService|Ein Dienstkonto im Microsoft-Rechenzentrum.|
 |5|BestAccess|Für die interne Verwendung reserviert.|
 |6|DelegatedAdmin|Ein delegierter Administrator.|
-
+|||||
 
 ### <a name="exchangemailboxauditgrouprecord-schema"></a>ExchangeMailboxAuditGroupRecord schema
-
 
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
@@ -534,11 +538,10 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |DestFolder|Self.[ExchangeFolder](#exchangefolder-complex-type)|Nein|Der Zielordner für Vorgänge wie Verschieben.|
 |Ordner|Collection(Self.[ExchangeFolder](#exchangefolder-complex-type))|Nein|Informationen zu den an einem Vorgang beteiligten Quellordnern; wenn z. B. Ordner ausgewählt und dann gelöscht werden.|
 |AffectedItems|Collection(Self.[ExchangeItem](#exchangeitem-complex-type))|Nein|Informationen zu jedem Element in der Gruppe.|
-
+|||||
 
 
 ### <a name="exchangemailboxauditrecord-schema"></a>ExchangeMailboxAuditRecord schema
-
 
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
@@ -549,7 +552,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |SendAsUserMailboxGuid|Edm.Guid|Nein|Die Exchange-GUID des Postfachs, auf das zum Senden von E-Mails zugegriffen wurde.|
 |SendOnBehalfOfUserSmtp|Edm.String|Nein|Die SMTP-Adresse des Benutzers, in dessen Auftrag die E-Mail gesendet wird.|
 |SendOnBehalfOfUserMailboxGuid|Edm.Guid|Nein|Die Exchange-GUID des Postfachs, auf das zugegriffen wurde, um die E-Mail im Auftrag zu versenden.|
-
+|||||
 
 ### <a name="exchangeitem-complex-type"></a>Komplexer ExchangeItem-Typ
 
@@ -560,20 +563,19 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |Betreff|Edm.String|Nein|Die Betreffzeile der Nachricht, auf die zugegriffen wurde.|
 |ParentFolder|Edm.ExchangeFolder|Nein|Der Name des Ordners, in dem sich das Element befindet.|
 |Anlagen|Edm.String|Nein|Eine Liste mit den Namen und der Dateigröße aller Elemente, die an die Nachricht angefügt werden.|
+|||||
 
 ### <a name="exchangefolder-complex-type"></a>ExchangeFolder complex type
-
 
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |Id|Edm.String|Ja|Die Store-ID des Ordnerobjekts.|
 |Pfad|Edm.String|Nein|Der Name des Postfachordners, in dem sich die Nachricht, auf die zugegriffen wurde, befindet.|
-
+|||||
 
 
 ## <a name="azure-active-directory-base-schema"></a>Azure Active Directory-Basisschema
-
 
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
@@ -581,6 +583,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |AzureActiveDirectoryEventType|Self.[AzureActiveDirectoryEventType](#azureactivedirectoryeventtype)|Ja|Der Typ des Azure AD-Ereignisses. |
 |ExtendedProperties|Collection(Common.NameValuePair)|Nein|Die erweiterten Eigenschaften des Azure AD-Ereignisses.|
 |ModifiedProperties|Collection(Common.ModifiedProperty)|Nein|Diese Eigenschaft wird für Administratorereignisse einbezogen. Die Eigenschaft enthält den Namen der Eigenschaft, die geändert wurde, den neuen Wert der geänderten Eigenschaft und den vorherigen Wert der geänderten Eigenschaft.|
+|||||
 
 ### <a name="enum-azureactivedirectoryeventtype---type--edmint32"></a>Enumeration: AzureActiveDirectoryEventType - Typ -Edm.Int32
 
@@ -590,9 +593,9 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |:-----|:-----|
 |AccountLogon|Das Kontoanmeldeereignis.|
 |AzureApplicationAuditEvent|Das Sicherheitsereignis der Azure-Anwendung.|
+|||||
 
 ## <a name="azure-active-directory-account-logon-schema"></a>Azure Active Directory-Kontoanmeldeschema
-
 
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
@@ -601,11 +604,10 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |Client|Edm.String|Nein|Details zum Clientgerät, dem Gerätebetriebssystem und dem Gerätebrowser, die für das Kontoanmeldeereignis verwendet wurden.|
 |LoginStatus|Edm.Int32|Ja|Diese Eigenschaft wird direkt aus OrgIdLogon.LoginStatus übertragen. Die Zuordnung verschiedener interessanter Anmeldefehler kann durch Warnalgorithmen erfolgen.|
 |UserDomain|Edm.String|Ja|Die Mandanten-Identitätsinformationen (TII).|
-
+|||||
 
 
 ### <a name="enum-credentialtype---type-edmint32"></a>Enumeration: CredentialType - Typ: Edm.Int32
-
 
 
 |**Wert**|**Elementname**|**Beschreibung**|
@@ -620,9 +622,9 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |14|PasswordIndexCredentialType|Die Anmeldung erfolgt über PasswordIndexCredentialType.|
 |16|Gerät|Die Anmeldung erfolgt über ein Gerät.|
 |17|ForeignRealmIndex|Die Anmeldung erfolgt über ForeignRealmIndex.|
+|||||
 
 ### <a name="enum-logintype---type-edmint32"></a>Enumeration: LoginType - Typ: Edm.Int32
-
 
 
 |**Wert**|**Elementname**|**Beschreibung**|
@@ -631,10 +633,9 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |1|InitialAuth|Anmeldung mit anfänglicher Authentifizierung.|
 |2|CookieCopy|Anmeldung mit Cookie.|
 |3|SilentReAuth|Anmeldung mit automatischer erneuter Authentifizierung.|
-
+|||||
 
 ### <a name="enum-authenticationmethod---type-edmint32"></a>Enumeration: AuthenticationMethod - Typ: Edm.Int32
-
 
 
 |**Wert**|**Elementname**|**Beschreibung**|
@@ -659,11 +660,10 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |17|SAML20PostSimpleSign|Die Authentifizierung erfolgt über SAML20PostSimpleSign.|
 |18|SAML20Post|Die Authentifizierung erfolgt über SAML20Post.|
 |19|OneTimeCode|Die Authentifizierung erfolgt über einen einmalig verwendbaren Code.|
-
+|||||
 
 
 ## <a name="azure-active-directory-schema"></a>Azure Active Directory-Schema
-
 
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
@@ -676,17 +676,16 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |SupportTicketId|Edm.String|Nein|Die Kundensupport-Ticket-ID für die Aktion in "Aktionen im Auftrag von"-Situationen.|
 |Ziel|Collection(Self.[IdentityTypeValuePair](#complex-type-identitytypevaluepair))|Nein|Der Benutzer, beim dem die Aktion (identifiziert durch die Eigenschaft Vorgang) ausgeführt wurde.|
 |TargetContextId|Edm.String|Nein|Die GUID der Organisation, der der Zielbenutzer angehört.|
-
-
+|||||
 
 ### <a name="complex-type-identitytypevaluepair"></a>Complex Type IdentityTypeValuePair
-
 
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |ID|Edm.String|Ja|Der Wert der angegebenen Identität.|
 |Typ|Self.IdentityType|Ja|Der Typ der Identität.|
+|||||
 
 ### <a name="enum-identitytype---type-edmint32"></a>Enumeration: IdentityType - Typ: Edm.Int32
 
@@ -700,6 +699,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |PUID|Der Akteur der Überwachungsaktion oder die Ziel-Passport Unique ID (PUID).|
 |SPN|Die Identität eines Dienstprinzipals, wenn die Aktion vom Office 365-Dienst ausgeführt wird.|
 |UPN|Der Benutzerprinzipalname.|
+|||||
 
 
 ## <a name="azure-active-directory-secure-token-service-sts-logon-schema"></a>Azure Active Directory-Secure Token Service (STS)-Anmeldeschema
@@ -709,6 +709,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |ApplicationId|Edm.String|Nein|Die GUID, die die Anwendung darstellt, von der die Anmeldung angefordert wird. Der Anzeigename kann über die Azure Active Directory Graph-API betrachtet werden.|
 |Client|Edm.String|Nein|Client-Geräteinformationen, die von dem Browser bereitgestellt werden, der die Anmeldung ausführt.|
 |LogonError|Edm.String|Nein|Enthält bei fehlgeschlagenen Anmeldeversuchen den Grund für das Fehlschlagen der Anmeldung.|
+|||||
 
 ## <a name="dlp-schema"></a>DLP-Schema
 
@@ -729,6 +730,7 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 |ExceptionInfo|Edm.String|Nein|Gibt Gründe an, warum eine Richtlinie nicht mehr anwendbar ist und/oder enthält vom Endbenutzer vermerkte Informationen zu falsch positiven Ergebnissen und/oder zur Außerkraftsetzung.|
 |PolicyDetails|Sammlung (Self.[ PolicyDetails](#policydetails-complex-type))|Ja|Informationen zu 1 oder mehreren Richtlinien, die das DLP-Ereignis ausgelöst haben.|
 |SensitiveInfoDetectionIsIncluded|Boolesch|Ja|Gibt an, ob das Ereignis den Wert des vertraulichen Datentyps und umgebende Kontextinformationen aus dem Quellinhalt enthält. Für den Zugriff auf vertrauliche Daten wird die Berechtigung "Lesen von DLP-Richtlinienereignissen einschließlich vertraulicher Informationen" in Azure Active Directory benötigt.|
+|||||
 
 ### <a name="sharepointmetadata-complex-type"></a>Komplexer SharePointMetadata-Typ
 
@@ -745,6 +747,7 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 |DocumentSharer|Edm.String|Ja|Der Benutzer, der das Dokument zuletzt freigegeben hat.|
 |UniqueId|Edm.String|Ja|Eine GUID, die die Datei identifiziert.|
 |LastModifiedTime|Edm.DateTime|Ja|Zeitstempel in UTC, wann das Dokument zuletzt geändert wurde.|
+|||||
 
 
 ### <a name="exchangemetadata-complex-type"></a>Komplexer ExchangeMetadata-Typ
@@ -759,7 +762,7 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 |Betreff|Edm.String|Ja|Der Betreff der E-Mail-Nachricht.|
 |Gesendet|Edm.DateTime|Ja|Die Uhrzeit in UTC, wann die E-Mail gesendet wurde.|
 |RecipientCount|Edm.Int32|Ja|Die Gesamtzahl aller Empfänger in den Zeilen An, CC und BCC der Nachricht.|
-
+|||||
 
 ### <a name="policydetails-complex-type"></a>Komplexer PolicyDetails-Typ
 
@@ -768,6 +771,7 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 |PolicyId|Edm.Guid|Ja|Die Guid der DLP-Richtlinie für dieses Ereignis.|
 |PolicyName|Edm.String|Ja|Die Anzeigename der DLP-Richtlinie für dieses Ereignis.|
 |Regeln|Sammlung (Self.[Rules](#rules-complex-type))|Ja|Informationen zu den Regeln in der Richtlinie, die für dieses Ereignis abgeglichen wurden.|
+|||||
 
 ### <a name="rules-complex-type"></a>Komplexer Rules-Typ
 
@@ -780,6 +784,7 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 |Severity|Edm.String|Nein|Der Schweregrad (Niedrig, Mittel und Hoch) der Regelentsprechung.|
 |RuleMode|Edm.String|Ja|Gibt an, ob die DLP-Regel auf Erzwingen, Überwachen mit Benachrichtigen oder Nur Überwachen festgelegt wurde.|
 |ConditionsMatched|Self.[ConditionsMatched](#conditionsmatched-complex-type)|Nein|Details, welche Bedingungen der Regel für dieses Ereignis erfüllt wurden.|
+|||||
 
 ### <a name="conditionsmatched-complex-type"></a>Komplexer ConditionsMatched-Typ
 
@@ -788,6 +793,7 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 |SensitiveInformation|Sammlung (Self.[ SensitiveInformation](#sensitiveinformation-complex-type))|Nein|Informationen über die Art der erkannten vertraulichen Informationen.|
 |DocumentProperties|Collection(NameValuePair)|Nein|Informationen zu Dokumenteigenschaften, die eine Regelentsprechung ausgelöst haben.|
 |OtherConditions|Collection(NameValuePair)|Nein|Eine Liste der Schlüssel-Wert-Paare zur Beschreibung beliebiger anderer Kriterien, die erfüllt wurden.|
+|||||
 
 ### <a name="sensitiveinformation-complex-type"></a>Komplexer SensitiveInformation-Typ
 
@@ -797,6 +803,7 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 |Anzahl|Edm.Int|Ja|Die Anzahl der erkannten vertraulichen Instanzen.|
 |SensitiveType|Edm.Guid|Ja|Eine Guid, die den Typ der erkannten vertraulichen Daten bezeichnet.|
 |SensitiveInformationDetections|Self.SensitiveInformationDetections|Nein|Ein Array von Objekten, das vertrauliche Informationsdaten und die folgenden Details enthält: übereinstimmender Wert und Kontext des übereinstimmenden Werts.|
+|||||
 
 ### <a name="sensitiveinformationdetections-complex-type"></a>Komplexer SensitiveInformationDetections-Typ 
 Vertrauliche DLP-Daten sind nur in der Aktivitätsfeed-API für Benutzer verfügbar, denen die Berechtigung "Lesen vertraulicher DLP-Daten" erteilt wurde. 
@@ -805,6 +812,7 @@ Vertrauliche DLP-Daten sind nur in der Aktivitätsfeed-API für Benutzer verfüg
 |:-----|:-----|:-----|:-----|
 |Erkennungen|Collection(Self.Detections)|Ja|Ein Array vertraulicher Informationen, die erkannt wurden. Die Informationen enthalten Schlüssel-Wert-Paare mit Wert = übereinstimmenden Wert (z. B. Wert der Kreditkarte der SSN) und Kontext = ein Auszug aus der Inhaltsquelle, der den erkannten Wert enthält. |
 |ResultsTruncated|Edm.Boolean|Ja|Zeigt an, ob die Protokolle aufgrund einer großen Anzahl von Ergebnissen abgeschnitten wurden. |
+|||||
 
 ### <a name="exceptioninfo-complex-type"></a>Komplexer ExceptionInfo-Typ
 
@@ -814,6 +822,7 @@ Vertrauliche DLP-Daten sind nur in der Aktivitätsfeed-API für Benutzer verfüg
 |FalsePositive|Edm.Boolean|Nein|Gibt an, ob der Benutzer dieses Ereignis als falsch positives Ergebnis festgelegt hat.|
 |Begründung|Edm.String|Nein|Wenn sich der Benutzer entscheidet, die Richtlinie außer Kraft zu setzen, werden alle Begründungen des Benutzers hier erfasst.|
 |Regeln|Collection(EDM.GUID)|Nein|Eine Auflistung von Guids für jede Regel, die als falsch positives Ergebnis oder Außerkraftsetzung eingestuft wurde oder für die eine Aktion rückgängig gemacht wurde.|
+|||||
 
 ## <a name="security-and-compliance-center-schema"></a>Security & Compliance Center-Schema
 
@@ -827,6 +836,7 @@ Vertrauliche DLP-Daten sind nur in der Aktivitätsfeed-API für Benutzer verfüg
 |ClientApplication|Edm.String|Nein|Wenn das Cmdlet von einer Anwendung und nicht von einer remoten Powershell ausgeführt wurde, enthält dieses Feld den Namen der Anwendung.|
 |Parameter|Edm.String|Nein|Der Name und der Wert für Parameter, die mit dem Cmdlet verwendet wurden und keine personenbezogenen Informationen enthalten.|
 |NonPiiParameters|Edm.String|Nein|Der Name und der Wert für Parameter, die mit dem Cmdlet verwendet wurden und personenbezogene Informationen enthalten. (Veraltet: Dieses Feld wird in der Zukunft nicht mehr angezeigt, und der Inhalt wird mit dem Feld "Parameter" zusammengeführt.)|
+|||||
 
 ## <a name="security-and-compliance-alerts-schema"></a>Security &Compliance-Warnung-Schema
 
@@ -855,6 +865,7 @@ Die Benutzer-ID und der UserKey für diese Ereignisse sind immer SecurityComplia
 |Daten|Edm.String|Nein|Der detaillierte Datenblob der Warnung oder Warnungsentität.|
 |AlertEntityId|Edm.String|Nein|Die ID für die Warnungsentität. Dieser Parameter ist nur für AlertEntityGenerated-Ereignisse anwendbar.|
 |EntityType|Edm.String|Nein|Der Typ der Warnung oder Warnungsentität. Zu den Entitätstypen gehören: <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Benutzer</p></li><li><p>Empfänger</p></li><li><p>Absender</p></li><li><p>MalwareFamily</p></li></ul>Dieser Parameter ist nur für AlertEntityGenerated-Ereignisse anwendbar.|
+|||||
 
 ## <a name="yammer-schema"></a>Yammer-Schema
 
@@ -874,6 +885,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](h
 |TargetUserId|Edm.String|Nein|Die E-Mail-Adresse des Zielbenutzers innerhalb des Vorgangs. Ist leer, falls nicht relevant für den Vorgang.|
 |TargetYammerUserId|Edm.Int64|Nein|Die ID des Zielbenutzers innerhalb des Vorgangs.|
 |VersionId|Edm.Int64|Nein|Die Versions-ID der Datei innerhalb des Vorgangs.|
+|||||
 
 ## <a name="sway-schema"></a>Sway-Schema
 
@@ -888,6 +900,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |SwayLookupId|Edm.String|Nein|Die Sway-ID. |
 |SiteUrl|Edm.String|Nein|Die URL für das Sway.|
 |OperationResult|Self.[OperationResult](#operationresult)|Nein|Erfolg oder Fehler.|
+|||||
 
 
 ### <a name="enum-objecttype---type-edmint32"></a>Enumeration: ObjectType - Typ: Edm.Int32
@@ -899,6 +912,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |0|Sway|Das Ereignis wurde von einem Sway ausgelöst.|
 |1|SwayEmbedded|Das Ereignis wurde von einem Sway ausgelöst, das in einen Host eingebettet ist.|
 |2|SwayAdminPortal|Das Ereignis wurde von Sway-Diensteinstellungen im Office 365-Verwaltungsportal ausgelöst.|
+|||||
 
 
 ### <a name="enum-operationresult---type-edmint32"></a>Enumeration: OperationResult - Typ: Edm.Int32
@@ -909,6 +923,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |:-----|:-----|:-----|
 |0|Succeeded|Das Ereignis war erfolgreich.|
 |1|Failed|Das Ereignis ist fehlgeschlagen.|
+|||||
 
 
 ### <a name="enum-endpoint---type-edmint32"></a>Enumeration: Endpoint - Typ: Edm.Int32
@@ -921,7 +936,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |1|SwayIOS|Das Ereignis wurde mit dem iOS-Client von Sway ausgelöst.|
 |2|SwayWindows|Das Ereignis wurde mit dem Windows-Client von Sway ausgelöst.|
 |3|SwayAndroid|Das Ereignis wurde mit dem Android-Client von Sway ausgelöst.|
-
+|||||
 
 
 ### <a name="enum-devicetype---type-edmint32"></a>Enumeration: DeviceType - Typ: Edm.Int32
@@ -933,6 +948,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |0|Desktop|Das Ereignis wurde mit dem Desktop ausgelöst.|
 |1|Mobil|Das Ereignis wurde mit einem mobilen Gerät ausgelöst.|
 |2|Tablet|Das Ereignis wurde mit einem Tablet ausgelöst.|
+|||||
 
 
 
@@ -956,12 +972,14 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |13|ServiceOff|Der Benutzer deaktiviert Sway für die gesamte Organisation über das Office 365 Admin Center (standardmäßig ausgeschaltet).|
 |14|ExternalSharingOn|Die Benutzer aktiviert die externe Freigabe für die gesamte Organisation über das Office 365 Admin Center.|
 |15|ExternalSharingOff|Die Benutzer deaktiviert die externe Freigabe für die gesamte Organisation über das Office 365 Admin Center.|
+|||||
 
 ## <a name="data-center-security-base-schema"></a>Rechenzentrum-Sicherheitsbasis-Schema
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |DataCenterSecurityEventType|Self.[DataCenterSecurityEventType](#datacentersecurityeventtype)|Ja|Der Typ des Dmdlet-Ereignisses im Feld "Sperren".|
+|||||
 
 ### <a name="enum-datacentersecurityeventtype---type-edmint32"></a>Enumeration: DataCenterSecurityEventType - Typ: Edm.Int32
 
@@ -971,12 +989,10 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |**Elementname**|**Beschreibung**|
 |:-----|:-----|
 |DataCenterSecurityCmdletAuditEvent|Dies ist der Enumerationswert für das Cmdlet-Überwachungstyp-Ereignis.|
-
+|||
 
 
 ## <a name="data-center-security-cmdlet-schema"></a>Rechenzentrum-Sicherheits-Cmdlet-Schema
-
-
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
@@ -989,6 +1005,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |ElevationRole|Edm.String|Nein|Die Rolle, für die die Erweiterung angefordert wurde.|
 |ElevationDuration|Edm.Int32|Ja|Die Dauer, in der die Erweiterung aktiv war.|
 |GenericInfo|Edm.String|Nein|Kommentare und andere generische Informationen.|
+|||||
 
 
 ## <a name="microsoft-teams-schema"></a>Microsoft Teams-Schema
@@ -996,12 +1013,22 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |MessageId|Edm.String|Nein|Ein Bezeichner für eine Chat- oder Kanalnachricht.|
-|MeetupId|Edm.String|Nein|Ein Bezeichner für eine geplante oder eine Ad-hoc-Besprechung.|
 |Members|Collection(Self.[MicrosoftTeamsMember](#microsoftteamsmember-complex-type))|Nein|Eine Liste der Benutzer innerhalb eines Teams.|
 |TeamName|Edm.String|Nein|Der Name des überwachten Teams.|
 |TeamGuid|Edm.Guid|Nein|Die eindeutige ID des überwachten Teams.|
+|ChannelType|Edm.String|Nein|Der Typ des zu überwachenden Kanals (Standard/privat).|
 |ChannelName|Edm.String|Nein|Der Name des überwachten Kanals.|
 |ChannelGuid|Edm.Guid|Nein|Ein eindeutiger Bezeichner für den überwachten Kanal.|
+|ExtraProperties|Collection(Self.[KeyValuePair](#keyvaluepair-complex-type))|Nein|Eine Liste zusätzlicher Eigenschaften.|
+|AddOnType|Self.[AddOnType](#addontype)|Nein|Der Typ des Add-Ons, das dieses Ereignis generiert hat.|
+|AddonName|Edm.String|Nein|Der Name des Add-Ons, das das Ereignis generiert hat.|
+|AddOnGuid|Edm.Guid|Nein|Der eindeutige Bezeichner des Add-Ons, das das Ereignis generiert hat.|
+|TabType|Edm.String|Nein|Nur für Registerkartenereignisse vorhanden. Der Registerkartentyp, der das Ereignis generiert hat.|
+|Name|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Der Name der geänderten Einstellung.|
+|OldValue|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Alter Wert der Einstellung.|
+|NewValue|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Neuer Wert der Einstellung.|
+||||
+
 
 ### <a name="microsoftteamsmember-complex-type"></a>Komplexer MicrosoftTeamsMember-Typ
 
@@ -1010,6 +1037,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |UPN|Edm.String|Nein|Der Benutzerprinzipalname des Benutzers.|
 |Rolle|Self.[MemberRoleType](#memberroletype)|Nein|Die Rolle des Benutzers innerhalb des Teams.|
 |DisplayName|Edm.String|Nein|Der Anzeigename des Benutzers.|
+|||||
 
 ### <a name="enum-memberroletype---type-edmint32"></a>Enumeration: MemberRoleType - Typ: Edm.Int32
 
@@ -1020,16 +1048,16 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |0|Member|Ein Benutzer, der Mitglied des Teams ist.|
 |1|Besitzer|Ein Benutzer, der Besitzer des Teams ist.|
 |2|Gast|Ein Benutzer, der kein Mitglied des Teams ist.|
+||||
 
-
-## <a name="microsoft-teams-add-ons-schema"></a>Microsoft Teams-Add-Ons-Schema
+### <a name="keyvaluepair-complex-type"></a>Komplexer Typ "KeyValuePair"
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
-|AddOnType|Self.[AddOnType](#addontype)|Nein|Der Typ des Add-Ons, das dieses Ereignis generiert hat.|
-|AddonName|Edm.String|Nein|Der Name des Add-Ons, das dieses Ereignis generiert hat.|
-|AddOnGuid|Edm.Guid|Nein|Der eindeutige Bezeichner des Add-Ons, das dieses Ereignis generiert hat.|
-|TabType|Edm.String|Nein|Der Registerkartentyp, der dieses Ereignis generiert hat.|
+|Key|Edm.String|Nein|Der Schlüssel des Schlüssel-Wert-Paars.|
+|Value|Edm.String|Nein|Der Wert des Schlüssel-Wert-Paars.|
+|||||
+
 
 ### <a name="enum-addontype---type-edmint32"></a>Enumeration: AddOnType - Typ: Edm.Int32
 
@@ -1040,14 +1068,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |1|Bot|Ein Microsoft Teams-Bot.|
 |2|Connector|Ein Microsoft Teams-Konnektor.|
 |3|Tab|Eine Microsoft Teams-Registerkarte.|
-
-
-## <a name="microsoft-teams-settings-schema"></a>Microsoft Teams-Einstellungsschema
-
-|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
-|:-----|:-----|:-----|:-----|
-|ModifiedProperty|Common.ModifiedProperty|Nein|Die Eigenschaft, die geändert wurde. Sie enthält den **Namen**, **Alten Wert** und **Neuen Wert** der Eigenschaft.|
-|ExtendedProperties|Collection(Common.NameValuePair)|Nein|Eine Liste der erweiterten Eigenschaften der geänderten Einstellung. Jede Eigenschaft besitzt einen **Namen** und einen **Wert**.|
+||||
 
 ## <a name="office-365-advanced-threat-protection-and-threat-investigation-and-response-schema"></a>Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema
 
@@ -1079,6 +1100,7 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |Verdict|Edm.String|Ja|Die Bewertung der Nachricht.|
 |MessageTime|Edm.Date|Ja|Zeitpunkt in UTC, zu dem die E-Mail empfangen oder gesendet wurde.|
 |EventDeepLink|Edm.String|Ja|Deep-Link zum E-Mail-Ereignis im Explorer oder Echtzeit-Berichten im Office 365 Security & Compliance Center.|
+|||||
 
 ### <a name="attachmentdata-complex-type"></a>Komplexer AttachmentData-Typ
 
@@ -1091,6 +1113,7 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |FileVerdict|Self.[FileVerdict](#fileverdict)|Ja|Die Bewertung der Schadsoftware der Datei.|
 |MalwareFamily|Edm.String|Nein|Die Familie der Schadsoftware.|
 |SHA256|Edm.String|Ja|Die Datei mit der Hash-Funktion SHA256.|
+|||||
 
 ### <a name="enum-fileverdict---type-edmint32"></a>Enumeration: FileVerdict - Typ: Edm.Int32
 
@@ -1103,6 +1126,7 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |-1|Fehler|Scan-/Analysefehler.|
 |-2|Timeout|Scan-/Analyse-Timeout.|
 |-3|Ausstehend|Scan/Analyse nicht abgeschlossen.|
+|||||
 
 ### <a name="url-time-of-click-events"></a>Ereignisse zum Zeitpunkt des Klickens auf eine URL
 
@@ -1115,6 +1139,7 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |TimeOfClick|Edm.Date|Ja|Das Datum und die Uhrzeit in koordinierter Weltzeit (UTC), wann der Benutzer auf die URL geklickt hat.|
 |URL|Edm.String|Ja|Die URL, auf die der Benutzer geklickt hat.|
 |UserIp|Edm.String|Ja|Die IP-Adresse des Benutzer, der auf die URL geklickt hat. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.|
+|||||
 
 ### <a name="enum-urlclickaction---type-edmint32"></a>Enum: URLClickAction – Type: Edm.Int32
 
@@ -1126,6 +1151,7 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |3|PendingDetonationPage|Benutzer, die die Seite zur ausstehenden Denotation von der [Office 365 ATP-Funktion für sichere Links](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) sehen.|
 |4|BlockPageOverride|Benutzer, für die das Navigieren zur URL durch die [Office 365 ATP-Funktion für sichere Links](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) blockiert wurde; Benutzer haben jedoch die Sperre außer Kraft gesetzt, um zur URL zu navigieren.|
 |5|PendingDetonationPageOverride|Benutzer, die die Seite zur ausstehenden Detonation von der [Office 365 ATP-Funktion für sichere Links](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) sehen; Benutzer haben dies jedoch außer Kraft gesetzt, um zur URL zu navigieren.|
+|||||
 
 
 ### <a name="file-events"></a>Dateiereignisse
@@ -1138,6 +1164,7 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |LastModifiedDate|Edm.Date|Ja|Der Zeitpunkt in UTC, zu dem die Datei erstellt oder zuletzt geändert wurde.|
 |LastModifiedBy|Edm.String|Ja|Bezeichner (z. B. eine E-Mail-Adresse) für den Benutzer, der die Datei erstellt oder zuletzt geändert hat.|
 |EventDeepLink|Edm.String|Ja|Deep-Link zum Dateiereignis im Explorer oder Echtzeit-Berichten im Security & Compliance Center.|
+|||||
 
 ### <a name="filedata-complex-type"></a>Komplexer FileData-Typ
 
@@ -1152,6 +1179,7 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |MalwareFamily|Edm.String|Nein|Die Familie der Schadsoftware.|
 |SHA256|Edm.String|Ja|Die Datei mit der Hash-Funktion SHA256.|
 |FileSize|Edm.String|Ja|Größe der Datei in Byte.|
+|||||
 
 ### <a name="enum-sourceworkload---type-edmint32"></a>Enum: SourceWorkload – Type: Edm.Int32
 
@@ -1162,6 +1190,7 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |0|SharePoint Online|
 |1|OneDrive for Business|
 |2|Microsoft Teams|
+|||||
 
 ## <a name="power-bi-schema"></a>Power BI-Schema
 
@@ -1179,6 +1208,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](/
 | SharingInformation    | Collection([SharingInformationType](#sharinginformationtype-complex-type))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"    |  Nein  | Informationen zu der Person, an die eine Einladung zur Freigabe gesendet wird. |
 | SwitchState           | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Informationen zum Status der verschiedener Mandantenebenenoptionen. |
 | WorkSpaceName         | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  Nein  | Der Name des Arbeitsbereichs, in dem das Ereignis aufgetreten ist. |
+|||||
 
 ### <a name="membershipinformationtype-complex-type"></a>Komplexer Typ „MembershipInformationType“
 
@@ -1186,6 +1216,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](/
 |:-----|:-----|:-----|:-----|
 | MemberEmail | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Die E-Mail-Adresse der Gruppe. |
 | Status      | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Derzeit nicht ausgefüllt. |
+|||||
 
 ### <a name="sharinginformationtype-complex-type"></a>Komplexer Typ „SharingInformationType“
 
@@ -1194,6 +1225,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](/
 | RecipientEmail    | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Die E-Mail-Adresse des Empfängers einer Freigabeeinladung. |
 | RecipientName    | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Der Name des Empfängers einer Freigabeeinladung. |
 | ResharePermission | Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  Nein  | Die dem Empfänger erteilte Berechtigung. |
+|||||
 
 ## <a name="workplace-analytics-schema"></a>Workplace Analytics-Schema
 
