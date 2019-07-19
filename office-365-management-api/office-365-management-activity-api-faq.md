@@ -6,18 +6,18 @@ ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 8954be1b9076eb2a6f640ee96cc2b612addcabc0
-ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
+ms.openlocfilehash: 2abcdd71c75cab011fa8e711832b06d398e3a6ab
+ms.sourcegitcommit: 289cf45903a045630f4b3efba6f03494bf08ab4a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "32223945"
+ms.lasthandoff: 07/17/2019
+ms.locfileid: "35772114"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365-Verwaltungsaktivitäts-API – Häufig gestellte Fragen
 
 #### <a name="what-events-are-audited-for-a-specific-office-365-service"></a>Welche Ereignisse werden für einen bestimmten Office 365-Dienst überwacht?
 
-Die Dokumentation für das Office 365-Verwaltungsaktivitäts-API-Schema enthält eine umfassende Liste der Ereignisse. Einzelheiten hierzu finden Sie unter [Office 365-Verwaltungsaktivitäts-API – Schema](office-365-management-activity-api-schema.md).
+Die Dokumentation für das Office 365-Verwaltungsaktivitäts-API-Schema enthält eine umfassende Liste der Ereignisse. Einzelheiten hierzu finden Sie unter [Office 365-Verwaltungsaktivitäts-API – Schema](office-365-management-activity-api-schema.md). Eine Liste der Ereignisse für die meisten Office 365-Dienste, die überwacht werden, finden Sie auch im Abschnitt „Überwachte Aktivitäten“ in [Durchsuchen des Überwachungsprotokolls im Security & Compliance Center](https://docs.microsoft.com/de-DE/office365/securitycompliance/search-the-audit-log-in-security-and-compliance#audited-activities).
 
 #### <a name="how-do-i-onboard-to-the-management-activity-api"></a>Wie kann ich die Verwaltungsaktivitäts-API nutzen?
 
@@ -33,7 +33,7 @@ Sie können dies mithilfe der Office 365-Verwaltungsaktivitäts-API tun. Außerd
 
 #### <a name="is-it-true-that-mailbox-auditing-in-exchange-online-can-only-be-enabled-by-using-powershell"></a>Trifft es zu, dass die Postfachüberwachung in Exchange Online nur mit PowerShell aktiviert werden kann?
 
-Ja. Wir arbeiten jedoch daran, die Postfachüberwachung standardmäßig für alle Postfächer in einer Office 365-Organisation zu aktivieren. Weitere Informationen finden Sie unter „Exchange-Postfachüberwachung wird standardmäßig aktiviert“ im [Microsoft-Blog für Sicherheit, Datenschutz und Compliance](https://techcommunity.microsoft.com/t5/Security-Privacy-and-Compliance/Exchange-Mailbox-Auditing-will-be-enabled-by-default/ba-p/215171).
+Dies war früher der Fall, aber seit Januar 2019 ist die Postfachüberwachung für alle Office 365-Organisationen jetzt standardmäßig aktiviert. Weitere Informationen finden Sie unter [Postfachüberwachungen verwalten](https://docs.microsoft.com/office365/securitycompliance/enable-mailbox-auditing).
 
 #### <a name="are-there-any-differences-in-the-records-that-are-fetched-by-the-management-activity-api-versus-the-records-that-are-returned-by-using-the-audit-log-search-tool-in-the-office-365-security--compliance-center"></a>Gibt es Unterschiede in den Datensätzen, die von der Verwaltungsaktivitäts-API abgerufen werden, und den Datensätzen, die mit dem Überwachungsprotokoll-Suchtool im Office 365 Security & Compliance Center zurückgegeben werden?
 
@@ -57,4 +57,4 @@ Nein. Die Überwachung muss für Ihre Organisation sein, damit Datensätze über
 
 #### <a name="why-are-targetupdatedproperties-no-longer-in-extendedproperties-in-the-audit-logs-for-azure-active-directory-activities"></a>Warum werden in den Auditprotokollen für Azure Active Directory-Aktivitäten "TargetUpdatedProperties" nicht mehr in "ExtendedProperties" enthalten?
 
-"TargetUpdatedProperties" wurden in "ExtendedProperties" angezeigt. Sie wurden jedoch aus "ExtendedProperties" entfernt und werden nun in "ModifiedProperties"angezeigt.
+"TargetUpdatedProperties" wurden in "ExtendedProperties" angezeigt. Sie wurden jedoch aus ExtendedProperties entfernt und werden nun in ModifiedProperties angezeigt.
