@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: 09/05/2018
 localization_priority: Priority
-ms.openlocfilehash: ed84984dc3009d03e0bb7cacba16eafb687c93e0
-ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
+ms.openlocfilehash: 35d90859056225a5ebcf547d88c05640699c5295
+ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "32223952"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "35924819"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
@@ -25,6 +25,10 @@ Die Verwaltungsaktivitäts-API sollte nicht mit der Office 365-Dienstkommunikati
 Obwohl sie relativ wenige Operationen und eine einfache REST-Schnittstelle aufweist, ist die Verwendung der Verwaltungsaktivitäts-API und der genaue Abruf der Daten oft unklar.  Jeder, der die Verwaltungsaktivitäts-API verwendet, sollte wissen, dass es keine Abfrage nach Ereignisspezifika gibt, wie Datum des Ereignisses, von welcher Websitesammlung ein Ereignis ausgelöst wurde oder Ereignistyp.  Stattdessen erstellen Sie Abonnements für spezielle Arbeitslasten (beispielsweise SharePoint oder Azure AD), und jedes Abonnement ist mandantenspezifisch.
 
 Dieser Artikel enthält eine Zusammenfassung der am häufigsten gestellten Fragen, die der Microsoft-Support zu dieser API erhält.  Wir zeigen eine Auswahl einfacher PowerShell-Skripts, mit denen Sie die gängigsten Fragen von Kunden beantworten oder eine benutzerdefinierte Lösung durch Demonstration der wichtigsten Operationen implementieren können.  Nicht alle Operationen sind in diesem Artikel beschrieben, aber sie sind alle unter [Office 365-Verwaltungsaktivitäts-API – Referenz](office-365-management-activity-api-reference.md) aufgelistet.
+
+## <a name="enabling-unified-audit-logging-in-office-365"></a>Aktivieren der einheitliche Überwachungsprotokollierung in Office 365
+
+Wenn Sie gerade eine App eingerichtet haben, die versucht, die Verwaltungsaktivitäts-API zu verwenden, und dies nicht funktioniert, stellen Sie sicher, dass Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktiviert haben. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Weitere Anweisungen finden Sie unter [Aktivieren oder Deaktivieren der Office 365-Überwachungsprotokollsuche](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off).
 
 ## <a name="questions-about-third-party-tools-and-clients"></a>Fragen zu Drittanbietertools und -clients
 

@@ -6,12 +6,12 @@ ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 2abcdd71c75cab011fa8e711832b06d398e3a6ab
-ms.sourcegitcommit: 289cf45903a045630f4b3efba6f03494bf08ab4a
+ms.openlocfilehash: 9083127d1fd3ecf82e5fe778ba1727d22d91017c
+ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/17/2019
-ms.locfileid: "35772114"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "35924777"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365-Verwaltungsaktivitäts-API – Häufig gestellte Fragen
 
@@ -38,7 +38,11 @@ Dies war früher der Fall, aber seit Januar 2019 ist die Postfachüberwachung f�
 #### <a name="are-there-any-differences-in-the-records-that-are-fetched-by-the-management-activity-api-versus-the-records-that-are-returned-by-using-the-audit-log-search-tool-in-the-office-365-security--compliance-center"></a>Gibt es Unterschiede in den Datensätzen, die von der Verwaltungsaktivitäts-API abgerufen werden, und den Datensätzen, die mit dem Überwachungsprotokoll-Suchtool im Office 365 Security & Compliance Center zurückgegeben werden?
 
 Von beiden Methoden werden identische Daten zurückgegeben. Es erfolgt keine Filterung. Der einzige Unterschied besteht darin, dass Sie mit der API Daten für die letzten 7 Tage gleichzeitig abrufen können. Wenn Sie das Überwachungsprotokoll im Security & Compliance Center durchsuchen (oder das entsprechende Cmdlet [Search-UnifiedAuditLog](https://docs.microsoft.com/powershell/module/exchange/policy-and-compliance-audit/search-unifiedauditlog) in Exchange Online verwenden), können Sie Daten für die letzten 90 Tage abrufen. 
- 
+
+#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activity-api"></a>Was passiert, wenn ich für meine Office 365-Organisation die Überwachung deaktiviere? Erhalte ich weiterhin Ereignisse über die Verwaltungsaktivitäts-API?
+
+Nein. Die einheitliche Überwachung von Office 365 muss für Ihre Organisation aktiviert sein, damit Datensätze über die Verwaltungsaktivitäts-API abgerufen werden können. Weitere Anweisungen finden Sie unter [Aktivieren oder Deaktivieren der Office 365-Überwachungsprotokollsuche](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off).
+
 #### <a name="arent-webhook-notifications-more-immediate-after-all-arent-they-event-driven"></a>Sind Webhook-Benachrichtigungen nicht unmittelbarer? Sind sie nicht ereignisgesteuert?
 
 Nein. Webhook-Benachrichtigungen sind nicht in dem Sinn ereignisgesteuert, dass das Ereignis die Benachrichtigung auslöst. Das Inhalts-Blob muss weiterhin erstellt werden, und die Erstellung des Inhalts-Blobs löst die Benachrichtigungsübermittlung aus. In letzter Zeit waren die Wartezeiten für Benachrichtigungen bei Verwendung eines Webhooks länger als beim direkten Abfragen der API mit dem Vorgang */content*. Daher sollte die Verwaltungsaktivitäts-API nicht als Echtzeit-Sicherheitsalarmsystem betrachtet werden. Dafür hat Microsoft andere Produkte. Wenn es um die Sicherheit geht, können Ereignisbenachrichtigungen der Verwaltungsaktivitäts-API besser zum Ermitteln von Verwendungsmustern über längere Zeiträume verwendet werden.
@@ -50,10 +54,6 @@ Manchmal gibt es einen temporären Ausfall oder andere Probleme in den Office 36
 #### <a name="im-encountering-a-throttling-error-in-the-management-activity-api-what-should-i-do"></a>In der Verwaltungsaktivitäts-API tritt ein Einschränkungsfehler auf. Was soll ich machen?
 
 Öffnen Sie ein Ticket beim [Microsoft-Support](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online), fordern Sie einen neuen Einschränkungsgrenzwert an, und geben Sie dabei eine geschäftliche Begründung für die Erhöhung des Grenzwerts an. Die Anforderung wird ausgewertet, und wenn sie akzeptiert wird, wird der Einschränkungsgrenzwert erhöht.
-
-#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activity-api"></a>Was passiert, wenn ich für meine Office 365-Organisation die Überwachung deaktiviere? Erhalte ich weiterhin Ereignisse über die Verwaltungsaktivitäts-API?
-
-Nein. Die Überwachung muss für Ihre Organisation sein, damit Datensätze über die Verwaltungsaktivitäts-API abgerufen werden können.
 
 #### <a name="why-are-targetupdatedproperties-no-longer-in-extendedproperties-in-the-audit-logs-for-azure-active-directory-activities"></a>Warum werden in den Auditprotokollen für Azure Active Directory-Aktivitäten "TargetUpdatedProperties" nicht mehr in "ExtendedProperties" enthalten?
 
