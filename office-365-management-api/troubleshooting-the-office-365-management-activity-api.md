@@ -4,14 +4,14 @@ title: Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 description: Enthält eine Zusammenfassung der am häufigsten gestellten Fragen, die der Microsoft-Support zu dieser API erhält.
 ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
-ms.date: 09/05/2018
+ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 35d90859056225a5ebcf547d88c05640699c5295
-ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
+ms.openlocfilehash: f02088f557a10414539952c78542e09b2dc2d90b
+ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/29/2019
-ms.locfileid: "35924819"
+ms.lasthandoff: 07/30/2019
+ms.locfileid: "35936229"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
@@ -26,15 +26,17 @@ Obwohl sie relativ wenige Operationen und eine einfache REST-Schnittstelle aufwe
 
 Dieser Artikel enthält eine Zusammenfassung der am häufigsten gestellten Fragen, die der Microsoft-Support zu dieser API erhält.  Wir zeigen eine Auswahl einfacher PowerShell-Skripts, mit denen Sie die gängigsten Fragen von Kunden beantworten oder eine benutzerdefinierte Lösung durch Demonstration der wichtigsten Operationen implementieren können.  Nicht alle Operationen sind in diesem Artikel beschrieben, aber sie sind alle unter [Office 365-Verwaltungsaktivitäts-API – Referenz](office-365-management-activity-api-reference.md) aufgelistet.
 
-## <a name="enabling-unified-audit-logging-in-office-365"></a>Aktivieren der einheitliche Überwachungsprotokollierung in Office 365
-
-Wenn Sie gerade eine App eingerichtet haben, die versucht, die Verwaltungsaktivitäts-API zu verwenden, und dies nicht funktioniert, stellen Sie sicher, dass Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktiviert haben. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Weitere Anweisungen finden Sie unter [Aktivieren oder Deaktivieren der Office 365-Überwachungsprotokollsuche](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off).
-
 ## <a name="questions-about-third-party-tools-and-clients"></a>Fragen zu Drittanbietertools und -clients
 
 Die häufigsten Fragen, die dem Support aktuell gestellt werden, stammen von Kunden, die Drittanbieterprodukte zum Herunterladen und Aggregieren von Überwachungsdaten verwenden. Je nach Drittanbieterprodukt haben Kunden Probleme mit der Einrichtung oder sind mit Unterbrechungen oder Inkonsistenzen in Bezug auf die Daten in diesen Produkten konfrontiert. Solche Kunden sollten sich zunächst an den Support des Anbieters wenden. Bei allen Serviceanfragen, die beim Support eingegangen sind, haben die Techniker nur einen einzigen Fall erlebt, bei dem ein mandantenspezifisches Serviceproblem die Ursache war.
 
 Diese Kunden haben möglicherweise trotzdem noch einige unbeantwortete Fragen. Ihre Anbieter bestehen evtl. darauf, dass es sich um ein Serviceproblem handelt, oder sie möchten evtl. nur einige erste Prüfungen vornehmen, bevor sie ihren Anbieter kontaktieren. 
+
+## <a name="enabling-unified-audit-logging-in-office-365"></a>Aktivieren der einheitliche Überwachungsprotokollierung in Office 365
+
+Wenn Sie gerade eine App eingerichtet haben, die versucht, die Verwaltungsaktivitäts-API zu verwenden, und dies nicht funktioniert, stellen Sie sicher, dass Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktiviert haben. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Weitere Anweisungen finden Sie unter [Aktivieren oder Deaktivieren der Office 365-Überwachungsprotokollsuche](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off).
+
+Wenn die einheitliche Überwachung nicht aktiviert ist, wird in der Regel eine Fehlermeldung angezeigt, die folgende Zeichenfolge enthält: `Microsoft.Office.Compliance.Audit.DataServiceException: Tenant <tenantID> does not exist.`
 
 ## <a name="connecting-to-the-api"></a>Herstellen einer Verbindung mit der API
 
@@ -43,6 +45,7 @@ Die meisten Anwendungen stellen mit einem einfachen OAuth2-Fluss mit Client-Anme
 ### <a name="azure-application-permissions"></a>Azure-Anwendungsberechtigungen
 
 Die drei Berechtigungen, die derzeit für die Office 365-Verwaltungsaktivitäts-API verwendet werden, sind:
+
 1. Lesen der Aktivitätsdaten für Ihre Organisation
 2. Lesen der Dienstintegritätsinformationen für Ihre Organisation
 3. Lesen der Data Loss Prevention(DLP)-Richtlinienereignisse, einschließlich der erkannten vertraulichen Informationen 
