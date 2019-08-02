@@ -4,14 +4,14 @@ title: Erste Schritte mit den Office 365-Verwaltungs-APIs
 description: Die APIs verwenden Azure AD, um Authentifizierungsdienste bereitzustellen, mit denen Sie der Anwendung entsprechende Rechte für den Zugriff auf diese Dienste erteilen können.
 ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
-ms.date: 09/05/2018
+ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 9732b5a838bdf4c14a6a13af8196704c89dec63d
-ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
+ms.openlocfilehash: 08f510302c1d19cf3e3e2385f1baab6133153f07
+ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "32224041"
+ms.lasthandoff: 07/30/2019
+ms.locfileid: "35936236"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Erste Schritte mit den Office 365-Verwaltungs-APIs
 
@@ -32,6 +32,8 @@ Das folgende Diagramm zeigt die Abfolge von Genehmigungs- und Zugriffstoken-Anfr
 
 ![Initialer Authorisierungsvorgang für Verwaltungs-APIs](images/authorization-flow.png)
 
+> [!IMPORTANT]
+> Bevor Sie über die Office 365-Verwaltungsaktivitäts-API auf Daten zugreifen können, müssen Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktivieren. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Anweisungen hierzu finden Sie unter [Aktivieren und Deaktivieren der Office 365-Überwachungsprotokollsuche](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off). <br/><br/>Wenn Sie nur die Office 365-Dienstkommunikations-API verwenden, ist die Aktivierung der einheitlichen Überwachungsprotokollierung nicht nötig.
 
 ## <a name="register-your-application-in-azure-ad"></a>Registrieren Sie Ihre Anwendung in Azure AD.
 
@@ -113,7 +115,7 @@ Schlüssel werden auch als geheime Clientschlüssel bezeichnet und werden verwen
 
 Eine Anwendung, die im Hintergrund ausgeführt wird, wie ein Dämonprozess oder ein Dienst, kann Client-Anmeldeinformationen nutzen, um ein „Nur App“-Zugriffstoken anzufordern, ohne fortlaufend eine Genehmigung vom Mandantenadministrator anzufordern, nachdem eine erste Genehmigung erteilt wurde. 
 
-Weitere Informationen finden Sie unter [Dienst-zu-Dienst-Anrufe mithilfe von Client-Anmeldeinformationen](https://msdn.microsoft.com/de-DE/library/azure/dn645543.aspx).
+Weitere Informationen finden Sie unter [Dienst-zu-Dienst-Anrufe mithilfe von Client-Anmeldeinformationen](https://msdn.microsoft.com/en-us/library/azure/dn645543.aspx).
 
 Sie müssen ein X.509-Zertifikat für Ihre Anwendung erstellen, das als Client-Anmeldedaten dient, wenn ein „Nur App“-Token von Azure AD angefordert wird. Dieser Prozess besteht aus zwei Schritten:
 
@@ -249,7 +251,7 @@ Es gibt zwei Methoden, um Zugriffstoken von Azure AD anzufordern:
 
 - Der [Genehmigungsprozess mit Autorisierungscode](https://msdn.microsoft.com/en-us/library/azure/dn645542.aspx) beinhaltet, dass eine Mandantenadministrator seine ausdrückliche Genehmigung erteilt, wodurch ein Autorisierungscode an Ihre Anwendung zurückgegeben wird. Ihre Anwendung tauscht dann den Autorisierungscode gegen ein Zugriffstoken aus. Diese Methode ist erforderlich, um die erste Zustimmung dafür zu erhalten, die Ihre Anwendung benötigt, um mittels der API auf Mandantendaten zuzugreifen. Dieses erste Zugriffstoken ist erforderlich, um die Mandanten-ID zu erhalten und zu speichern.
     
-- Die [Genehmigungsprozess mit Client-Anmeldedaten](https://msdn.microsoft.com/de-DE/library/azure/dn645543.aspx) ermöglicht es Ihrer Anwendung, nachfolgende Zugriffstoken anzufordern, wenn alte ihre Gültigkeit verlieren, ohne dass der Mandantenadministrator sich anmelden und seine ausdrückliche Zustimmung erteilen muss. Diese Methode muss für Anwendungen verwendet werden, die fortlaufend im Hintergrund ausgeführt werden, und APIs aufrufen, nachdem die erste Zustimmung durch den Mandantenadministrator erteilt wurde.
+- Die [Genehmigungsprozess mit Client-Anmeldedaten](https://msdn.microsoft.com/en-us/library/azure/dn645543.aspx) ermöglicht es Ihrer Anwendung, nachfolgende Zugriffstoken anzufordern, wenn alte ihre Gültigkeit verlieren, ohne dass der Mandantenadministrator sich anmelden und seine ausdrückliche Zustimmung erteilen muss. Diese Methode muss für Anwendungen verwendet werden, die fortlaufend im Hintergrund ausgeführt werden, und APIs aufrufen, nachdem die erste Zustimmung durch den Mandantenadministrator erteilt wurde.
     
 
 ### <a name="request-an-access-token-using-the-authorization-code"></a>Zugriffstoken mithilfe des Autorisierungscodes anfordern
