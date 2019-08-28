@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 49ffb697575a63bce7a7eee8e539a30c733772a5
-ms.sourcegitcommit: c4674653f99c77b64115f8547f9e410dea3408f9
+ms.openlocfilehash: 175d18dad57bff0939250cd4ae27c02129d7c0ed
+ms.sourcegitcommit: b9439635542de9db8f9fb8e056b8359d4653aa21
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/10/2019
-ms.locfileid: "35613585"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "36643043"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -1094,6 +1094,9 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |NetworkMessageId|Edm.String|Ja|Die Nachrichten-ID des Exchange Online-Netzwerks.|
 |P1Sender|Edm.String|Ja|Der Rückpfad des Absenders der E-Mail-Nachricht.|
 |P2Sender|Edm.String|Ja|Der Absenders der E-Mail-Nachricht.|
+|Richtlinie|Self.[Policy](#policy-type-and-action-type)|Ja|Der für die E-Mail-Nachricht relevante Filterrichtlinientyp (z. B. **Antispam** oder **Antiphishing**) und der zugehörige Aktionstyp (z. B. **Nachricht mit hoher Spamwahrscheinlichkeit**, **Spam** oder **Phishing**).|
+|Richtlinie|Self.[PolicyAction](#policy-action)|Ja|Die für die E-Mail-Nachricht relevante und in der Filterrichtlinie konfigurierte Aktion (z. B. **In Junk-E-Mail-Ordner verschieben** oder **Quarantäne**).|
+|P2Sender|Edm.String|Ja|Der Absender im Feld **Von:** der E-Mail-Nachricht.|
 |Empfänger|Collection(Edm.String)|Ja|Enthält eine Reihe von Empfängern einer E-Mail-Nachricht.|
 |SenderIp|Edm.String|Ja|Die IP-Adresse, die die E-Mail über Office 365 übermittelt hat. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.|
 |Betreff|Edm.String|Ja|Die Betreffzeile der Nachricht.|
@@ -1127,6 +1130,37 @@ Office 365 Advanced Threat Protection- (ATP) und Threat Investigation and Respon
 |-2|Timeout|Scan-/Analyse-Timeout.|
 |-3|Ausstehend|Scan/Analyse nicht abgeschlossen.|
 |||||
+
+### <a name="enum-policy---type-edmint32"></a>Enum: Policy – Type: Edm.Int32
+
+#### <a name="policy-type-and-action-type"></a>Richtlinientyp und Aktivitätstyp
+
+|**Wert**|**Elementname**|**Beschreibung**|
+|:-----|:-----|:-----|
+|1|Antispam, HSPM|Aktion für Nachricht mit hoher Spamwahrscheinlichkeit (HSPM) in der Antispamrichtlinie.|
+|2|Antispam, SPM|Aktion für Spamnachricht (SPM) in der Antispamrichtlinie.|
+|3|Antispam, Massensendung|Aktion für Massensendungen in der Antispamrichtlinie.|
+|4|Antispam, PHSH|Aktion für Phishingnachricht (PHSH) in der Antispamrichtlinie.|
+|5|Antiphishing, DIMP|Aktion für Domänenidentitätswechsel (DIMP) in der Antiphishingrichtlinie.|
+|6|Antiphishing, UIMP|Aktion für Benutzeridentitätswechsel (UIMP) in der Antiphishingrichtlinie.|
+|7|Antiphishing, SPOOF|Aktion für Spoofing in der Antiphishingrichtlinie.|
+
+
+### <a name="enum-policyaction---type-edmint32"></a>Enum: PolicyAction – Type: Edm.Int32
+
+#### <a name="policy-action"></a>Richtlinienaktion
+
+|**Wert**|**Elementname**|**Beschreibung**|
+|:-----|:-----|:-----|
+|0|MoveToJMF|Die Richtlinienaktion besteht darin, das Element in den Junk-E-Mail-Ordner zu verschieben.|
+|1|AddXHeader|Die Richtlinienaktion besteht darin, einen X-Header zur E-Mail-Nachricht hinzuzufügen.|
+|2|ModifySubject|Die Richtlinienaktion besteht darin, dem Betreff in der E-Mail-Nachricht die in der Filterrichtlinie angegebenen Informationen hinzuzufügen.|
+|3|Redirect|Die Richtlinienaktion besteht darin, die E-Mail-Nachricht an die in der Filterrichtlinie angegebene E-Mail-Adresse umzuleiten.|
+|4|Delete|Die Richtlinienaktion besteht darin, die E-Mail-Nachricht zu löschen.|
+|5|Quarantine|Die Richtlinienaktion besteht darin, die E-Mail-Nachricht in die Quarantäne zu verschieben.|
+|6|NoAction| Die Richtlinie ist so konfiguriert, dass keine Aktionen für die E-Mail-Nachricht durchgeführt werden.|
+|7|BccMessage|Die Richtlinienaktion besteht darin, die E-Mail-Nachricht per Bcc an die in der Filterrichtlinie angegebene E-Mail-Adresse zu senden.|
+
 
 ### <a name="url-time-of-click-events"></a>Ereignisse zum Zeitpunkt des Klickens auf eine URL
 
