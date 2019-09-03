@@ -29,5 +29,4 @@ Die Office 365-Verwaltungs-APIs bieten eine einzelne Erweiterbarkeitsplattform f
 
 ## <a name="see-also"></a>Siehe auch
 
-- 
-  [Office 365-REST-APIs](https://docs.microsoft.com/de-DE/previous-versions/office/office-365-api/how-to/platform-development-overview)
+- [Office 365-REST-APIs](https://docs.microsoft.com/de-DE/previous-versions/office/office-365-api/how-to/platform-development-overview)
