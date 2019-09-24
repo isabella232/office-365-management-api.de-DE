@@ -1,34 +1,31 @@
 ---
-ms.TocTitle: Office 365 Service Communications API reference (Preview)
-title: Office 365-Dienstkommunikations-API – Referenz (Vorschau)
+ms.TocTitle: Office 365 Service Communications API reference
+title: Office 365-Dienstkommunikations-API – Referenz
 description: Verwenden Sie diese API, um Zugriff auf die folgenden Daten zu erhalten – Get Services, Get Current Status, Get Historical Status und Get Messages.
 ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 986298b87e2583788dca9b11f288743ce5f96b60
-ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
+ms.openlocfilehash: 427c741f623f46962c3cd6818adbb64bfc0f1e7a
+ms.sourcegitcommit: 0e6d71ad2375e5d1fc72d6893724511c08840c27
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/29/2019
-ms.locfileid: "35924812"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "37131424"
 ---
-# <a name="office-365-service-communications-api-reference-preview"></a>Office 365-Dienstkommunikations-API – Referenz (Vorschau)
-
-> [!NOTE] 
-> Diese Dokumentation umfasst Features, die sich aktuell in der Vorschau befinden.
+# <a name="office-365-service-communications-api-reference"></a>Office 365-Dienstkommunikations-API – Referenz
 
 Sie können die Office 365-Dienstkommunikations-API V2 verwenden, um Zugriff auf die folgenden Daten zu erhalten:
 
 - **Get Services**: Erhalt der Liste der abonnierten Dienste.
     
-- **Get Current Status**: Erhalt einer Echtzeitansicht der aktuellen und laufenden Dienstincidents und Wartungsereignisse
+- **Get Current Status**: Erhalten Sie eine Echtzeitansicht der aktuellen und laufenden Dienstincidents.
     
-- **Get Historical Status**: Erhalt einer historischen Ansicht der Dienstintegrität, einschließlich Dienstincidents und Wartungsereignisse.
+- **Get Historical Status**: Erhalten Sie eine Verlaufsanzeige von Dienstincidents.
     
-- **Get Messages**: Suche nach Kommunikation zu Incidents, geplanter Wartung und Nachrichtencenter.
+- **Get Messages**: Suchen Sie nach Incident- und Message Center-Kommunikation.
     
-Aktuell umfasst die Office 365-Dienstkommunikations-API Daten für die folgenden Dienste: Dynamics CRM, Dynamics Marketing, Exchange Online, Exchange Online Protection, Identity Service, Mobile Device Management, Office 365 Partner Admin Center, OneDrive for Business, Parature, OneDrive for Business, Power BI for Office 365, Rights Management Service, SharePoint Online, SHD Admin, Skype for Business, Social Engagement und Yammer Enterprise.
+Aktuell enthält die Office 365-Dienstkommunikations-API Daten für Office 365, Yammer, Dynamics CRM und Microsoft Intune-Clouddienste.
 
 ## <a name="the-fundamentals"></a>Die Grundlagen
 
