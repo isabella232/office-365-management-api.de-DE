@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 2e2ca6440a0f1ba10eb3d63e889a85efdaa334a0
-ms.sourcegitcommit: 78b79bd215433512fad7437220c7d5ebc1987862
+ms.openlocfilehash: bd37eb32c07e5b8c1feafad39c765d81342b5150
+ms.sourcegitcommit: 0e6d71ad2375e5d1fc72d6893724511c08840c27
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "36766852"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "37131438"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -708,7 +708,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |:-----|:-----|:-----|:-----|
 |ApplicationId|Edm.String|Nein|Die GUID, die die Anwendung darstellt, von der die Anmeldung angefordert wird. Der Anzeigename kann über die Azure Active Directory Graph-API betrachtet werden.|
 |Client|Edm.String|Nein|Client-Geräteinformationen, die von dem Browser bereitgestellt werden, der die Anmeldung ausführt.|
-|LogonError|Edm.String|Nein|Enthält bei fehlgeschlagenen Anmeldeversuchen den Grund für das Fehlschlagen der Anmeldung.|
+|LogonError|Edm.String|Nein|Enthält bei fehlgeschlagenen Anmeldeversuchen den Grund für das Fehlschlagen der Anmeldung. Eine umfassende Beschreibung der LogonErrors finden Sie in der Liste der [Authentifizierungs- und Autorisierungsfehlercodes](https://docs.microsoft.com/de-DE/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes).
 |||||
 
 ## <a name="dlp-schema"></a>DLP-Schema
