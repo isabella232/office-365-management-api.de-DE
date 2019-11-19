@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: ee002772f5d35fefb758d32b6cb015993add0319
-ms.sourcegitcommit: d0bf43ff238f4647dd049672f68b4e1171083203
+ms.openlocfilehash: 3cd8c5988273d05c85b97faa20903ebc283217dd
+ms.sourcegitcommit: a64c58d52f210c9952666d3e5bd86a0e70e983a2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "37774890"
+ms.lasthandoff: 11/18/2019
+ms.locfileid: "38696961"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -64,7 +64,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |Id|Kombination aus GUIDEdm.Guid|Ja|Der eindeutige Bezeichner eines Überwachungsdatensatzes.|
 |RecordType|Self.[AuditLogRecordType](#auditlogrecordtype)|Ja|Der vom Datensatz angegebene Vorgangstyp. In der Tabelle [AuditLogRecordType](#auditlogrecordtype) finden Sie weitere Informationen zu den Typen von Überwachungsprotokolldatensätzen.|
 |CreationTime|Edm.Date|Ja|Das Datum und die Uhrzeit in koordinierter Weltzeit (UTC), wann der Benutzer die Aktivität ausgeführt hat.|
-|Vorgang|Edm.String|Ja|Der Name der Benutzer- oder Verwaltungsaktivität. Eine Beschreibung der am häufigsten verwendeten Vorgänge und Aktivitäten, finden Sie unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](http://go.microsoft.com/fwlink/p/?LinkId=708432). Für Exchange-Administratoraktivitäten gibt diese Eigenschaft den Namen des Cmdlets an, das ausgeführt wurde. Für Dlp-Ereignisse kann dies "DlpRuleMatch", "DlpRuleUndo" oder "DlpInfo" sein. Eine Beschreibung finden Sie unten unter "DLP-Schema".|
+|Vorgang|Edm.String|Ja|Der Name der Benutzer- oder Verwaltungsaktivität. Eine Beschreibung der am häufigsten verwendeten Vorgänge und Aktivitäten, finden Sie unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://go.microsoft.com/fwlink/p/?LinkId=708432). Für Exchange-Administratoraktivitäten gibt diese Eigenschaft den Namen des Cmdlets an, das ausgeführt wurde. Für Dlp-Ereignisse kann dies "DlpRuleMatch", "DlpRuleUndo" oder "DlpInfo" sein. Eine Beschreibung finden Sie unten unter "DLP-Schema".|
 |OrganizationId|Edm.Guid|Ja|Die GUID für den Office 365-Mandanten Ihrer Organisation. Dieser Wert ist für Ihre Organisation, unabhängig vom Office 365-Dienst, in dem er verwendet wird, immer gleich.|
 |UserType|Self.[UserType](#user-type)|Ja|Der Typ des Benutzers, der den Vorgang ausgeführt hat. In der Tabelle [UserType](#user-type) finden Sie Informationen zu den Typen von Benutzern.|
 |UserKey|Edm.String|Ja|Eine alternative ID für den in der UserId-Eigenschaft identifizierten Benutzer. Diese Eigenschaft wird z. B. mit der Passport Unique ID (PUID) bei Ereignissen ausgefüllt, die von Benutzern in SharePoint, OneDrive for Business und Exchange ausgeführt werden. Diese Eigenschaft kann den gleichen Wert spezifizieren wie die Eigenschaft "UserID" für Ereignisse, die in anderen Diensten auftreten, und Ereignisse, die von Systemkonten durchgeführt werden.|
@@ -265,7 +265,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |LanguageRemovedFromTermStore*|Eine Sprache wird aus dem Terminologiespeicher gelöscht.|
 |LegacyWorkflowEnabledSet*|Der Websiteadministrator oder -besitzer fügt den Inhaltstyp SharePoint-Workflowtask zur Website hinzu. Globale Administratoren können ebenfalls Workflows für die gesamte Organisation im SharePoint Admin Center aktivieren.|
 |LookAndFeelModified|Ein Benutzer ändert Schnellstart-, Gantt-Diagramm- oder Gruppenformate. Oder ein Benutzer erstellt, ändert oder löscht eine Ansicht in der Project Web App.|
-|ManagedSyncClientAllowed|Ein Benutzer richtet erfolgreich eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website ein. Die Synchronisierungsbeziehung ist erfolgreich, da der Computer des Benutzers Mitglied einer Domäne ist, die zur Liste der Domänen, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt), hinzugefügt wurde. Weitere Informationen zu dieser Funktion finden Sie unter [Verwenden von Windows PowerShell-Cmdlets zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind](http://go.microsoft.com/fwlink/p/?LinkID=534609).|
+|ManagedSyncClientAllowed|Ein Benutzer richtet erfolgreich eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website ein. Die Synchronisierungsbeziehung ist erfolgreich, da der Computer des Benutzers Mitglied einer Domäne ist, die zur Liste der Domänen, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt), hinzugefügt wurde. Weitere Informationen finden Sie unter [Verwenden von SharePoint Online PowerShell](https://go.microsoft.com/fwlink/p/?LinkID=534609) zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind.|
 |MaxQuotaModified*|Das maximale Kontingent für eine Website wurde geändert.|
 |MaxResourceUsageModified*|Der maximal zulässige Ressourceneinsatz für eine Website wurde geändert.|
 |MySitePublicEnabledSet*|Die Kennzeichnung, die es Benutzern ermöglicht, öffentliche "Meine Websites" zu besitzen, wurde durch den SharePoint-Administrator festgelegt.|
@@ -336,7 +336,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |TimesheetRejected|Ein Benutzer lehnt eine Arbeitszeittabelle in der Project Web App ab.|
 |TimesheetSaved|Ein Benutzer speichert eine Arbeitszeittabelle in der Project Web App.|
 |TimesheetSubmitted|Ein Benutzer übermittelt eine Arbeitszeittabelle in der Project Web App.|
-|UnmanagedSyncClientBlocked|Ein Benutzer versucht, eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website von einem Computer aus herzustellen, der kein Mitglied der Domäne Ihrer Organisation ist oder Mitglied einer Domäne ist, die nicht in die Liste der Domänen übernommen wurde, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt). Die Synchronisierungsbeziehung ist nicht zulässig, und der Computer des Benutzers ist für das Synchronisieren, Herunterladen oder Hochladen von Dateien der Dokumentbibliothek gesperrt. Informationen zu dieser Funktion finden Sie unter [Verwenden von Windows PowerShell-Cmdlets zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind](https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/index?view=sharepoint-ps).|
+|UnmanagedSyncClientBlocked|Ein Benutzer versucht, eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website von einem Computer aus herzustellen, der kein Mitglied der Domäne Ihrer Organisation ist oder Mitglied einer Domäne ist, die nicht in die Liste der Domänen übernommen wurde, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt). Die Synchronisierungsbeziehung ist nicht zulässig, und der Computer des Benutzers ist für das Synchronisieren, Herunterladen oder Hochladen von Dateien der Dokumentbibliothek gesperrt. Informationen zu dieser Funktion finden Sie unter [Verwenden von Windows PowerShell-Cmdlets zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind](https://docs.microsoft.com/powershell/module/sharepoint-online/index?view=sharepoint-ps).|
 |UpdateSSOApplication*|Die Zielanwendung wurde im Secure Store Service aktualisiert.|
 |UserAddedToGroup*|Der Websiteadministrator oder -besitzer fügt eine Person zu einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website hinzu. Das Hinzufügen einer Person zu einer Gruppe gewährt dem Benutzer die Berechtigungen, die der Gruppe zugewiesen wurden. |
 |UserRemovedFromGroup*|Der Websiteadministrator oder -besitzer entfernt eine Person aus einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website. Nachdem die Person entfernt wurde, besitzt sie nicht mehr die Berechtigungen, die der Gruppe zugewiesen wurden. |
@@ -708,7 +708,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |:-----|:-----|:-----|:-----|
 |ApplicationId|Edm.String|Nein|Die GUID, die die Anwendung darstellt, von der die Anmeldung angefordert wird. Der Anzeigename kann über die Azure Active Directory Graph-API betrachtet werden.|
 |Client|Edm.String|Nein|Client-Geräteinformationen, die von dem Browser bereitgestellt werden, der die Anmeldung ausführt.|
-|LogonError|Edm.String|Nein|Enthält bei fehlgeschlagenen Anmeldeversuchen den Grund für das Fehlschlagen der Anmeldung. Eine umfassende Beschreibung der LogonErrors finden Sie in der Liste der [Authentifizierungs- und Autorisierungsfehlercodes](https://docs.microsoft.com/de-DE/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes).
+|LogonError|Edm.String|Nein|Enthält bei fehlgeschlagenen Anmeldeversuchen den Grund für das Fehlschlagen der Anmeldung. Eine umfassende Beschreibung der LogonErrors finden Sie in der Liste der [Authentifizierungs- und Autorisierungsfehlercodes](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes).
 |||||
 
 ## <a name="dlp-schema"></a>DLP-Schema
@@ -843,7 +843,7 @@ Vertrauliche DLP-Daten sind nur in der Aktivitätsfeed-API für Benutzer verfüg
 Warnsignale umfassen:
 
 - Alle Warnungen, die basierend auf [Warnungsrichtlinien im Security & Compliance Center](https://docs.microsoft.com/office365/securitycompliance/alert-policies#default-alert-policies) generierten wurden.
-- Auf Office 365 bezogene Warnungen, die in [Office 365 Cloud App Security](https://docs.microsoft.com/office365/securitycompliance/office-365-cas-overview) und [Microsoft Cloud App Security](https://docs.microsoft.com/de-DE/cloud-app-security/what-is-cloud-app-security) generiert wurden.
+- Auf Office 365 bezogene Warnungen, die in [Office 365 Cloud App Security](https://docs.microsoft.com/office365/securitycompliance/office-365-cas-overview) und [Microsoft Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security) generiert wurden.
 
 Die Benutzer-ID und der UserKey für diese Ereignisse sind immer SecurityComplianceAlerts. Es gibt zwei Arten von Warnsignalen, die als Wert für die Eigenschaft "Vorgang" des allgemeinen Schemas gespeichert sind:
 
@@ -1078,7 +1078,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 
 - Von einem Benutzer in der Organisation angeklickte URLs, die beim Klicken basierend auf dem Schutz [ATP-sichere Links in Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) als böswillig erkannt wurden.  
 
-- Eine Datei in SharePoint Online, OneDrive for Business oder Microsoft Teams wurde von [Office 365 ATP](https://docs.microsoft.com/de-DE/office365/securitycompliance/atp-for-spo-odb-and-teams) als böswillig eingestuft.
+- Eine Datei in SharePoint Online, OneDrive for Business oder Microsoft Teams wurde von [Office 365 ATP](https://docs.microsoft.com/office365/securitycompliance/atp-for-spo-odb-and-teams) als böswillig eingestuft.
 
 - Eine Warnung, die ausgelöst wurde und die eine [automatisierte Untersuchung](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office)eingeleitet hat.
 
@@ -1169,6 +1169,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |5|Quarantine|Die Richtlinienaktion besteht darin, die E-Mail-Nachricht in die Quarantäne zu verschieben.|
 |6|NoAction| Die Richtlinie ist so konfiguriert, dass keine Aktionen für die E-Mail-Nachricht durchgeführt werden.|
 |7|BccMessage|Die Richtlinienaktion besteht darin, die E-Mail-Nachricht per Bcc an die in der Filterrichtlinie angegebene E-Mail-Adresse zu senden.|
+|8|ReplaceAttachment|Die Richtlinienaktion besteht darin, die Anlage in der E-Mail-Nachricht wie in der Filterrichtlinie angegeben zu ersetzen.|
 
 
 ### <a name="url-time-of-click-events"></a>Ereignisse zum Zeitpunkt des Klickens auf eine URL
@@ -1240,15 +1241,16 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 Ereignisse von [Office 365 automated investigation and response (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) sind für Office 365-Kunden verfügbar, die über ein Abonnement verfügen, das Office 365 Advanced Threat Protection Plan 2 oder Office 365 E5 umfasst. Untersuchungen werden basierend einer Änderung des Untersuchungsstatus protokolliert. Wenn beispielsweise ein Administrator eine Aktion durchführt, mit der der Status einer Untersuchung von „Ausstehende Aktionen“ in „Abgeschlossen“ geändert wird, wird ein Ereignis protokolliert. 
 
 Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für manuell gestartete Untersuchungen werden in Kürze verfügbar sein.) Die folgenden Statuswerte werden protokolliert: 
-- Untersuchung wurde erstellt
+- Untersuchung gestartet
 - Keine Bedrohungen gefunden 
-- Vom System beendet 
+- Vom System beendet
 - Ausstehende Aktion 
 - Bedrohungen gefunden 
 - Bereinigt 
 - Fehlgeschlagen 
-- Beendet durch Einschränkung 
-- Vom Benutzer beendet 
+- Von Drosselung beendet 
+- Vom Benutzer beendet
+- Wird ausgeführt
 
 #### <a name="main-investigation-schema"></a>Hauptuntersuchungsschema 
 
