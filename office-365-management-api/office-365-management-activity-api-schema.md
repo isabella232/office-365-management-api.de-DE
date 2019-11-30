@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 3cd8c5988273d05c85b97faa20903ebc283217dd
-ms.sourcegitcommit: a64c58d52f210c9952666d3e5bd86a0e70e983a2
+ms.openlocfilehash: c97325687967b85b589f4e7b94196ed1a406ef5d
+ms.sourcegitcommit: 3ff573d31612ca08819a37bfc98d43926a4a60e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/18/2019
-ms.locfileid: "38696961"
+ms.lasthandoff: 11/27/2019
+ms.locfileid: "39631991"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -53,6 +53,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Investigation and Response spezifischen Daten erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
 |[Workplace Analytics](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
+|[Microsoft Forms-Schema](#microsoft-forms-schema)|Das allgemeine Schema wird mit den für alle Microsoft Forms-Ereignisse spezifischen Eigenschaften erweitert.|
 |||
 
 ## <a name="common-schema"></a>Allgemeines Schema
@@ -116,6 +117,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
 |54|SharePointListItemOperation|SharePoint-Listenereignisse.|
 |55|SharePointContentTypeOperation|SharePoint-Listeninhaltstyp-Ereignisse.|
+|66|MicrosoftForms|Microsoft Forms-Ereignisse.|
 ||||
 
 ### <a name="enum-user-type---type-edmint32"></a>Enumeration: Benutzertyp – Typ: Edm.Int32
@@ -1240,7 +1242,8 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 
 Ereignisse von [Office 365 automated investigation and response (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) sind für Office 365-Kunden verfügbar, die über ein Abonnement verfügen, das Office 365 Advanced Threat Protection Plan 2 oder Office 365 E5 umfasst. Untersuchungen werden basierend einer Änderung des Untersuchungsstatus protokolliert. Wenn beispielsweise ein Administrator eine Aktion durchführt, mit der der Status einer Untersuchung von „Ausstehende Aktionen“ in „Abgeschlossen“ geändert wird, wird ein Ereignis protokolliert. 
 
-Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für manuell gestartete Untersuchungen werden in Kürze verfügbar sein.) Die folgenden Statuswerte werden protokolliert: 
+Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für manuell gestartete Untersuchungen werden in Kürze verfügbar sein.) Die folgenden Statuswerte werden protokolliert:
+
 - Untersuchung gestartet
 - Keine Bedrohungen gefunden 
 - Vom System beendet
@@ -1265,6 +1268,7 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 |DeeplinkURL    |Edm.String |Deep-Link-URL einer Untersuchung im Office 365 Security & Compliance Center |
 |Aktionen |Auflistung (Edm.String)   |Auflistung der von einer Untersuchung empfohlenen Aktionen |
 |Daten   |Edm.String |Die Datenzeichenfolge, die weitere Details zu den Untersuchungsentitäten sowie Informationen zu Warnungen, die mit der Untersuchung zusammenhängen, enthält. Entitäten sind in einem separaten Knoten innerhalb des Daten-BLOBs verfügbar. |
+||||
 
 #### <a name="actions"></a>Aktionen
 
@@ -1283,6 +1287,7 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 |Ressourcen-Bezeichner   |Edm.String  |Besteht aus der Azure Active Directory-Mandanten-ID.|
 |Entitäten   |Collection(Edm.String) |Liste einer oder mehrerer durch eine Aktion betroffener Entitäten |
 |Zugehörige Benachrichtigungs-IDs  |Edm.String |Benachrichtigung im Zusammenhang mit einer Untersuchung |
+||||
 
 #### <a name="entities"></a>Entitäten
 
@@ -1300,6 +1305,7 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 |NetworkMessageId   |Edm.Guid   |Die Netzwerk-Nachrichten-ID dieser E-Mail  |
 |InternetMessageId  |Edm.String  |Die Internetnachrichten-ID dieser E-Mail |
 |Betreff    |Edm.String |Der Betreff dieser Nachricht  |
+||||
 
 #### <a name="ip"></a>IP
 
@@ -1307,6 +1313,7 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 |----|----|----|
 |Typ   |Edm.String |„ip“ |
 |Adresse    |Edm.String |Die IP-Adresse als Zeichenfolge, wie z. b. `127.0.0.1`
+||||
 
 #### <a name="url"></a>URL
 
@@ -1314,6 +1321,7 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 |----|----|----|
 |Typ   |Edm.String |„url“ |
 |Url    |Edm.String |Die vollständige URL, auf die eine Entität verweist  |
+||||
 
 #### <a name="mailbox-also-equivalent-to-the-user"></a>Postfach (entspricht dem Benutzer) 
 
@@ -1323,6 +1331,7 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 |MailboxPrimaryAddress  |Edm.String |Die primäre Adresse des Postfachs  |
 |DisplayName    |Edm.String |Der Anzeigename des Postfachs |
 |UPN    |Edm.String |Der UPN des Postfachs  |
+||||
 
 #### <a name="file"></a>Datei
 
@@ -1331,6 +1340,7 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 |Typ   |Edm.String |„file“ |
 |Name   |Edm.String |Der Dateiname ohne Pfad |
 FileHashes |Auflistung (Edm.String) |Die Dateihashes, die der Datei zugeordnet sind |
+||||
 
 #### <a name="filehash"></a>FileHash
 
@@ -1339,6 +1349,7 @@ FileHashes |Auflistung (Edm.String) |Die Dateihashes, die der Datei zugeordnet s
 |Typ   |Edm.String |„filehash“ |
 |Algorithmus  |Edm.String |Der Hash-Algorithmustyp kann einen der folgenden Werte annehmen:<br/>- Unbekannt<br/>- MD5<br/>- SHA1<br/>- SHA256<br/>- SHA256AC
 |Wert  |Edm.String |Der Hashwert  |
+||||
 
 #### <a name="mailcluster"></a>MailCluster
 
@@ -1353,6 +1364,7 @@ FileHashes |Auflistung (Edm.String) |Die Dateihashes, die der Datei zugeordnet s
 |QueryTime  |Edm.DateTime   |Die Abfragezeit  |
 |MailCount  |Edm.int    |Die Anzahl der E-Mails, die Teil des E-Mail-Clusters sind.  |
 |Source |Zeichenfolge |Die Quelle des Mail-Clusters; der Wert der Cluster-Quelle. |
+||||
 
 ## <a name="power-bi-schema"></a>Power BI-Schema
 
@@ -1391,11 +1403,48 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](/
 
 ## <a name="workplace-analytics-schema"></a>Workplace Analytics-Schema
 
-Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://docs.microsoft.com/office365/securitycompliance/search-the-audit-log-in-security-and-compliance#microsoft-workplace-analytics-activities) aufgelisteten WorkPlace Analytics-Ereignisse verwenden dieses Schema.
+Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-workplace-analytics-activities) aufgelisteten WorkPlace Analytics-Ereignisse verwenden dieses Schema.
 
 | **Parameter**     | **Typ**            | **Erforderlich?** | **Beschreibung**|
 |:------------------ | :------------------ | :--------------|:--------------|
 | WpaUserRole        | Edm.String | Nein     | Die Workplace Analytics-Rolle des Benutzers, der die Aktion ausgeführt hat.                                                                                            |
 | ModifiedProperties | Collection (Common.ModifiedProperty) | Nein | Diese Eigenschaft enthält den Namen der Eigenschaft, die geändert wurde, den neuen Wert der geänderten Eigenschaft und den vorherigen Wert der geänderten Eigenschaft.|
 | OperationDetails   | Collection (Common.NameValuePair)    | Nein | Eine Liste der erweiterten Eigenschaften für die geänderte Einstellung. Jede Eigenschaft besitzt einen **Namen** und einen **Wert**.|
+||||
+
+## <a name="microsoft-forms-schema"></a>Microsoft Forms-Schema
+
+Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities) aufgelisteten Micorosft Forms-Ereignisse verwenden dieses Schema.
+
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+|FormsUserTypes|Collection(Self.[FormsUserTypes](#formsusertypes))|Ja|Die Rolle des Benutzers, der die Aktion ausgeführt hat.  Die Werte für diesen Parameter sind Administrator, Besitzer, Responder oder Mitautor.|
+|SourceApp|Edm.String|Ja|Gibt an, ob die Aktion von der Forms-Website oder einer anderen App ausgeführt wird.|
+|FormName|Edm.String|Nein|Name des aktuellen Formulars.|
+|FormId |Edm.String|Nein|Die ID des Zielformulars.|
+|FormTypes|Collection(Self.[FormTypes](#formtypes))|Nein|Gibt an, ob es sich um ein Formular, ein Quiz oder eine Umfrage handelt.|
+|ActivityParameters|Edm.String|Nein|JSON-Zeichenfolge mit Aktivitätsparametern. Weitere Informationen finden Sie unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities).|
+||||
+
+### <a name="enum-formsusertypes---type-edmint32"></a>Enumeration: FormsUserTypes – Typ: Edm.Int32
+
+#### <a name="formsusertypes"></a>FormsUserTypes
+
+|**Wert**|**Formular-Benutzertyp**|**Beschreibung**|
+|:-----|:-----|:-----|
+|0|Administrator|Ein Administrator, der Zugriff auf das Formular hat.|
+|1|Besitzer|Ein Benutzer, der Besitzer des Formulars ist.|
+|2|Responder|Ein Benutzer, der eine Antwort auf ein Formular gesendet hat.|
+|3|Koautor|Ein Benutzer, der einen Link für die Zusammenarbeit verwendet hat, der vom Besitzer eines Formulars für die Anmeldung und die Bearbeitung eines Formulars bereitgestellt wurde.|
+||||
+
+### <a name="enum-formtypes---type-edmint32"></a>Enumeration: FormTypes – Typ: Edm.Int32
+
+#### <a name="formtypes"></a>FormTypes
+
+|**Wert**|**Formulartypen**|**Beschreibung**|
+|:-----|:-----|:-----|
+|0|Formular|Formulare, die mit der Option "Neues Formular" erstellt wurden.|
+|1|Quiz|Quizze, die mit der Option „Neues Quiz“ erstellt wurden.  Bei einem Quiz handelt es sich um eine spezielle Art von Formular, das zusätzliche Funktionen für Punktwerte, automatische und manuelle Benotung, Kommentare usw. enthält.|
+|2|Umfrage|Umfragen, die mit der Option "Neue Umfrage" erstellt wurden.  Bei einer Umfrage handelt es sich um eine spezielle Art von Formular, das zusätzliche Funktionen wie CMS-Integration und Unterstützung für Flussregeln enthält.|
 ||||
