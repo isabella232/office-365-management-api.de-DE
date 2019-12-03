@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c97325687967b85b589f4e7b94196ed1a406ef5d
-ms.sourcegitcommit: 3ff573d31612ca08819a37bfc98d43926a4a60e2
+ms.openlocfilehash: 1762bed1a970215b3fc8c45f3ef807caaf93ace8
+ms.sourcegitcommit: e45b168705f36e12ceae02c77244d17d5ce01310
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/27/2019
-ms.locfileid: "39631991"
+ms.lasthandoff: 12/02/2019
+ms.locfileid: "39665464"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -51,6 +51,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Rechenzentrum-Sicherheits-Cmdlet-Schema](#data-center-security-cmdlet-schema)|Das Datenzentrum-Sicherheitsbasis-Schema wird mit den für alle Rechenzentrum-Sicherheits-Cmdlet-Überwachungsdaten spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Schema](#microsoft-teams-schema)|Das allgemeine Schema wird mit den für alle Microsoft Teams-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Investigation and Response spezifischen Daten erweitert.|
+|[Automatisierte Untersuchungs- und Reaktionsereignisse](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für ‚Automatisierte Untersuchungs- und Reaktionsereignisse‘ (AIR, Automated investigation and response) in Office 365 spezifischen Eigenschaften erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
 |[Workplace Analytics](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Microsoft Forms-Schema](#microsoft-forms-schema)|Das allgemeine Schema wird mit den für alle Microsoft Forms-Ereignisse spezifischen Eigenschaften erweitert.|
@@ -117,6 +118,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
 |54|SharePointListItemOperation|SharePoint-Listenereignisse.|
 |55|SharePointContentTypeOperation|SharePoint-Listeninhaltstyp-Ereignisse.|
+|64|AirInvestigation|Automated incident response (AIR) events – Automatisierte Untersuchungs- und Reaktionsereignisse.|
 |66|MicrosoftForms|Microsoft Forms-Ereignisse.|
 ||||
 
@@ -1235,12 +1237,12 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |:-----|:-----|
 |0|SharePoint Online|
 |1|OneDrive for Business|
-|2|Microsoft Teams|
+|2|Microsoft Teams|
 |||||
 
-### <a name="automated-investigation-and-response-events"></a>Automatisierte Untersuchungs- und Reaktionsereignisse
+## <a name="automated-investigation-and-response-events-in-office-365"></a>Automatisierte Untersuchungs- und Reaktionsereignisse in Office 365
 
-Ereignisse von [Office 365 automated investigation and response (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) sind für Office 365-Kunden verfügbar, die über ein Abonnement verfügen, das Office 365 Advanced Threat Protection Plan 2 oder Office 365 E5 umfasst. Untersuchungen werden basierend einer Änderung des Untersuchungsstatus protokolliert. Wenn beispielsweise ein Administrator eine Aktion durchführt, mit der der Status einer Untersuchung von „Ausstehende Aktionen“ in „Abgeschlossen“ geändert wird, wird ein Ereignis protokolliert. 
+[Office 365 Automatisierte Untersuchungs- und Reaktionsereignisse (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) stehen Office 365-Kunden zur Verfügung, die ein Abo haben, das Office 365 Advanced Threat Protection Plan 2 oder Office 365 E5 beinhaltet. Untersuchungen werden basierend einer Änderung des Untersuchungsstatus protokolliert. Wenn beispielsweise ein Administrator eine Aktion durchführt, mit der der Status einer Untersuchung von „Ausstehende Aktionen“ in „Abgeschlossen“ geändert wird, wird ein Ereignis protokolliert. 
 
 Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für manuell gestartete Untersuchungen werden in Kürze verfügbar sein.) Die folgenden Statuswerte werden protokolliert:
 
@@ -1255,7 +1257,7 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 - Vom Benutzer beendet
 - Wird ausgeführt
 
-#### <a name="main-investigation-schema"></a>Hauptuntersuchungsschema 
+### <a name="main-investigation-schema"></a>Hauptuntersuchungsschema 
 
 |Name   |Typ   |Beschreibung  |
 |----|----|----|
@@ -1270,7 +1272,7 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 |Daten   |Edm.String |Die Datenzeichenfolge, die weitere Details zu den Untersuchungsentitäten sowie Informationen zu Warnungen, die mit der Untersuchung zusammenhängen, enthält. Entitäten sind in einem separaten Knoten innerhalb des Daten-BLOBs verfügbar. |
 ||||
 
-#### <a name="actions"></a>Aktionen
+### <a name="actions"></a>Aktionen
 
 |Feld  |Typ   |Beschreibung |
 |----|----|----|
@@ -1289,9 +1291,9 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 |Zugehörige Benachrichtigungs-IDs  |Edm.String |Benachrichtigung im Zusammenhang mit einer Untersuchung |
 ||||
 
-#### <a name="entities"></a>Entitäten
+### <a name="entities"></a>Entitäten
 
-##### <a name="mailmessage-email"></a>MailMessage (E-Mail) 
+#### <a name="mailmessage-email"></a>MailMessage (E-Mail) 
 
 |Feld  |Typ   |Beschreibung  |
 |----|----|----|
