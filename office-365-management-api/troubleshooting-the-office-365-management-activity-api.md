@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: f02088f557a10414539952c78542e09b2dc2d90b
-ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
+ms.openlocfilehash: b751c89194407e57c8654a9317b8070ab2918b03
+ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/30/2019
-ms.locfileid: "35936229"
+ms.lasthandoff: 01/22/2020
+ms.locfileid: "41263289"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
@@ -40,7 +40,7 @@ Wenn die einheitliche Überwachung nicht aktiviert ist, wird in der Regel eine F
 
 ## <a name="connecting-to-the-api"></a>Herstellen einer Verbindung mit der API
 
-Die meisten Anwendungen stellen mit einem einfachen OAuth2-Fluss mit Client-Anmeldeinformationen eine Verbindung zur API her. Daher ist der erste Schritt das Erstellen einer Azure AD-Anwendung, die die Berechtigungen für den Zugriff auf die Daten der Verwaltungsaktivitäts-API hat. In diesem Artikel werden nicht die Schritte zum Erstellen einer Azure AD-App-Registrierung erläutert. Weitere Informationen finden Sie unter [Registrieren Ihrer Anwendung mit Ihrem Azure Active Directory-Mandanten](https://docs.microsoft.com/de-DE/azure/active-directory/develop/active-directory-integrating-applications).
+Die meisten Anwendungen stellen mit einem einfachen OAuth2-Fluss mit Client-Anmeldeinformationen eine Verbindung zur API her. Daher ist der erste Schritt das Erstellen einer Azure AD-Anwendung, die die Berechtigungen für den Zugriff auf die Daten der Verwaltungsaktivitäts-API hat. In diesem Artikel werden nicht die Schritte zum Erstellen einer Azure AD-App-Registrierung erläutert. Weitere Informationen finden Sie unter [Registrieren Ihrer Anwendung mit Ihrem Azure Active Directory-Mandanten](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications).
 
 ### <a name="azure-application-permissions"></a>Azure-Anwendungsberechtigungen
 

@@ -6,12 +6,12 @@ ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 08f510302c1d19cf3e3e2385f1baab6133153f07
-ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
+ms.openlocfilehash: f444aa9411e0520be42ce68b2f618efe5228ac75
+ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/30/2019
-ms.locfileid: "35936236"
+ms.lasthandoff: 01/22/2020
+ms.locfileid: "41263240"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Erste Schritte mit den Office 365-Verwaltungs-APIs
 
@@ -42,7 +42,7 @@ Die Office 365-Management-APIs verwenden Azure AD zur sicheren Authentifizierung
 
 ### <a name="prerequisites"></a>Voraussetzungen
 
-Wenn Sie die Anwendung in Azure AD registriert haben, benötigen Sie ein Abonnement für Office 365 und ein Abonnement für Azure, das mit Ihrem Office 365-Abonnement verknüpft ist. Für den Anfang können Sie Testabonnements sowohl für Office 365 als auch für Azure verwenden. Weitere Informationen finden Sie unter [Willkommen beim Office 365-Entwicklerprogramm](https://docs.microsoft.com/de-DE/office/developer-program/office-365-developer-program).
+Wenn Sie die Anwendung in Azure AD registriert haben, benötigen Sie ein Abonnement für Office 365 und ein Abonnement für Azure, das mit Ihrem Office 365-Abonnement verknüpft ist. Für den Anfang können Sie Testabonnements sowohl für Office 365 als auch für Azure verwenden. Weitere Informationen finden Sie unter [Willkommen beim Office 365-Entwicklerprogramm](https://docs.microsoft.com/office/developer-program/office-365-developer-program).
 
 
 ### <a name="use-the-azure-management-portal-to-register-your-application-in-azure-ad"></a>Nutzen Sie das Azure-Verwaltungsportal, um Ihre Anwendung in Azure AD zu registrieren.
@@ -80,7 +80,7 @@ Nachdem Sie einen Microsoft-Mandanten mit den entsprechenden Abonnements haben, 
 
 Nachdem Ihre Anwendung registriert ist, gibt es mehrere wichtige Eigenschaften, die Sie angeben müssen, die bestimmen, wie Ihre Anwendung in Azure AD funktioniert und wie Mandantenadministratoren Ihrer Anwendung die Genehmigung für den Zugriff auf ihre Daten mittels den Office 365-Management-APIs erteilen.
 
-Weitere Informationen zur Anwensungskonfiguration in Azure AD im Allgemeinen finden Sie unter [Anwendungs-Objekteigenschaften](https://docs.microsoft.com/de-DE/azure/active-directory/develop/active-directory-application-objects).
+Weitere Informationen zur Anwensungskonfiguration in Azure AD im Allgemeinen finden Sie unter [Anwendungs-Objekteigenschaften](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects).
 
 
 1. **CLIENT-ID**. Dieser Wert wird von Azure AD automatisch generiert. Ihre Anwendung wird diesen Wert beim Anfordern von Genehmigungen von Mandantenadministratoren und beim Anfordern von „Nur App“-Token aus Azure AD verwenden.
@@ -115,7 +115,7 @@ Schlüssel werden auch als geheime Clientschlüssel bezeichnet und werden verwen
 
 Eine Anwendung, die im Hintergrund ausgeführt wird, wie ein Dämonprozess oder ein Dienst, kann Client-Anmeldeinformationen nutzen, um ein „Nur App“-Zugriffstoken anzufordern, ohne fortlaufend eine Genehmigung vom Mandantenadministrator anzufordern, nachdem eine erste Genehmigung erteilt wurde. 
 
-Weitere Informationen finden Sie unter [Dienst-zu-Dienst-Anrufe mithilfe von Client-Anmeldeinformationen](https://msdn.microsoft.com/en-us/library/azure/dn645543.aspx).
+Weitere Informationen finden Sie unter [Dienst-zu-Dienst-Anrufe mithilfe von Client-Anmeldeinformationen](https://msdn.microsoft.com/library/azure/dn645543.aspx).
 
 Sie müssen ein X.509-Zertifikat für Ihre Anwendung erstellen, das als Client-Anmeldedaten dient, wenn ein „Nur App“-Token von Azure AD angefordert wird. Dieser Prozess besteht aus zwei Schritten:
 
@@ -249,9 +249,9 @@ Ihre Anwendung verwendet diesen Autorisierungscode, um ein Zugriffstoken von Azu
 
 Es gibt zwei Methoden, um Zugriffstoken von Azure AD anzufordern:
 
-- Der [Genehmigungsprozess mit Autorisierungscode](https://msdn.microsoft.com/en-us/library/azure/dn645542.aspx) beinhaltet, dass eine Mandantenadministrator seine ausdrückliche Genehmigung erteilt, wodurch ein Autorisierungscode an Ihre Anwendung zurückgegeben wird. Ihre Anwendung tauscht dann den Autorisierungscode gegen ein Zugriffstoken aus. Diese Methode ist erforderlich, um die erste Zustimmung dafür zu erhalten, die Ihre Anwendung benötigt, um mittels der API auf Mandantendaten zuzugreifen. Dieses erste Zugriffstoken ist erforderlich, um die Mandanten-ID zu erhalten und zu speichern.
+- Der [Genehmigungsprozess mit Autorisierungscode](https://msdn.microsoft.com/library/azure/dn645542.aspx) beinhaltet, dass eine Mandantenadministrator seine ausdrückliche Genehmigung erteilt, wodurch ein Autorisierungscode an Ihre Anwendung zurückgegeben wird. Ihre Anwendung tauscht dann den Autorisierungscode gegen ein Zugriffstoken aus. Diese Methode ist erforderlich, um die erste Zustimmung dafür zu erhalten, die Ihre Anwendung benötigt, um mittels der API auf Mandantendaten zuzugreifen. Dieses erste Zugriffstoken ist erforderlich, um die Mandanten-ID zu erhalten und zu speichern.
     
-- Die [Genehmigungsprozess mit Client-Anmeldedaten](https://msdn.microsoft.com/en-us/library/azure/dn645543.aspx) ermöglicht es Ihrer Anwendung, nachfolgende Zugriffstoken anzufordern, wenn alte ihre Gültigkeit verlieren, ohne dass der Mandantenadministrator sich anmelden und seine ausdrückliche Zustimmung erteilen muss. Diese Methode muss für Anwendungen verwendet werden, die fortlaufend im Hintergrund ausgeführt werden, und APIs aufrufen, nachdem die erste Zustimmung durch den Mandantenadministrator erteilt wurde.
+- Die [Genehmigungsprozess mit Client-Anmeldedaten](https://msdn.microsoft.com/library/azure/dn645543.aspx) ermöglicht es Ihrer Anwendung, nachfolgende Zugriffstoken anzufordern, wenn alte ihre Gültigkeit verlieren, ohne dass der Mandantenadministrator sich anmelden und seine ausdrückliche Zustimmung erteilen muss. Diese Methode muss für Anwendungen verwendet werden, die fortlaufend im Hintergrund ausgeführt werden, und APIs aufrufen, nachdem die erste Zustimmung durch den Mandantenadministrator erteilt wurde.
     
 
 ### <a name="request-an-access-token-using-the-authorization-code"></a>Zugriffstoken mithilfe des Autorisierungscodes anfordern
@@ -335,7 +335,7 @@ Das zurückgegebene Zugriffstoken ist ein JWT-Token und enthält Informationen �
 
 Sobald die Mandanten-ID bekannt ist, kann Ihre Anwendung Dienst-zu-Dienst-Anrufe zu Azure AD durchführen, um weitere Zugriffstoken anzufordern, wenn vorhandene ihre Gültigkeit verlieren. Diese Token enthalten ausschließlich Informationen über die anfragende Anwendung und nicht über den Administrator, der die erste Zustimmung erteilt hat. Dienst-zu-Dienst-Aufrufe erfordern, dass Ihre Anwendung ein X.509-Zertifikat verwendet, um Client Assertion in Form eines base64-codierten, SHA256-signierten JWT Bearer-Token zu erstellen.
 
-Wenn Sie die Anwendung in .NET entwickeln, können Sie mithilfe der [Azure Active Directory Authentication Library (ADAL)](https://docs.microsoft.com/de-DE/azure/active-directory/develop/active-directory-authentication-libraries) Client Assertions erstellen. Andere Entwicklungsplattformen sollten ähnliche Bibliotheken haben.
+Wenn Sie die Anwendung in .NET entwickeln, können Sie mithilfe der [Azure Active Directory Authentication Library (ADAL)](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries) Client Assertions erstellen. Andere Entwicklungsplattformen sollten ähnliche Bibliotheken haben.
 
 Ein nicht codiertes JWT-Token besteht aus einer Kopfzeile und einer Nutzlast, die die folgenden Eigenschaften haben.
 
