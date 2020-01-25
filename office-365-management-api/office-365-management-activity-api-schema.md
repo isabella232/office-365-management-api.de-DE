@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: f05cf59e720c56b1b43db153519ea0fbee548895
-ms.sourcegitcommit: f959ebd84b3df57171f8d8ca2485adc1b69b4008
+ms.openlocfilehash: 7a12fc60894742ebdcc41457930225a4dd9bfc02
+ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "39872225"
+ms.lasthandoff: 01/22/2020
+ms.locfileid: "41263275"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
  
@@ -105,7 +105,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |24|Discovery|Ereignisse für eDiscovery-Aktivitäten, die durch die Ausführung von Inhaltssuchen und die Verwaltung von eDiscovery-Fällen im Security & Compliance Center durchgeführt werden.|
 |25|MicrosoftTeams|Ereignisse von Microsoft-Teams.|
 |28|ThreatIntelligence|Phishing- und Schadsoftwareereignisse aus Exchange Online Protection und Office 365 Advanced Threat Protection.|
-|30|MicrosoftFlow|Microsoft Flow-Ereignisse|
+|30|MicrosoftFlow|Microsoft Power Automate-Ereignisse (vormals Microsoft Flow).|
 |31|AeD|Advanced eDiscovery-Ereignisse.|
 |32|MicrosoftStream|Microsoft Stream-Ereignisse|
 |33|ComplianceDLPSharePointClassification|Ereignisse im Zusammenhang mit DLP-Klassifizierung in SharePoint.|
@@ -116,7 +116,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |41|ThreatIntelligenceUrl|Zeitblockereignisse für sichere Links und Ereignisse zur Außerkraftsetzung von Blöcken aus Office 365 Advanced Threat Protection.|
 |42|SecurityComplianceInsights|Ereignisse im Zusammenhang mit Einblicken und Berichten im Office 365 Security & Compliance Center.|
 |44|WorkplaceAnalytics|Workplace Analytics-Ereignisse.|
-|45|PowerAppsApp|PowerApps-App-Ereignisse.|
+|45|PowerAppsApp|Power Apps-Ereignisse.|
 |47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
 |49|TeamsHealthcare|Ereignisse im Zusammenhang mit der [Anwendung "Patienten"](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit) in Microsoft Teams für das Gesundheitswesen.|
 |52|DataInsightsRestApiAudit|Ereignisse der Datenerkenntnisse-Rest-API.|
@@ -359,7 +359,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 
 ## <a name="sharepoint-file-operations"></a>SharePoint-Dateivorgänge
 
-Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordneraktivitäten" unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind, verwenden dieses Schema.
+Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordneraktivitäten" unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance) aufgelistet sind, verwenden dieses Schema.
 
 
 
@@ -379,7 +379,8 @@ Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordnerakt
 
 ## <a name="sharepoint-sharing-schema"></a>SharePoint-Freigabeschema
 
- Die auf die Freigabe der Datei bezogenen SharePoint-Ereignisse. Sie unterscheiden sich von den datei- und ordnerbezogenen Ereignissen dahingehend, dass ein Benutzer eine Aktion ausführt, die sich auf einen anderen Benutzer auswirkt. Informationen zum SharePoint-Freigabeschema finden Sie unter [Verwenden der Freigabeüberwachung im Office 365-Überwachungsprotokoll](https://support.office.com/en-us/article/Use-sharing-auditing-in-the-Office-365-audit-log-50bbf89f-7870-4c2a-ae14-42635e0cfc01?ui=en-US&amp;rs=en-US&amp;ad=US).
+ Die auf die Freigabe der Datei bezogenen SharePoint-Ereignisse. Sie unterscheiden sich von den datei- und ordnerbezogenen Ereignissen dahingehend, dass ein Benutzer eine Aktion ausführt, die sich auf einen anderen Benutzer auswirkt. Informationen zum SharePoint-Freigabeschema finden Sie unter [Verwenden der Freigabeüberwachung im Office 365-Überwachungsprotokoll](https://docs.microsoft.com/microsoft-365/compliance/use-sharing-auditing
+).
 
 
 
@@ -393,7 +394,7 @@ Die dateibezogenen SharePoint-Ereignisse, die im Abschnitt "Datei- und Ordnerakt
 
 ## <a name="sharepoint-schema"></a>SharePoint-Schema
 
-Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind (ausgenommen von den Datei- und Ordnerereignissen), verwenden dieses Schema.
+Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance) aufgelistet sind (mit Ausnahme der Datei- und Ordnerereignisse), verwenden dieses Schema.
 
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
@@ -897,7 +898,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 
 ## <a name="sway-schema"></a>Sway-Schema
 
-Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind (ausgenommen von den Datei- und Ordnerereignissen), verwenden dieses Schema.
+Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://support.office.com/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US) aufgelistet sind (ausgenommen von den Datei- und Ordnerereignissen), verwenden dieses Schema.
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
@@ -1082,7 +1083,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 
 [Office 365 Advanced Threat Protection-](https://docs.microsoft.com/office365/securitycompliance/office-365-atp) (ATP) und Threat Investigation and Response-Ereignisse sind für Office 365-Kunden verfügbar, die über Office 365 Advanced Threat Protection Plan 1, Office 365 Advanced Threat Protection Plan 2 oder ein E5-Abonnement verfügen. Jedes Ereignis im Office 365 ATP-Feed entspricht folgenden Elementen, für die eine Bedrohung erkannt wurde:
 
-- Eine E-Mail-Nachricht mit Erkennung, die von einem Benutzer in der Organisation empfangen oder gesendet wurde, die für Nachrichten zum Übermittlungszeitpunkt und von [Automatische Bereinigung zur Nullstunde](https://support.office.com/de-DE/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15) durchgeführt wurde. 
+- Eine E-Mail-Nachricht mit Erkennung, die von einem Benutzer in der Organisation empfangen oder gesendet wurde, die für Nachrichten zum Übermittlungszeitpunkt und von [Automatische Bereinigung zur Nullstunde](https://support.office.com/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15) durchgeführt wurde. 
 
 - Von einem Benutzer in der Organisation angeklickte URLs, die beim Klicken basierend auf dem Schutz [ATP-sichere Links in Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) als böswillig erkannt wurden.  
 
@@ -1098,7 +1099,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |AttachmentData|Collection(Self.[AttachmentData](#attachmentdata))|Nein|Daten zu Anlagen der E-Mail-Nachricht, die das Ereignis ausgelöst hat.|
-|DetectionType|Edm.String|Ja|Der Typ der Erkennung (z. B. **Inline** – erkannt zum Übermittlungszeitpunkt; **Verzögert** – erkannt nach Zustellung; **ZAP** – Nachrichten durch [Automatische Bereinigung zur Nullstunde](https://support.office.com/de-DE/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)) entfernt. In der Regel geht Ereignissen mit ZAP-Erkennungstyp eine Nachricht mit dem Erkennungstyp **Verzögert** voraus.|
+|DetectionType|Edm.String|Ja|Der Typ der Erkennung (z. B. **Inline** – erkannt zum Übermittlungszeitpunkt; **Verzögert** – erkannt nach Zustellung; **ZAP** – Nachrichten durch [Automatische Bereinigung zur Nullstunde](https://support.office.com/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)) entfernt. In der Regel geht Ereignissen mit ZAP-Erkennungstyp eine Nachricht mit dem Erkennungstyp **Verzögert** voraus.|
 |DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Office 365 ATP für die Erkennung verwendet wurde.|
 |InternetMessageId|Edm.String|Ja|Die Internetnachrichten-ID.|
 |NetworkMessageId|Edm.String|Ja|Die Nachrichten-ID des Exchange Online-Netzwerks.|
