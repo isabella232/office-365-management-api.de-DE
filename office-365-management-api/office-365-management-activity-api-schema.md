@@ -6,21 +6,21 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 38905a88f8be1924d0df02f10362caa624b34bd8
-ms.sourcegitcommit: 8aa0be26e0e69dd7908b3bcece3a71eafb973705
+ms.openlocfilehash: 2ce104849e7aeafcb12bf25720548a84a5ea73f4
+ms.sourcegitcommit: 2c592abf7005b4c73311ea9a4d1804994084bca4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "42586303"
+ms.lasthandoff: 04/07/2020
+ms.locfileid: "42941474"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
- 
+
 Das Office 365-Verwaltungsaktivitäts-API-Schema wird als Datendienst auf zwei Ebenen bereitgestellt:
 
 - **Allgemeines Schema**. Die Benutzeroberfläche für den Zugriff auf wichtige Office 365-Überwachungskonzepte wie z. B. Datensatztyp, Zeitpunkt der Erstellung, Benutzertyp und Aktion sowie für die Bereitstellung wichtiger Dimensionen (z. B. Benutzer-ID), Speicherortspezifikationen (z. B. Client-IP-Adresse) und produktspezifischer Eigenschaften (z. B. Objekt-ID). Es werden konsistente und einheitliche Ansichten für Benutzer eingerichtet, um alle Office 365-Überwachungsdaten in wenigen Ansichten auf oberster Ebene mit den entsprechenden Parametern zu extrahieren, und es entsteht ein festes Schema für alle Datenquellen, was die Kosten des Lernens erheblich reduziert. Das allgemeine Schema wird aus den Produktdaten jedes Produktteams abgeleitet, z. B. Exchange, SharePoint, Azure Active Directory, Yammer und OneDrive for Business. Das Feld "Objekt-ID" kann von Produktteams um produktspezifische Eigenschaften erweitert werden.
-    
+
 - **Produktspezifisches Schema**. Baut auf das allgemeine Schema auf, um eine Reihe von produktspezifischen Attributen bereitzustellen; z. B. Sway-Schema, SharePoint-Schema, OneDrive for Business-Schema und Exchange-Administrator-Schema.
-    
+
 **Welche Ebene sollten Sie für Ihr Szenario verwenden?**
 Allgemein gilt: Wenn die Daten in einer höheren Ebene verfügbar sind, kehren Sie nicht zu einer niedrigeren Ebene zurück. Oder anders gesagt: Wenn die Datenanforderung in ein produktspezifisches Schema aufgenommen werden kann, brauchen Sie nicht zum allgemeinen Schema zurückzukehren. 
 
@@ -51,9 +51,10 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Rechenzentrum-Sicherheits-Cmdlet-Schema](#data-center-security-cmdlet-schema)|Das Datenzentrum-Sicherheitsbasis-Schema wird mit den für alle Rechenzentrum-Sicherheits-Cmdlet-Überwachungsdaten spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Schema](#microsoft-teams-schema)|Das allgemeine Schema wird mit den für alle Microsoft Teams-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Investigation and Response spezifischen Daten erweitert.|
-|[Automatisierte Untersuchungs- und Reaktionsereignisse](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für ‚Automatisierte Untersuchungs- und Reaktionsereignisse‘ (AIR, Automated investigation and response) in Office 365 spezifischen Eigenschaften erweitert.|
+|[Schema "Automatisierte Untersuchungs- und Reaktionsereignisse"](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für ‚Automatisierte Untersuchungs- und Reaktionsereignisse‘ (AIR, Automated investigation and response) in Office 365 spezifischen Eigenschaften erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
-|[Workplace Analytics](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
+|[Workplace Analytics-Schema](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
+|[Quarantäne-Schema](#quarantine-schema)|Erweitert das allgemeine Schema um die für alle Quarantäne-Ereignisse spezifischen Eigenschaften.|
 |[Microsoft Forms-Schema](#microsoft-forms-schema)|Das allgemeine Schema wird mit den für alle Microsoft Forms-Ereignisse spezifischen Eigenschaften erweitert.|
 |||
 
@@ -1421,6 +1422,38 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Comp
 | OperationDetails   | Collection (Common.NameValuePair)    | Nein | Eine Liste der erweiterten Eigenschaften für die geänderte Einstellung. Jede Eigenschaft besitzt einen **Namen** und einen **Wert**.|
 ||||
 
+## <a name="quarantine-schema"></a>Quarantäne-Schema
+
+Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#quarantine-activities) aufgelisteten Quarantäne-Ereignisse verwenden dieses Schema. Weitere Informationen zur Quarantäne finden Sie unter [In Quarantäne stellen von E-Mail-Nachrichten in Office 365](https://docs.microsoft.com/microsoft-365/security/office-365-security/quarantine-email-messages).
+
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+|RequestType|Self.[RequestType](#enum-requesttype---type-edmint32)|Nein|Die Art der Quarantäneanforderung, die von einem Benutzer ausgeführt wurde.|
+|RequestSource|Self.[RequestSource](#enum-requestsource---type-edmint32)|Nein|Die Quelle einer Quarantäneanforderung kann vom Security & Compliance Center (SCC), einem Cmdlet oder einem URLlink stammen.|
+|NetworkMessageId|Edm.String|Nein|Die Netzwerknachrichten-ID einer in Quarantäne befindlichen E-Mail-Nachricht.|
+|ReleaseTo|Edm.String|Nein|Der Empfänger der E-Mail-Nachricht.|
+|||||
+
+### <a name="enum-requesttype---type-edmint32"></a>Enum: RequestType - Type: Edm.Int32
+
+|**Wert**|**Elementname**|**Beschreibung**|
+|:-----|:-----|:-----|
+|0|Vorschau|Hierbei handelt es sich um eine Anforderung von einem Benutzer zur Vorschau einer E-Mail-Nachricht, die als schädlich eingestuft wurde.|
+|1|Löschen|Hierbei handelt es sich um eine Anforderung von einem Benutzer zum Löschen einer E-Mail-Nachricht, die als schädlich eingestuft wurde.|
+|2|Freigabe|Hierbei handelt es sich um eine Anforderung von einem Benutzer zum Freigeben einer E-Mail-Nachricht, die als schädlich eingestuft wurde.|
+|3|Exportieren|Hierbei handelt es sich um eine Anforderung von einem Benutzer zum Exportieren einer E-Mail-Nachricht, die als schädlich eingestuft wurde.|
+|4|ViewHeader|Hierbei handelt es sich um eine Anforderung von einem Benutzer zum Anzeigen der Kopfzeile einer E-Mail-Nachricht, die als schädlich eingestuft wurde.|
+||||
+
+### <a name="enum-requestsource---type-edmint32"></a>Enum: RequestSource - Type: Edm.Int32
+
+|**Wert**|**Elementname**|**Beschreibung**|
+|:-----|:-----|:-----|
+|0|SCC|Das Security & Compliance Center (SCC) ist die Quelle, von der die Anforderung eines Benutzers stammen kann, eine potenziell gefährliche E-Mail-Nachricht in einer Vorschau anzuzeigen, sie zu löschen, freizugeben, zu exportieren oder ihre Kopfzeile anzuzeigen. |
+|1|Cmdlet|Ein Cmdlet ist die Quelle, von der die Anforderung eines Benutzers stammen kann, eine potenziell gefährliche E-Mail-Nachricht in einer Vorschau anzuzeigen, sie zu löschen, freizugeben, zu exportieren oder ihre Kopfzeile anzuzeigen.|
+|2|URLlink|Dies ist die Quelle, von der die Anforderung eines Benutzers stammen kann, eine potenziell gefährliche E-Mail-Nachricht in einer Vorschau anzuzeigen, sie zu löschen, freizugeben, zu exportieren oder ihre Kopfzeile anzuzeigen.|
+||||
+
 ## <a name="microsoft-forms-schema"></a>Microsoft Forms-Schema
 
 Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities) aufgelisteten Micorosft Forms-Ereignisse verwenden dieses Schema.
@@ -1457,3 +1490,4 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Comp
 |1|Quiz|Quizze, die mit der Option „Neues Quiz“ erstellt wurden.  Bei einem Quiz handelt es sich um eine spezielle Art von Formular, das zusätzliche Funktionen für Punktwerte, automatische und manuelle Benotung, Kommentare usw. enthält.|
 |2|Umfrage|Umfragen, die mit der Option "Neue Umfrage" erstellt wurden.  Bei einer Umfrage handelt es sich um eine spezielle Art von Formular, das zusätzliche Funktionen wie CMS-Integration und Unterstützung für Flussregeln enthält.|
 ||||
+
