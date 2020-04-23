@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 2ce104849e7aeafcb12bf25720548a84a5ea73f4
-ms.sourcegitcommit: 2c592abf7005b4c73311ea9a4d1804994084bca4
+ms.openlocfilehash: 9349640ed08182883e115e548ffe2480e141aa89
+ms.sourcegitcommit: a9a865f5500183dad00598bf372fc991a95f8d61
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "42941474"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "43721288"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -120,7 +120,9 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |44|WorkplaceAnalytics|Workplace Analytics-Ereignisse.|
 |45|PowerAppsApp|Power Apps-Ereignisse.|
 |47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
+|48|LabelContentExplorer|Ereignisse im Zusammenhang mit dem [Inhalts-Explorer zur Datenklassifizierung](https://docs.microsoft.com/microsoft-365/compliance/data-classification-content-explorer).|
 |49|TeamsHealthcare|Ereignisse im Zusammenhang mit der [Anwendung "Patienten"](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit) in Microsoft Teams für das Gesundheitswesen.|
+|51|HygieneEvent|Ereignisse im Zusammenhang mit [Microsoft Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security).|
 |52|DataInsightsRestApiAudit|Ereignisse der Datenerkenntnisse-Rest-API.|
 |54|SharePointListItemOperation|SharePoint-Listenelementereignisse.|
 |55|SharePointContentTypeOperation|SharePoint-Listeninhaltstyp-Ereignisse.|
@@ -156,7 +158,6 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |0|Online|Dieses Ereignis wurde von einem gehosteten O365-Dienst erstellt.|
 |1|Onprem|Dieses Ereignis wurde von einem lokalen Server erstellt.|
 ||||
-
 
 ## <a name="sharepoint-base-schema"></a>SharePoint-Basisschema
 
@@ -1165,7 +1166,9 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |12|Antischadsoftware, ZAPM| Schadsoftware-Richtlinienaktion in der auf ZAP (Automatische Bereinigung zur Nullstunde) angewendeten Antischadsoftware-Richtlinie.|
 |13|Antiphishing, ZAPP| Phishing-Richtlinienaktion in der auf ZAP angewendeten Antiphishingrichtlinie.|
 |14|Antiphishing, ZAPS| Spam-Richtlinienaktion in der auf ZAP angewendeten Antispamrichtlinie.|
-
+|15|Antispam-Phishing-E-Mail mit hoher Vertrauenswürdigkeit (HPHISH)|Phishing-Richtlinienaktion mit hoher Vertraulichkeit in der Antispamrichtlinie.|
+|17|Antispamrichtlinie für ausgehende Spam-E-Mails (OSPM)|Richtlinienaktion in der Filterrichtlinie für ausgehende Spam-E-Mails in Antispam.|
+||||
 
 ### <a name="enum-policyaction---type-edmint32"></a>Enum: PolicyAction – Type: Edm.Int32
 
