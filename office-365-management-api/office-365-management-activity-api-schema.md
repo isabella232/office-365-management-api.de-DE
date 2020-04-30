@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 7a636bcdf86dd4513d7ea7809066b5becb68de83
-ms.sourcegitcommit: 9d32000d9b9af3f008d93745379697bc74e4703c
+ms.openlocfilehash: 8f44ae4d9f4b1eff3ab6de195392458aab6ee2ce
+ms.sourcegitcommit: ebf6973abd2f4c9b88e4297cd08d06dd2a62976f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "43785565"
+ms.lasthandoff: 04/29/2020
+ms.locfileid: "43939109"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -56,6 +56,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Workplace Analytics-Schema](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Quarantäne-Schema](#quarantine-schema)|Erweitert das allgemeine Schema um die für alle Quarantäne-Ereignisse spezifischen Eigenschaften.|
 |[Microsoft Forms-Schema](#microsoft-forms-schema)|Das allgemeine Schema wird mit den für alle Microsoft Forms-Ereignisse spezifischen Eigenschaften erweitert.|
+|[MIP-Bezeichnungsschema](#mip-label-schema)|Erweitert das allgemeine Schema um die für Vertraulichkeitsbezeichnungen spezifischen Eigenschaften, die manuell oder automatisch auf E-Mail-Nachrichten angewendet werden.|
 |||
 
 ## <a name="common-schema"></a>Allgemeines Schema
@@ -117,6 +118,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |40|SecurityComplianceAlerts|Security & Compliance-Warnsignale.|
 |41|ThreatIntelligenceUrl|Zeitblockereignisse für sichere Links und Ereignisse zur Außerkraftsetzung von Blöcken aus Office 365 Advanced Threat Protection.|
 |42|SecurityComplianceInsights|Ereignisse im Zusammenhang mit Einblicken und Berichten im Office 365 Security & Compliance Center.|
+|43|MIPLabel|Ereignisse im Zusammenhang mit der Erkennung in der Transportpipeline von E-Mail-Nachrichten, die mithilfe von Vertraulichkeitsbezeichnungen (manuell oder automatisch) gekennzeichnet wurden. |
 |44|WorkplaceAnalytics|Workplace Analytics-Ereignisse.|
 |45|PowerAppsApp|Power Apps-Ereignisse.|
 |47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
@@ -1494,3 +1496,24 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Comp
 |2|Umfrage|Umfragen, die mit der Option "Neue Umfrage" erstellt wurden.  Bei einer Umfrage handelt es sich um eine spezielle Art von Formular, das zusätzliche Funktionen wie CMS-Integration und Unterstützung für Flussregeln enthält.|
 ||||
 
+## <a name="mip-label-schema"></a>MIP-Bezeichnungsschema
+
+Ereignisse im MIP-Bezeichnungsschema (Microsoft Information Protection) werden ausgelöst, wenn Microsoft 365 eine von Agents in der Transportpipeline verarbeitete E-Mail-Nachricht erkennt, auf die eine Vertraulichkeitsbezeichnung angewendet wurde. Die Vertraulichkeitsbezeichnung wurde kann manuell oder automatisch sowie innerhalb oder außerhalb der Transportpipeline angewendet worden sein. Vertraulichkeitsbezeichnungen können durch Richtlinien für die automatische Anwendung von Bezeichnungen automatisch auf E-Mail-Nachrichten angewendet werden.
+
+Dieses Überwachungsschema dient zur Darstellung der Summe aller E-Mail-Aktivitäten mit Vertraulichkeitsbezeichnungen. Anders ausgedrückt: Für jede E-Mail-Nachricht mit einer Vertraulichkeitsbezeichnung, die an Benutzer oder von Benutzern in der Organisation gesendet wird, sollte es eine aufgezeichnete Überwachungsaktivität geben. Weitere Informationen zu Vertraulichkeitsbezeichnungen finden Sie unter
+
+- [Weitere Informationen zu Vertraulichkeitsbezeichnungen](https://docs.microsoft.com/microsoft-365/compliance/sensitivity-labels)
+
+- [Automatisches Anwenden einer Vertraulichkeitsbezeichnung auf Inhalte](https://docs.microsoft.com/microsoft-365/compliance/apply-sensitivity-label-automatically)
+
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+|Absender|Edm.String|Nein|Die E-Mail-Adresse im Feld "Von" der E-Mail-Nachricht.|
+|Empfänger|Collection(Edm.String)|Nein|Alle E-Mail-Adressen in den Feldern "An", "Cc" und "Bcc" der E-Mail-Nachricht.|
+|ItemName|Edm.String|Nein|Die Zeichenfolge im Feld "Betreff" der E-Mail-Nachricht.|
+|LabelId|Edm.Guid|Nein|Die GUID der auf die E-Mail-Nachricht angewendeten Vertraulichkeitsbezeichnung.|
+|LabelName|Edm.String|Nein|Der Name der auf die E-Mail-Nachricht angewendeten Vertraulichkeitsbezeichnung.|
+|LabelAction|Edm.String|Nein|Die durch die Vertraulichkeitsbezeichnung angegebenen Aktionen, die vor Eintreten der Nachricht in die E-Mail-Transportpipeline auf die E-Mail-Nachricht angewendet wurden.|
+|LabelAppliedDateTime|Edm.Date|Nein|Das Datum, an dem die Vertraulichkeitsbezeichnung auf die E-Mail-Nachricht angewendet wurde.|
+|ApplicationMode|Edm.String|Nein|Gibt an, wie die Vertraulichkeitsbezeichnung auf die E-Mail-Nachricht angewendet wurde. Der **Privileged**-Wert gibt an, dass die Bezeichnung manuell von einem Benutzer angewendet wurde. Der Wert **Standard** gibt an, dass die Bezeichnung durch einen clientseitigen oder dienstseitigen Bezeichnungsprozess automatisch angewendet wurde.|
+|||||
