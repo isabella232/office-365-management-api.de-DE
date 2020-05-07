@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 8f44ae4d9f4b1eff3ab6de195392458aab6ee2ce
-ms.sourcegitcommit: ebf6973abd2f4c9b88e4297cd08d06dd2a62976f
+ms.openlocfilehash: b30664fd9937f3a0eee3d1c35d9b7bf297c89dbe
+ms.sourcegitcommit: 12b8771c3d2bca8eeb6a66d6f22b60f45b8f7a89
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "43939109"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "44049488"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -52,6 +52,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Microsoft Teams-Schema](#microsoft-teams-schema)|Das allgemeine Schema wird mit den für alle Microsoft Teams-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Investigation and Response spezifischen Daten erweitert.|
 |[Schema "Automatisierte Untersuchungs- und Reaktionsereignisse"](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für ‚Automatisierte Untersuchungs- und Reaktionsereignisse‘ (AIR, Automated investigation and response) in Office 365 spezifischen Eigenschaften erweitert.|
+|[Nachrichtenschutzereignis-Schema](#hygiene-events-schema)|Das allgemeine Schema wird um die für Ereignisse in Exchange Online Protection und Advanced Threat Protection spezifischen Eigenschaften erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
 |[Workplace Analytics-Schema](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Quarantäne-Schema](#quarantine-schema)|Erweitert das allgemeine Schema um die für alle Quarantäne-Ereignisse spezifischen Eigenschaften.|
@@ -124,7 +125,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
 |48|LabelContentExplorer|Ereignisse im Zusammenhang mit dem [Inhalts-Explorer zur Datenklassifizierung](https://docs.microsoft.com/microsoft-365/compliance/data-classification-content-explorer).|
 |49|TeamsHealthcare|Ereignisse im Zusammenhang mit der [Anwendung "Patienten"](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit) in Microsoft Teams für das Gesundheitswesen.|
-|51|HygieneEvent|Ereignisse im Zusammenhang mit Antispam und E-Mail-Nachrichtenschutz.|
+|51|HygieneEvent|Ereignisse im Zusammenhang mit ausgehenden Spamschutzmaßnahmen. |
 |52|DataInsightsRestApiAudit|Ereignisse der Datenerkenntnisse-Rest-API.|
 |54|SharePointListItemOperation|SharePoint-Listenelementereignisse.|
 |55|SharePointContentTypeOperation|SharePoint-Listeninhaltstyp-Ereignisse.|
@@ -199,7 +200,6 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |0|SharePoint|Die Ereignisquelle ist SharePoint.|
 |1|ObjectModel|Die Ereignisquelle ist ObjectModel.|
 ||||
-
 
 ### <a name="enum-sharepointauditoperation---type-edmint32"></a>Enumeration: SharePointAuditOperation - Typ: Edm.Int32
 
@@ -1187,7 +1187,7 @@ Die Sway-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im Offic
 |6|NoAction| Die Richtlinie ist so konfiguriert, dass keine Aktionen für die E-Mail-Nachricht durchgeführt werden.|
 |7|BccMessage|Die Richtlinienaktion besteht darin, die E-Mail-Nachricht per Bcc an die in der Filterrichtlinie angegebene E-Mail-Adresse zu senden.|
 |8|ReplaceAttachment|Die Richtlinienaktion besteht darin, die Anlage in der E-Mail-Nachricht wie in der Filterrichtlinie angegeben zu ersetzen.|
-
+||||
 
 ### <a name="url-time-of-click-events"></a>Ereignisse zum Zeitpunkt des Klickens auf eine URL
 
@@ -1380,6 +1380,23 @@ FileHashes |Auflistung (Edm.String)    |Die Dateihashes, die der Datei zugeordne
 |MailCount    |Edm.int    |Die Anzahl der E-Mails, die Teil des E-Mail-Clusters sind.  |
 |Source    |Zeichenfolge    |Die Quelle des Mail-Clusters; der Wert der Cluster-Quelle. |
 ||||
+
+## <a name="hygiene-events-schema"></a>Nachrichtenschutzereignis-Schema
+
+Nachrichtenschutzereignisse beziehen sich auf den ausgehenden Spamschutz. Diese Ereignisse beziehen sich auf Benutzer, die nicht zum Senden von E-Mails berechtigt sind. Weitere Informationen finden Sie unter:
+
+- [Ausgehender Spamschutz](https://docs.microsoft.com/microsoft-365/security/office-365-security/outbound-spam-controls)
+
+- [Entfernen von blockierten Benutzern aus dem Portal „Eingeschränkte Benutzer“ in Office 365](https://docs.microsoft.com/microsoft-365/security/office-365-security/removing-user-from-restricted-users-portal-after-spam)
+
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+|Überwachung|Edm.String|Nein|Systeminformationen im Zusammenhang mit dem Nachrichtenschutzereignis.|
+|Ereignis|Edm.String|Nein|Der Typ des Nachrichtenschutzereignisses. Die Werte für diesen Parameter sind **gelistet** oder **nicht gelistet**.|
+|EventId|Edm.Int64|Nein|Die ID des Nachrichtenschutzereignistyps.|
+|EventValue|Edm.String|Nein|Der betroffene Benutzer.|
+|Grund|Edm.String|Nein|Details zu dem Nachrichtenschutzereignis.|
+|||||
 
 ## <a name="power-bi-schema"></a>Power BI-Schema
 
