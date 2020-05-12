@@ -6,12 +6,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 858829d304c85e3c6658b3f6a1215d923871283a
-ms.sourcegitcommit: 967a95b214c620ca58875af6b5a96e28482c85aa
+ms.openlocfilehash: 48065e1770e485ffa04778d662a170ae14916354
+ms.sourcegitcommit: d55928a0d535090fa2dbe94f38c7316d0e52e9a9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/08/2020
-ms.locfileid: "41857286"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "44173141"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365-Verwaltungsaktivitäts-API – Referenz
 
@@ -57,14 +57,29 @@ Nachdem Sie ein Abonnement erstellt haben, können Sie regelmäßig Abfragen dur
 
 ## <a name="activity-api-operations"></a>Aktivitäts-API-Vorgänge
 
-Alle API-Vorgänge sind auf einen einzelnen Mandanten beschränkt, und die Stamm-URL der API enthält eine Mandanten-ID, die den Mandantenkontext angibt. Die Mandanten-ID ist eine GUID. Informationen zum Abrufen der GUID finden Sie unter [Erste Schritte mit den Office 365-Verwaltungs-APIs](get-started-with-office-365-management-apis.md).
+Alle API-Vorgänge sind auf einen einzelnen Mandanten beschränkt, und die Stamm-URL der API enthält eine Mandanten-ID, die den Mandantenkontext angibt. Die Mandanten-ID ist eine GUID. Informationen zum Abrufen der GUID finden Sie unter [Erste Schritte mit den Office 365-Verwaltungs-APIs](get-started-with-office-365-management-apis.md). 
 
+Da die Benachrichtigungen, die wir an Ihren Webhook senden, die Mandanten-ID enthalten, können Sie denselben Webhook zum Empfangen von Benachrichtigungen für alle Mandanten verwenden.
+
+Die URL für den API-Endpunkt, den Sie verwenden, basiert auf der Art des Microsoft 365- oder Office 365-Abonnementplans für Ihre Organisation.
+
+**Enterprise-Plan und GCC Behörden-Plan**
 
 ```http
 https://manage.office.com/api/v1.0/{tenant_id}/activity/feed/{operation}
 ```
 
-Da die Benachrichtigungen, die wir an Ihren Webhook senden, die **Mandanten-ID** enthalten, können Sie denselben Webhook zum Empfangen von Benachrichtigungen für alle Mandanten verwenden.
+**GCC-Plan für hohe Behörden**
+
+```http
+https://manage.office365.us/api/v1.0/{tenant_id}/activity/feed/{operation}
+```
+
+**DoD Behörden-Plan**
+
+```http
+https://manage.protection.apps.mil/api/v1.0/{tenant_id}/activity/feed/{operation}
+```
 
 Alle API-Vorgänge erfordern einen Autorisierungs-HTTP-Header mit einem Zugriffstoken von Azure AD. Die Mandanten-ID im Zugriffstoken muss der Mandanten-ID in der Stamm-URL der API entsprechen, und das Zugriffstoken muss den Anspruch „ActivityFeed.Read“ enthalten. (Dies entspricht der Berechtigung [Aktivitätsdaten für eine Organisation lesen], die Sie für die Anwendung in Azure AD konfiguriert haben.)
 
