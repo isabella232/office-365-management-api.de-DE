@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: b751c89194407e57c8654a9317b8070ab2918b03
-ms.sourcegitcommit: 2c592abf7005b4c73311ea9a4d1804994084bca4
+ms.openlocfilehash: 0552456c2340ad170355953e274a455ff681e2c9
+ms.sourcegitcommit: d55928a0d535090fa2dbe94f38c7316d0e52e9a9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "42941556"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "44173134"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
@@ -55,7 +55,13 @@ Die drei Berechtigungen, die derzeit für die Office 365-Verwaltungsaktivitäts-
 
 ### <a name="getting-an-access-token"></a>Abrufen eines Zugriffstokens
 
-Das folgende PowerShell-Skript verwendet die App-ID und einen geheimen Clientschlüssel, um das OAuth2-Token vom Authentifizierungsendpunkt der Verwaltungsaktivitäts-API abzurufen. Es platziert dann das Zugriffstoken in der `$headerParams`-Array-Variable, die Sie an Ihre HTTP-Anforderung anhängen: 
+Das folgende PowerShell-Skript verwendet die App-ID und einen geheimen Clientschlüssel, um das OAuth2-Token vom Authentifizierungsendpunkt der Verwaltungsaktivitäts-API abzurufen. Es platziert dann das Zugriffstoken in der `$headerParams`-Array-Variable, die Sie an Ihre HTTP-Anforderung anhängen. Verwenden Sie für den Wert für den API-Endpunkt (in der $resource-Variable) einen der folgenden Werte basierend auf dem Microsoft 365- oder Office 365-Abonnementplan Ihrer Organisation:
+
+- Enterprise-Plan und GCC Government-Plan: `manage.office.com`
+
+- GCC High Government-Plan: `manage.office365.us`
+
+- DoD Government-Plan: `manage.protection.apps.mil`
 
 ```powershell
 # Create app of type Web app / API in Azure AD, generate a Client Secret, and update the client id and client secret here
@@ -63,9 +69,9 @@ $ClientID = "<YOUR_APPLICATION_ID"
 $ClientSecret = "<YOUR_CLIENT_SECRET>"
 $loginURL = "https://login.microsoftonline.com/"
 $tenantdomain = "<YOUR_DOMAIN>.onmicrosoft.com"
-# Get the tenant GUID from Properties | Directory ID under the Azure Active Directory section
+# Get the tenant GUID from Properties | Directory ID under the Azure Active Directory section. For $resource, use one of these endpoint values based on your subscription plan: Enterprise and GCC - manage.office.com; GCC High: manage.office365.us; DoD: manage.protection.apps.mil
 $TenantGUID = "<YOUR_TENANT_GUID>"
-$resource = "https://manage.office.com"
+$resource = "https://<YOUR_API_ENDPOINT>"
 # auth
 $body = @{grant_type="client_credentials";resource=$resource;client_id=$ClientID;client_secret=$ClientSecret}
 $oauth = Invoke-RestMethod -Method Post -Uri $loginURL/$tenantdomain/oauth2/token?api-version=1.0 -Body $body
@@ -89,7 +95,7 @@ access_token   : eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IjJLVmN1enFBaWRPTHF
 Wenn eine Unterbrechung im Datenfluss zu einem vorhandenen Client oder einer vorhandenen Lösung der Verwaltungsaktivitäts-API auftritt, gibt es evtl. ein Problem mit Ihrem Abonnement. Wenn Sie Ihre aktiven Abonnements prüfen möchten, fügen Sie Folgendes zum vorherigen Skript hinzu:
 
 ```powershell
-Invoke-WebRequest -Headers $headerParams -Uri "https://manage.office.com/api/v1.0/$tenantGUID/activity/feed/subscriptions/list" 
+Invoke-WebRequest -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/list" 
 ```
 
 #### <a name="sample-response"></a>Beispielantwort 
@@ -119,10 +125,16 @@ Das bedeutet, dass für den Mandanten sowohl Audit.Exchange- als auch Audit.Shar
 
 ## <a name="creating-a-new-subscription"></a>Erstellen eines neuen Abonnements
 
-Um ein neues Abonnement zu erstellen, verwenden Sie die /start-Operation:
+Um ein neues Abonnement zu erstellen, verwenden Sie die /start-Operation. Verwenden Sie für den API-Endpunkt einen der folgenden Werte basierend auf Ihrem Abonnementplan:
+
+- Enterprise-Plan und GCC Government-Plan: `manage.office.com`
+
+- GCC High Government-Plan: `manage.office365.us`
+
+- DoD Government-Plan: `manage.protection.apps.mil`
 
 ```powershell
-Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://manage.office.com/api/v1.0/$tenantGUID/activity/feed/subscriptions/start?contentType=Audit.AzureActiveDirectory"
+Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://<YOUR_API_ENDPOINT>/api/v1.0/$tenantGUID/activity/feed/subscriptions/start?contentType=Audit.AzureActiveDirectory"
 ```
 
 > [!NOTE] 
@@ -132,25 +144,25 @@ Der vorherige Code erstellt ein neues Abonnement zum Audit.AzureActiveDirectory-
 
 ## <a name="checking-content-availability"></a>Prüfen der Verfügbarkeit der Inhalte
 
-Um zu prüfen, welche Inhalts-Blobs während eines bestimmten Zeitraums erstellt wurden, können Sie dem Skript im Abschnitt „Herstellen einer Verbindung mit der API“ die folgende Zeile hinzufügen:
+Um zu prüfen, welche Inhalts-Blobs während eines bestimmten Zeitraums erstellt wurden, können Sie dem Skript im Abschnitt „Herstellen einer Verbindung mit der API“ die folgende Zeile hinzufügen.
 
 ```powershell
-Invoke-WebRequest -Method GET -Headers $headerParams -Uri "https://manage.office.com/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint"
+Invoke-WebRequest -Method GET -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint"
 ```
 
 Im vorherigen Beispiel werden alle Benachrichtigungen empfangen, die heute verfügbar wurden, das heißt, von 12:00 Uhr UTC bis jetzt. Wenn Sie einen anderen Zeitraum angeben möchten (unter Berücksichtigung der Tatsache, dass der maximale Abfragezeitraum 24 Stunden beträgt), fügen Sie die Parameter *starttime* und *endtime* zum URI hinzu; beispielsweise:
 
 ```powershell
-Invoke-WebRequest -Method GET -Headers $headerParams -Uri "https://manage.office.com/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint&startTime=2017-10-13T00:00&endTime=2017-10-13T11:59"
+Invoke-WebRequest -Method GET -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint&startTime=2017-10-13T00:00&endTime=2017-10-13T11:59"
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > Sie müssen die Parameter *starttime* und *endtime* gemeinsam verwenden.
 
 Die vorherige Anforderung gibt ein JSON-Objekt mit einer Sammlung von Benachrichtigungen zurück, die während des Zeitraums verfügbar wurden, den Sie angeben. Die Antwort sieht wie folgt aus:
 
 ```json
-[{      "contentUri" : "https://manage.office.com/api/v1.0/<<your_tenant_guid>>/activity/feed/audit/20171014180051748005825$20171014180051748005825$audit_sharepoint$Audit_SharePoint",
+[{      "contentUri" : "https://<your_API_endpoint>/api/v1.0/<your_tenant_guid>/activity/feed/audit/20171014180051748005825$20171014180051748005825$audit_sharepoint$Audit_SharePoint",
         "contentId" : "20171014180051748005825$20171014180051748005825$audit_sharepoint$Audit_SharePoint",
         "contentType" : "Audit.SharePoint",
         "contentCreated" : "2017-10-13T18:00:51.748Z",
@@ -158,8 +170,10 @@ Die vorherige Anforderung gibt ein JSON-Objekt mit einer Sammlung von Benachrich
 }]
 ```
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
+>
 > - Die *ContentUri*-Eigenschaft ist der URI, von dem Sie das Inhalts-Blob abrufen können. Das Blob selbst enthält die Ereignisdetails; es enthält Details zu 1 – N-Ereignissen. Selbst wenn 30 JSON-Objekte in der Sammlung vorhanden sind, sind evtl. viel mehr Ereignisse in diesen 30 Inhalts-URIs aufgeführt.
+>
 > - Die *ContentCreated*-Eigenschaft ist nicht das Datum, an dem das Ereignis mit der Benachrichtigung erstellt wurde. Dies ist das Datum, an dem die Benachrichtigung erstellt wurde. Die Ereignisse in diesem Blob wurden möglicherweise deutlich vor dem Inhalts-Blob erstellt. Daher können Sie die API niemals direkt für Ereignisse abfragen, die in einem bestimmten Zeitraum aufgetreten sind.
 
 ### <a name="paging-contents-for-busy-tenants"></a>Auslagern von Inhalten für aktive Mandanten
@@ -211,7 +225,7 @@ Es ist wichtig, zwischen der /notifications- und der /content-Operation zu unter
 
 ## <a name="requesting-content-blobs-and-throttling"></a>Anfordern von Inhalts-Blobs und Drosselung
 
-Nachdem Sie eine Liste von Inhalts-URLs erhalten haben, müssen Sie die Blobs anfordern, die von den URLs angegeben werden. Es folgt ein Beispiel für das Anfordern eines Inhalts-Blob mithilfe von PowerShell. In diesem Beispiel wird davon ausgegangen, dass Sie bereits das vorherige Beispiel im Abschnitt [Abrufen eines Zugriffstoken](#getting-an-access-token) in diesem Artikel verwendet haben, um ein Zugriffstoken zu erhalten, und die `$headerParams`-Variable entsprechend gefüllt haben.
+Nachdem Sie eine Liste von Inhalts-URLs erhalten haben, müssen Sie die Blobs anfordern, die von den URLs angegeben werden. Nachfolgend finden Sie ein Beispiel für das Anfordern eines Inhalts-Blobs (mithilfe des manage.office.com-API-Endpunkts für Enterprise- oder GCC-Organisationen) mithilfe von PowerShell. In diesem Beispiel wird davon ausgegangen, dass Sie bereits das vorherige Beispiel im Abschnitt [Abrufen eines Zugriffstoken](#getting-an-access-token) in diesem Artikel verwendet haben, um ein Zugriffstoken zu erhalten, und die `$headerParams`-Variable entsprechend gefüllt haben.
 
 ```powershell
 # Get a content blob
