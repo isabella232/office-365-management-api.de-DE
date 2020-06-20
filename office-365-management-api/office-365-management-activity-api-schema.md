@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 882967c45d8cee813ec1abb6064258e49a98a1e0
-ms.sourcegitcommit: 91db29fbd6695c92ca5e5647b336d8f10ca267bb
+ms.openlocfilehash: 311fbfedbef52c12f40bc275b66acd5f791e1b47
+ms.sourcegitcommit: 18a48948fb8973efd51e29a1287c1b130bcff44b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/28/2020
-ms.locfileid: "44407441"
+ms.lasthandoff: 06/18/2020
+ms.locfileid: "44803451"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -210,7 +210,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |:-----|:-----|
 |AccessInvitationAccepted*|Der Empfänger einer Einladung zum Anzeigen oder Bearbeiten einer freigegebenen Datei (oder eines Ordners) hat durch Klicken auf den Link in der Einladung auf die freigegebene Datei zugegriffen.|
 |AccessInvitationCreated*|Der Benutzer sendet eine Einladung an eine andere Person (innerhalb oder außerhalb seiner Organisation) zum Anzeigen oder Bearbeiten einer freigegebenen Datei oder eines Ordners auf einer SharePoint- oder OneDrive for Business-Website. Die Details des Ereigniseintrags geben Folgendes an: den Namen der Datei, die freigegeben wurde, den Benutzer, an den die Einladung gesendet wurde, und den Typ der Freigabeberechtigung, der von der Person ausgewählt wurde, die die Einladung gesendet hat.|
-|AccessInvitationExpired*|Eine an einen externen Benutzer gesendete Einladung läuft ab. Standardmäßig läuft eine Einladung, die an einen Benutzer außerhalb der Organisation gesendet wurde, nach 7 Tagen ab, wenn die Einladung nicht angenommen wird.|
+|AccessInvitationExpired*|An invitation sent to an external user expires. By default, an invitation sent to a user outside of your organization expires after 7 days if the invitation isn't accepted.|
 |AccessInvitationRevoked*|Der Websiteadministrator oder Besitzer einer Website oder eines Dokuments in SharePoint oder OneDrive for Business zieht eine Einladung, die an einen Benutzer außerhalb Ihrer Organisation gesendet wurde, zurück. Eine Einladung kann nur zurückgezogen werden, bevor sie akzeptiert wurde.|
 |AccessInvitationUpdated*|Der Benutzer, der eine Einladung an eine andere Person zum Anzeigen oder Bearbeiten einer freigegebenen Datei oder eines Ordners auf einer SharePoint- oder OneDrive for Business-Website erstellt hat, sendet die Einladung erneut.|
 |AccessRequestApproved|Der Websiteadministrator oder Besitzer einer Website oder eines Dokuments in SharePoint oder OneDrive for Business genehmigt eine Benutzeranforderung für den Zugriff auf die Website oder das Dokument.|
@@ -246,7 +246,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |EntityForceCheckedIn|Der Benutzer erzwingt die Überprüfung eines Kalenders, eines benutzerdefinierten Felds oder einer Nachschlagetabelle in der Project Web App.|
 |ExemptUserAgentSet*|Ein globaler Administrator fügt einen Benutzer-Agent zu der Liste der ausgenommenen Benutzer-Agents im SharePoint Admin Center hinzu.|
 |FileAccessed|Der Benutzer oder das Systemkonto greift auf eine Datei auf einer SharePoint- oder OneDrive for Business-Website zu. Systemkonten können ebenfalls FileAccessed-Ereignisse generieren.|
-|FileCheckOutDiscarded*|Der Benutzer verwirft eine ausgecheckte Datei. Das bedeutet, dass alle Änderungen, die an der Datei vorgenommen wurden, während sie ausgecheckt war, verworfen und nicht in der Version des Dokuments in der Dokumentbibliothek gespeichert werden.|
+|FileCheckOutDiscarded*|User discards (or undos) a checked out file. That means any changes they made to the file when it was checked out are discarded, and not saved to the version of the document in the document library.|
 |FileCheckedIn*|Ein Benutzer checkt ein Dokument ein, das er aus der SharePoint- oder OneDrive for Business-Dokumentbibliothek ausgecheckt hat.|
 |FileCheckedOut*|Ein Benutzer checkt ein Dokument aus, das sich in einer SharePoint- oder OneDrive for Business-Dokumentbibliothek befindet. Benutzer können alle Dokumente, die für sie freigegeben wurden, auschecken oder ändern.|
 |FileCopied|Ein Benutzer kopiert ein Dokument von einer SharePoint- oder OneDrive for Business-Website. Die kopierte Datei kann in einem anderen Ordner auf der Website gespeichert werden.|
@@ -335,7 +335,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |SharedLinkCreated|Ein Benutzer erstellt einen Link zu einer freigegebenen Datei in SharePoint oder OneDrive for Business. Dieser Link kann an andere Personen gesendet werden, um ihnen Zugriff auf die Datei zu gewähren. Ein Benutzer kann zwei Arten von Links erstellen: einen Link, mit dem ein Benutzer die freigegebene Datei anzeigen oder bearbeiten kann, oder einen Link, mit dem ein Benutzer die Datei nur anzeigen kann.|
 |SharedLinkDisabled*|Ein Benutzer deaktiviert (dauerhaft) einen Link, der zum Freigeben einer Datei erstellt wurde.|
 |SharingInvitationAccepted*|Ein Benutzer akzeptiert eine Einladung zur Freigabe von Dateien oder Ordnern. Dieses Ereignis wird protokolliert, wenn ein Benutzer eine Datei für andere Benutzer freigibt.|
-|SharingRevoked*|Der Benutzer hebt die Freigabe einer Datei oder eines Ordners auf, die bzw. der zuvor für andere Benutzer freigegeben wurde. Dieses Ereignis wird protokolliert, wenn ein Benutzer die Freigabe einer Datei für andere Benutzer beendet.|
+|SharingRevoked*|User unshares a file or folder that was previously shared with other users. This event is logged when a user stops sharing a file with other users.|
 |SharingSet|Ein Benutzer gibt eine Datei oder einen Ordner in SharePoint oder OneDrive for Business für einen anderen Benutzer in der Organisation frei.|
 |SiteAdminChangeRequest*|Ein Benutzer fordert an, als Websitesammlungsadministrator für eine SharePoint-Websitesammlung hinzugefügt zu werden. Websitesammlungsadministratoren verfügen über Vollzugriff für die Websitesammlung und alle Unterwebsites.|
 |SiteCollectionAdminAdded*|Der Websitesammlungsadministrator oder -besitzer fügt eine Person als Websitesammlungsadministrator für eine SharePoint oder OneDrive for Business-Website hinzu. Websitesammlungsadministratoren verfügen über Vollzugriff für die Websitesammlung und alle Unterwebsites.|
@@ -861,11 +861,13 @@ Warnsignale umfassen:
 - Alle Warnungen, die basierend auf [Warnungsrichtlinien im Security & Compliance Center](https://docs.microsoft.com/office365/securitycompliance/alert-policies#default-alert-policies) generierten wurden.
 - Auf Office 365 bezogene Warnungen, die in [Office 365 Cloud App Security](https://docs.microsoft.com/office365/securitycompliance/office-365-cas-overview) und [Microsoft Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security) generiert wurden.
 
-Die Benutzer-ID und der UserKey für diese Ereignisse sind immer SecurityComplianceAlerts. Es gibt zwei Arten von Warnsignalen, die als Wert für die Eigenschaft "Vorgang" des allgemeinen Schemas gespeichert sind:
+Die Benutzer-ID und der UserKey für diese Ereignisse sind immer SecurityComplianceAlerts. Es gibt drei Arten von Warnungsereignissen, die als Wert der Operation-Eigenschaft des allgemeinen Schemas gespeichert werden:
 
 - AlertTriggered: Eine neue Warnung wird aufgrund einer Richtlinienenübereinstimmung generiert.
 
-- AlertEntityGenerated: Eine neue Entität wird zu einer Warnung hinzugefügt. Dieses Ereignis ist nur für Warnungen anwendbar, die basierend auf Warnungsrichtlinien im Office 365 Security & Compliance Center generiert wurden. Jede generierte Warnung kann einem oder mehreren dieser Ereignisse zugeordnet werden. Beispielsweise ist eine Richtlinie so definiert, dass eine Warnung ausgelöst wird, wenn ein beliebiger Benutzer mehr als 100 Dateien in 5 Minuten löscht. Wenn zwei Benutzer in etwa der gleichen Zeit den Schwellenwert überschreiten, gibt es zwei AlertEntityGenerated-Ereignisse, aber nur ein AlertTriggered-Ereignis.
+- AlertEntityGenerated: Eine neue Entität wird zu einer Warnung hinzugefügt. Dieses Ereignis gilt nur für Warnungen, die basierend auf Warnungsrichtlinien im Security and Compliance Center generiert werden. Jede generierte Warnung kann einem oder mehreren dieser Ereignisse zugeordnet werden. Beispielsweise ist eine Richtlinie so definiert, dass eine Warnung ausgelöst wird, wenn ein beliebiger Benutzer mehr als 100 Dateien in 5 Minuten löscht. Wenn zwei Benutzer in etwa der gleichen Zeit den Schwellenwert überschreiten, gibt es zwei AlertEntityGenerated-Ereignisse, aber nur ein AlertTriggered-Ereignis.
+
+- AlertUpdated – ein Update wurde an den Metadaten einer Warnung vorgenommen. Dieses Ereignis wird protokolliert, wenn der Status einer Warnung geändert wird (beispielsweise von "aktiv" in "aufgelöst") und wenn jemand der Warnung einen Kommentar hinzufügt.
 
 |**Parameter**|**Typ**|**Erforderlich**|**Description**|
 |:-----|:-----|:-----|:-----|
@@ -1456,7 +1458,7 @@ Entitäts Ereignisse aus modellgesteuerten apps in Dynamics 365 verwenden Sie di
 |:------------------ | :------------------ | :--------------|:--------------|
 |EntityId|Edm.Guid|Nein|Der eindeutige Bezeichner der Entität.|
 |EntityName|Edm.String|Ja|Der Name der Entität in der Organisation. Beispiel für Entitäten include `contact` oder `authentication` .|
-|Meldung|Edm.String|Ja|Dieser Parameter enthält den Vorgang, der in Bezug auf die Entität ausgeführt wurde. Wenn beispielsweise ein neuer Kontakt erstellt wurde, ist der Wert der Message-Eigenschaft `Create` und der entsprechende Wert der EntityName-Eigenschaft `contact` .|
+|Nachricht|Edm.String|Ja|Dieser Parameter enthält den Vorgang, der in Bezug auf die Entität ausgeführt wurde. Wenn beispielsweise ein neuer Kontakt erstellt wurde, ist der Wert der Message-Eigenschaft `Create` und der entsprechende Wert der EntityName-Eigenschaft `contact` .|
 |Query|Edm.String|Nein|Die Parameter der Filterabfrage, die beim Ausführen des FetchXML-Vorgangs verwendet wurde.|
 |PrimaryFieldValue|Edm.String|Nein|Gibt den Wert für das Attribut an, bei dem es sich um das primäre Feld für die Entität handelt.|
 |||||
