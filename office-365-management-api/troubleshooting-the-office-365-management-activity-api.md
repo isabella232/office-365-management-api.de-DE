@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 0552456c2340ad170355953e274a455ff681e2c9
-ms.sourcegitcommit: d55928a0d535090fa2dbe94f38c7316d0e52e9a9
+ms.openlocfilehash: 459143049732df246edf4877551ca2dd8f7cbafe
+ms.sourcegitcommit: 745a6e43dc3a9849897a5b57eadb3e7c57511c6f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "44173134"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "45083715"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
@@ -288,15 +288,3 @@ Inhalts-Blobs sind 7 Tage nach der Benachrichtigung zur Verfügbarkeit des Inhal
 #### <a name="if-there-is-a-24-hour-delay-in-getting-a-notification-doesnt-that-mean-i-will-have-only-6-days-to-retrieve-the-content-blob"></a>Wenn es eine 24-stündige Verzögerung beim Erhalt einer Benachrichtigung gibt, bedeutet dies, dass ich nur 6 Tage habe, um den Inhalts-Blob abzurufen?
 
 Nein. Auch wenn sich die Benachrichtigung ungewöhnlich lange verzögert (beispielsweise bei einer Serviceunterbrechung), haben Sie dennoch 7 Tage nach der ersten Verfügbarkeit der Benachrichtigung, um das mit dem ursprünglichen Ereignis verknüpfte Inhalts-Blob herunterzuladen.
-
-
-
-
-
-
-
-
-
-
-
-

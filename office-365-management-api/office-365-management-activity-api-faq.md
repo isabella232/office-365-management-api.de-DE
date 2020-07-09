@@ -6,12 +6,12 @@ ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 19603e9f22d65c51ee01c9b410c61cb46ca97434
-ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
+ms.openlocfilehash: 4ceec751e72bc5bec3d8c0412d48aafa38d40596
+ms.sourcegitcommit: 745a6e43dc3a9849897a5b57eadb3e7c57511c6f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/22/2020
-ms.locfileid: "41263233"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "45083694"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365-Verwaltungsaktivitäts-API – Häufig gestellte Fragen
 
@@ -46,10 +46,6 @@ Nein. Die einheitliche Überwachung von Office 365 muss für Ihre Organisation a
 #### <a name="arent-webhook-notifications-more-immediate-after-all-arent-they-event-driven"></a>Sind Webhook-Benachrichtigungen nicht unmittelbarer? Sind sie nicht ereignisgesteuert?
 
 Nein. Webhook-Benachrichtigungen sind nicht in dem Sinn ereignisgesteuert, dass das Ereignis die Benachrichtigung auslöst. Das Inhalts-Blob muss weiterhin erstellt werden, und die Erstellung des Inhalts-Blobs löst die Benachrichtigungsübermittlung aus. In letzter Zeit waren die Wartezeiten für Benachrichtigungen bei Verwendung eines Webhooks länger als beim direkten Abfragen der API mit dem Vorgang */content*. Daher sollte die Verwaltungsaktivitäts-API nicht als Echtzeit-Sicherheitsalarmsystem betrachtet werden. Dafür hat Microsoft andere Produkte. Wenn es um die Sicherheit geht, können Ereignisbenachrichtigungen der Verwaltungsaktivitäts-API besser zum Ermitteln von Verwendungsmustern über längere Zeiträume verwendet werden.
-
-#### <a name="when-pulling-the-data-from-the-management-activity-api-there-is-sometimes-a-delay-of-more-than-3-to-5-days-why-is-this"></a>Wenn die Daten von der Verwaltungsaktivitäts-API abgerufen werden, besteht manchmal eine Verzögerung von mehr als 3 bis 5 Tagen. Wie kommt das?
-
-Manchmal gibt es einen temporären Ausfall oder andere Probleme in den Office 365-Diensten. In diesen Fällen werden einige Überwachungsdatensätze gelöscht, und der Dienst versucht, sie abzugleichen. Obwohl dies nur für ungefähr 5 bis 10 % der Datensätze geschieht, werden diese Datensätze in bestimmten Situationen möglicherweise verzögert. Wenn die Verzögerung mehr als 5 Tage beträgt, überprüfen Sie das Service Health Dashboard im Office 365 Admin Center. Bei Bedarf können Sie auch ein Ticket beim [Microsoft-Support](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online) öffnen.
 
 #### <a name="im-encountering-a-throttling-error-in-the-management-activity-api-what-should-i-do"></a>In der Verwaltungsaktivitäts-API tritt ein Einschränkungsfehler auf. Was soll ich machen?
 
