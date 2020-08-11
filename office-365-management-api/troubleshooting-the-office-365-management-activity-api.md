@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 459143049732df246edf4877551ca2dd8f7cbafe
-ms.sourcegitcommit: 745a6e43dc3a9849897a5b57eadb3e7c57511c6f
+ms.openlocfilehash: 84a24a2f803a95d2cadaf804f35a358f10ba49be
+ms.sourcegitcommit: a85b79e8586ae83ecbf30de808c4df90e839536b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "45083715"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "46612309"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
@@ -57,7 +57,9 @@ Die drei Berechtigungen, die derzeit für die Office 365-Verwaltungsaktivitäts-
 
 Das folgende PowerShell-Skript verwendet die App-ID und einen geheimen Clientschlüssel, um das OAuth2-Token vom Authentifizierungsendpunkt der Verwaltungsaktivitäts-API abzurufen. Es platziert dann das Zugriffstoken in der `$headerParams`-Array-Variable, die Sie an Ihre HTTP-Anforderung anhängen. Verwenden Sie für den Wert für den API-Endpunkt (in der $resource-Variable) einen der folgenden Werte basierend auf dem Microsoft 365- oder Office 365-Abonnementplan Ihrer Organisation:
 
-- Enterprise-Plan und GCC Government-Plan: `manage.office.com`
+- Enterprise-Plan: `manage.office.com`
+
+- GCC-Government-Plan: `manage-gcc.office.com`
 
 - GCC High Government-Plan: `manage.office365.us`
 
@@ -69,7 +71,7 @@ $ClientID = "<YOUR_APPLICATION_ID"
 $ClientSecret = "<YOUR_CLIENT_SECRET>"
 $loginURL = "https://login.microsoftonline.com/"
 $tenantdomain = "<YOUR_DOMAIN>.onmicrosoft.com"
-# Get the tenant GUID from Properties | Directory ID under the Azure Active Directory section. For $resource, use one of these endpoint values based on your subscription plan: Enterprise and GCC - manage.office.com; GCC High: manage.office365.us; DoD: manage.protection.apps.mil
+# Get the tenant GUID from Properties | Directory ID under the Azure Active Directory section. For $resource, use one of these endpoint values based on your subscription plan: Enterprise - manage.office.com; GCC - manage-gcc.office.com; GCC High: manage.office365.us; DoD: manage.protection.apps.mil
 $TenantGUID = "<YOUR_TENANT_GUID>"
 $resource = "https://<YOUR_API_ENDPOINT>"
 # auth
@@ -127,7 +129,9 @@ Das bedeutet, dass für den Mandanten sowohl Audit.Exchange- als auch Audit.Shar
 
 Um ein neues Abonnement zu erstellen, verwenden Sie die /start-Operation. Verwenden Sie für den API-Endpunkt einen der folgenden Werte basierend auf Ihrem Abonnementplan:
 
-- Enterprise-Plan und GCC Government-Plan: `manage.office.com`
+- Enterprise-Plan: `manage.office.com`
+
+- GCC-Government-Plan: `manage-gcc.office.com`
 
 - GCC High Government-Plan: `manage.office365.us`
 
@@ -137,7 +141,7 @@ Um ein neues Abonnement zu erstellen, verwenden Sie die /start-Operation. Verwen
 Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://<YOUR_API_ENDPOINT>/api/v1.0/$tenantGUID/activity/feed/subscriptions/start?contentType=Audit.AzureActiveDirectory"
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > Beachten Sie, dass `$headerParams` im ersten Teil des Skripts im Abschnitt [Herstellen einer Verbindung mit der API](#connecting-to-the-api) in diesem Artikel gefüllt wurde.
 
 Der vorherige Code erstellt ein neues Abonnement zum Audit.AzureActiveDirectory-Inhaltstyp, mit einem Webhook, der null ist. Sie können dann Ihre Abonnements mithilfe des Codes in Abschnitt [Prüfen Ihrer Abonnements](#checking-your-subscriptions) in diesem Artikel prüfen.
@@ -225,7 +229,7 @@ Es ist wichtig, zwischen der /notifications- und der /content-Operation zu unter
 
 ## <a name="requesting-content-blobs-and-throttling"></a>Anfordern von Inhalts-Blobs und Drosselung
 
-Nachdem Sie eine Liste von Inhalts-URLs erhalten haben, müssen Sie die Blobs anfordern, die von den URLs angegeben werden. Nachfolgend finden Sie ein Beispiel für das Anfordern eines Inhalts-Blobs (mithilfe des manage.office.com-API-Endpunkts für Enterprise- oder GCC-Organisationen) mithilfe von PowerShell. In diesem Beispiel wird davon ausgegangen, dass Sie bereits das vorherige Beispiel im Abschnitt [Abrufen eines Zugriffstoken](#getting-an-access-token) in diesem Artikel verwendet haben, um ein Zugriffstoken zu erhalten, und die `$headerParams`-Variable entsprechend gefüllt haben.
+Nachdem Sie eine Liste von Inhalts-URLs erhalten haben, müssen Sie die Blobs anfordern, die von den URLs angegeben werden. Im Folgenden finden Sie ein Beispiel für die Anforderung eines Inhalts-Blobs (unter Verwendung des API-Endpunkts manage.office.com für Unternehmen) mit PowerShell. In diesem Beispiel wird davon ausgegangen, dass Sie bereits das vorherige Beispiel im Abschnitt [Abrufen eines Zugriffstoken](#getting-an-access-token) in diesem Artikel verwendet haben, um ein Zugriffstoken zu erhalten, und die `$headerParams`-Variable entsprechend gefüllt haben.
 
 ```powershell
 # Get a content blob
