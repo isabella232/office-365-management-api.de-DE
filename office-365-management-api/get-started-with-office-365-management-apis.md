@@ -6,12 +6,12 @@ ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: f444aa9411e0520be42ce68b2f618efe5228ac75
-ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
+ms.openlocfilehash: c0c7f69fcb879879244b5e51768f91ea2472faad
+ms.sourcegitcommit: a85b79e8586ae83ecbf30de808c4df90e839536b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/22/2020
-ms.locfileid: "41263240"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "46612295"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Erste Schritte mit den Office 365-Verwaltungs-APIs
 
@@ -28,7 +28,6 @@ Es gibt vier zentrale Schritte:
 4. **Rufen Sie die Office 365-Management-APIs auf**. Die „nur App“-Zugriffstoken werden an die Office 365-Management-APIs übergeben, um Ihre Anwendung zu authentifizieren und zu autorisieren.
     
 Das folgende Diagramm zeigt die Abfolge von Genehmigungs- und Zugriffstoken-Anfragen.
-
 
 ![Initialer Authorisierungsvorgang für Verwaltungs-APIs](images/authorization-flow.png)
 
@@ -329,7 +328,6 @@ Das zurückgegebene Zugriffstoken ist ein JWT-Token und enthält Informationen �
   "acr": "1"
 }
 ```
-
 
 ### <a name="request-an-access-token-by-using-client-credentials"></a>Fordern Sie mit Client-Anmeldeinformationen ein Zugriffstoken an
 
