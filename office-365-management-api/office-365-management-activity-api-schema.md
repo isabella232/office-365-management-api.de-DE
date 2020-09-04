@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: f4c35fc343593c0d61ae29b43a58db66ebf2185f
-ms.sourcegitcommit: 1047f1e1d17d873918790ff1fc6d7adcc75ab2bc
+ms.openlocfilehash: 01ca346835edc94007d90db0a85d20a9bc5b945e
+ms.sourcegitcommit: a4ba198b7417e49880905e49a38d0bd1f4ad8802
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "46672892"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "47334881"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -50,7 +50,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Rechenzentrum-Sicherheits-Cmdlet-Schema](#data-center-security-cmdlet-schema)|Das Datenzentrum-Sicherheitsbasis-Schema wird mit den für alle Rechenzentrum-Sicherheits-Cmdlet-Überwachungsdaten spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Schema](#microsoft-teams-schema)|Das allgemeine Schema wird mit den für alle Microsoft Teams-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Investigation and Response spezifischen Daten erweitert.|
-|[Schema "Automatisierte Untersuchungs- und Reaktionsereignisse"](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für ‚Automatisierte Untersuchungs- und Reaktionsereignisse‘ (AIR, Automated investigation and response) in Office 365 spezifischen Eigenschaften erweitert.|
+|[Schema "Automatisierte Untersuchungs- und Reaktionsereignisse"](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für ‚Automatisierte Untersuchungs- und Reaktionsereignisse‘ (AIR, Automated investigation and response) in Office 365 spezifischen Eigenschaften erweitert. Ein Beispiel finden Sie im [Tech Community-Blog: Improve the Effectiveness of your SOC with Office 365 ATP and the O365 Management API](https://techcommunity.microsoft.com/t5/microsoft-security-and/improve-the-effectiveness-of-your-soc-with-office-365-atp-and/ba-p/1525185) (Verbessern der Effektivität Ihres SOC mit Office 365 ATP und der O365 Management-API).|
 |[Nachrichtenschutzereignis-Schema](#hygiene-events-schema)|Das allgemeine Schema wird um die für Ereignisse in Exchange Online Protection und Advanced Threat Protection spezifischen Eigenschaften erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
 |[Dynamics 365-Schema](#dynamics-365-schema)|Das allgemeine Schema wird mit den für Dynamics 365-Ereignisse spezifischen Eigenschaften erweitert.|

@@ -6,25 +6,25 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 36ef8e548b535fc97f2b1b6d4347184fa18d6ceb
-ms.sourcegitcommit: 78e76d5d1c3e40907ea0936a7c3f016eed4ebd3c
+ms.openlocfilehash: e6024c19457796fb6f3fb94a62a013cc86a95072
+ms.sourcegitcommit: a4ba198b7417e49880905e49a38d0bd1f4ad8802
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "41650850"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "47334888"
 ---
 # <a name="office-365-service-communications-api-reference"></a>Office 365-Dienstkommunikations-API – Referenz
 
 Sie können die Office 365-Dienstkommunikations-API V2 verwenden, um Zugriff auf die folgenden Daten zu erhalten:
 
 - **Get Services**: Erhalt der Liste der abonnierten Dienste.
-    
+
 - **Get Current Status**: Erhalten Sie eine Echtzeitansicht der aktuellen und laufenden Dienstincidents.
-    
+
 - **Get Historical Status**: Erhalten Sie eine Verlaufsanzeige von Dienstincidents.
-    
+
 - **Get Messages**: Suchen Sie nach Incident- und Message Center-Kommunikation.
-    
+
 Aktuell enthält die Office 365-Dienstkommunikations-API Daten für Office 365, Yammer, Dynamics CRM und Microsoft Intune-Clouddienste.
 
 ## <a name="the-fundamentals"></a>Die Grundlagen
@@ -52,7 +52,6 @@ Dies sind die unterstützten Anforderungsheader für alle Office 365-Dienstkommu
 |**Annehmen (Optional)**|Im Folgenden finden Sie die zulässigen Darstellungen für die Antwort:<br/>**application/json;odata.metadata=full**<br/>**application/json;odata.metadata=minimal**<br/>[Standard, wenn kein Header angegeben] **application/json;odata.metadata=none**|
 |**Autorisierung (erforderlich)**|Autorisierungstoken (Bearer JWT Azure AD Token) für die Anforderung.|
 
-
 <br/>
 
 ### <a name="response-headers"></a>Antwortheader
@@ -79,7 +78,6 @@ Dies sind die Antwortheader für alle Office 365-Dienstkommunikations-API-Operat
 <br/>
 
 Im Folgenden sind die Operationen der Office 365-Dienstkommunikations-API aufgelistet.
-
 
 ## <a name="get-services"></a>Get Services
 
@@ -135,7 +133,6 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
     ]
 }
 ```
-
 
 ## <a name="get-current-status"></a>Get Current Status
 
@@ -267,21 +264,21 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 
 ### <a name="status-definitions"></a>Statusdefinitionen
 
-Die Statusdefinitionen umfassen die folgenden Werte: 
+Die Statusdefinitionen umfassen die folgenden Werte:
 
 - Wird untersucht
 - ServiceDegradation
-- ServiceInterruption 
+- ServiceInterruption
 - RestoringService
 - ExtendedRecovery
+- InvestigationSuspended
 - ServiceRestored
-- PostIncidentReportPublished 
+- FalsePositive
+- PostIncidentReportPublished
 - VerifyingService
 - ServiceOperational
-- FalsePositive
 
 Eine aktuelle Liste mit Beschreibungen dieser Statusdefinitionen finden Sie unter [Überprüfen des Office 365-Dienststatus](https://docs.microsoft.com/office365/enterprise/view-service-health#status-definitions).
-
 
 ## <a name="get-historical-status"></a>Get Historical Status
 
@@ -483,4 +480,3 @@ Wenn der Dienst einen Fehler feststellt, meldet er den Fehlerantwortcode an den 
     } 
 }
 ```
-
