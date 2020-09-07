@@ -6,12 +6,12 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: e6024c19457796fb6f3fb94a62a013cc86a95072
-ms.sourcegitcommit: a4ba198b7417e49880905e49a38d0bd1f4ad8802
+ms.openlocfilehash: a7e99a5920afa03891ac3f48982cdaf40a660e2a
+ms.sourcegitcommit: e9de9dea24789e64be9e7161e5e5de9cb4f9797d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "47334888"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "47399536"
 ---
 # <a name="office-365-service-communications-api-reference"></a>Office 365-Dienstkommunikations-API – Referenz
 
@@ -275,10 +275,9 @@ Die Statusdefinitionen umfassen die folgenden Werte:
 - ServiceRestored
 - FalsePositive
 - PostIncidentReportPublished
-- VerifyingService
 - ServiceOperational
 
-Eine aktuelle Liste mit Beschreibungen dieser Statusdefinitionen finden Sie unter [Überprüfen des Office 365-Dienststatus](https://docs.microsoft.com/office365/enterprise/view-service-health#status-definitions).
+Eine Beschreibung dieser Statusdefinitionen finden Sie unter [Überprüfen des Microsoft 365-Dienststatus](https://docs.microsoft.com/microsoft-365/enterprise/view-service-health#status-definitions).
 
 ## <a name="get-historical-status"></a>Get Historical Status
 
