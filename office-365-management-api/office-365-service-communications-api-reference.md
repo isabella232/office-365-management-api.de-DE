@@ -1,4 +1,5 @@
 ---
+ms.technology: o365-service-communications
 ms.TocTitle: Office 365 Service Communications API reference
 title: Office 365-Dienstkommunikations-API – Referenz
 description: Verwenden Sie diese API, um Zugriff auf die folgenden Daten zu erhalten – Get Services, Get Current Status, Get Historical Status und Get Messages.
@@ -6,12 +7,12 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: a7e99a5920afa03891ac3f48982cdaf40a660e2a
-ms.sourcegitcommit: e9de9dea24789e64be9e7161e5e5de9cb4f9797d
+ms.openlocfilehash: 9845fb5f422160a658b45bd7dd9a5bc6d4635914
+ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/04/2020
-ms.locfileid: "47399536"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "48397440"
 ---
 # <a name="office-365-service-communications-api-reference"></a>Office 365-Dienstkommunikations-API – Referenz
 
@@ -83,7 +84,7 @@ Im Folgenden sind die Operationen der Office 365-Dienstkommunikations-API aufgel
 
 Gibt die Liste der abonnierten Dienste zurück.
 
-||Dienst|Beschreibung|
+|Informationen|Dienst|Beschreibung|
 |:-----|:-----|:-----|
 |**Path**| `/Services`||
 |**Query-option**|$select|Wählen Sie eine Teilmenge der Eigenschaften.|
@@ -143,7 +144,7 @@ Gibt den Status des Diensts während der vorherigen 24 Stunden zurück.
 
 <br/>
 
-||Dienst|Beschreibung|
+|Informationen|Dienst|Beschreibung|
 |:-----|:-----|:-----|
 |**Path**| `/CurrentStatus`||
 |**Filter**|Arbeitslast|Filtern nach Arbeitslast (Zeichenfolge, Standard: alle).|
@@ -283,7 +284,7 @@ Eine Beschreibung dieser Statusdefinitionen finden Sie unter [Überprüfen des M
 
 Gibt den Verlaufsstatus des Dienstes nach Tag über einen bestimmten Zeitraum zurück.
 
-||Dienst|Beschreibung|
+|Informationen|Dienst|Beschreibung|
 |:-----|:-----|:-----|
 |**Path**| `/HistoricalStatus`||
 |**Filters**|Arbeitslast|Filtern nach Arbeitslast (Zeichenfolge, Standard: alle).|
@@ -384,7 +385,7 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 
 Gibt Nachrichten über den Dienst über einen bestimmten Zeitraum zurück. Verwenden Sie den Typfilter zum Filtern nach Nachrichten des Typs „Dienstincident“, „Geplante Wartung“ oder „Nachrichtencenter“.
 
-||Dienst|Beschreibung|
+|Informationen|Dienst|Beschreibung|
 |:-----|:-----|:-----|
 |**Path**| `/Messages`||
 |**Filters**|Arbeitslast|Filtern nach Arbeitslast (Zeichenfolge, Standard: alle).|
@@ -409,7 +410,6 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 
 ```json
 {
- {
     "value": [
         {
             "Id": "EX20119",
@@ -453,7 +453,7 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
                 {
                     "PublishedTime": "2015-04-07T23:26:44.643Z",
                     "MessageText": "Final Status: Engineers have validated that the deployed fix has resolved the issue and that service is restored.\r\n\r\nUser Experience: Affected users were unable to send or receive email while using Exchange Web Services (EWS) on their mobile devices.\r\n\r\nCustomer Impact: Customer impact appeared to be limited during this event. This issue was only affecting customers that use third-party Mobile Device Management software from Good Technology. As a workaround to provide immediate relief from impact, engineers implemented a configuration change for customers who reported this issue to Microsoft Support.\r\n\r\nIncident Start Time: Wednesday, April 1, 2015, at 2:00 PM UTC\r\n\r\nIncident End Time: Tuesday, April 7, 2015, at 10:00 PM UTC\r\n\r\nPreliminary Root Cause: As part of our ongoing efforts to improve service resiliency, an update was deployed to the infrastructure that facilitates connections from multiple Exchange Online protocols to mailbox databases. The update, however, contained a code issue that caused connectivity issues in some scenarios. \r\n\r\nNext Steps: The following is a list of known action item(s) associated with this incident. As part of the Office 365 problem management process, additional engineering actions may be identified to improve the overall service.\r\n- Action: Review the infrastructure update process to prevent reoccurrences of this scenario.\r\n\r\nPlease consider this service notification the final update on the event."
-               }
+                }
             ],
             "LastUpdatedTime": "2015-04-07T23:26:45.08Z",
             "Workload": "Exchange Online",
