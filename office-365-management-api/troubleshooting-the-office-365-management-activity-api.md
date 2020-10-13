@@ -7,12 +7,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 323407799cefe74b331dec01bb746971c41b5adf
-ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
+ms.openlocfilehash: 218c0517697f1d71b1557f3b55a4c184fb52ec54
+ms.sourcegitcommit: c9cb078e6c94bcf0bb28cb0fffef39302ec8c197
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "48397433"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "48425619"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Häufig gestellte Fragen und Problembehandlung der Office 365-Verwaltungsaktivitäts-API
 
@@ -26,53 +26,45 @@ Die Verwaltungsaktivitäts-API sollte nicht mit der Office 365-Dienstkommunikati
 
 ## <a name="frequently-asked-questions-about-the-office-365-management-activity-api"></a>Häufig gestellte Fragen zur Office 365-Verwaltungsaktivitäts-API
 
-**Wie lange muss ich maximal warten, bevor eine Benachrichtigung zu einem bestimmten Office 365-Ereignis gesendet wird?**
-
-Es gibt keine garantierte maximale Latenz für die Benachrichtigungsbereitstellung (in anderen Worten kein SLA). Laut Microsoft-Support werden die meisten Benachrichtigungen innerhalb einer Stunde nach dem Ereignis gesendet. Häufig ist die Latenz viel kleiner, aber häufig auch größer. Dies ist von Arbeitslast zu Arbeitslast unterschiedlich, aber in der Regel werden die meisten Benachrichtigungen innerhalb von 24 Stunden nach dem ursprünglichen Ereignis übermittelt.
-
-**Sind Webhook-Benachrichtigungen nicht direkter? Schließlich sind Sie nicht ereignisgesteuert?**
-
-Nein.Webhook-Benachrichtigungen sind nicht in dem Sinn ereignisgesteuert, dass das Ereignis die Benachrichtigung auslöst. Das Inhalts-Blob muss weiterhin erstellt werden, und die Erstellung des Inhalts-Blobs löst die Benachrichtigungsübermittlung aus. In letzter Zeit waren die Wartezeiten für Benachrichtigungen bei Verwendung eines Webhooks länger als beim direkten Abfragen der API mit der /content-Operation. Daher sollte die Verwaltungsaktivitäts-API nicht als Echtzeit-Sicherheitsalarmsystem betrachtet werden. Dafür hat Microsoft andere Produkte. Wenn es um die Sicherheit geht, können Ereignisbenachrichtigungen der Verwaltungsaktivitäts-API besser zum Ermitteln von Verwendungsmustern über längere Zeiträume verwendet werden.
-
-**Kann ich die Verwaltungsaktivitäts-API für eine bestimmte Ereignis-ID oder einen bestimmten RecordType oder andere Eigenschaften im Inhalts-Blob abfragen?**
-
-Nein. Die über die Verwaltungsaktivitäts-API verfügbaren Daten sind kein „Protokoll“ im herkömmlichen Sinne. Stattdessen handelt es sich um einen Auszug von Ereignisdetails. Es liegt ganz bei Ihnen, diese Ereignisdetails lokal zu erfassen, zu speichern und zu indizieren und dann Ihre eigene Abfragelogik zu implementieren, mit einer benutzerdefinierten Anwendung oder einem Drittanbieter-Tool.
-
-**Wie kann ich feststellen, ob die Daten aus meiner vorhandenen Überwachungslösung, die Daten von der Verwaltungsaktivitäts-API sammelt, präzise und vollständig sind?**
-
-Die kurze Antwort lautet, dass Microsoft kein Protokoll zur Verfügung stellt, mit dem Sie eine bestimmte Anwendung oder Anwendung von Drittanbietern (ISV) prüfen können. Es gibt andere Microsoft-Sicherheitsprodukte, die ihre Daten aus derselben Pipeline abrufen, aber diese Produkte werden hier nicht behandelt und können nicht verwendet werden, um die Verwaltungsaktivitäts-API direkt zu prüfen. Wenn Sie sich Sorgen über Diskrepanzen zwischen Ihrer vorhandenen Lösung und Ihren Erwartungen machen, sollten Sie die oben skizzierten Operationen implementieren. Jedoch kann dies schwierig sein, je nachdem, wie Ihr vorhandenes Tool oder Ihre vorhandene Lösung Daten auflistet und indiziert. Wenn Ihre vorhandene Lösung nur Daten sortiert nach Erstellungszeit des tatsächlichen Ereignisses darstellt, gibt es keine Möglichkeit, die API nach Ereigniserstellungszeit abzufragen, um Ergebnissätze zu vergleichen. In diesem Szenario müssten Sie die Inhalts-Blobs mit Benachrichtigungen mehrere Tage sammeln, sie manuell indizieren oder sortieren und dann einen groben Vergleich durchführen.
-
-**Wie lange bleiben die Inhalts-Blobs verfügbar?**
-
-Inhalts-Blobs sind 7 Tage nach der Benachrichtigung zur Verfügbarkeit des Inhalts-Blobs verfügbar. Dies bedeutet, dass wenn es eine erhebliche Verzögerung bei der Erstellung des Inhalts-Blobs gibt, Sie nach dem Datum der Erstellung des tatsächlichen Ereignisses länger (Verzögerung plus 7 Tage) auf das Inhalts-Blob zugreifen können.
-
-**Wenn es eine 24-stündige Verzögerung beim Erhalt einer Benachrichtigung gibt, bedeutet dies, dass ich nur 6 Tage habe, um den Inhalts-Blob abzurufen?**
-
-Nein.Auch wenn sich die Benachrichtigung ungewöhnlich lange verzögert (beispielsweise bei einer Serviceunterbrechung), haben Sie dennoch 7 Tage nach der ersten Verfügbarkeit der Benachrichtigung, um das mit dem ursprünglichen Ereignis verknüpfte Inhalts-Blob herunterzuladen.
-
-**Welche Ereignisse werden für einen bestimmten Office 365-Dienst überwacht?**
-
-Die Dokumentation für das Office 365-Verwaltungsaktivitäts-API-Schema enthält eine umfassende Liste der Ereignisse. Einzelheiten hierzu finden Sie unter „Office 365-Verwaltungsaktivitäts-API – Schema“. Eine Liste der Ereignisse für die meisten Office 365-Dienste, die überwacht werden, finden Sie auch im Abschnitt „Überwachte Aktivitäten“ in Durchsuchen des Überwachungsprotokolls im Security & Compliance Center.
-
 **Wie kann ich die Verwaltungsaktivitäts-API nutzen?**
 
-Informationen zu den ersten Schritten mit der Office 365-Verwaltungsaktivitäts-API finden Sie unter „Erste Schritte mit den Office 365-Verwaltungs-APIs“.
-
-**Wir möchten alle Ereignisse in allen Arbeitslasten programmgesteuert erfassen. Was ist die zuverlässigste Methode dafür?**
-
-Sie können dies mithilfe der Office 365-Verwaltungsaktivitäts-API tun. Außerdem wird empfohlen, aufgrund von Problemen bei der Verwendung von Webhooks das **Pull-Modell** zu verwenden. Weitere Informationen finden Sie im Abschnitt „Verwenden von Webhooks“ in Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API.
-
-**Gibt es Unterschiede in den Datensätzen, die von der Verwaltungsaktivitäts-API abgerufen werden, und den Datensätzen, die mit dem Überwachungsprotokoll-Suchtool im Microsoft 365 Compliance Center zurückgegeben werden?**
-
-Von beiden Methoden werden identische Daten zurückgegeben. Es erfolgt keine Filterung. Der einzige Unterschied besteht darin, dass Sie mit der API Daten für die letzten 7 Tage gleichzeitig abrufen können. Wenn Sie das Überwachungsprotokoll im Security & Compliance Center durchsuchen (oder das entsprechende Cmdlet Search-UnifiedAuditLog in Exchange Online verwenden), können Sie Daten für die letzten 90 Tage abrufen.
+Informationen zu den ersten Schritten mit der Office 365-Verwaltungsaktivitäts-API finden Sie unter [Erste Schritte mit den Office 365-Verwaltungs-APIs](get-started-with-office-365-management-apis.md).
 
 **Was geschieht, wenn ich die Überwachung meiner Office 365-Organisation deaktivieren möchte? Erhalte ich weiterhin Ereignisse über die Verwaltungsaktivitäts-API?**
 
-Nein.Die einheitliche Überwachung von Office 365 muss für Ihre Organisation aktiviert sein, damit Datensätze über die Verwaltungsaktivitäts-API abgerufen werden können. Weitere Anweisungen finden Sie unter „Aktivieren oder Deaktivieren der Office 365-Überwachungsprotokollsuche“.
+Nein.Die einheitliche Überwachung von Office 365 muss für Ihre Organisation aktiviert sein, damit Datensätze über die Verwaltungsaktivitäts-API abgerufen werden können. Weitere Anweisungen finden Sie unter [Die Überwachungsprotokollsuche ein- oder ausschalten](https://docs.microsoft.com/microsoft-365/compliance/turn-audit-log-search-on-or-off).
+
+**Welche Ereignisse werden für einen bestimmten Office 365-Dienst überwacht?**
+
+Die Dokumentation für das Office 365-Verwaltungsaktivitäts-API-Schema enthält eine umfassende Liste der Ereignisse. Einzelheiten hierzu finden Sie unter „Office 365-Verwaltungsaktivitäts-API – Schema“. Eine Liste der Ereignisse für die meisten Office 365-Dienste, die überwacht werden, finden Sie auch im Abschnitt „Überwachte Aktivitäten“ in [Durchsuchen des Überwachungsprotokolls im Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#audited-activities).
+
+**Gibt es Unterschiede in den Datensätzen, die von der Verwaltungsaktivitäts-API abgerufen werden, und den Datensätzen, die mit dem Überwachungsprotokoll-Suchtool im Microsoft 365 Compliance Center zurückgegeben werden?**
+
+Von beiden Methoden werden identische Daten zurückgegeben. Der einzige Unterschied besteht darin, dass Sie mit der API nur Daten für die letzten 7 Tage abrufen können (weitere Details finden Sie in den nachfolgenden Fragen). Wenn Sie das Überwachungsprotokoll im Security & Compliance Center durchsuchen (oder das entsprechende Cmdlet **Search-UnifiedAuditLog** im Exchange Online PowerShell verwenden), können Sie Daten für den Aufbewahrungszeitraum abrufen, der bei der Generierung der Daten gültig war (z. B. 90 Tage oder ein Jahr).
+
+**Wie lange muss ich maximal warten, bevor eine Benachrichtigung zu einem bestimmten Office 365-Ereignis gesendet wird?**
+
+Es gibt keine garantierte maximale Wartezeit für die Bereitstellung von Benachrichtigungen (es gibt kein SLA). Normalerweise werden die meisten Benachrichtigungen innerhalb einer Stunde nach dem Ereignis gesendet. Häufig ist die Wartezeit viel kürzer, aber es kann länger dauern, da dies von der Arbeitsauslastung abhängt.
+
+**Sind Webhook-Benachrichtigungen unmittelbarer?**
+
+Nein. In letzter Zeit gab es längere Wartezeiten für Benachrichtigungen bei Verwendung eines Webhook als bei direkter Abfrage der API mit der `/content`-Operation.
+
+**Wie lange bleibt der Inhalt zum Abruf über die API verfügbar?**
+
+Inhalte können während sieben Tagen nach Benachrichtigung über die Verfügbarkeit von Inhalten über die API abgerufen werden. Auch wenn sich die Benachrichtigung ungewöhnlich lange verzögert (beispielsweise bei einer Serviceunterbrechung), haben Sie dennoch 7 Tage nach der ersten Verfügbarkeit der Benachrichtigung, um das mit dem ursprünglichen Ereignis verknüpfte Inhalts-Blob herunterzuladen.
+
+**Kann ich die Verwaltungsaktivitäts-API für eine bestimmte Ereignis-ID oder einen bestimmten RecordType oder andere Eigenschaften im Inhalts-Blob abfragen?**
+
+Nein. Die Verwaltungsaktivitäts-API bietet alle Ereignisdetails für ein bestimmtes Protokoll. Es kann zum Herunterladen der gesamten Details verwendet werden, und dann können Sie Ihre eigene Abfragelogik für die heruntergeladenen Daten implementieren. Verwenden Sie dazu beispielsweise eine benutzerdefinierte Anwendung oder ein Tool eines Drittanbieters.
+
+**Wie kann ich feststellen, ob die Daten aus meiner vorhandenen Überwachungslösung, die Daten von der Verwaltungsaktivitäts-API sammelt, präzise und vollständig sind?**
+
+Die kurze Antwort lautet, dass Microsoft kein Protokoll zur Verfügung stellt, mit dem Sie eine bestimmte Anwendung oder Anwendung von Drittanbietern (ISV) überprüfen können. Es gibt andere Microsoft-Sicherheitsprodukte, die ihre Daten aus derselben Pipeline erhalten, aber diese Produkte werden hier nicht behandelt und können nicht verwendet werden, um die Verwaltungsaktivitäts-API direkt zu prüfen. Wenn Sie sich Sorgen über Diskrepanzen zwischen Ihrer vorhandenen Lösung und Ihren Erwartungen machen, sollten Sie die oben skizzierten Operationen implementieren. Jedoch kann dies schwierig sein, je nachdem, wie Ihr vorhandenes Tool oder Ihre vorhandene Lösung Daten auflistet und indiziert. Wenn Ihre vorhandene Lösung nur Daten darstellt, die sortiert sind nach Erstellungszeit des tatsächlichen Ereignisses, dann gibt es keine Möglichkeit, die API nach Ereigniserstellungszeit abzufragen, um Ergebnissätze zu vergleichen. In diesem Szenario müssten Sie die Inhalts-Blobs mit Benachrichtigungen mehrere Tage sammeln, sie manuell indizieren oder sortieren und dann einen manuellen Vergleich durchführen.
 
 **Was ist der Einschränkungsgrenzwert für die Verwaltungsaktivitäts-API?**
 
-Allen Organisationen ist anfänglich eine Baseline von 2 000-Anforderungen pro Minute zugeordnet. Dies ist kein statischer, vordefinierter Grenzwert, sondern ein Wert, der auf der Grundlage einer Kombination von Faktoren angepasst wird, beispielweise basierend auf der Anzahl der Arbeitsplätze in der Organisation. Office 365 E5- und Microsoft 365 E5-Organisationen erhalten etwa doppelt so viel Bandbreite wie Nicht-E5-Organisationen. Zum Schutz des Diensts gibt es auch eine Obergrenze für die maximale Bandbreite.
+Allen Organisationen ist anfänglich eine Baseline von 2 000-Anforderungen pro Minute zugeordnet. Das Einschränkungslimit wird dann basierend auf einer Kombination von Faktoren angepasst, einschließlich der Anzahl der Arbeitsplätze in der Organisation. Zusätzlich erhalten Office 365 E5 and Microsoft 365 E5-Organisationen erhalten ungefähr doppelt so viel Bandbreite wie Nicht-E5-Organisationen. Zum Schutz des Diensts gibt es auch eine Obergrenze für die maximale Bandbreite.
 
 > [!NOTE]
 > Zwar kann jeder Mandant anfänglich bis zu 2.000 Anforderungen pro Minute senden, Microsoft kann aber keine Antwortrate garantieren. Die Antwortrate hängt von verschiedenen Faktoren ab, z. B. der Leistung des Clientsystems, der Netzwerkkapazität und der Geschwindigkeit des Netzwerks.
