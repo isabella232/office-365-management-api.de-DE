@@ -7,24 +7,24 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 9845fb5f422160a658b45bd7dd9a5bc6d4635914
-ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
+ms.openlocfilehash: 7cd91d9a43090b4731a11df701e0bf1aa340800e
+ms.sourcegitcommit: e7f345710dc63003704399419f784c4a9b5fc529
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "48397440"
+ms.lasthandoff: 11/02/2020
+ms.locfileid: "48830469"
 ---
 # <a name="office-365-service-communications-api-reference"></a>Office 365-Dienstkommunikations-API – Referenz
 
 Sie können die Office 365-Dienstkommunikations-API V2 verwenden, um Zugriff auf die folgenden Daten zu erhalten:
 
-- **Get Services**: Erhalt der Liste der abonnierten Dienste.
+- **Get Services** : Erhalt der Liste der abonnierten Dienste.
 
-- **Get Current Status**: Erhalten Sie eine Echtzeitansicht der aktuellen und laufenden Dienstincidents.
+- **Get Current Status** : Erhalten Sie eine Echtzeitansicht der aktuellen und laufenden Dienstincidents.
 
-- **Get Historical Status**: Erhalten Sie eine Verlaufsanzeige von Dienstincidents.
+- **Get Historical Status** : Erhalten Sie eine Verlaufsanzeige von Dienstincidents.
 
-- **Get Messages**: Suchen Sie nach Incident- und Message Center-Kommunikation.
+- **Get Messages** : Suchen Sie nach Incident- und Message Center-Kommunikation.
 
 Aktuell enthält die Office 365-Dienstkommunikations-API Daten für Office 365, Yammer, Dynamics CRM und Microsoft Intune-Clouddienste.
 
@@ -36,9 +36,9 @@ Die Stamm-URL der API enthält einen Mandantenbezeichner, der die Operationen ei
 https://manage.office.com/api/v1.0/{tenant_identifier}/ServiceComms/{operation}
 ```
 
-Die **Office 365 Dienstkommunikations-API** ist ein REST-Dienst, mit dem Sie Lösungen mit einer beliebigen Websprache und Hosting-Umgebung entwickeln können, die HTTPS- und X.509-Zertifikate unterstützt. Die API basiert auf **Microsoft Azure Active Directory** und dem **OAuth2**-Protokoll für Authentifizierung und Autorisierung. Um von Ihrer Anwendung aus auf die API zugreifen zu können, müssen Sie diese zuerst in Azure AD registrieren und dann mit Berechtigungen im entsprechenden Bereich konfigurieren. Dadurch kann die Anwendung OAuth2-Zugriffstoken anfordern, die für das Aufrufen der API erforderlich sind. Weitere Informationen über das Registrieren und Konfigurieren einer Anwendung in Azure AD finden Sie unter [Office 365-Verwaltungs-APIs – erste Schritte](get-started-with-office-365-management-apis.md).
+Die **Office 365 Dienstkommunikations-API** ist ein REST-Dienst, mit dem Sie Lösungen mit einer beliebigen Websprache und Hosting-Umgebung entwickeln können, die HTTPS- und X.509-Zertifikate unterstützt. Die API basiert auf **Microsoft Azure Active Directory** und dem **OAuth2** -Protokoll für Authentifizierung und Autorisierung. Um von Ihrer Anwendung aus auf die API zugreifen zu können, müssen Sie diese zuerst in Azure AD registrieren und dann mit Berechtigungen im entsprechenden Bereich konfigurieren. Dadurch kann die Anwendung OAuth2-Zugriffstoken anfordern, die für das Aufrufen der API erforderlich sind. Weitere Informationen über das Registrieren und Konfigurieren einer Anwendung in Azure AD finden Sie unter [Office 365-Verwaltungs-APIs – erste Schritte](get-started-with-office-365-management-apis.md).
 
-Alle API-Anforderungen erfordern einen HTTP-Header für die Autorisierung mit einem gültigen OAuth2-JWT-Zugriffstoken von Azure AD, das den **ServiceHealth.Read**-Anspruchenthält; der Mandantenbezeichner muss dem Mandantenbezeichner in der Stamm-URL entsprechen.
+Alle API-Anforderungen erfordern einen HTTP-Header für die Autorisierung mit einem gültigen OAuth2-JWT-Zugriffstoken von Azure AD, das den **ServiceHealth.Read** -Anspruchenthält; der Mandantenbezeichner muss dem Mandantenbezeichner in der Stamm-URL entsprechen.
 
 ```json
 Authorization: Bearer {OAuth2 token}
@@ -392,7 +392,7 @@ Gibt Nachrichten über den Dienst über einen bestimmten Zeitraum zurück. Verwe
 ||StartTime|Filter Sie nach Startzeit (DateTimeOffset, Standard: ge CurrentTime - 7 Tage).|
 ||EndTime|Filter Sie nach Endzeit (DateTimeOffset, Standard: le CurrentTime).|
 ||MessageType|Filtern Sie nach MessageType (Zeichenfolge, Standard: alle).|
-||ID|Filtern Sie nach ID (Zeichenfolge, Standard: alle).|
+||Id|Filtern Sie nach ID (Zeichenfolge, Standard: alle).|
 |**Query-option**|$select|Wählen Sie eine Teilmenge der Eigenschaften.|
 ||$top|Wählen Sie die wichtigsten Ergebnisse (default und max $top=100).|
 ||$skip|Überspringen Sie die Anzahl der Ergebnisse (Standard: $skip=0).|
