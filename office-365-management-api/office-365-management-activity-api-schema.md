@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c800a099dc102b36f938607599bd0c66ac007ccd
-ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
+ms.openlocfilehash: c56a76a44972d2df4787aa4185300b2643db388a
+ms.sourcegitcommit: 263cfbc04033ea8a1d765215e8777739587818e0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "48397468"
+ms.lasthandoff: 11/13/2020
+ms.locfileid: "49021016"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -94,6 +94,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |3|ExchangeItemGroup|Ereignisse aus einem Exchange-Postfachüberwachungsprotokoll für Aktionen, die für mehrere Elemente ausgeführt werden können, z. B. das Verschieben oder Löschen einer oder mehrerer E-Mail-Nachrichten.|
 |4|SharePoint|SharePoint-Ereignisse.|
 |6|SharePointFileOperation|SharePoint-Dateivorgangsereignisse.|
+|7|OneDrive|OneDrive for Business-Ereignisse.|
 |8|AzureActiveDirectory|Azure Active Directory-Ereignisse.|
 |9|AzureActiveDirectoryAccountLogon|Azure Active Directory OrgId-Anmeldeereignisse (veraltet).|
 |10|DataCenterSecurityCmdlet|Rechenzentrum-Sicherheits-Cmdlet-Ereignisse.|
@@ -101,7 +102,10 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |13|ComplianceDLPExchange|DLP-Ereignisse (Data Loss Prevention, Schutz vor Datenverlust) bei Konfiguration über die Unified DLP-Richtlinie. Auf Exchange-Transportregeln basierende DLP-Ereignisse werden nicht unterstützt.|
 |14|SharePointSharingOperation|SharePoint-Freigabeereignisse.|
 |15|AzureActiveDirectoryStsLogon|Secure Token Service (STS)-Anmeldeereignisse in Azure Active Directory.|
+|16|SkypeForBusinessPSTNUsage|Public Switched Telephone Network (PSTN)-Ereignisse aus Skype for Business.|
+|17|SkypeForBusinessUsersBlocked|Blockierte Benutzerereignisse aus Skype for Business.|
 |18|SecurityComplianceCenterEOPCmdlet|Administratoraktionen aus dem Security & Compliance Center.|
+|19|ExchangeAggregatedOperation|Aggregierte Exchange-Postfachüberwachungsereignisse.|
 |20|PowerBIAudit|Power BI-Ereignisse.|
 |21|CRM|Dynamics 365-Ereignisse.|
 |22|Yammer|Yammer-Ereignisse.|
@@ -114,28 +118,76 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |31|AeD|Advanced eDiscovery-Ereignisse.|
 |32|MicrosoftStream|Microsoft Stream-Ereignisse|
 |33|ComplianceDLPSharePointClassification|Ereignisse im Zusammenhang mit DLP-Klassifizierung in SharePoint.|
+|34|ThreatFinder|Kampagnenbezogene Ereignisse von Microsoft Defender für Office 365.|
 |35|Project|Microsoft Project-Ereignisse.|
 |36|SharePointListOperation|SharePoint-Listenereignisse.|
-|38|DataGovernance|Auf Aufbewahrungsrichtlinien und Aufbewahrungsbezeichnungen im Security & Compliance Center bezogene Ereignisse|
+|37|SharePointCommentOperation|SharePoint-Kommentarereignisse.|
+|38|DataGovernance|Ereignisse, die sich auf Aufbewahrungsrichtlinien und Aufbewahrungsbezeichnungen im Security & Compliance Center beziehen|
+|39|Kaizala|Kaizala-Ereignisse.|
 |40|SecurityComplianceAlerts|Security & Compliance-Warnsignale.|
 |41|ThreatIntelligenceUrl|Zeitblockereignisse für sichere Links und Ereignisse zur Außerkraftsetzung von Blöcken aus Office 365 Advanced Threat Protection.|
 |42|SecurityComplianceInsights|Ereignisse im Zusammenhang mit Einblicken und Berichten im Office 365 Security & Compliance Center.|
 |43|MIPLabel|Ereignisse im Zusammenhang mit der Erkennung in der Transportpipeline von E-Mail-Nachrichten, die mithilfe von Vertraulichkeitsbezeichnungen (manuell oder automatisch) gekennzeichnet wurden. |
 |44|WorkplaceAnalytics|Workplace Analytics-Ereignisse.|
 |45|PowerAppsApp|Power Apps-Ereignisse.|
+|46|PowerAppsPlan|Abonnementplan-Ereignisse für Power Apps. |
 |47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Office 365 Advanced Threat Protection.|
 |48|LabelContentExplorer|Ereignisse im Zusammenhang mit dem [Inhalts-Explorer zur Datenklassifizierung](https://docs.microsoft.com/microsoft-365/compliance/data-classification-content-explorer).|
 |49|TeamsHealthcare|Ereignisse im Zusammenhang mit der [Anwendung "Patienten"](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit) in Microsoft Teams für das Gesundheitswesen.|
 |50|ExchangeItemAggregated|Ereignisse im Zusammenhang mit der [Postfachüberwachungsaktion "MailItemsAccessed"](https://docs.microsoft.com/microsoft-365/compliance/mailitemsaccessed-forensics-investigations).|
 |51|HygieneEvent|Ereignisse im Zusammenhang mit ausgehenden Spamschutzmaßnahmen. |
-|52|DataInsightsRestApiAudit|Ereignisse der Datenerkenntnisse-Rest-API.|
+|52|DataInsightsRestApiAudit|Ereignisse der Datenerkenntnisse-REST-API.|
+|53|InformationBarrierPolicyApplication|Ereignisse im Zusammenhang mit der Anwendung von Richtlinien für Informationsbarrieren.|
 |54|SharePointListItemOperation|SharePoint-Listenelementereignisse.|
 |55|SharePointContentTypeOperation|SharePoint-Listeninhaltstyp-Ereignisse.|
 |56|SharePointFieldOperation|SharePoint-Listenfeldereignisse.|
+|57|MicrosoftTeamsAdmin|Teams-Administratorereignisse.|
+|58|HRSignal|Ereignisse im Zusammenhang mit HR-Datensignalen, welche die Insider-Risikomanagement-Lösung unterstützen.|
+|59|MicrosoftTeamsDevice|Teams-Geräteereignisse.|
+|60|MicrosoftTeamsAnalytics|Teams-Analyseereignisse.|
+|61|InformationWorkerProtection|Ereignisse im Zusammenhang mit Warnungen über kompromittierte Benutzer.|
+|62|Campaign|E-Mail-Kampagnen-Ereignisse von Microsoft Defender für Office 365.|
+|63|DLPEndpoint|Endpunkt-DLP-Ereignisse.|
 |64|AirInvestigation|Automated incident response (AIR) events – Automatisierte Untersuchungs- und Reaktionsereignisse.|
 |65|Quarantine|Quarantäneereignisse.|
 |66|MicrosoftForms|Microsoft Forms-Ereignisse.|
-|68|ComplianceSupervisionExchange|Ereignisse, die von dem Kommunikationscompliance-Modell anstößiger Sprache nachverfolgt werden.|
+|67|ApplicationAudit|Anwendungsprotokoll-Ereignisse.|
+|68|ComplianceSupervisionExchange|Ereignisse, die von dem Kommunikationscompliance-Modell „anstößige Sprache“ nachverfolgt werden.|
+|69|CustomerKeyServiceEncryption|Ereignisse im Zusammenhang mit dem Dienst zur Kundenschlüssel-Verschlüsselung.|
+|70|OfficeNative|Ereignisse im Zusammenhang mit Vertraulichkeitsbezeichnungen, die auf Office-Dokumente angewendet werden.|
+|71|MipAutoLabelSharePointItem|Ereignisse bezüglich automatischer Beschriftung in SharePoint.|
+|72|MipAutoLabelSharePointPolicyLocation|Ereignisse bezüglich der Richtlinie für die automatischer Beschriftung in SharePoint.|
+|73|MicrosoftTeamsShifts|Teams-Schichtenereignisse.|
+|75|MipAutoLabelExchangeItem|Ereignisse bezüglich automatischer Beschriftung in Exchange.|
+|76|CortanaBriefing|Briefing E-Mail-Ereignisse.|
+|77|Suche|Ereignisse im Zusammenhang mit der Durchführung von Suchabfragen in SharePoint und Exchange.|
+|78|WDATPAlerts|Ereignisse im Zusammenhang mit Warnungen, die von Windows Defender für Endpunkt generiert werden.|
+|81|MDATPAudit|Microsoft Defender Advanced Threat Protection (ATP)-Ereignisse.|
+|82|SensitivityLabelPolicyMatch|Ereignisse, die generiert werden, wenn die mit einer Vertraulichkeitsbezeichnung beschriftete Datei geöffnet oder umbenannt wird.|
+|83|SensitivityLabelAction|Ereignis, das generiert wird, wenn Vertraulichkeitsbezeichnungen angewendet, aktualisiert oder von einer Datei entfernt werden.|
+|84|SensitivityLabeledFileAction|Ereignisse, die generiert werden, wenn eine mit einer Vertraulichkeitsbezeichnung beschriftete Datei geöffnet oder umbenannt wird.|
+|85|AttackSim|Angriffssimulator-Ereignisse.|
+|86|AirManualInvestigation|Ereignisse im Zusammenhang mit manuellen Ermittlungen in „Automatisierte Untersuchung und Antwort (AIR – Automated Investigation and Response)“. |
+|87|SecurityComplianceRBAC|Ereignisse aus RBAC-Sicherheit und -Konformität.|
+|88|UserTraining|Angriffssimulator-Schulungsereignisse in Microsoft Defender für Office 365.|
+|89|AirAdminActionInvestigation|Ereignisse im Zusammenhang mit Administratoraktionen in „Automatisierte Untersuchung und Antwort (AIR – Automated Investigation and Response)“.|
+|90|MSTIC|Threat-Intelligence-Ereignisse in Microsoft Defender für Office 365.|
+|91|PhysicalBadgingSignal|Ereignisse im Zusammenhang mit physischen Ausweissignalen, welche die Insider-Risikomanagement-Lösung unterstützen.|
+|93|AipDiscover|Azure Information Protection (AIP)-Scanner-Ereignisse.|
+|94|AipSensitivityLabelAction||
+|95|AipProtectionAction||
+|96|AipFileDeleted||
+|97|AipHeartBeat||
+|98|MCASAlerts|Ereignisse, die Warnungen entsprechen, die von Microsoft Cloud App Security ausgelöst werden.|
+|99|OnPremisesFileShareScannerDlp|Ereignisse im Zusammenhang mit der Suche nach vertraulichen Daten in Dateifreigaben.|
+|100|OnPremisesSharePointScannerDlp|Ereignisse im Zusammenhang mit der Suche nach vertraulichen Daten in SharePoint.|
+|101|ExchangeSearch|Ereignisse im Zusammenhang mit der Verwendung von Outlook im Web (OWA) zur Suche nach Postfachelementen.|
+|102|SharePointSearch|Ereignisse im Zusammenhang mit dem Durchsuchen der SharePoint-Startseite einer Organisation.|
+|103|PrivacyInsights|Datenschutzerkenntnis-Ereignisse.|
+|105|MyAnalyticsSettings|MyAnalytics-Ereignisse.|
+|106|SecurityComplianceUserChange|Ereignisse im Zusammenhang mit dem Ändern oder Löschen eines Benutzers.|
+|107|ComplianceDLPExchangeClassification|Ereignisse bezüglich Exchange DLP-Klassifizierung.|
+|109|MipExactDataMatch|Ereignisse bezüglich der Klassifizierung zur genauen Datenübereinstimmung (EDM – Exact Data Match).|
 ||||
 
 ### <a name="enum-user-type---type-edmint32"></a>Enumeration: Benutzertyp – Typ: Edm.Int32
@@ -281,7 +333,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |LanguageAddedToTermStore|Eine Sprache wird zum Terminologiespeicher hinzugefügt.|
 |LanguageRemovedFromTermStore|Eine Sprache wird aus dem Terminologiespeicher gelöscht.|
 |LegacyWorkflowEnabledSet|Der Websiteadministrator oder -besitzer fügt den Inhaltstyp SharePoint-Workflowtask zur Website hinzu. Globale Administratoren können ebenfalls Workflows für die gesamte Organisation im SharePoint Admin Center aktivieren.|
-|LookAndFeelModified|Ein Benutzer ändert Schnellstart-, Gantt-Diagramm- oder Gruppenformate. Oder ein Benutzer erstellt, ändert oder löscht eine Ansicht in der Project Web App.|
+|LookAndFeelModified|Ein Benutzer ändert Schnellstart-, Gantt-Diagramm- oder Gruppenformate.  Oder ein Benutzer erstellt, ändert oder löscht eine Ansicht in der Web-App von Project.|
 |ManagedSyncClientAllowed|Ein Benutzer richtet erfolgreich eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website ein. Die Synchronisierungsbeziehung ist erfolgreich, da der Computer des Benutzers Mitglied einer Domäne ist, die zur Liste der Domänen, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt), hinzugefügt wurde. Weitere Informationen finden Sie unter [Verwenden von SharePoint Online PowerShell](https://go.microsoft.com/fwlink/p/?LinkID=534609) zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind.|
 |MaxQuotaModified|Das maximale Kontingent für eine Website wurde geändert.|
 |MaxResourceUsageModified|Der maximal zulässige Ressourceneinsatz für eine Website wurde geändert.|
@@ -353,7 +405,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |TimesheetRejected|Ein Benutzer lehnt eine Arbeitszeittabelle in der Project Web App ab.|
 |TimesheetSaved|Ein Benutzer speichert eine Arbeitszeittabelle in der Project Web App.|
 |TimesheetSubmitted|Ein Benutzer übermittelt eine Arbeitszeittabelle in der Project Web App.|
-|UnmanagedSyncClientBlocked|Ein Benutzer versucht, eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website von einem Computer aus herzustellen, der kein Mitglied der Domäne Ihrer Organisation ist oder Mitglied einer Domäne ist, die nicht in die Liste der Domänen übernommen wurde, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt). Die Synchronisierungsbeziehung ist nicht zulässig, und der Computer des Benutzers ist für das Synchronisieren, Herunterladen oder Hochladen von Dateien der Dokumentbibliothek gesperrt. Informationen zu dieser Funktion finden Sie unter [Verwenden von Windows PowerShell-Cmdlets zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind](https://docs.microsoft.com/powershell/module/sharepoint-online/index?view=sharepoint-ps).|
+|UnmanagedSyncClientBlocked|Ein Benutzer versucht, eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website von einem Computer aus herzustellen, der kein Mitglied der Domäne Ihrer Organisation ist oder Mitglied einer Domäne ist, die nicht in die Liste der Domänen übernommen wurde, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt). Die Synchronisierungsbeziehung ist nicht zulässig, und der Computer des Benutzers ist für das Synchronisieren, Herunterladen oder Hochladen von Dateien der Dokumentbibliothek gesperrt. Informationen zu dieser Funktion finden Sie unter [Verwenden von Windows PowerShell-Cmdlets zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind](https://docs.microsoft.com/powershell/module/sharepoint-online/index).|
 |UpdateSSOApplication|Die Zielanwendung wurde im Secure Store Service aktualisiert.|
 |UserAddedToGroup|Der Websiteadministrator oder -besitzer fügt eine Person zu einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website hinzu. Das Hinzufügen einer Person zu einer Gruppe gewährt dem Benutzer die Berechtigungen, die der Gruppe zugewiesen wurden. |
 |UserRemovedFromGroup|Der Websiteadministrator oder -besitzer entfernt eine Person aus einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website. Nachdem die Person entfernt wurde, besitzt sie nicht mehr die Berechtigungen, die der Gruppe zugewiesen wurden. |
@@ -1146,8 +1198,8 @@ Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für
 - Bedrohungen gefunden
 - Bereinigt
 - Fehlgeschlagen
-- Von Drosselung beendet
-- Vom Benutzer beendet
+- Durch Drosselung beendet
+- Durch den Benutzer beendet
 - Wird ausgeführt
 
 ### <a name="main-investigation-schema"></a>Hauptuntersuchungsschema
@@ -1349,7 +1401,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Comp
 | **Parameter**     | **Typ**            | **Erforderlich?** | **Beschreibung**|
 |:------------------ | :------------------ | :--------------|:--------------|
 | WpaUserRole        | Edm.String | Nein     | Die Workplace Analytics-Rolle des Benutzers, der die Aktion ausgeführt hat.|
-| ModifiedProperties | Collection (Common.ModifiedProperty) | Nein | Diese Eigenschaft enthält den Namen der Eigenschaft, die geändert wurde, den neuen Wert der geänderten Eigenschaft und den vorherigen Wert der geänderten Eigenschaft.|
+| ModifiedProperties | Sammlung (Common.ModifiedProperty) | Nein | Diese Eigenschaft enthält den Namen der Eigenschaft, die geändert wurde, den neuen Wert der geänderten Eigenschaft und den vorherigen Wert der geänderten Eigenschaft.|
 | OperationDetails   | Collection (Common.NameValuePair)    | Nein | Eine Liste der erweiterten Eigenschaften für die geänderte Einstellung. Jede Eigenschaft besitzt einen **Namen** und einen **Wert**.|
 ||||
 

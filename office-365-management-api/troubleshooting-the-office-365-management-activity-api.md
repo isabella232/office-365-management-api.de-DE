@@ -7,25 +7,25 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: a5661cd1650ac6412bf6723a5ffc27c3a81c11b1
-ms.sourcegitcommit: e7f345710dc63003704399419f784c4a9b5fc529
+ms.openlocfilehash: a65c8dff39d80b57b1c885639be2e228e8119cb7
+ms.sourcegitcommit: 263cfbc04033ea8a1d765215e8777739587818e0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2020
-ms.locfileid: "48830476"
+ms.lasthandoff: 11/13/2020
+ms.locfileid: "49021009"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Häufig gestellte Fragen und Problembehandlung der Office 365-Verwaltungsaktivitäts-API
 
-Die Office 365-Verwaltungsaktivitäts-API (auch bekannt als *einheitliche Überwachungs-API* ) ist Teil der Office 365-Sicherheits- und Complianceangebote, die:
+Die Office 365-Verwaltungsaktivitäts-API (auch bekannt als *einheitliche Überwachungs-API*) ist Teil der Office 365-Sicherheits- und Complianceangebote, die:
 
 - Ermöglicht den programmgesteuerten Zugriff auf mehrere Überwachungspipeline-Arbeitslasten (wie SharePoint und Exchange)
 
 - Ist die wichtigste Schnittstelle, die von einer Vielzahl von Drittanbieterprodukten zum Aggregieren und Indexieren von Überwachungsdaten verwendet wird
 
-Die Verwaltungsaktivitäts-API sollte nicht mit der Office 365-Dienstkommunikations-API verwechselt werden. Die Verwaltungsaktivitäts-API ist für die Überwachung der Endbenutzeraktivitäten in den verschiedenen Arbeitslasten gedacht. Die Dienstkommunikations-API ist für die Überwachung von Status und Nachrichten gedacht, die von den Diensten gesendet werden, die in Office 365 zur Verfügung stehen (z. B. Dynamics CRM oder Identity Service).
+Die Verwaltungsaktivitäts-API sollte nicht mit der Office 365-Dienstkommunikations-API verwechselt werden. Die Verwaltungsaktivitäts-API ist für die Überwachung der Endbenutzeraktivitäten in den verschiedenen Arbeitslasten gedacht. Die Dienstkommunikations-API ist für die Überwachung von Status und Nachrichten gedacht, die von den Diensten gesendet werden, die in Office 365 zur Verfügung stehen (z. B. Dynamics CRM oder Identitätsdienst).
  
 > [!NOTE]
-> Wir arbeiten derzeit an einem Problem, bei dem Ereignisse mit dem Inhaltstyp Audit.AzureActiveDirectory nicht verfügbar sind, wenn Sie die Office 365-Verwaltungsaktivitäts-API verwenden. Dieses Problem wurde um den 26. Oktober 2020 festgestellt. Azure AD -Anmeldeereignisse sind von diesem Problem nicht betroffen. Wenn das Problem behoben ist, wird ein Update bereitgestellt.
+> Es gab ein Problem mit Ereignissen, die zum Audit. AzureActiveDirectory-Inhaltstyp gehören, die über die Office 365-Verwaltungsaktivitäts-API zwischen dem 22. Oktober und dem 6. November 2020 nicht verfügbar war. Azure AD-Anmeldeereignisse waren von diesem Problem nicht betroffen. Die fehlenden Ereignisse für den Auswirkungszeitraum werden in den nächsten Tage zur Verfügung gestellt und es wird erwartet, dass das Problem bis spätestens am 20. November 2020 behoben sein wird. In einigen Fällen können Kunden doppelte Ereignisdaten für Ereignisse bemerken, die zwischen dem 26. Oktober und dem 5. November 2020 generiert wurden.
 
 ## <a name="frequently-asked-questions-about-the-office-365-management-activity-api"></a>Häufig gestellte Fragen zur Office 365-Verwaltungsaktivitäts-API
 
@@ -249,9 +249,9 @@ Invoke-WebRequest -Method GET -Headers $headerParams -Uri "$resource/api/v1.0/$t
 
 > [!IMPORTANT]
 >
-> - Die *ContentUri* -Eigenschaft ist der URI, von dem Sie das Inhalts-Blob abrufen können. Das Blob selbst enthält die Ereignisdetails; es enthält Details zu 1 – N-Ereignissen. Selbst wenn 30 JSON-Objekte in der Sammlung vorhanden sind, sind evtl. viel mehr Ereignisse in diesen 30 Inhalts-URIs aufgeführt.
+> - Die *ContentUri*-Eigenschaft ist der URI, von dem Sie das Inhalts-Blob abrufen können. Das Blob selbst enthält die Ereignisdetails; es enthält Details zu 1 – N-Ereignissen. Selbst wenn 30 JSON-Objekte in der Sammlung vorhanden sind, sind evtl. viel mehr Ereignisse in diesen 30 Inhalts-URIs aufgeführt.
 >
-> - Die *ContentCreated* -Eigenschaft ist nicht das Datum, an dem das Ereignis mit der Benachrichtigung erstellt wurde. Dies ist das Datum, an dem die Benachrichtigung erstellt wurde. Die Ereignisse in diesem Blob wurden möglicherweise deutlich vor dem Inhalts-Blob erstellt. Daher können Sie die API niemals direkt für Ereignisse abfragen, die in einem bestimmten Zeitraum aufgetreten sind.
+> - Die *ContentCreated*-Eigenschaft ist nicht das Datum, an dem das Ereignis mit der Benachrichtigung erstellt wurde. Dies ist das Datum, an dem die Benachrichtigung erstellt wurde. Die Ereignisse in diesem Blob wurden möglicherweise deutlich vor dem Inhalts-Blob erstellt. Daher können Sie die API niemals direkt für Ereignisse abfragen, die in einem bestimmten Zeitraum aufgetreten sind.
 
 #### <a name="paging-contents-for-busy-tenants"></a>Auslagern von Inhalten für aktive Mandanten
 
@@ -265,11 +265,11 @@ THEN issue a new request substituting the Uri parameter in the above Invoke-WebR
 ELSE exit the loop
 ```
 
-Es ist schwierig, diesen Schleifencode zu testen, wenn Sie keinen aktiven Mandanten haben. In unseren Tests haben wir versucht, verschiedene Tausende Update-Operationen in einem Skript auszuführen und konnten keine ausreichende Anzahl an Benachrichtigungen generieren, um das Senden des **NextPageUrl** -Headers anzufordern.
+Es ist schwierig, diesen Schleifencode zu testen, wenn Sie keinen aktiven Mandanten haben. In unseren Tests haben wir versucht, verschiedene Tausende Update-Operationen in einem Skript auszuführen und konnten keine ausreichende Anzahl an Benachrichtigungen generieren, um das Senden des **NextPageUrl**-Headers anzufordern.
 
 ### <a name="using-webhooks"></a>Verwenden von Webhooks
 
-Es gibt zwei Möglichkeiten, eine Benachrichtigung zu erhalten, dass Inhalts-Blobs erstellt wurden. Der *Push* -Ansatz wird mit einem Webhook-Endpunkt implementiert. Bei diesem handelt es sich um eine Webanwendung, die Sie erstellen und selbst oder auf einer Cloudplattform hosten. Sie registrieren den Webhook beim Erstellen eines Abonnements für einen überwachten Inhaltstyp. Sie können auch die Registrierung eines Webhook zu einem vorhandenen Abonnement mit dem unten dargestellten Ansatz hinzufügen. Der *Pull* -Ansatz erfordert die Abfrage einer bestimmten Zeitspanne (nicht mehr als 24 Stunden) mit der /content-Operation. Die Antwort informiert sie, welche Inhalts-Blobs während des angegebenen Zeitraums erstellt wurden.
+Es gibt zwei Möglichkeiten, eine Benachrichtigung zu erhalten, dass Inhalts-Blobs erstellt wurden. Der *Push*-Ansatz wird mit einem Webhook-Endpunkt implementiert. Bei diesem handelt es sich um eine Webanwendung, die Sie erstellen und selbst oder auf einer Cloudplattform hosten. Sie registrieren den Webhook beim Erstellen eines Abonnements für einen überwachten Inhaltstyp. Sie können auch die Registrierung eines Webhook zu einem vorhandenen Abonnement mit dem unten dargestellten Ansatz hinzufügen. Der *Pull*-Ansatz erfordert die Abfrage einer bestimmten Zeitspanne (nicht mehr als 24 Stunden) mit der /content-Operation. Die Antwort informiert sie, welche Inhalts-Blobs während des angegebenen Zeitraums erstellt wurden.
 
 Bevor Sie einen Webhook hinzufügen, sollten Sie Folgendes beachten:
 
@@ -308,11 +308,11 @@ $uri = 'https://manage.office.com/api/v1.0/<<your-tenant-guid>>/activity/feed/au
 $contents = Invoke-WebRequest -Method GET -Headers $headerParams -Uri $uri
 ```
 
-Beachten Sie die folgenden Punkte zur *$uri* -Variablen im vorherigen Beispiel:
+Beachten Sie die folgenden Punkte zur *$uri*-Variablen im vorherigen Beispiel:
 
-- Wir haben einzelne Anführungszeichen verwendet, sodass die *$* -Symbole nicht als Variablen in PowerShell interpretiert werden.
+- Wir haben einzelne Anführungszeichen verwendet, sodass die *$*-Symbole nicht als Variablen in PowerShell interpretiert werden.
 
-- Die gesamte URI wird in der *ContentUri* -Eigenschaft der Antwort auf Ihren vorherigen Aufruf des /content-Endpunkts zurückgegeben. Die dargestellten Platzhaltertoken dienen nur zur Veranschaulichung.
+- Die gesamte URI wird in der *ContentUri*-Eigenschaft der Antwort auf Ihren vorherigen Aufruf des /content-Endpunkts zurückgegeben. Die dargestellten Platzhaltertoken dienen nur zur Veranschaulichung.
 
 Wenn Sie versuchen, die verfügbaren Inhalts-Blobs abzurufen, sind bei vielen Kunden (die hauptsächlich mit aktiven Mandanten arbeiten) Fehler wie folgende aufgetreten:
 
@@ -323,13 +323,13 @@ Response Code 403: {'error':{'code':'AF429','message':'Too many requests. Method
 Dies liegt wahrscheinlich an der Drosselung. Beachten Sie, das der Wert des PublisherId-Parameters wahrscheinlich darauf hinweist, dass der Client *PublisherIdentifier* in der Anforderung nicht angegeben hat. Darüber hinaus sollten Sie berücksichtigen, dass der richtige Parametername *PublisherIdentifier* lautet, auch wenn *PublisherId* in den 403-Fehlerantworten aufgeführt ist.
 
 > [!NOTE]
-> In der API-Referenz ist der *PublisherIdentifier* -Parameter in jeder Operation der API aufgelistet, sollte jedoch auch beim Abruf des Inhalts-Blob in der GET-Anforderung zur contentUri-URL eingeschlossen werden.
+> In der API-Referenz ist der *PublisherIdentifier*-Parameter in jeder Operation der API aufgelistet, sollte jedoch auch beim Abruf des Inhalts-Blob in der GET-Anforderung zur contentUri-URL eingeschlossen werden.
 
-Wenn Sie einfache API-Aufrufe zur Problembehebung ausführen (beispielsweise Prüfung, ob ein vorhandenes Abonnement aktiv ist), können Sie den *PublisherIdentifier* -Parameter auslassen. Jeder Code, der für die Produktion gedacht ist, sollte den *PublisherIdentifier* -Parameterjedoch bei jedem Aufruf aufweisen.
+Wenn Sie einfache API-Aufrufe zur Problembehebung ausführen (beispielsweise Prüfung, ob ein vorhandenes Abonnement aktiv ist), können Sie den *PublisherIdentifier*-Parameter auslassen. Jeder Code, der für die Produktion gedacht ist, sollte den *PublisherIdentifier*-Parameterjedoch bei jedem Aufruf aufweisen.
 
 Wenn Sie einen Client für den Mandanten Ihres Unternehmens implementieren, ist *PublisherIdentifier* die GUID des Mandanten. Wenn Sie eine ISV-Anwendung oder ein Add-In für mehrere Kunden erstellen, sollte *PublisherIdentifier* die Mandanten-GUID des ISVs und nicht die Mandanten-GUID des Endbenutzerunternehmens sein.
 
-Wenn Sie die gültige *PublisherIdentifier* einschließen, befinden Sie sich in einem Pool, dem 60.000 Anforderungen pro Minute und Mandant zugewiesen werden. Dies ist eine außergewöhnlich große Anzahl von Anforderungen. Wenn Sie den *PublisherIdentifier* -Parameter jedoch nicht einschließen, befinden Sie sich im allgemeinen Pool, dem 60.000 Anforderungen pro Minute für alle Mandanten zugewiesen werden. In diesem Fall werden Sie sehr wahrscheinlich feststellen, dass Ihre Aufrufe gedrosselt werden. Um dies zu verhindern, fordern Sie ein Inhalts-Blob mit *PublisherIdentifier* wie folgt an:
+Wenn Sie die gültige *PublisherIdentifier* einschließen, befinden Sie sich in einem Pool, dem 60.000 Anforderungen pro Minute und Mandant zugewiesen werden. Dies ist eine außergewöhnlich große Anzahl von Anforderungen. Wenn Sie den *PublisherIdentifier*-Parameter jedoch nicht einschließen, befinden Sie sich im allgemeinen Pool, dem 60.000 Anforderungen pro Minute für alle Mandanten zugewiesen werden. In diesem Fall werden Sie sehr wahrscheinlich feststellen, dass Ihre Aufrufe gedrosselt werden. Um dies zu verhindern, fordern Sie ein Inhalts-Blob mit *PublisherIdentifier* wie folgt an:
 
 ```json
 $contentUri = ($response.Content | ConvertFrom-Json).contentUri[0]
@@ -337,4 +337,4 @@ $uri = $contentUri + '?PublisherIdentifier=82b24b6d-0591-4604-827b-705d55d0992f'
 $contents = Invoke-WebRequest -Method GET -Headers $headerParams -Uri $uri
 ```
 
-Das vorherige Beispiel setzt voraus, dass die *$response* -Variable mit der Antwort auf eine Anforderung beim /content-Endpunkt gefüllt wurde und dass die *$headerParams* -Variable ein gültiges Zugriffstoken enthält. Das Skript verwendet das erste Element im Array von Inhalts-URIs aus der Antwort und ruft dann GET auf, um dieses Blob herunterzuladen und es in der *$contents* -Variable zu platzieren. Der Code wird in der contentUri-Sammlung in einer Schleife ausgeführt, wobei GET für *contentUri* ausgegeben wird.
+Das vorherige Beispiel setzt voraus, dass die *$response*-Variable mit der Antwort auf eine Anforderung beim /content-Endpunkt gefüllt wurde und dass die *$headerParams*-Variable ein gültiges Zugriffstoken enthält. Das Skript verwendet das erste Element im Array von Inhalts-URIs aus der Antwort und ruft dann GET auf, um dieses Blob herunterzuladen und es in der *$contents*-Variable zu platzieren. Der Code wird in der contentUri-Sammlung in einer Schleife ausgeführt, wobei GET für *contentUri* ausgegeben wird.
