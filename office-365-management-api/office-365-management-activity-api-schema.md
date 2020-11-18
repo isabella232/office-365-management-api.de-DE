@@ -7,23 +7,22 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c56a76a44972d2df4787aa4185300b2643db388a
-ms.sourcegitcommit: 263cfbc04033ea8a1d765215e8777739587818e0
+ms.openlocfilehash: 829af6eb582175c99239720c04bfe7d0ce286af9
+ms.sourcegitcommit: e74da95f449e4f8e04ee82e2d376c041f8403524
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "49021016"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "49086803"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
 Das Office 365-Verwaltungsaktivitäts-API-Schema wird als Datendienst auf zwei Ebenen bereitgestellt:
 
-- **Allgemeines Schema**. Die Benutzeroberfläche für den Zugriff auf wichtige Office 365-Überwachungskonzepte wie z. B. Datensatztyp, Zeitpunkt der Erstellung, Benutzertyp und Aktion sowie für die Bereitstellung wichtiger Dimensionen (z. B. Benutzer-ID), Speicherortspezifikationen (z. B. Client-IP-Adresse) und produktspezifischer Eigenschaften (z. B. Objekt-ID). Es werden konsistente und einheitliche Ansichten für Benutzer eingerichtet, um alle Office 365-Überwachungsdaten in wenigen Ansichten auf oberster Ebene mit den entsprechenden Parametern zu extrahieren, und es entsteht ein festes Schema für alle Datenquellen, was die Kosten des Lernens erheblich reduziert. Das allgemeine Schema wird aus den Produktdaten jedes Produktteams abgeleitet, z. B. Exchange, SharePoint, Azure Active Directory, Yammer und OneDrive for Business. Das Feld "Objekt-ID" kann von Produktteams um produktspezifische Eigenschaften erweitert werden.
+- **Allgemeines Schema**. Die Benutzeroberfläche für den Zugriff auf wichtige Office 365-Überwachungskonzepte wie z. B. Datensatztyp, Zeitpunkt der Erstellung, Benutzertyp und Aktion sowie für die Bereitstellung wichtiger Dimensionen (z. B. Benutzer-ID), Speicherortspezifikationen (z. B. Client-IP-Adresse) und produktspezifischer Eigenschaften (z. B. Objekt-ID). Es werden konsistente und einheitliche Ansichten für Benutzer eingerichtet, um alle Office 365-Überwachungsdaten in wenigen Ansichten auf oberster Ebene mit den entsprechenden Parametern zu extrahieren, und es entsteht ein festes Schema für alle Datenquellen, was die Kosten des Lernens erheblich reduziert. Das allgemeine Schema wird aus den Produktdaten jedes Produktteams abgeleitet, z. B. Exchange, SharePoint, Azure Active Directory, Yammer und OneDrive for Business. Das Feld "Objekt-ID" kann von Produktteams um produktspezifische Eigenschaften erweitert werden.
 
-- **Produktspezifisches Schema**. Baut auf das allgemeine Schema auf, um eine Reihe von produktspezifischen Attributen bereitzustellen; z. B. SharePoint-Schema, OneDrive for Business-Schema und Exchange-Administrator-Schema.
+- **Produktspezifisches Schema**. Baut auf das allgemeine Schema auf, um eine Reihe von produktspezifischen Attributen bereitzustellen; z. B. SharePoint-Schema, OneDrive for Business-Schema und Exchange-Administratorschema.
 
-**Welche Ebene sollten Sie für Ihr Szenario verwenden?**
-Allgemein gilt: Wenn die Daten in einer höheren Ebene verfügbar sind, kehren Sie nicht zu einer niedrigeren Ebene zurück. Oder anders gesagt: Wenn die Datenanforderung in ein produktspezifisches Schema aufgenommen werden kann, brauchen Sie nicht zum allgemeinen Schema zurückzukehren. 
+**Welche Ebene sollten Sie für Ihr Szenario verwenden?** Allgemein gilt: Wenn die Daten in einer höheren Ebene verfügbar sind, kehren Sie nicht zu einer niedrigeren Ebene zurück. Oder anders gesagt: Wenn die Datenanforderung in ein produktspezifisches Schema aufgenommen werden kann, brauchen Sie nicht zum allgemeinen Schema zurückzukehren. 
 
 ## <a name="office-365-management-api-schemas"></a>Office 365-Verwaltungs-API-Schemas
 
@@ -51,7 +50,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Rechenzentrum-Sicherheits-Cmdlet-Schema](#data-center-security-cmdlet-schema)|Das Datenzentrum-Sicherheitsbasis-Schema wird mit den für alle Rechenzentrum-Sicherheits-Cmdlet-Überwachungsdaten spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Schema](#microsoft-teams-schema)|Das allgemeine Schema wird mit den für alle Microsoft Teams-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Office 365 Advanced Threat Protection- und Threat Investigation and Response-Schema](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Office 365 Advanced Threat Protection und Threat Investigation and Response spezifischen Daten erweitert.|
-|[Schema "Automatisierte Untersuchungs- und Reaktionsereignisse"](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für ‚Automatisierte Untersuchungs- und Reaktionsereignisse‘ (AIR, Automated investigation and response) in Office 365 spezifischen Eigenschaften erweitert. Ein Beispiel finden Sie im [Tech Community-Blog: Improve the Effectiveness of your SOC with Office 365 ATP and the O365 Management API](https://techcommunity.microsoft.com/t5/microsoft-security-and/improve-the-effectiveness-of-your-soc-with-office-365-atp-and/ba-p/1525185) (Verbessern der Effektivität Ihres SOC mit Office 365 ATP und der O365 Management-API).|
+|[Schema "Automatisierte Untersuchungs- und Reaktionsereignisse"](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für "Automatisierte Untersuchungs- und Reaktionsereignisse" (AIR, Automated Investigation and Response) in Office 365 spezifischen Eigenschaften erweitert. Ein Beispiel finden Sie im [Tech Community-Blog: Improve the Effectiveness of your SOC with Office 365 ATP and the O365 Management API](https://techcommunity.microsoft.com/t5/microsoft-security-and/improve-the-effectiveness-of-your-soc-with-office-365-atp-and/ba-p/1525185) (Verbessern der Effektivität Ihres SOC mit Office 365 ATP und der O365 Management-API).|
 |[Nachrichtenschutzereignis-Schema](#hygiene-events-schema)|Das allgemeine Schema wird um die für Ereignisse in Exchange Online Protection und Advanced Threat Protection spezifischen Eigenschaften erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
 |[Dynamics 365-Schema](#dynamics-365-schema)|Das allgemeine Schema wird mit den für Dynamics 365-Ereignisse spezifischen Eigenschaften erweitert.|
@@ -71,19 +70,19 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |Id|Kombination aus GUIDEdm.Guid|Ja|Der eindeutige Bezeichner eines Überwachungsdatensatzes.|
 |RecordType|Self.[AuditLogRecordType](#auditlogrecordtype)|Ja|Der vom Datensatz angegebene Vorgangstyp. In der Tabelle [AuditLogRecordType](#auditlogrecordtype) finden Sie weitere Informationen zu den Typen von Überwachungsprotokolldatensätzen.|
 |CreationTime|Edm.Date|Ja|Das Datum und die Uhrzeit in koordinierter Weltzeit (UTC), wann der Benutzer die Aktivität ausgeführt hat.|
-|Vorgang|Edm.String|Ja|Der Name der Benutzer- oder Verwaltungsaktivität. Eine Beschreibung der am häufigsten verwendeten Vorgänge und Aktivitäten, finden Sie unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://go.microsoft.com/fwlink/p/?LinkId=708432). Für Exchange-Administratoraktivitäten gibt diese Eigenschaft den Namen des Cmdlets an, das ausgeführt wurde. Für Dlp-Ereignisse kann dies "DlpRuleMatch", "DlpRuleUndo" oder "DlpInfo" sein. Eine Beschreibung finden Sie unten unter "DLP-Schema".|
+|Vorgang|Edm.String|Ja|Der Name der Benutzer- oder Administratoraktivität. Eine Beschreibung der am häufigsten verwendeten Vorgänge und Aktivitäten, finden Sie unter [Durchsuchen des Überwachungsprotokolls im Office 365-Schutzcenter](https://go.microsoft.com/fwlink/p/?LinkId=708432). Für Exchange-Administratoraktivitäten gibt diese Eigenschaft den Namen des Cmdlets an, das ausgeführt wurde. Für Dlp-Ereignisse kann dies "DlpRuleMatch", "DlpRuleUndo" oder "DlpInfo" sein. Eine Beschreibung finden Sie unten unter "DLP-Schema".|
 |OrganizationId|Edm.Guid|Ja|Die GUID für den Office 365-Mandanten Ihrer Organisation. Dieser Wert ist für Ihre Organisation, unabhängig vom Office 365-Dienst, in dem er verwendet wird, immer gleich.|
 |UserType|Self.[UserType](#user-type)|Ja|Der Typ des Benutzers, der den Vorgang ausgeführt hat. In der Tabelle [UserType](#user-type) finden Sie Informationen zu den Typen von Benutzern.|
-|UserKey|Edm.String|Ja|Eine alternative ID für den in der UserId-Eigenschaft identifizierten Benutzer. Diese Eigenschaft wird z. B. mit der Passport Unique ID (PUID) bei Ereignissen ausgefüllt, die von Benutzern in SharePoint, OneDrive for Business und Exchange ausgeführt werden. Diese Eigenschaft kann den gleichen Wert spezifizieren wie die Eigenschaft "UserID" für Ereignisse, die in anderen Diensten auftreten, und Ereignisse, die von Systemkonten durchgeführt werden.|
-|Arbeitslast|Edm.String|Nein|Der Office 365-Dienst, in dem die Aktivität stattgefunden hat. 
+|UserKey|Edm.String|Ja|Eine alternative ID für den in der UserId-Eigenschaft identifizierten Benutzer. Diese Eigenschaft wird z. B. mit der Passport Unique ID (PUID) bei Ereignissen ausgefüllt, die von Benutzern in SharePoint, OneDrive for Business und Exchange ausgeführt werden. Diese Eigenschaft kann den gleichen Wert spezifizieren wie die Eigenschaft "UserID" für Ereignisse, die in anderen Diensten auftreten, und Ereignisse, die von Systemkonten durchgeführt werden.|
+|Workload|Edm.String|Nein|Der Office 365-Dienst, in dem die Aktivität stattgefunden hat. 
 |ResultStatus|Edm.String|Nein|Gibt an, ob die Aktion (in der Eigenschaft "Operation" angegeben) erfolgreich war oder nicht. Mögliche Werte sind **Succeeded**, **PartiallySucceeded** oder **Failed**. Für Exchange-Verwaltungsaktivitäten ist der Wert entweder **True** oder **False**.<br/><br/>**Wichtig**: Unterschiedliche Workloads können den Wert der ResultStatus-Eigenschaft außer Kraft setzen. Beispielsweise zeigt ein Wert **Succeeded** für "ResultStatus" bei Azure Active Directory STS-Anmeldeereignissen nur an, dass die HTTP-Operation erfolgreich war; er bedeutet nicht, dass die Anmeldung erfolgreich war. Um festzustellen, ob die eigentliche Anmeldung erfolgreich war oder nicht, ziehen Sie die LogonError-Eigenschaft im [Azure Active Directory-STS-Anmeldeschema](#azure-active-directory-secure-token-service-sts-logon-schema) zurate. Wenn die Anmeldung fehlgeschlagen ist, enthält diese Eigenschaft den Grund für den fehlgeschlagenen Anmeldeversuch. |
 |ObjectId|Edm.string|Nein|Für SharePoint- und OneDrive for Business-Aktivitäten der vollständige Pfadname der Datei oder des Ordners, auf die bzw. den der Benutzer zugegriffen hat. Für Exchange-Verwaltungsüberwachungsprotokolle der Name des Objekts, das vom Cmdlet geändert wurde.|
-|UserId|Edm.string|Ja|Der UPN (User Principal Name) des Benutzers, der die Aktion (in der Eigenschaft "Operation" angegeben), die zu einem Eintrag geführt hat, ausgeführt hat, zum Beispiel `my_name@my_domain_name`. Beachten Sie, dass auch von Systemkonten ausgeführte Datensätze (wie SHAREPOINT\system oder NT AUTHORITY\SYSTEM) enthalten sind. In SharePoint ist eine weitere Wertanzeige in der UserId-Eigenschaft "app@sharepoint". Dies zeigt an, dass es sich bei dem "Benutzer", der die Aktivität ausgeführt hat, um eine Anwendung handelt, die in SharePoint über die erforderlichen Berechtigungen verfügt, organisationsweite Aktionen (z. B. das Durchsuchen einer SharePoint-Website oder eines OneDrive-Kontos) im Auftrag eines Benutzers, Administrators oder Diensts auszuführen. Weitere Informationen finden Sie unter [Der "app@sharepoint"-Benutzer in Überwachungsdatensätzen](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records). |
-|ClientIP|Edm.String|Ja|Die IP-Adresse des Geräts, das verwendet wurde, als die Aktivität protokolliert wurde. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.<br/><br/>Bei einigen Diensten ist der in dieser Eigenschaft angezeigte Wert möglicherweise die IP-Adresse einer vertrauenswürdigen Anwendung (z.B. Office in den Web-Apps), die anstelle eines Benutzers in den Dienst einruft und nicht die IP-Adresse des Geräts, das von der Person, die die Aktivität ausgeführt hat, verwendet wird. <br/><br/>Außerdem wird für Azure Active Directory-bezogene Ereignisse die IP-Adresse nicht protokolliert und der Wert für die ClientIP-Eigenschaft ist `null`.|
-|Bereich|Self.[AuditLogScope](#auditlogscope)|Nein|Wurde dieses Ereignis von einem gehosteten Office 365-Dienst oder einem lokalen Server erstellt? Mögliche Werte sind **online** und **onprem**. Beachten Sie, dass SharePoint die einzige Arbeitslast ist, die derzeit Ereignissen aus lokalen Umgebungen an O365 sendet.|
+|UserId|Edm.string|Ja|Der UPN (User Principal Name) des Benutzers, der die Aktion (in der Eigenschaft "Operation" angegeben), die zu einem Eintrag geführt hat, ausgeführt hat, zum Beispiel `my_name@my_domain_name`. Beachten Sie, dass auch von Systemkonten ausgeführte Datensätze (wie "SHAREPOINT\system" oder "NT AUTHORITY\SYSTEM") enthalten sind. In SharePoint ist eine weitere Wertanzeige in der UserId-Eigenschaft "app@sharepoint". Dies zeigt an, dass es sich bei dem "Benutzer", der die Aktivität ausgeführt hat, um eine Anwendung handelt, die in SharePoint über die erforderlichen Berechtigungen verfügt, organisationsweite Aktionen (z. B. das Durchsuchen einer SharePoint-Website oder eines OneDrive-Kontos) im Auftrag eines Benutzers, Administrators oder Diensts auszuführen. Weitere Informationen finden Sie unter [Der "app@sharepoint"-Benutzer in Überwachungsdatensätzen](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records). |
+|ClientIP|Edm.String|Ja|Die IP-Adresse des Geräts, das verwendet wurde, als die Aktivität protokolliert wurde. Die IP-Adresse wird entweder im Format IPv4 oder im Format IPv6 angezeigt.<br/><br/>Bei einigen Diensten ist der in dieser Eigenschaft angezeigte Wert möglicherweise die IP-Adresse einer vertrauenswürdigen Anwendung (z. B. Office in den Web-Apps), die sich anstelle eines Benutzers in den Dienst einwählt, und nicht die IP-Adresse des Geräts, das von der Person, die die Aktivität ausgeführt hat, verwendet wird. <br/><br/>Außerdem wird für Azure Active Directory-bezogene Ereignisse die IP-Adresse nicht protokolliert und der Wert für die ClientIP-Eigenschaft ist `null`.|
+|Bereich|Self.[AuditLogScope](#auditlogscope)|Nein|Wurde dieses Ereignis von einem gehosteten Office 365-Dienst oder einem lokalen Server erstellt? Mögliche Werte sind **online** und **onprem**. Beachten Sie, dass SharePoint die einzige Workload ist, die derzeit Ereignissen aus lokalen Umgebungen an O365 sendet.|
 |||||
 
-### <a name="enum-auditlogrecordtype---type-edmint32"></a>Enum: AuditLogRecordType - Typ: Edm.Int32
+### <a name="enum-auditlogrecordtype---type-edmint32"></a>Enum: AuditLogRecordType - Type: Edm.Int32
 
 #### <a name="auditlogrecordtype"></a>AuditLogRecordType
 
@@ -174,10 +173,10 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |90|MSTIC|Threat-Intelligence-Ereignisse in Microsoft Defender für Office 365.|
 |91|PhysicalBadgingSignal|Ereignisse im Zusammenhang mit physischen Ausweissignalen, welche die Insider-Risikomanagement-Lösung unterstützen.|
 |93|AipDiscover|Azure Information Protection (AIP)-Scanner-Ereignisse.|
-|94|AipSensitivityLabelAction||
-|95|AipProtectionAction||
-|96|AipFileDeleted||
-|97|AipHeartBeat||
+|94|AipSensitivityLabelAction|AIP-Vertraulichkeitsbezeichnungsereignisse. |
+|95|AipProtectionAction|AIP-Schutzereignisse.|
+|96|AipFileDeleted|AIP-Dateilöschereignisse.|
+|97|AipHeartBeat|AIP-Taktsignalereignisse.|
 |98|MCASAlerts|Ereignisse, die Warnungen entsprechen, die von Microsoft Cloud App Security ausgelöst werden.|
 |99|OnPremisesFileShareScannerDlp|Ereignisse im Zusammenhang mit der Suche nach vertraulichen Daten in Dateifreigaben.|
 |100|OnPremisesSharePointScannerDlp|Ereignisse im Zusammenhang mit der Suche nach vertraulichen Daten in SharePoint.|
