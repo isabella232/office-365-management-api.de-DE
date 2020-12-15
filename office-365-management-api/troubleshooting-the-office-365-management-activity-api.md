@@ -22,7 +22,7 @@ Die Office 365-Verwaltungsaktivitäts-API (auch bekannt als *einheitliche Überw
 
 - Ist die wichtigste Schnittstelle, die von einer Vielzahl von Drittanbieterprodukten zum Aggregieren und Indexieren von Überwachungsdaten verwendet wird
 
-Die Verwaltungsaktivitäts-API sollte nicht mit der Office 365-Dienstkommunikations-API verwechselt werden. Die Verwaltungsaktivitäts-API ist für die Überwachung der Endbenutzeraktivitäten in den verschiedenen Arbeitslasten gedacht. Die Dienstkommunikations-API ist für die Überwachung von Status und Nachrichten gedacht, die von den Diensten gesendet werden, die in Office 365 zur Verfügung stehen (z. B. Dynamics CRM oder Identitätsdienst).
+Die Verwaltungsaktivitäts-API sollte nicht mit der Office 365-Dienstkommunikations-API verwechselt werden. Die Verwaltungsaktivitäts-API ist für die Überwachung der Endbenutzeraktivitäten in den verschiedenen Arbeitslasten gedacht. Die Dienstkommunikations-API ist für die Überwachung von Status und Nachrichten gedacht, die von den Diensten gesendet werden, die in Office 365 zur Verfügung stehen (z. B. Dynamics CRM oder Identity Service).
  
 > [!NOTE]
 > Es gab ein Problem mit Ereignissen, die zum Audit. AzureActiveDirectory-Inhaltstyp gehören, die über die Office 365-Verwaltungsaktivitäts-API zwischen dem 22. Oktober und dem 6. November 2020 nicht verfügbar war. Azure AD-Anmeldeereignisse waren von diesem Problem nicht betroffen. Die fehlenden Ereignisse für den Auswirkungszeitraum werden in den nächsten Tage zur Verfügung gestellt und es wird erwartet, dass das Problem bis spätestens am 20. November 2020 behoben sein wird. In einigen Fällen können Kunden doppelte Ereignisdaten für Ereignisse bemerken, die zwischen dem 26. Oktober und dem 5. November 2020 generiert wurden.
