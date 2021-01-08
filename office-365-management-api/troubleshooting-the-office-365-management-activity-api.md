@@ -7,12 +7,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: a65c8dff39d80b57b1c885639be2e228e8119cb7
-ms.sourcegitcommit: 263cfbc04033ea8a1d765215e8777739587818e0
+ms.openlocfilehash: 9c909220d660e0202c3ebda2777b2d8922da45a3
+ms.sourcegitcommit: c3bb30b86a4569e9f18891f1cdc30cbffc8c8db4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "49021009"
+ms.lasthandoff: 01/08/2021
+ms.locfileid: "49784207"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Häufig gestellte Fragen und Problembehandlung der Office 365-Verwaltungsaktivitäts-API
 
@@ -79,6 +79,10 @@ Allen Organisationen ist anfänglich eine Baseline von 2 000-Anforderungen pro M
 **Warum werden in den Auditprotokollen für Azure Active Directory-Aktivitäten "TargetUpdatedProperties" nicht mehr in "ExtendedProperties" enthalten?**
 
 "TargetUpdatedProperties" wurden in "ExtendedProperties" angezeigt. Sie wurden jedoch aus ExtendedProperties entfernt und werden nun in ModifiedProperties angezeigt.
+
+**Warum sind keine Überwachungsprotokolle für UserAccountNotFound-Fehler für Azure Active Directory (Azure AD)-Anmeldeaktivitäten über die Verwaltungsaktivitäts-API verfügbar?**
+
+Seit November 2020 werden Überwachungsprotokolle für Azure AD-Anmeldeaktivitäten in das einheitliche Überwachungsprotokoll von Azure AD Event Hubs integriert. Da UserAccountNotFound-Anmeldefehler in Event Hubs nicht verfügbar sind, werden Überwachungsprotokolle für UserAccountNotFound-Fehler nicht mehr von der Verwaltungsaktivitäts-API zurückgegeben.
 
 ## <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
