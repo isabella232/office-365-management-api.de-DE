@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c39865d8b3aff5a11aaf113482982e1c407b9800
-ms.sourcegitcommit: 0f988a3c25a34491a6e80307cfcf097a85aa26fa
+ms.openlocfilehash: c71536ad05afe50e675661cebbfe1826cf6af3fa
+ms.sourcegitcommit: 3a6a64742924b9fbc1ffd6826b5651eb5583f70c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "49385169"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "50096955"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -332,7 +332,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |GroupUpdated|Der Websiteadministrator oder -besitzer ändert die Einstellungen einer Gruppe für eine SharePoint- oder OneDrive for Business-Website. Dazu kann das Ändern des Gruppennamens, das Anzeigen oder Bearbeiten der Gruppenmitgliedschaft und die Art der Verarbeitung von Mitgliedsanträgen gehören.|
 |LanguageAddedToTermStore|Eine Sprache wird zum Terminologiespeicher hinzugefügt.|
 |LanguageRemovedFromTermStore|Eine Sprache wird aus dem Terminologiespeicher gelöscht.|
-|LegacyWorkflowEnabledSet|Der Websiteadministrator oder -besitzer fügt den Inhaltstyp SharePoint-Workflowtask zur Website hinzu. Globale Administratoren können ebenfalls Workflows für die gesamte Organisation im SharePoint Admin Center aktivieren.|
+|LegacyWorkflowEnabledSet|Der Websiteadministrator oder -besitzer fügt den SharePoint-Workflowaufgaben-Inhaltstyp zur Website hinzu. Globale Administratoren können ebenfalls Workflows für die gesamte Organisation im SharePoint Admin Center aktivieren.|
 |LookAndFeelModified|Ein Benutzer ändert Schnellstart-, Gantt-Diagramm- oder Gruppenformate.  Oder ein Benutzer erstellt, ändert oder löscht eine Ansicht in der Project Web App.|
 |ManagedSyncClientAllowed|Ein Benutzer richtet erfolgreich eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website ein. Die Synchronisierungsbeziehung ist erfolgreich, da der Computer des Benutzers Mitglied einer Domäne ist, die zur Liste der Domänen, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt), hinzugefügt wurde. Weitere Informationen finden Sie unter [Verwenden von SharePoint Online PowerShell](https://go.microsoft.com/fwlink/p/?LinkID=534609) zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind.|
 |MaxQuotaModified|Das maximale Kontingent für eine Website wurde geändert.|
@@ -746,7 +746,8 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |:-----|:-----|:-----|:-----|
 |ApplicationId|Edm.String|Nein|Die GUID, die die Anwendung darstellt, von der die Anmeldung angefordert wird. Der Anzeigename kann über die Azure Active Directory Graph-API betrachtet werden.|
 |Client|Edm.String|Nein|Client-Geräteinformationen, die von dem Browser bereitgestellt werden, der die Anmeldung ausführt.|
-|LogonError|Edm.String|Nein|Enthält bei fehlgeschlagenen Anmeldeversuchen den Grund für das Fehlschlagen der Anmeldung. Eine umfassende Beschreibung der LogonErrors finden Sie in der Liste der [Authentifizierungs- und Autorisierungsfehlercodes](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes).
+|ErrorCode|Edm.String|Nein|Für fehlgeschlagene Anmeldungen (bei denen der Wert für die Operation-Eigenschaft "UserLoginFailed" lautet) enthält diese Eigenschaft den Azure Active Directory STS (AADSTS)-Fehlercode. Beschreibungen dieser Fehlercodes finden Sie unter [Authentifizierungs- und Autorisierungsfehlercodes](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes). Der Wert `0` zeigt eine erfolgreiche Anmeldung an.|
+|LogonError|Edm.String|Nein|Bei fehlgeschlagenen Anmeldungen enthält diese Eigenschaft eine benutzerlesbare Beschreibung des Grunds für den Anmeldefehler.|
 |||||
 
 ## <a name="dlp-schema"></a>DLP-Schema
@@ -931,7 +932,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
-|DataCenterSecurityEventType|Self.[DataCenterSecurityEventType](#datacentersecurityeventtype)|Ja|Der Typ des Dmdlet-Ereignisses im Feld "Sperren".|
+|DataCenterSecurityEventType|Self.[DataCenterSecurityEventType](#datacentersecurityeventtype)|Ja|Der Typ des Cmdlet-Ereignisses im Feld "Sperren".|
 |||||
 
 ### <a name="enum-datacentersecurityeventtype---type-edmint32"></a>Enumeration: DataCenterSecurityEventType - Typ: Edm.Int32
@@ -1152,7 +1153,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |FileData|Self.[FileData](#filedata)|Ja|Daten zu der Datei, die das Ereignis ausgelöst hat.|
-|SourceWorkload|Self.[SourceWorkload](#sourceworkload)|Ja|Arbeitslast oder Dienst, in der bzw. in dem die Datei gefunden wurde (z. B. SharePoint Online, OneDrive for Business oder Microsoft Teams).
+|SourceWorkload|Self.[SourceWorkload](#sourceworkload)|Ja|Arbeitslast oder Dienst, in der bzw. in dem die Datei gefunden wurde (z. B. SharePoint Online, OneDrive for Business oder Microsoft Teams).
 |DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Microsoft Defender für Office 365 für die Erkennung verwendet wurde.|
 |LastModifiedDate|Edm.Date|Ja|Der Zeitpunkt in UTC, zu dem die Datei erstellt oder zuletzt geändert wurde.|
 |LastModifiedBy|Edm.String|Ja|Bezeichner (z. B. eine E-Mail-Adresse) für den Benutzer, der die Datei erstellt oder zuletzt geändert hat.|
@@ -1439,7 +1440,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Comp
 
 ## <a name="microsoft-forms-schema"></a>Microsoft Forms-Schema
 
-Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities) aufgelisteten Micorosft Forms-Ereignisse verwenden dieses Schema.
+Die unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities) aufgelisteten Microsoft Forms-Ereignisse verwenden dieses Schema.
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
