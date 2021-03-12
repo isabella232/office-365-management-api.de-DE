@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c71536ad05afe50e675661cebbfe1826cf6af3fa
-ms.sourcegitcommit: 3a6a64742924b9fbc1ffd6826b5651eb5583f70c
+ms.openlocfilehash: c0e253532abd43779cb624d5b63b907600e0f5b5
+ms.sourcegitcommit: bd92bba316c564fd7c09d5202ce46c1f9276f5ee
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "50096955"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "50726898"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -837,10 +837,23 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
-|Confidence|Edm.Int|Ja|Die Konfidenz des Musters, das der Erkennung entspricht.|
-|Anzahl|Edm.Int|Ja|Die Anzahl der erkannten vertraulichen Instanzen.|
+|Confidence|Edm.Int|Ja|Die aggregierte Konfidenz aller Musterübereinstimmungen für den Typ vertraulicher Informationen.|
+|Anzahl|Edm.Int|Ja|Gesamtanzahl der erkannten vertraulichen Instanzen.|
+|Speicherort|Edm.String|Nein||
 |SensitiveType|Edm.Guid|Ja|Eine Guid, die den Typ der erkannten vertraulichen Daten bezeichnet.|
 |SensitiveInformationDetections|Self.SensitiveInformationDetections|Nein|Ein Array von Objekten, das vertrauliche Informationsdaten und die folgenden Details enthält: übereinstimmender Wert und Kontext des übereinstimmenden Werts.|
+|SensitiveInformationDetailedClassificationAttributes|Collection(SensitiveInformationDetailedConfidenceLevelResult)|Ja|Informationen über die Anzahl der erkannten Typen vertraulicher Informationen für jedes der drei Konfidenzniveaus (Hoch, Mittel und Niedrig) und ob sie der DLP-Regel entsprechen oder nicht|
+|SensitiveInformationTypeName|Edm.String|Nein|Name des Typs vertraulicher Informationen.|
+|UniqueCount|Edm.Int32|Ja|Anzahl der verschiedenen erkannten vertraulichen Instanzen.|
+|||||
+
+### <a name="sensitiveinformationdetailedclassificationattributes-complex-type"></a>Komplexer Typ „SensitiveInformationDetailedClassificationAttributes“
+
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+|Confidence|Edm.int32|Ja|Das Konfidenzniveau des erkannten Musters wurde erkannt.|
+|Anzahl|Edm.Int32|Ja|Die Anzahl der erkannten vertraulichen Instanzen für ein bestimmtes Konfidenzniveau.|
+|IsMatch|Edm.Boolean|Ja|Zeigt an, ob die angegebene Anzahl und das Konfidenzniveau des Typs vertraulicher Informationen zu einer Übereinstimmung mit einer DLP-Regel führt.|
 |||||
 
 ### <a name="sensitiveinformationdetections-complex-type"></a>Komplexer SensitiveInformationDetections-Typ
@@ -849,7 +862,7 @@ Vertrauliche DLP-Daten sind nur in der Aktivitätsfeed-API für Benutzer verfüg
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
-|Erkennungen|Collection(Self.Detections)|Ja|Ein Array vertraulicher Informationen, die erkannt wurden. Die Informationen enthalten Schlüssel-Wert-Paare mit Wert = übereinstimmenden Wert (z. B. Wert der Kreditkarte der SSN) und Kontext = ein Auszug aus der Inhaltsquelle, der den erkannten Wert enthält. |
+|DetectedValues|Collection(Common.NameValuePair)|Ja|Ein Array vertraulicher Informationen, die erkannt wurden. Die Informationen enthalten Schlüssel-Wert-Paare mit Wert = übereinstimmenden Wert (z. B. Wert der Kreditkarte) und Kontext = ein Auszug aus der Inhaltsquelle, der den erkannten Wert enthält. |
 |ResultsTruncated|Edm.Boolean|Ja|Zeigt an, ob die Protokolle aufgrund einer großen Anzahl von Ergebnissen abgeschnitten wurden. |
 |||||
 
