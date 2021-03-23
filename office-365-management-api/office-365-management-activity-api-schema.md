@@ -2,28 +2,25 @@
 ms.technology: o365-service-communications
 ms.TocTitle: Office 365 Management Activity API schema
 title: Office 365-Verwaltungsaktivitäts-API-Schema
-description: Das Office 365-Verwaltungsaktivitäts-API-Schema wird als Datendienst auf zwei Ebenen  bereitgestellt – einem allgemeinen Schema und einem produktspezifischen Schema.
+description: Das Office 365-Verwaltungsaktivitäts-API-Schema wird als Datendienst auf zwei Ebenen bereitgestellt – einem allgemeinen Schema und einem dienstspezifischem Schema.
 ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c0e253532abd43779cb624d5b63b907600e0f5b5
-ms.sourcegitcommit: bd92bba316c564fd7c09d5202ce46c1f9276f5ee
+ms.openlocfilehash: 1d4fdfd920ae10331e789847ef76dc1a719ad2fc
+ms.sourcegitcommit: 1bd313b6add47b58e5aa1af53cd00d2872610556
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/11/2021
-ms.locfileid: "50726898"
+ms.lasthandoff: 03/19/2021
+ms.locfileid: "50903355"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
 Das Office 365-Verwaltungsaktivitäts-API-Schema wird als Datendienst auf zwei Ebenen bereitgestellt:
 
-- **Allgemeines Schema**. Die Benutzeroberfläche für den Zugriff auf wichtige Office 365-Überwachungskonzepte wie z. B. Datensatztyp, Zeitpunkt der Erstellung, Benutzertyp und Aktion sowie für die Bereitstellung wichtiger Dimensionen (z. B. Benutzer-ID), Speicherortspezifikationen (z. B. Client-IP-Adresse) und produktspezifischer Eigenschaften (z. B. Objekt-ID). Es werden konsistente und einheitliche Ansichten für Benutzer eingerichtet, um alle Office 365-Überwachungsdaten in wenigen Ansichten auf oberster Ebene mit den entsprechenden Parametern zu extrahieren, und es entsteht ein festes Schema für alle Datenquellen, was die Kosten des Lernens erheblich reduziert. Das allgemeine Schema wird aus den Produktdaten jedes Produktteams abgeleitet, z. B. Exchange, SharePoint, Azure Active Directory, Yammer und OneDrive for Business. Das Feld "Objekt-ID" kann von Produktteams um produktspezifische Eigenschaften erweitert werden.
+- **Allgemeines Schema**. Die Schnittstelle für den Zugriff auf wichtige Office 365-Überwachungskonzepte wie z. B. Datensatztyp, Zeitpunkt der Erstellung, Benutzertyp und Aktion sowie für die Bereitstellung wichtiger Dimensionen (z. B. Benutzer-ID), Speicherortspezifikationen (z. B. Client-IP-Adresse) und dienstspezifischer Eigenschaften (z. B. Objekt-ID). Es werden konsistente und einheitliche Ansichten für Benutzer eingerichtet, um alle Office 365-Überwachungsdaten in wenigen Ansichten auf oberster Ebene mit den entsprechenden Parametern zu extrahieren, und es entsteht ein festes Schema für alle Datenquellen, was die Kosten des Lernens erheblich reduziert. Das allgemeine Schema wird aus den Produktdaten jedes Produktteams abgeleitet, z. B. Exchange, SharePoint, Azure Active Directory, Yammer und OneDrive for Business. Das Feld "Objekt-ID" kann von Microsoft 365-Produktteams um dienstspezifische Eigenschaften erweitert werden.
 
-- **Produktspezifisches Schema**. Baut auf das allgemeine Schema auf, um eine Reihe von produktspezifischen Attributen bereitzustellen; z. B. SharePoint-Schema, OneDrive for Business-Schema und Exchange-Administrator-Schema.
-
-**Welche Ebene sollten Sie für Ihr Szenario verwenden?**
-Allgemein gilt: Wenn die Daten in einer höheren Ebene verfügbar sind, kehren Sie nicht zu einer niedrigeren Ebene zurück. Oder anders gesagt: Wenn die Datenanforderung in ein produktspezifisches Schema aufgenommen werden kann, brauchen Sie nicht zum allgemeinen Schema zurückzukehren. 
+- **Dienstspezifisches Schema**. Baut auf das allgemeine Schema auf, um eine Reihe von Microsoft 365-dienstspezifischen Attributen bereitzustellen; z. B. SharePoint-Schema, OneDrive for Business-Schema und Exchange-Administrator-Schema.
 
 ## <a name="office-365-management-api-schemas"></a>Office 365-Verwaltungs-API-Schemas
 
@@ -31,7 +28,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 
 |Name des Schemas|Beschreibung|
 |:-----|:-----|
-|[Allgemeines Schema](#common-schema)|Die Ansicht, um den Datensatztyp, die Benutzer-ID, die Client-IP, den Benutzertyp und die Aktion zusammen mit grundlegenden Dimensionen wie Benutzereigenschaften (z. B. Benutzer-ID), Speichereigenschaften (z. B. Client-IP) und produktspezifischen Eigenschaften (z. B. Objekt-ID) zu extrahieren.|
+|[Allgemeines Schema](#common-schema)|Die Ansicht, um den Datensatztyp, die Benutzer-ID, die Client-IP, den Benutzertyp und die Aktion zusammen mit grundlegenden Dimensionen wie Benutzereigenschaften (z. B. Benutzer-ID), Speichereigenschaften (z. B. Client-IP) und dienstspezifischen Eigenschaften (z. B. Objekt-ID) zu extrahieren.|
 |[SharePoint-Basisschema](#sharepoint-base-schema)|Das allgemeine Schema wird mit den Eigenschaften für alle SharePoint-Überwachungsdaten erweitert.|
 |[SharePoint-Dateivorgänge](#sharepoint-file-operations)|Das SharePoint-Basisschema wird mit den Eigenschaften für den Dateizugriff und die Dateibearbeitung in SharePoint erweitert.|
 |[SharePoint-Freigabeschema](#sharepoint-sharing-schema)|Das SharePoint-Basisschema wird mit den Eigenschaften für die Dateifreigabe erweitert.|
@@ -1067,7 +1064,40 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |Verdict|Edm.String|Ja|Die Bewertung der Nachricht.|
 |MessageTime|Edm.Date|Ja|Zeitpunkt in UTC, zu dem die E-Mail empfangen oder gesendet wurde.|
 |EventDeepLink|Edm.String|Ja|Deep-Link zum E-Mail-Ereignis im Explorer oder Echtzeit-Berichten im Office 365 Security & Compliance Center.|
+|Delivery Action (upcoming field) |Edm.String|Ja|Die ursprüngliche Sendeaktion für die E-Mail-Nachricht.|
+|Original Delivery location (upcoming field) |Edm.String|Ja|Der ursprüngliche Übermittlungsort der E-Mail-Nachricht.|
+|Latest Delivery location (upcoming field) |Edm.String|Ja|Der letzte Übermittlungsort der E-Mail-Nachricht zum Zeitpunkt des Ereignisses.|
+|Directionality (upcoming field) |Edm.String|Ja|Gibt an, ob eine E-Mail-Nachricht ein- oder ausgehend war, oder ob es sich um eine organisationsinterne Nachricht handelte.|
+|ThreatsAndDetectionTech (upcoming field) |Edm.String|Ja|Die Bedrohungen und die entsprechenden Erkennungstechnologien. In diesem Feld werden alle Bedrohungen einer E-Mail-Nachricht angezeigt, einschließlich des neuesten Zusatzes zur Spambewertung.  Beispiel: ["Phish: [Spoof DMARC]","Spam: [URL malicious reputation]"]. Die verschiedenen Erkennungstechnologien werden weiter unten beschrieben.|
 |||||
+
+> [!NOTE]
+> Wir empfehlen, das neue Feld "ThreatsAndDetectionTech" zu verwenden, da hierin mehrere Bewertungen und die aktualisierten Erkennungstechnologien angezeigt werden. Dies entspricht auch den Werten, die in anderen Lösungen wie dem Sicherheitsrisiken-Explorer und der erweiterten Bedrohungssuche angezeigt würden. 
+
+### <a name="detection-technologies"></a>Erkennungstechnologien
+
+|**Name**|**Beschreibung**|
+|:-----|:-----|
+|Allgemeiner Filter |Phishing-Signale basierend auf Regeln.|
+|Vorgetäuschte Marke | Der Dateityp der Anlage.|
+|Spoofing externer Domäne |Der Absender versucht, eine andere Domäne zu spoofen.|
+|Spoof DMARC |DMARC-Authentifizierungsfehler bei Nachrichten.|
+|Vorgetäuschte Domäne | Vortäuschen von Domänen, die der Kunde besitzt oder definiert.|
+|Dateidetonation |Dateianlagen, die während einer Detonationsanalyse als schädlich erkannt wurden.|
+|Datei-Reputation |Aufgrund von schlechter Zuverlässigkeit als schädlich gekennzeichnete Dateianlagen.|
+|Reputation der Dateidetonation |Aufgrund der Reputation früherer Detonation als schädlich gekennzeichnete Dateianlage.|
+|Fingerabdruckübereinstimmung |Die Nachricht wurde aufgrund vorheriger Nachrichten als schädlich gekennzeichnet.|
+|Mailbox Intelligence-basierte Identitätsvortäuschung |Identitätsvortäuschung basierend auf Mailbox Intelligence.|
+|Domänenreputation |Analyse basierend auf der Domänenreputation.|
+|Organisationsinternes Spoofing |  Der Absender versucht, die Empfängerdomäne zu spoofen. |
+|Erweiterter Filter |  Phishing-Signale auf Grundlage von maschinellem Lernen.|
+|Anti-Malware-Engine    | Erkennung von Schadsoftware-Engines. |
+|Erkennung durch gemischte Analysen   | Mehrere Filter haben zur Bewertung dieser Nachricht beigetragen. |
+|URL-Reputation als schädlich eingestuft   | Die Nachricht wurde aufgrund einer schädlichen URL als schlecht eingestuft. |
+|URL-Detonation | Die Nachricht wurde aufgrund einer vorherigen Detonation einer schädlichen URL als schlecht eingestuft. |
+|Reputation der URL-Detonation| Die Nachricht wurde aufgrund einer Detonation einer schädlichen URL als schlecht eingestuft. |
+|Vorgetäuschte Benutzeridentität|    Vortäuschung von Benutzeridentitäten, die vom Administrator definiert oder deren Erkennung über Mailbox Intelligence erlernt wurde.|
+|Kampagne   |Nachrichten, die als Teil einer Kampagne identifiziert wurden.|
 
 ### <a name="attachmentdata-complex-type"></a>Komplexer AttachmentData-Typ
 
@@ -1081,6 +1111,9 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |MalwareFamily|Edm.String|Nein|Die Familie der Schadsoftware.|
 |SHA256|Edm.String|Ja|Die Datei mit der Hash-Funktion SHA256.|
 |||||
+
+> [!NOTE]
+> Innerhalb der Malwarefamilie können Sie den genauen Namen der MalwareFamily-Namen sehen (z. B. HTML/Phish.VS!MSR) oder schädliche Nutzlast als statische Zeichenfolge. Eine schädliche Nutzlast sollte auch dann als schädliche E-Mail behandelt werden, wenn kein bestimmter Name identifiziert wurde.
 
 ### <a name="enum-fileverdict---type-edmint32"></a>Enumeration: FileVerdict - Typ: Edm.Int32
 
