@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 1d4fdfd920ae10331e789847ef76dc1a719ad2fc
-ms.sourcegitcommit: 1bd313b6add47b58e5aa1af53cd00d2872610556
+ms.openlocfilehash: 9ce20bd1fd8f0b6e706df46a5d8b63540962ffaf
+ms.sourcegitcommit: dfdacf2cdee3ad0f305167ba0c8a9bf9df8af356
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/19/2021
-ms.locfileid: "50903355"
+ms.lasthandoff: 04/14/2021
+ms.locfileid: "51761997"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -1064,11 +1064,11 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |Verdict|Edm.String|Ja|Die Bewertung der Nachricht.|
 |MessageTime|Edm.Date|Ja|Zeitpunkt in UTC, zu dem die E-Mail empfangen oder gesendet wurde.|
 |EventDeepLink|Edm.String|Ja|Deep-Link zum E-Mail-Ereignis im Explorer oder Echtzeit-Berichten im Office 365 Security & Compliance Center.|
-|Delivery Action (upcoming field) |Edm.String|Ja|Die ursprüngliche Sendeaktion für die E-Mail-Nachricht.|
-|Original Delivery location (upcoming field) |Edm.String|Ja|Der ursprüngliche Übermittlungsort der E-Mail-Nachricht.|
-|Latest Delivery location (upcoming field) |Edm.String|Ja|Der letzte Übermittlungsort der E-Mail-Nachricht zum Zeitpunkt des Ereignisses.|
-|Directionality (upcoming field) |Edm.String|Ja|Gibt an, ob eine E-Mail-Nachricht ein- oder ausgehend war, oder ob es sich um eine organisationsinterne Nachricht handelte.|
-|ThreatsAndDetectionTech (upcoming field) |Edm.String|Ja|Die Bedrohungen und die entsprechenden Erkennungstechnologien. In diesem Feld werden alle Bedrohungen einer E-Mail-Nachricht angezeigt, einschließlich des neuesten Zusatzes zur Spambewertung.  Beispiel: ["Phish: [Spoof DMARC]","Spam: [URL malicious reputation]"]. Die verschiedenen Erkennungstechnologien werden weiter unten beschrieben.|
+|Sendeaktion |Edm.String|Ja|Die ursprüngliche Sendeaktion für die E-Mail-Nachricht.|
+|Ursprünglicher Übermittlungsort |Edm.String|Ja|Der ursprüngliche Übermittlungsort der E-Mail-Nachricht.|
+|Letzter Übermittlungsort |Edm.String|Ja|Der letzte Übermittlungsort der E-Mail-Nachricht zum Zeitpunkt des Ereignisses.|
+|Directionality |Edm.String|Ja|Gibt an, ob eine E-Mail-Nachricht ein- oder ausgehend war, oder ob es sich um eine organisationsinterne Nachricht handelte.|
+|ThreatsAndDetectionTech |Edm.String|Ja|Die Bedrohungen und die entsprechenden Erkennungstechnologien. In diesem Feld werden alle Bedrohungen einer E-Mail-Nachricht angezeigt, einschließlich des neuesten Zusatzes zur Spambewertung.  Beispiel: ["Phish: [Spoof DMARC]","Spam: [URL malicious reputation]"]. Die verschiedenen Erkennungstechnologien werden weiter unten beschrieben.|
 |||||
 
 > [!NOTE]
