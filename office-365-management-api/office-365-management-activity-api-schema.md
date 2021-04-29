@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 9ce20bd1fd8f0b6e706df46a5d8b63540962ffaf
-ms.sourcegitcommit: dfdacf2cdee3ad0f305167ba0c8a9bf9df8af356
+ms.openlocfilehash: 5e2274dd3d5050a0db433fd93aa8ea1514744549
+ms.sourcegitcommit: c3786c4bfacf3c1187f1269c162946288b45c967
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/14/2021
-ms.locfileid: "51761997"
+ms.lasthandoff: 04/27/2021
+ms.locfileid: "52059941"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -223,8 +223,8 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |EventSource|Edm.String String="Microsoft.Office.Audit.Schema.SharePoint.[EventSource](#eventsource)"|Nein|Gibt an, dass ein Ereignis in SharePoint eingetreten ist. Mögliche Werte sind **SharePoint** oder **ObjectModel**.|
 |SourceName|Edm.String|Nein|Die Entität, die den überwachten Vorgang ausgelöst hat. Mögliche Werte sind SharePoint oder **ObjectModel**.|
 |UserAgent|Edm.String|Nein|Informationen zum Client oder Browser des Benutzers. Diese Informationen werden vom Client oder Browser bereitgestellt.|
-|MachineDomainInfo|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|Nein|Informationen zu Synchronisierungsvorgängen von Geräten. Diese Informationen sind nur vorhanden, wenn sie in der Anforderung enthalten sind.|
-|MachineId|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|Nein|Informationen zu Synchronisierungsvorgängen von Geräten. Diese Informationen sind nur vorhanden, wenn sie in der Anforderung enthalten sind.|
+|MachineDomainInfo|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|Nein|Informationen zu Synchronisierungsvorgängen von Geräten. Diese Informationen werden nur angezeigt, wenn sie in der Anforderung vorhanden sind.|
+|MachineId|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|Nein|Informationen zu Synchronisierungsvorgängen von Geräten. Diese Informationen werden nur angezeigt, wenn sie in der Anforderung vorhanden sind.|
 |||||
 
 ### <a name="enum-itemtype---type-edmint32"></a>Enumeration: ItemType - Typ: Edm.Int32
@@ -279,7 +279,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |CustomFieldOrLookupTableCreated|Der Benutzer hat ein benutzerdefiniertes Feld oder eine benutzerdefinierte Suchtabelle/ein benutzerdefiniertes Element in der Project Web App erstellt.|
 |CustomFieldOrLookupTableDeleted|Der Benutzer hat eine benutzerdefinierte Tabelle oder ein benutzerdefiniertes Element "Feld" oder "Nachschlagen" in der Project Web App gelöscht.|
 |CustomFieldOrLookupTableModified|Der Benutzer hat eine benutzerdefinierte Tabelle oder ein benutzerdefiniertes Element "Feld" oder "Nachschlagen" in der Project Web App geändert.|
-|CustomizeExemptUsers|Ein globaler Administrator hat die Liste der ausgenommenen Benutzer-Agents im SharePoint Admin Center angepasst. Sie können festlegen, welche Benutzer-Agents keine komplette Webseite zum Indizieren erhalten sollen. Dies bedeutet: Wenn ein Benutzer-Agent, den Sie als ausgenommen Benutzer festgelegt haben, auf ein InfoPath-Formular stößt, wird das Formular als XML-Datei und nicht als komplette Webseite zurückgegeben. Dadurch wird die Indizierung von InfoPath-Formularen beschleunigt.|
+|CustomizeExemptUsers|Der globale Administrator hat die Liste der ausgenommenen Benutzer-Agents im SharePoint Admin Center angepasst. Sie können angeben, welche Benutzer-Agents vom Empfangen einer gesamten Webseite zum Indizieren ausgenommen werden sollen. Das bedeutet: Wenn ein Benutzer-Agent, den Sie als ausgenommen festgelegt haben, auf ein InfoPath-Formular trifft, wird das Formular als eine XML-Datei und nicht als eine gesamte Webseite zurückgegeben. Dadurch werden InfoPath-Formulare schneller indiziert.|
 |DefaultLanguageChangedInTermStore*|Die Einstellung für die Standardsprache im Terminologiespeicher wurde geändert.|
 |DelegateModified|Der Benutzer hat einen Sicherheitsbeauftragten in der Project Web App erstellt oder geändert.|
 |DelegateRemoved|Der Benutzer hat einen Sicherheitsbeauftragten in der Project Web App gelöscht.|
@@ -379,14 +379,14 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |SecondaryMySiteOwnerSet|Ein Benutzer hat einen sekundären Besitzer zu seiner "Meine Website" hinzugefügt.|
 |SecurityCategoryModified|Ein Benutzer erstellt, ändert oder löscht eine Sicherheitskategorie in der Project Web App.|
 |SecurityGroupModified|Ein Benutzer erstellt, ändert oder löscht eine Sicherheitsgruppe in der Project Web App.|
-|SendToConnectionAdded|Der globale Administrator erstellt eine neue Senden-an-Verbindung auf der Verwaltungsseite für Datensätze im SharePoint Admin Center. Mit einer Senden-an-Verbindung werden die Einstellungen für ein Dokumentrepository oder ein Datenarchiv festgelegt. Wenn Sie eine Senden-an-Verbindung erstellen, kann eine Inhaltsorganisation Dokumente an den angegebenen Speicherort übermitteln.|
+|SendToConnectionAdded|Globaler Administrator erstellt auf der Seite „Datensatzverwaltung“ im SharePoint Admin Center eine neue Verbindung vom Typ „Senden an“. Eine Verbindung vom Typ „Senden an“ legt die Einstellungen für ein Dokumentrepository oder Datenarchiv fest. Wenn Sie eine Verbindung vom Typ „Senden an“ erstellen, kann die Inhaltsorganisation Dokumente an den angegebenen Speicherort übermitteln.|
 |SendToConnectionRemoved|Der globale Administrator löscht eine Senden-an-Verbindung auf der Verwaltungsseite für Datensätze im SharePoint Admin Center.|
 |SharedLinkCreated|Ein Benutzer erstellt einen Link zu einer freigegebenen Datei in SharePoint oder OneDrive for Business. Dieser Link kann an andere Personen gesendet werden, um ihnen Zugriff auf die Datei zu gewähren. Ein Benutzer kann zwei Arten von Links erstellen: einen Link, mit dem ein Benutzer die freigegebene Datei anzeigen oder bearbeiten kann, oder einen Link, mit dem ein Benutzer die Datei nur anzeigen kann.|
 |SharedLinkDisabled|Ein Benutzer deaktiviert (dauerhaft) einen Link, der zum Freigeben einer Datei erstellt wurde.|
 |SharingInvitationAccepted*|Ein Benutzer akzeptiert eine Einladung zur Freigabe von Dateien oder Ordnern. Dieses Ereignis wird protokolliert, wenn ein Benutzer eine Datei für andere Benutzer freigibt.|
 |SharingRevoked|Der Benutzer hebt die Freigabe einer Datei oder eines Ordners auf, die bzw. der zuvor für andere Benutzer freigegeben wurde. Dieses Ereignis wird protokolliert, wenn ein Benutzer die Freigabe einer Datei für andere Benutzer beendet.|
 |SharingSet|Ein Benutzer gibt eine Datei oder einen Ordner in SharePoint oder OneDrive for Business für einen anderen Benutzer in der Organisation frei.|
-|SiteAdminChangeRequest|Ein Benutzer fordert an, als Websitesammlungsadministrator für eine SharePoint-Websitesammlung hinzugefügt zu werden. Websitesammlungsadministratoren verfügen über Vollzugriff für die Websitesammlung und alle Unterwebsites.|
+|SiteAdminChangeRequest|Benutzer fordert, als Websitesammlungsadministrator für eine SharePoint-Websitesammlung hinzugefügt zu werden. Websitesammlungsadministratoren verfügen über Vollzugriffsberechtigungen für die Websitesammlung und alle Unterwebsites.|
 |SiteCollectionAdminAdded*|Der Websitesammlungsadministrator oder -besitzer fügt eine Person als Websitesammlungsadministrator für eine SharePoint oder OneDrive for Business-Website hinzu. Websitesammlungsadministratoren verfügen über Vollzugriff für die Websitesammlung und alle Unterwebsites.|
 |SiteCollectionCreated| Der globale Administrator erstellt eine neue Websitesammlung in Ihrer SharePoint-Organisation.|
 |SiteRenamed|Der Websiteadministrator oder -besitzer benennt die SharePoint- oder OneDrive for Business-Website um.|
@@ -743,6 +743,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |:-----|:-----|:-----|:-----|
 |ApplicationId|Edm.String|Nein|Die GUID, die die Anwendung darstellt, von der die Anmeldung angefordert wird. Der Anzeigename kann über die Azure Active Directory Graph-API betrachtet werden.|
 |Client|Edm.String|Nein|Client-Geräteinformationen, die von dem Browser bereitgestellt werden, der die Anmeldung ausführt.|
+|DeviceProperties|Collection(Common.NameValuePair)|Nein|Diese Eigenschaft enthält verschiedene Gerätedetails, darunter ID, Anzeigename, Betriebssystem, Browser, IsCompliant, IsCompliantAndManaged, SessionId und DeviceTrustType. Die DeliverableType-Eigenschaft kann die folgenden Werte aufweisen:<br/><br/>**0** – in Azure AD registriert<br/> **1** – in Azure AD eingebunden<br/> **2** – hybrid, in Azure AD eingebunden|
 |ErrorCode|Edm.String|Nein|Für fehlgeschlagene Anmeldungen (bei denen der Wert für die Operation-Eigenschaft "UserLoginFailed" lautet) enthält diese Eigenschaft den Azure Active Directory STS (AADSTS)-Fehlercode. Beschreibungen dieser Fehlercodes finden Sie unter [Authentifizierungs- und Autorisierungsfehlercodes](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes). Der Wert `0` zeigt eine erfolgreiche Anmeldung an.|
 |LogonError|Edm.String|Nein|Bei fehlgeschlagenen Anmeldungen enthält diese Eigenschaft eine benutzerlesbare Beschreibung des Grunds für den Anmeldefehler.|
 |||||
@@ -988,6 +989,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |Name|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Der Name der geänderten Einstellung.|
 |OldValue|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Alter Wert der Einstellung.|
 |NewValue|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Neuer Wert der Einstellung.|
+|MessageURLs|Edm.String|Nein|Für jede URL vorhanden, die in Teams-Nachrichten gesendet wurde.|
 ||||
 
 ### <a name="microsoftteamsmember-complex-type"></a>Komplexer MicrosoftTeamsMember-Typ
@@ -1236,7 +1238,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 
 [Office 365 Automated Investigation and Response (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office)-Ereignisse (Automatisierte Untersuchung und Reaktion) stehen für Office 365-Kunden zur Verfügung, die ein Abonnement haben, in dem Microsoft Defender für Office 365 Plan 2 oder Office 365 E5 enthalten ist. Untersuchungen werden basierend einer Änderung des Untersuchungsstatus protokolliert. Wenn beispielsweise ein Administrator eine Aktion durchführt, mit der der Status einer Untersuchung von „Ausstehende Aktionen“ in „Abgeschlossen“ geändert wird, wird ein Ereignis protokolliert.
 
-Derzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für manuell gestartete Untersuchungen werden in Kürze verfügbar sein.) Die folgenden Statuswerte werden protokolliert:
+Zurzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für manuell gestartete Untersuchungen werden in Kürze verfügbar sein.) Die folgenden Statuswerte werden protokolliert:
 
 - Untersuchung gestartet
 - Keine Bedrohungen gefunden
