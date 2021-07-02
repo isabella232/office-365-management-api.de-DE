@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 5e2274dd3d5050a0db433fd93aa8ea1514744549
-ms.sourcegitcommit: c3786c4bfacf3c1187f1269c162946288b45c967
+ms.openlocfilehash: fe70aa617829bcfc9709c32f6349798f0ceb27aa
+ms.sourcegitcommit: b112bebdb289e0be863009ac032b11107a12c1f8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/27/2021
-ms.locfileid: "52059941"
+ms.lasthandoff: 07/01/2021
+ms.locfileid: "53242691"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -47,9 +47,9 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |[Rechenzentrum-Sicherheitsbasis-Schema](#data-center-security-base-schema)|Erweitert das allgemeine Schema mit den für alle Rechenzentrum-Sicherheitsüberwachungsdaten spezifischen Eigenschaften.|
 |[Rechenzentrum-Sicherheits-Cmdlet-Schema](#data-center-security-cmdlet-schema)|Das Datenzentrum-Sicherheitsbasis-Schema wird mit den für alle Rechenzentrum-Sicherheits-Cmdlet-Überwachungsdaten spezifischen Eigenschaften erweitert.|
 |[Microsoft Teams-Schema](#microsoft-teams-schema)|Das allgemeine Schema wird mit den für alle Microsoft Teams-Ereignisse spezifischen Eigenschaften erweitert.|
-|[Microsoft Defender für Office 365 und Threat Investigation and Response-Schema](#microsoft-defender-for-office-365-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Defender für Office 365 spezifischen Eigenschaften und Daten von Threat Investigation and Response erweitert.|
-|[Schema "Automatisierte Untersuchungs- und Reaktionsereignisse"](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für ‚Automatisierte Untersuchungs- und Reaktionsereignisse‘ (AIR, Automated investigation and response) in Office 365 spezifischen Eigenschaften erweitert. Ein Beispiel dazu finden Sie im [Tech Community-Blog: Improve the Effectiveness of your SOC with Microsoft Defender for Office 365 and the O365 Management API](https://techcommunity.microsoft.com/t5/microsoft-security-and/improve-the-effectiveness-of-your-soc-with-office-365-atp-and/ba-p/1525185) (Verbessern der Effektivität Ihres SOC mit Microsoft Defender für Office 365 und der O365 Management-API).|
-|[Nachrichtenschutzereignis-Schema](#hygiene-events-schema)|Das allgemeine Schema wird mit den für Ereignisse in Exchange Online Protection und Microsoft Defender für Office 365 spezifischen Eigenschaften erweitert.|
+|[Microsoft Defender für Office 365 und Threat Investigation and Response-Schema](#microsoft-defender-for-office-365-and-threat-investigation-and-response-schema)|Das allgemeine Schema wird mit den für Defender für Office 365 spezifischen Eigenschaften und Daten von Threat Investigation and Response erweitert.|
+|[Schema "Automatisierte Untersuchungs- und Reaktionsereignisse"](#automated-investigation-and-response-events-in-office-365)|Das allgemeine Schema wird um die für ‚Automatisierte Untersuchungs- und Reaktionsereignisse‘ (AIR, Automated investigation and response) in Office 365 spezifischen Eigenschaften erweitert. Ein Beispiel dazu finden Sie im [Tech Community-Blog: Improve the Effectiveness of your SOC with Microsoft Defender for Office 365 and the O365 Management API](https://techcommunity.microsoft.com/t5/microsoft-security-and/improve-the-effectiveness-of-your-soc-with-office-365-atp-and/ba-p/1525185) (Verbessern der Effektivität Ihres SOC mit Microsoft Defender für Office 365 und der O365 Management-API).|
+|[Nachrichtenschutzereignis-Schema](#hygiene-events-schema)|Das allgemeine Schema wird mit den für Ereignisse in Exchange Online Protection und Microsoft Defender für Office 365 spezifischen Eigenschaften erweitert.|
 |[Power BI-Schema](#power-bi-schema)|Erweitert das allgemeine Schema um die für alle Power BI-Ereignisse spezifischen Eigenschaften.|
 |[Dynamics 365-Schema](#dynamics-365-schema)|Das allgemeine Schema wird mit den für Dynamics 365-Ereignisse spezifischen Eigenschaften erweitert.|
 |[Workplace Analytics-Schema](#workplace-analytics-schema)|Das allgemeine Schema wird mit den für alle Microsoft Workplace Analytics-Ereignisse spezifischen Eigenschaften erweitert.|
@@ -75,7 +75,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |Arbeitslast|Edm.String|Nein|Der Office 365-Dienst, in dem die Aktivität stattgefunden hat. 
 |ResultStatus|Edm.String|Nein|Gibt an, ob die Aktion (in der Eigenschaft "Operation" angegeben) erfolgreich war oder nicht. Mögliche Werte sind **Succeeded**, **PartiallySucceeded** oder **Failed**. Für Exchange-Verwaltungsaktivitäten ist der Wert entweder **True** oder **False**.<br/><br/>**Wichtig**: Unterschiedliche Workloads können den Wert der ResultStatus-Eigenschaft außer Kraft setzen. Beispielsweise zeigt ein Wert **Succeeded** für "ResultStatus" bei Azure Active Directory STS-Anmeldeereignissen nur an, dass die HTTP-Operation erfolgreich war; er bedeutet nicht, dass die Anmeldung erfolgreich war. Um festzustellen, ob die eigentliche Anmeldung erfolgreich war oder nicht, ziehen Sie die LogonError-Eigenschaft im [Azure Active Directory-STS-Anmeldeschema](#azure-active-directory-secure-token-service-sts-logon-schema) zurate. Wenn die Anmeldung fehlgeschlagen ist, enthält diese Eigenschaft den Grund für den fehlgeschlagenen Anmeldeversuch. |
 |ObjectId|Edm.string|Nein|Für SharePoint- und OneDrive for Business-Aktivitäten der vollständige Pfadname der Datei oder des Ordners, auf die bzw. den der Benutzer zugegriffen hat. Für Exchange-Verwaltungsüberwachungsprotokolle der Name des Objekts, das vom Cmdlet geändert wurde.|
-|UserId|Edm.string|Ja|Der UPN (User Principal Name) des Benutzers, der die Aktion (in der Eigenschaft "Operation" angegeben), die zu einem Eintrag geführt hat, ausgeführt hat, zum Beispiel `my_name@my_domain_name`. Beachten Sie, dass auch von Systemkonten ausgeführte Datensätze (wie SHAREPOINT\system oder NT AUTHORITY\SYSTEM) enthalten sind. In SharePoint ist eine weitere Wertanzeige in der UserId-Eigenschaft "app@sharepoint". Dies zeigt an, dass es sich bei dem "Benutzer", der die Aktivität ausgeführt hat, um eine Anwendung handelt, die in SharePoint über die erforderlichen Berechtigungen verfügt, organisationsweite Aktionen (z. B. das Durchsuchen einer SharePoint-Website oder eines OneDrive-Kontos) im Auftrag eines Benutzers, Administrators oder Diensts auszuführen. Weitere Informationen finden Sie unter [Der "app@sharepoint"-Benutzer in Überwachungsdatensätzen](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records). |
+|UserId|Edm.string|Ja|Der UPN (User Principal Name) des Benutzers, der die Aktion (in der Eigenschaft "Operation" angegeben), die zu einem Eintrag geführt hat, ausgeführt hat, zum Beispiel `my_name@my_domain_name`. Beachten Sie, dass auch von Systemkonten ausgeführte Datensätze (wie SHAREPOINT\system oder NT AUTHORITY\SYSTEM) enthalten sind. In SharePoint ist eine weitere Wertanzeige in der UserId-Eigenschaft "app@sharepoint". Dies zeigt an, dass es sich bei dem "Benutzer", der die Aktivität ausgeführt hat, um eine Anwendung handelt, die in SharePoint über die erforderlichen Berechtigungen verfügt, organisationsweite Aktionen (z. B. das Durchsuchen einer SharePoint-Website oder eines OneDrive-Kontos) im Auftrag eines Benutzers, Administrators oder Diensts auszuführen. Weitere Informationen finden Sie unter [Der "app@sharepoint"-Benutzer in Überwachungsdatensätzen](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records). |
 |ClientIP|Edm.String|Ja|Die IP-Adresse des Geräts, das verwendet wurde, als die Aktivität protokolliert wurde. Die IP-Adresse wird im Adressformat IPv4 oder IPv6 angezeigt.<br/><br/>Bei einigen Diensten ist der in dieser Eigenschaft angezeigte Wert möglicherweise die IP-Adresse einer vertrauenswürdigen Anwendung (z.B. Office in den Web-Apps), die anstelle eines Benutzers in den Dienst einruft und nicht die IP-Adresse des Geräts, das von der Person, die die Aktivität ausgeführt hat, verwendet wird. <br/><br/>Außerdem wird für Azure Active Directory-bezogene Ereignisse die IP-Adresse nicht protokolliert und der Wert für die ClientIP-Eigenschaft ist `null`.|
 |Bereich|Self.[AuditLogScope](#auditlogscope)|Nein|Wurde dieses Ereignis von einem gehosteten Office 365-Dienst oder einem lokalen Server erstellt? Mögliche Werte sind **online** und **onprem**. Beachten Sie, dass SharePoint die einzige Arbeitslast ist, die derzeit Ereignissen aus lokalen Umgebungen an O365 sendet.|
 |||||
@@ -109,8 +109,8 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |23|SkypeForBusinessCmdlets|Skype for Business-Ereignisse.|
 |24|Discovery|Ereignisse für eDiscovery-Aktivitäten, die durch die Ausführung von Inhaltssuchen und die Verwaltung von eDiscovery-Fällen im Security & Compliance Center durchgeführt werden.|
 |25|MicrosoftTeams|Ereignisse von Microsoft-Teams.|
-|28|ThreatIntelligence|Phishing- und Schadsoftwareereignisse aus Exchange Online Protection und Microsoft Defender für Office 365.|
-|29|MailSubmission|Übermittlungsereignisse aus Exchange Online Protection und Microsoft Defender für Office 365.|
+|28|ThreatIntelligence|Phishing- und Schadsoftwareereignisse aus Exchange Online Protection und Microsoft Defender für Office 365.|
+|29|MailSubmission|Übermittlungsereignisse aus Exchange Online Protection und Microsoft Defender für Office 365.|
 |30|MicrosoftFlow|Microsoft Power Automate-Ereignisse (vormals Microsoft Flow).|
 |31|AeD|Advanced eDiscovery-Ereignisse.|
 |32|MicrosoftStream|Microsoft Stream-Ereignisse|
@@ -122,13 +122,13 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |38|DataGovernance|Auf Aufbewahrungsrichtlinien und Aufbewahrungsbezeichnungen im Security & Compliance Center bezogene Ereignisse|
 |39|Kaizala|Kaizala-Ereignisse.|
 |40|SecurityComplianceAlerts|Security & Compliance-Warnsignale.|
-|41|ThreatIntelligenceUrl|Zeitblockereignisse für sichere Links und Ereignisse zur Außerkraftsetzung von Blöcken aus Microsoft Defender für Office 365.|
+|41|ThreatIntelligenceUrl|Zeitblockereignisse für sichere Links und Ereignisse zur Außerkraftsetzung von Blöcken aus Microsoft Defender für Office 365.|
 |42|SecurityComplianceInsights|Ereignisse im Zusammenhang mit Einblicken und Berichten im Office 365 Security & Compliance Center.|
 |43|MIPLabel|Ereignisse im Zusammenhang mit der Erkennung in der Transportpipeline von E-Mail-Nachrichten, die mithilfe von Vertraulichkeitsbezeichnungen (manuell oder automatisch) gekennzeichnet wurden. |
 |44|WorkplaceAnalytics|Workplace Analytics-Ereignisse.|
 |45|PowerAppsApp|Power Apps-Ereignisse.|
 |46|PowerAppsPlan|Abonnementplan-Ereignisse für Power Apps. |
-|47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Microsoft Defender für Office 365.|
+|47|ThreatIntelligenceAtpContent|Phishing- und Schadsoftwareereignisse für Dateien in SharePoint, OneDrive for Business und Microsoft Teams aus Microsoft Defender für Office 365.|
 |48|LabelContentExplorer|Ereignisse im Zusammenhang mit dem [Inhalts-Explorer zur Datenklassifizierung](https://docs.microsoft.com/microsoft-365/compliance/data-classification-content-explorer).|
 |49|TeamsHealthcare|Ereignisse im Zusammenhang mit der [Anwendung "Patienten"](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit) in Microsoft Teams für das Gesundheitswesen.|
 |50|ExchangeItemAggregated|Ereignisse im Zusammenhang mit der [Postfachüberwachungsaktion "MailItemsAccessed"](https://docs.microsoft.com/microsoft-365/compliance/mailitemsaccessed-forensics-investigations).|
@@ -159,7 +159,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |76|CortanaBriefing|Briefing E-Mail-Ereignisse.|
 |77|Suche|Ereignisse im Zusammenhang mit der Durchführung von Suchabfragen in SharePoint und Exchange.|
 |78|WDATPAlerts|Ereignisse im Zusammenhang mit Warnungen, die von Windows Defender für Endpunkt generiert werden.|
-|81|MDATPAudit|Microsoft Defender für Endpunkt-Ereignisse.|
+|81|MDATPAudit|Microsoft Defender für Endpunkt-Ereignisse.|
 |82|SensitivityLabelPolicyMatch|Ereignisse, die generiert werden, wenn die mit einer Vertraulichkeitsbezeichnung beschriftete Datei geöffnet oder umbenannt wird.|
 |83|SensitivityLabelAction|Ereignis, das generiert wird, wenn Vertraulichkeitsbezeichnungen angewendet, aktualisiert oder von einer Datei entfernt werden.|
 |84|SensitivityLabeledFileAction|Ereignisse, die generiert werden, wenn eine mit einer Vertraulichkeitsbezeichnung beschriftete Datei geöffnet oder umbenannt wird.|
@@ -258,9 +258,9 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |**Elementname**|**Beschreibung**|
 |:-----|:-----|
 |AccessInvitationAccepted|Der Empfänger einer Einladung zum Anzeigen oder Bearbeiten einer freigegebenen Datei (oder eines Ordners) hat durch Klicken auf den Link in der Einladung auf die freigegebene Datei zugegriffen.|
-|AccessInvitationCreated|Der Benutzer sendet eine Einladung an eine andere Person (innerhalb oder außerhalb seiner Organisation) zum Anzeigen oder Bearbeiten einer freigegebenen Datei oder eines Ordners auf einer SharePoint- oder OneDrive for Business-Website. Die Details des Ereigniseintrags geben Folgendes an: den Namen der Datei, die freigegeben wurde, den Benutzer, an den die Einladung gesendet wurde, und den Typ der Freigabeberechtigung, der von der Person ausgewählt wurde, die die Einladung gesendet hat.|
+|AccessInvitationCreated|Der Benutzer sendet eine Einladung zum Anzeigen oder Bearbeiten einer freigegebenen Datei oder eines freigegebenen Ordners auf einer SharePoint- oder OneDrive for Business-Website an eine andere Person (innerhalb oder außerhalb seiner Organisation). Die Details des Ereigniseintrags geben Folgendes an: den Namen der freigegebenen Datei, den Benutzer, an den die Einladung gesendet wurde, und den Typ der Freigabeberechtigung, der von der Person ausgewählt wurde, die die Einladung gesendet hat.|
 |AccessInvitationExpired|Eine an einen externen Benutzer gesendete Einladung läuft ab. Standardmäßig läuft eine Einladung, die an einen Benutzer außerhalb der Organisation gesendet wurde, nach 7 Tagen ab, wenn die Einladung nicht angenommen wird.|
-|AccessInvitationRevoked|Der Websiteadministrator oder Besitzer einer Website oder eines Dokuments in SharePoint oder OneDrive for Business zieht eine Einladung, die an einen Benutzer außerhalb Ihrer Organisation gesendet wurde, zurück. Eine Einladung kann nur zurückgezogen werden, bevor sie akzeptiert wurde.|
+|AccessInvitationRevoked|Der Websiteadministrator oder Besitzer einer Website oder eines Dokuments in SharePoint oder OneDrive for Business zieht eine Einladung zurück, die an einen Benutzer außerhalb Ihrer Organisation gesendet wurde. Eine Einladung kann nur zurückgezogen werden, bevor sie akzeptiert wurde.|
 |AccessInvitationUpdated|Der Benutzer, der eine Einladung an eine andere Person zum Anzeigen oder Bearbeiten einer freigegebenen Datei oder eines Ordners auf einer SharePoint- oder OneDrive for Business-Website erstellt hat, sendet die Einladung erneut.|
 |AccessRequestApproved|Der Websiteadministrator oder Besitzer einer Website oder eines Dokuments in SharePoint oder OneDrive for Business genehmigt eine Benutzeranforderung für den Zugriff auf die Website oder das Dokument.|
 |AccessRequestCreated|Der Benutzer fordert Zugriff auf eine Website oder ein Dokument in SharePoint oder OneDrive for Business, für die bzw. das er nicht über eine Zugriffsberechtigung verfügt. |
@@ -297,8 +297,8 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |FileAccessed|Der Benutzer oder das Systemkonto greift auf eine Datei auf einer SharePoint- oder OneDrive for Business-Website zu. Systemkonten können ebenfalls FileAccessed-Ereignisse generieren.|
 |FileCheckOutDiscarded|Der Benutzer verwirft eine ausgecheckte Datei. Das bedeutet, dass alle Änderungen, die an der Datei vorgenommen wurden, während sie ausgecheckt war, verworfen und nicht in der Version des Dokuments in der Dokumentbibliothek gespeichert werden.|
 |FileCheckedIn|Ein Benutzer checkt ein Dokument ein, das er aus der SharePoint- oder OneDrive for Business-Dokumentbibliothek ausgecheckt hat.|
-|FileCheckedOut|Ein Benutzer checkt ein Dokument aus, das sich in einer SharePoint- oder OneDrive for Business-Dokumentbibliothek befindet. Benutzer können alle Dokumente, die für sie freigegeben wurden, auschecken oder ändern.|
-|FileCopied|Ein Benutzer kopiert ein Dokument von einer SharePoint- oder OneDrive for Business-Website. Die kopierte Datei kann in einem anderen Ordner auf der Website gespeichert werden.|
+|FileCheckedOut|Der Benutzer checkt ein Dokument aus, das sich in einer SharePoint- oder OneDrive for Business-Dokumentbibliothek befindet. Benutzer können Dokumente, die für sie freigegeben wurden, auschecken und Änderungen daran vornehmen.|
+|FileCopied|Der Benutzer kopiert ein Dokument von einer SharePoint- oder OneDrive for Business-Website. Die kopierte Datei kann in einem anderen Ordner auf der Website gespeichert werden.|
 |FileDeleted|Ein Benutzer löscht ein Dokument von einer SharePoint- oder OneDrive for Business-Website.|
 |FileDeletedFirstStageRecycleBin|Ein Benutzer löscht ein Dokument aus dem Papierkorb der SharePoint- oder OneDrive for Business-Website.|
 |FileDeletedSecondStageRecycleBin|Ein Benutzer löscht ein Dokument aus dem endgültigen Papierkorb der SharePoint- oder OneDrive for Business-Website.|
@@ -310,9 +310,9 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |FileRenamed|Ein Benutzer benennt ein Dokument auf einer SharePoint- oder OneDrive for Business-Website um.|
 |FileRestored|Ein Benutzer stellt ein Dokument aus dem Papierkorb der SharePoint- oder OneDrive for Business-Website wieder her. |
 |FileSyncDownloadedFull|Ein Benutzer richtet eine Synchronisierungsbeziehung ein und lädt zum ersten Mal erfolgreich Dateien aus einer SharePoint- oder OneDrive for Business-Dokumentbibliothek auf seinen Computer.|
-|FileSyncDownloadedPartial|Ein Benutzer lädt erfolgreich alle Änderungen an Dateien aus einer SharePoint- oder OneDrive for Business-Dokumentbibliothek herunter. Dieses Ereignis gibt an, dass alle Änderungen, die an Dateien in der Dokumentbibliothek vorgenommen wurden, auf den Computer des Benutzers heruntergeladen wurden. Es wurden nur Änderungen heruntergeladen, da die Dokumentbibliothek zuvor vom Benutzer heruntergeladen wurde (wie durch das Ereignis FileSyncDownloadedFull angegeben).|
+|FileSyncDownloadedPartial|Der Benutzer lädt alle Änderungen an Dateien aus der SharePoint- oder OneDrive for Business-Dokumentbibliothek erfolgreich herunter. Dieses Ereignis gibt an, dass alle an Dateien in der Dokumentbibliothek vorgenommenen Änderungen auf den Computer des Benutzers heruntergeladen wurden. Es wurden nur Änderungen heruntergeladen, weil die Dokumentbibliothek vom Benutzer zuvor heruntergeladen wurde (wie durch das Ereignis „FileSyncDownloadedFull“ angegeben).|
 |FileSyncUploadedFull|Ein Benutzer richtet eine Synchronisierungsbeziehung ein und lädt zum ersten Mal erfolgreich Dateien von seinem Computer in eine SharePoint- oder OneDrive for Business-Dokumentbibliothek.|
-|FileSyncUploadedPartial|Ein Benutzer lädt erfolgreich alle Änderungen an Dateien in eine SharePoint- oder OneDrive for Business-Dokumentbibliothek. Dieses Ereignis gibt an, dass alle Änderungen, die an der lokalen Version einer Datei aus einer Dokumentbibliothek vorgenommen wurden, erfolgreich in die Dokumentbibliothek geladen werden. Es werden nur Änderungen hochgeladen, da diese Dateien zuvor vom Benutzer hochgeladen wurden (wie durch das Ereignis FileSyncUploadedFull angegeben).|
+|FileSyncUploadedPartial|Der Benutzer lädt Änderungen an Dateien in eine SharePoint- oder OneDrive for Business-Dokumentbibliothek erfolgreich hoch. Dieses Ereignis gibt an, dass alle Änderungen, die an der lokalen Version einer Datei aus einer Dokumentbibliothek vorgenommen wurden, in diese Bibliothek erfolgreich hochgeladen werden. Es werden nur Änderungen hochgeladen, weil diese Dateien vom Benutzer zuvor hochgeladen wurden (wie durch das Ereignis „FileSyncUploadedFull“ angegeben).|
 |FileUploaded|Ein Benutzer lädt ein Dokument auf eine SharePoint- oder OneDrive for Business-Website. |
 |FileViewed|Dieses Ereignis ist veraltet und wurde durch das FileAccessed-Ereignis ersetzt.|
 |FolderCopied|Ein Benutzer kopiert einen Ordner von einer SharePoint- oder OneDrive for Business-Website in einen anderen Speicherort von SharePoint oder OneDrive for Business.|
@@ -324,12 +324,12 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |FolderMoved|Ein Benutzer verschiebt einen Ordner von einer SharePoint- oder OneDrive for Business-Website.|
 |FolderRenamed|Ein Benutzer benennt einen Ordner auf einer SharePoint- oder OneDrive for Business-Website um.|
 |FolderRestored|Ein Benutzer stellt einen Ordner aus dem Papierkorb auf der SharePoint- oder OneDrive for Business-Website wieder her.|
-|GroupAdded|Der Websiteadministrator oder -besitzer erstellt eine Gruppe für eine SharePoint- oder OneDrive for Business-Website oder führt eine Aufgabe aus, die dazu führt, dass eine Gruppe erstellt wird. Wenn ein Benutzer beispielsweise zum ersten Mal einen Link zum Freigeben einer Datei erstellt, wird eine Systemgruppe zur OneDrive for Business-Website hinzugefügt. Dieses Ereignis kann auch dadurch entstehen, dass ein Benutzer einen Link mit Bearbeitungsberechtigungen für eine freigegebene Datei erstellt.|
+|GroupAdded|Der Websiteadministrator oder -besitzer erstellt eine Gruppe für eine SharePoint- oder OneDrive for Business-Website oder aber führt eine Aufgabe aus, die zur Erstellung einer Gruppe führt. Wenn ein Benutzer beispielsweise zum ersten Mal einen Link zum Freigeben einer Datei erstellt, wird seiner OneDrive for Business-Website eine Systemgruppe hinzugefügt. Dieses Ereignis kann sich auch dadurch ergeben, dass ein Benutzer einen Link mit Bearbeitungsberechtigungen für eine freigegebene Datei erstellt.|
 |GroupRemoved|Ein Benutzer löscht eine Gruppe aus einer SharePoint- oder OneDrive for Business-Website. |
-|GroupUpdated|Der Websiteadministrator oder -besitzer ändert die Einstellungen einer Gruppe für eine SharePoint- oder OneDrive for Business-Website. Dazu kann das Ändern des Gruppennamens, das Anzeigen oder Bearbeiten der Gruppenmitgliedschaft und die Art der Verarbeitung von Mitgliedsanträgen gehören.|
+|GroupUpdated|Der Websiteadministrator oder -besitzer ändert die Einstellungen einer Gruppe für eine SharePoint- oder OneDrive for Business-Website. Dies kann das Ändern des Gruppennamens, das Ändern der Personen, die Gruppenmitgliedschaften anzeigen oder bearbeiten können, sowie das Ändern der Handhabung von Mitgliedschaftsanforderungen umfassen.|
 |LanguageAddedToTermStore|Eine Sprache wird zum Terminologiespeicher hinzugefügt.|
 |LanguageRemovedFromTermStore|Eine Sprache wird aus dem Terminologiespeicher gelöscht.|
-|LegacyWorkflowEnabledSet|Der Websiteadministrator oder -besitzer fügt den SharePoint-Workflowaufgaben-Inhaltstyp zur Website hinzu. Globale Administratoren können ebenfalls Workflows für die gesamte Organisation im SharePoint Admin Center aktivieren.|
+|LegacyWorkflowEnabledSet|Der Websiteadministrator oder -besitzer fügt den Inhaltstyp einer SharePoint-Workflowaufgabe zur Website hinzu. Globale Administratoren können auch Workflows für die gesamte Organisation im SharePoint Admin Center aktivieren.|
 |LookAndFeelModified|Ein Benutzer ändert Schnellstart-, Gantt-Diagramm- oder Gruppenformate.  Oder ein Benutzer erstellt, ändert oder löscht eine Ansicht in der Project Web App.|
 |ManagedSyncClientAllowed|Ein Benutzer richtet erfolgreich eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website ein. Die Synchronisierungsbeziehung ist erfolgreich, da der Computer des Benutzers Mitglied einer Domäne ist, die zur Liste der Domänen, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt), hinzugefügt wurde. Weitere Informationen finden Sie unter [Verwenden von SharePoint Online PowerShell](https://go.microsoft.com/fwlink/p/?LinkID=534609) zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind.|
 |MaxQuotaModified|Das maximale Kontingent für eine Website wurde geändert.|
@@ -337,7 +337,7 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |MySitePublicEnabledSet|Die Kennzeichnung, die es Benutzern ermöglicht, öffentliche "Meine Websites" zu besitzen, wurde durch den SharePoint-Administrator festgelegt.|
 |NewsFeedEnabledSet|Der Websiteadministrator oder -besitzer aktiviert RSS-Feeds für eine SharePoint- oder OneDrive for Business-Website. Globale Administratoren können RSS-Feeds für die gesamte Organisation im SharePoint Admin Center aktivieren.|
 |ODBNextUXSettings|Eine neue Benutzeroberfläche für OneDrive for Business wurde aktiviert.|
-|OfficeOnDemandSet|Der Websiteadministrator aktiviert Office on Demand, wodurch Benutzer auf die neueste Version von Office-Desktopanwendungen zugreifen können. Office on Demand wird im SharePoint Admin Center aktiviert und erfordert ein Office 365-Abonnement, bei dem alle Office-Anwendungen installiert werden.|
+|OfficeOnDemandSet|Der Websiteadministrator aktiviert Office on Demand, wodurch Benutzer auf die neueste Version von Office-Desktopanwendungen zugreifen können. Office on Demand wird im SharePoint Admin Center aktiviert und erfordert ein Office 365-Abonnement, das vollständige, installierte Office-Anwendungen umfasst.|
 |PageViewed|Ein Benutzer zeigt eine Seite auf einer SharePoint- oder OneDrive for Business-Website an. Dies schließt das Anzeigen von Dokumentbibliotheksdateien einer SharePoint- oder OneDrive for Business-Website in einem Browser nicht ein.|
 |PeopleResultsScopeSet|Der Websiteadministrator erstellt oder ändert die Ergebnisquelle für Personensuchen für eine SharePoint-Website.|
 |PermissionSyncSettingModified|Ein Benutzer ändert die Synchronisierungseinstellungen für Projektberechtigungen in der Project Web App.|
@@ -381,13 +381,13 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |SecurityGroupModified|Ein Benutzer erstellt, ändert oder löscht eine Sicherheitsgruppe in der Project Web App.|
 |SendToConnectionAdded|Globaler Administrator erstellt auf der Seite „Datensatzverwaltung“ im SharePoint Admin Center eine neue Verbindung vom Typ „Senden an“. Eine Verbindung vom Typ „Senden an“ legt die Einstellungen für ein Dokumentrepository oder Datenarchiv fest. Wenn Sie eine Verbindung vom Typ „Senden an“ erstellen, kann die Inhaltsorganisation Dokumente an den angegebenen Speicherort übermitteln.|
 |SendToConnectionRemoved|Der globale Administrator löscht eine Senden-an-Verbindung auf der Verwaltungsseite für Datensätze im SharePoint Admin Center.|
-|SharedLinkCreated|Ein Benutzer erstellt einen Link zu einer freigegebenen Datei in SharePoint oder OneDrive for Business. Dieser Link kann an andere Personen gesendet werden, um ihnen Zugriff auf die Datei zu gewähren. Ein Benutzer kann zwei Arten von Links erstellen: einen Link, mit dem ein Benutzer die freigegebene Datei anzeigen oder bearbeiten kann, oder einen Link, mit dem ein Benutzer die Datei nur anzeigen kann.|
+|SharedLinkCreated|Der Benutzer erstellt einen Link zu einer freigegebenen Datei in SharePoint oder OneDrive for Business. Dieser Link kann an andere Personen gesendet werden, um ihnen Zugriff auf die Datei zu gewähren. Ein Benutzer kann zwei Arten von Links erstellen: einen Link, der einem Benutzer das Anzeigen und Bearbeiten der freigegebenen Datei ermöglicht, oder einen Link, der dem Benutzer nur das Anzeigen der Datei gestattet.|
 |SharedLinkDisabled|Ein Benutzer deaktiviert (dauerhaft) einen Link, der zum Freigeben einer Datei erstellt wurde.|
 |SharingInvitationAccepted*|Ein Benutzer akzeptiert eine Einladung zur Freigabe von Dateien oder Ordnern. Dieses Ereignis wird protokolliert, wenn ein Benutzer eine Datei für andere Benutzer freigibt.|
 |SharingRevoked|Der Benutzer hebt die Freigabe einer Datei oder eines Ordners auf, die bzw. der zuvor für andere Benutzer freigegeben wurde. Dieses Ereignis wird protokolliert, wenn ein Benutzer die Freigabe einer Datei für andere Benutzer beendet.|
 |SharingSet|Ein Benutzer gibt eine Datei oder einen Ordner in SharePoint oder OneDrive for Business für einen anderen Benutzer in der Organisation frei.|
 |SiteAdminChangeRequest|Benutzer fordert, als Websitesammlungsadministrator für eine SharePoint-Websitesammlung hinzugefügt zu werden. Websitesammlungsadministratoren verfügen über Vollzugriffsberechtigungen für die Websitesammlung und alle Unterwebsites.|
-|SiteCollectionAdminAdded*|Der Websitesammlungsadministrator oder -besitzer fügt eine Person als Websitesammlungsadministrator für eine SharePoint oder OneDrive for Business-Website hinzu. Websitesammlungsadministratoren verfügen über Vollzugriff für die Websitesammlung und alle Unterwebsites.|
+|SiteCollectionAdminAdded*|Der Websitesammlungsadministrator oder -besitzer fügt eine Person als Websitesammlungsadministrator für eine SharePoint- oder OneDrive for Business-Website hinzu. Websitesammlungsadministratoren verfügen über Vollzugriff für die Websitesammlung und alle Unterwebsites.|
 |SiteCollectionCreated| Der globale Administrator erstellt eine neue Websitesammlung in Ihrer SharePoint-Organisation.|
 |SiteRenamed|Der Websiteadministrator oder -besitzer benennt die SharePoint- oder OneDrive for Business-Website um.|
 |StatusReportModified|Ein Benutzer erstellt, ändert oder löscht einen Statusbericht in der Project Web App.|
@@ -404,8 +404,8 @@ Dieser Artikel enthält Details zum allgemeinen Schema sowie zu jedem produktspe
 |TimesheetSubmitted|Ein Benutzer übermittelt eine Arbeitszeittabelle in der Project Web App.|
 |UnmanagedSyncClientBlocked|Ein Benutzer versucht, eine Synchronisierungsbeziehung mit einer SharePoint- oder OneDrive for Business-Website von einem Computer aus herzustellen, der kein Mitglied der Domäne Ihrer Organisation ist oder Mitglied einer Domäne ist, die nicht in die Liste der Domänen übernommen wurde, die in Ihrer Organisation auf Dokumentbibliotheken zugreifen können (auch Liste der sicheren Empfänger genannt). Die Synchronisierungsbeziehung ist nicht zulässig, und der Computer des Benutzers ist für das Synchronisieren, Herunterladen oder Hochladen von Dateien der Dokumentbibliothek gesperrt. Informationen zu dieser Funktion finden Sie unter [Verwenden von Windows PowerShell-Cmdlets zum Aktivieren der OneDrive-Synchronisierung für Domänen, die in der Liste der sicheren Empfänger enthalten sind](https://docs.microsoft.com/powershell/module/sharepoint-online/index).|
 |UpdateSSOApplication|Die Zielanwendung wurde im Secure Store Service aktualisiert.|
-|UserAddedToGroup|Der Websiteadministrator oder -besitzer fügt eine Person zu einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website hinzu. Das Hinzufügen einer Person zu einer Gruppe gewährt dem Benutzer die Berechtigungen, die der Gruppe zugewiesen wurden. |
-|UserRemovedFromGroup|Der Websiteadministrator oder -besitzer entfernt eine Person aus einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website. Nachdem die Person entfernt wurde, besitzt sie nicht mehr die Berechtigungen, die der Gruppe zugewiesen wurden. |
+|UserAddedToGroup|Der Websiteadministrator oder -besitzer fügt eine Person zu einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website hinzu. Durch das Hinzufügen einer Person zu einer Gruppe werden dem Benutzer die Berechtigungen erteilt, die der Gruppe zugewiesen wurden. |
+|UserRemovedFromGroup|Der Websiteadministrator oder -besitzer entfernt eine Person aus einer Gruppe auf einer SharePoint- oder OneDrive for Business-Website. Nachdem die Person entfernt wurde, werden ihr nicht mehr die Berechtigungen erteilt, die der Gruppe zugewiesen wurden. |
 |WorkflowModified|Ein Benutzer erstellt, ändert oder löscht einen Enterprise-Projekttyp oder Workflowphasen oder Phasen in der Project Web App.|
 |||||
 
@@ -626,7 +626,7 @@ Die SharePoint-Ereignisse, die unter [Durchsuchen des Überwachungsprotokolls im
 |:-----|:-----|:-----|:-----|
 |AzureActiveDirectoryEventType|Self.[AzureActiveDirectoryEventType](#azureactivedirectoryeventtype)|Ja|Der Typ des Azure AD-Ereignisses. |
 |ExtendedProperties|Collection(Common.NameValuePair)|Nein|Die erweiterten Eigenschaften des Azure AD-Ereignisses.|
-|ModifiedProperties|Collection(Common.ModifiedProperty)|Nein|Diese Eigenschaft wird für Administratorereignisse einbezogen. Die Eigenschaft enthält den Namen der Eigenschaft, die geändert wurde, den neuen Wert der geänderten Eigenschaft und den vorherigen Wert der geänderten Eigenschaft.|
+|ModifiedProperties|Collection(Common.ModifiedProperty)|Nein|Diese Eigenschaft wird für Administratorereignisse einbezogen. Die Eigenschaft enthält den Namen der Eigenschaft, die geändert wurde, den neuen Wert der geänderten Eigenschaft und den vorherigen Wert.|
 |||||
 
 ### <a name="enum-azureactivedirectoryeventtype---type--edmint32"></a>Enumeration: AzureActiveDirectoryEventType - Typ -Edm.Int32
@@ -784,6 +784,7 @@ DLP-Ereignisse (Data Loss Prevention, Verhinderung von Datenverlust) enthalten i
 |DocumentSharer|Edm.String|Ja|Der Benutzer, der das Dokument zuletzt freigegeben hat.|
 |UniqueId|Edm.String|Ja|Eine GUID, die die Datei identifiziert.|
 |LastModifiedTime|Edm.DateTime|Ja|Zeitstempel in UTC, wann das Dokument zuletzt geändert wurde.|
+|IsViewableByExternalUsers|Edm.Boolean|Ja|Bestimmt, ob ein externer Benutzer auf die Datei zugreifen kann.|
 |||||
 
 ### <a name="exchangemetadata-complex-type"></a>Komplexer ExchangeMetadata-Typ
@@ -879,7 +880,7 @@ Vertrauliche DLP-Daten sind nur in der Aktivitätsfeed-API für Benutzer verfüg
 |**Parameter**|**Typ**|**Erforderlich**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |StartTime|Edm.Date|Nein|Datum und Uhrzeit der Ausführung des Cmdlets.|
-|ClientRequestId|Edm.String|Nein|Eine GUID, die verwendet werden kann, um dieses Cmdlet mit den Security & Compliance Center-UX-Vorgängen zu koordinieren. Diese Informationen werden nur vom Microsoft Support verwendet.|
+|ClientRequestId|Edm.String|Nein|Eine GUID, die zum Korrelieren dieses Cmdlets mit den Security & Compliance Center-UX-Vorgängen verwendet werden kann. Diese Informationen werden nur vom Microsoft-Support verwendet.|
 |CmdletVersion|Edm.String|Nein|Die Buildversion des Cmdlets, als es ausgeführt wurde.|
 |EffectiveOrganization|Edm.String|Nein|Die GUID für die vom Cmdlet betroffene Organisation. (Veraltet: Dieser Parameter wird in der Zukunft nicht mehr angezeigt.)|
 |UserServicePlan|Edm.String|Nein|Der Exchange Online Protection-Serviceplan, der dem Benutzer, der das Cmdlet ausgeführt hat, zugewiesen wurde.|
@@ -901,7 +902,7 @@ Die Benutzer-ID und der UserKey für diese Ereignisse sind immer SecurityComplia
 
 - AlertEntityGenerated: Eine neue Entität wird zu einer Warnung hinzugefügt. Dieses Ereignis ist nur für Warnungen anwendbar, die basierend auf Warnungsrichtlinien im Security & Compliance Center generiert wurden. Jede generierte Warnung kann einem oder mehreren dieser Ereignisse zugeordnet werden. Beispielsweise ist eine Richtlinie so definiert, dass eine Warnung ausgelöst wird, wenn ein beliebiger Benutzer mehr als 100 Dateien in 5 Minuten löscht. Wenn zwei Benutzer in etwa der gleichen Zeit den Schwellenwert überschreiten, gibt es zwei AlertEntityGenerated-Ereignisse, aber nur ein AlertTriggered-Ereignis.
 
-- AlertUpdated: Eine Aktualisierung der Metadaten eine Warnung wurde vorgenommen. Dieses Ereignis wird protokolliert, wenn der Status einer Warnung geändert wird (z. B. von "Aktiv" zu "Gelöst") und wenn jemand einen Kommentar zu der Warnung hinzufügt.
+- AlertUpdated: Eine Aktualisierung der Metadaten eine Warnung wurde vorgenommen. Dieses Ereignis wird protokolliert, wenn der Status einer Warnung geändert wird (z. B. von "Aktiv" zu "Gelöst") und wenn jemand einen Kommentar zu der Warnung hinzufügt.
 
 |**Parameter**|**Typ**|**Erforderlich**|**Description**|
 |:-----|:-----|:-----|:-----|
@@ -916,7 +917,7 @@ Die Benutzer-ID und der UserKey für diese Ereignisse sind immer SecurityComplia
 |Kommentare|Edm.String|Nein|Kommentare von Benutzer, die die Warnung angezeigt haben. Standardmäßig "Neue Warnung"|
 |Daten|Edm.String|Nein|Der detaillierte Datenblob der Warnung oder Warnungsentität.|
 |AlertEntityId|Edm.String|Nein|Die ID für die Warnungsentität. Dieser Parameter ist nur für AlertEntityGenerated-Ereignisse anwendbar.|
-|EntityType|Edm.String|Nein|Der Typ der Warnung oder Warnungsentität. Zu den Entitätstypen gehören: <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Benutzer</p></li><li><p>Empfänger</p></li><li><p>Absender</p></li><li><p>MalwareFamily</p></li></ul>Dieser Parameter ist nur für AlertEntityGenerated-Ereignisse anwendbar.|
+|EntityType|Edm.String|Nein|Typ der Warnung oder Warnungsentität. Die Entitätstypen umfassen: <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Benutzer</p></li><li><p>Empfänger</p></li><li><p>Absender</p></li><li><p>MalwareFamily</p></li></ul>Dieser Parameter ist nur für AlertEntityGenerated-Ereignisse anwendbar.|
 |||||
 
 ## <a name="yammer-schema"></a>Yammer-Schema
@@ -1031,20 +1032,20 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |3|Tab|Eine Microsoft Teams-Registerkarte.|
 ||||
 
-## <a name="microsoft-defender-for-office-365-and-threat-investigation-and-response-schema"></a>Microsoft Defender für Office 365 und Threat Investigation and Response-Schema
+## <a name="microsoft-defender-for-office-365-and-threat-investigation-and-response-schema"></a>Microsoft Defender für Office 365 und Threat Investigation and Response-Schema
 
-[Microsoft Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/office-365-atp)- und Threat Investigation and Response-Ereignisse stehen jetzt für Office 365-Kunden zur Verfügung, die einen Defender für Office 365 Plan 1, Defender für Office 365 Plan 2 oder ein E5-Abonnement haben. Jedes Ereignis im Defender für Office 365-Feed entspricht Folgendem, das als Bedrohung eingestuft wurde:
+[Microsoft Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/office-365-atp)- und Threat Investigation and Response-Ereignisse stehen jetzt für Office 365-Kunden zur Verfügung, die einen Defender für Office 365 Plan 1, Defender für Office 365 Plan 2 oder ein E5-Abonnement haben. Jedes Ereignis im Defender für Office 365-Feed entspricht Folgendem, das als Bedrohung eingestuft wurde:
 
 - Eine E-Mail-Nachricht mit Erkennung, die von einem Benutzer in der Organisation empfangen oder gesendet wurde, die für Nachrichten zum Übermittlungszeitpunkt und von [Automatische Bereinigung zur Nullstunde](https://support.office.com/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15) durchgeführt wurde. 
 
-- Von einem Benutzer in der Organisation angeklickte URLs, die beim Klicken basierend auf dem Schutz [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) als böswillig erkannt wurden.  
+- Von einem Benutzer in der Organisation angeklickte URLs, die beim Klicken basierend auf dem Schutz [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) als böswillig erkannt wurden.  
 
-- Einer Datei in SharePoint Online, OneDrive for Business oder Microsoft Teams, die vom Schutz [Microsoft Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-for-spo-odb-and-teams) als böswillig eingestuft wurde.
+- Einer Datei in SharePoint Online, OneDrive for Business oder Microsoft Teams, die vom Schutz [Microsoft Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-for-spo-odb-and-teams) als böswillig eingestuft wurde.
 
 - Einer Warnung, die ausgelöst wurde und eine [automatisierte Untersuchung](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) eingeleitet hat.
 
 > [!NOTE]
-> Funktionen von Microsoft Defender für Office 365 und Office 365 Threat Investigation and Response (vormals bekannt als „Office 365 Threat Intelligence“) sind nun Bestandteil von Defender für Office 365 Plan 2, mit zusätzlichen Funktionen zum Schutz vor Bedrohungen. Weitere Informationen hierzu finden Sie unter [Microsoft Defender für Office 365 – Pläne und Preise](https://products.office.com/exchange/advance-threat-protection) und in der [Defender für Office 365-Dienstbeschreibung](https://docs.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description).
+> Funktionen von Microsoft Defender für Office 365 und Office 365 Threat Investigation and Response (vormals bekannt als „Office 365 Threat Intelligence“) sind nun Bestandteil von Defender für Office 365 Plan 2, mit zusätzlichen Funktionen zum Schutz vor Bedrohungen. Weitere Informationen hierzu finden Sie unter [Microsoft Defender für Office 365 – Pläne und Preise](https://products.office.com/exchange/advance-threat-protection) und in der [Defender für Office 365-Dienstbeschreibung](https://docs.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description).
 
 ### <a name="email-message-events"></a>E-Mail-Nachricht-Ereignisse
 
@@ -1052,7 +1053,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |:-----|:-----|:-----|:-----|
 |AttachmentData|Collection(Self.[AttachmentData](#attachmentdata))|Nein|Daten zu Anlagen der E-Mail-Nachricht, die das Ereignis ausgelöst hat.|
 |DetectionType|Edm.String|Ja|Der Typ der Erkennung (z. B. **Inline** – erkannt zum Übermittlungszeitpunkt; **Verzögert** – erkannt nach Zustellung; **ZAP** – Nachrichten durch [Automatische Bereinigung zur Nullstunde](https://support.office.com/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)) entfernt. In der Regel geht Ereignissen mit ZAP-Erkennungstyp eine Nachricht mit dem Erkennungstyp **Verzögert** voraus.|
-|DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Defender für Office 365  für die Erkennung verwendet wurde.|
+|DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Defender für Office 365  für die Erkennung verwendet wurde.|
 |InternetMessageId|Edm.String|Ja|Die Internetnachrichten-ID.|
 |NetworkMessageId|Edm.String|Ja|Die Nachrichten-ID des Exchange Online-Netzwerks.|
 |P1Sender|Edm.String|Ja|Der Rückpfad des Absenders der E-Mail-Nachricht.|
@@ -1145,7 +1146,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |7|Antiphishing, SPOOF|Aktion für Spoofing in der Antiphishingrichtlinie.|
 |8|Antiphishing, GIMP|Aktion für Mailbox Intelligence in der Antiphishingrichtlinie.|
 |9|Antischadsoftware, AMP| Schadsoftware-Richtlinienaktion in der Antischadsoftware-Richtlinie.|
-|10|Sichere Anlage, SAP| Richtlinienaktion in der Richtlinie für sichere Anlagen in Defender für Office 365.|
+|10|Sichere Anlage, SAP| Richtlinienaktion in der Richtlinie für sichere Anlagen in Defender für Office 365.|
 |11|Exchange-Transportregel; ETR| Richtlinienaktion in der Exchange-Transportregel.|
 |12|Antischadsoftware, ZAPM| Schadsoftware-Richtlinienaktion in der auf ZAP (Automatische Bereinigung zur Nullstunde) angewendeten Antischadsoftware-Richtlinie.|
 |13|Antiphishing, ZAPP| Phishing-Richtlinienaktion in der auf ZAP angewendeten Antiphishingrichtlinie.|
@@ -1177,7 +1178,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |:-----|:-----|:-----|:-----|
 |UserId|Edm.String|Ja|Bezeichner (z. B. E-Mail-Adresse) für den Benutzer, der auf die URL geklickt hat.|
 |AppName|Edm.String|Ja|Office 365-Dienst, von dem aus auf die URL geklickt wurde (z. B. E-Mail).|
-|URLClickAction|Self.[URLClickAction](#urlclickaction)|Ja|Klicken Sie auf die Aktion für die URL basierend auf den Richtlinien der Organisation für [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links).|
+|URLClickAction|Self.[URLClickAction](#urlclickaction)|Ja|Klicken Sie auf die Aktion für die URL basierend auf den Richtlinien der Organisation für [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links).|
 |SourceId|Edm.String|Ja|Bezeichner für den Office 365-Dienst, aus dem die URL angeklickt wurde (für E-Mail ist dies z. B. die Nachrichten-ID des Exchange Online-Netzwerks).|
 |TimeOfClick|Edm.Date|Ja|Das Datum und die Uhrzeit in koordinierter Weltzeit (UTC), wann der Benutzer auf die URL geklickt hat.|
 |URL|Edm.String|Ja|Die URL, auf die der Benutzer geklickt hat.|
@@ -1190,10 +1191,10 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 
 |**Wert**|**Elementname**|**Beschreibung**|
 |:-----|:-----|:-----|
-|2|Blockpage|Benutzer, für den das Navigieren zur URL durch [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) blockiert wurde.|
-|3|PendingDetonationPage|Benutzer, dem die Seite zur ausstehenden Denotation durch [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) angezeigt wird.|
-|4|BlockPageOverride|Benutzer, dem das Navigieren zur URL durch [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) blockiert wurde. Der Benutzer hat jedoch die Sperre außer Kraft gesetzt, um zur URL zu navigieren.|
-|5|PendingDetonationPageOverride|Benutzer, dem die Seite zur ausstehenden Detonation durch [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) angezeigt wird. Der Benutzer hat dies jedoch außer Kraft gesetzt, um zur URL zu navigieren.|
+|2|Blockpage|Benutzer, für den das Navigieren zur URL durch [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) blockiert wurde.|
+|3|PendingDetonationPage|Benutzer, dem die Seite zur ausstehenden Denotation durch [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) angezeigt wird.|
+|4|BlockPageOverride|Benutzer, dem das Navigieren zur URL durch [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) blockiert wurde. Der Benutzer hat jedoch die Sperre außer Kraft gesetzt, um zur URL zu navigieren.|
+|5|PendingDetonationPageOverride|Benutzer, dem die Seite zur ausstehenden Detonation durch [Sichere Links in Defender für Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links) angezeigt wird. Der Benutzer hat dies jedoch außer Kraft gesetzt, um zur URL zu navigieren.|
 |||||
 
 ### <a name="file-events"></a>Dateiereignisse
@@ -1201,8 +1202,8 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
 |FileData|Self.[FileData](#filedata)|Ja|Daten zu der Datei, die das Ereignis ausgelöst hat.|
-|SourceWorkload|Self.[SourceWorkload](#sourceworkload)|Ja|Arbeitslast oder Dienst, in der bzw. in dem die Datei gefunden wurde (z. B. SharePoint Online, OneDrive for Business oder Microsoft Teams).
-|DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Microsoft Defender für Office 365 für die Erkennung verwendet wurde.|
+|SourceWorkload|Self.[SourceWorkload](#sourceworkload)|Ja|Arbeitslast oder Dienst, in der bzw. in dem die Datei gefunden wurde (z. B. SharePoint Online, OneDrive for Business oder Microsoft Teams).
+|DetectionMethod|Edm.String|Ja|Die Methode oder Technologie, die von Microsoft Defender für Office 365 für die Erkennung verwendet wurde.|
 |LastModifiedDate|Edm.Date|Ja|Der Zeitpunkt in UTC, zu dem die Datei erstellt oder zuletzt geändert wurde.|
 |LastModifiedBy|Edm.String|Ja|Bezeichner (z. B. eine E-Mail-Adresse) für den Benutzer, der die Datei erstellt oder zuletzt geändert hat.|
 |EventDeepLink|Edm.String|Ja|Deep-Link zum Dateiereignis im Explorer oder Echtzeit-Berichten im Security & Compliance Center.|
@@ -1236,7 +1237,7 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 
 ## <a name="automated-investigation-and-response-events-in-office-365"></a>Automatisierte Untersuchungs- und Reaktionsereignisse in Office 365
 
-[Office 365 Automated Investigation and Response (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office)-Ereignisse (Automatisierte Untersuchung und Reaktion) stehen für Office 365-Kunden zur Verfügung, die ein Abonnement haben, in dem Microsoft Defender für Office 365 Plan 2 oder Office 365 E5 enthalten ist. Untersuchungen werden basierend einer Änderung des Untersuchungsstatus protokolliert. Wenn beispielsweise ein Administrator eine Aktion durchführt, mit der der Status einer Untersuchung von „Ausstehende Aktionen“ in „Abgeschlossen“ geändert wird, wird ein Ereignis protokolliert.
+[Office 365 Automated Investigation and Response (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office)-Ereignisse (Automatisierte Untersuchung und Reaktion) stehen für Office 365-Kunden zur Verfügung, die ein Abonnement haben, in dem Microsoft Defender für Office 365 Plan 2 oder Office 365 E5 enthalten ist. Untersuchungen werden basierend einer Änderung des Untersuchungsstatus protokolliert. Wenn beispielsweise ein Administrator eine Aktion durchführt, mit der der Status einer Untersuchung von „Ausstehende Aktionen“ in „Abgeschlossen“ geändert wird, wird ein Ereignis protokolliert.
 
 Zurzeit werden nur automatisierte Untersuchungen protokolliert. (Ereignisse für manuell gestartete Untersuchungen werden in Kürze verfügbar sein.) Die folgenden Statuswerte werden protokolliert:
 
@@ -1438,7 +1439,7 @@ Entitätenereignisse aus modellgesteuerten Apps in Dynamics 365 verwenden dieses
 |:------------------ | :------------------ | :--------------|:--------------|
 |EntityId|Edm.Guid|Nein|Der eindeutige Bezeichner der Entität.|
 |EntityName|Edm.String|Ja|Der Name der Entität in der Organisation. Beispiel für Entitäten sind `contact` oder `authentication`.|
-|Message|Edm.String|Ja|Dieser Parameter enthält den Vorgang, der im Zusammenhang mit der Entität durchgeführt wurde. Wenn z. B. ein neuer Kontakt erstellt wurde, weist die Message-Eigenschaft den Wert `Create` auf, und der entsprechende Wert der EntityName-Eigenschaft lautet `contact`.|
+|Message|Edm.String|Ja|Dieser Parameter enthält den Vorgang, der im Zusammenhang mit der Entität durchgeführt wurde. Wenn z. B. ein neuer Kontakt erstellt wurde, weist die Message-Eigenschaft den Wert `Create` auf, und der entsprechende Wert der EntityName-Eigenschaft lautet `contact`.|
 |Abfrage|Edm.String|Nein|Die Parameter der Filterabfrage, die beim Ausführen des FetchXML-Vorgangs verwendet wurden.|
 |PrimaryFieldValue|Edm.String|Nein|Gibt den Wert des Attributs an, das das Primärfeld der Entität darstellt.|
 |||||
