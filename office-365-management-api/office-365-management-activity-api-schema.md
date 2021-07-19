@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 8ee293d2e82fc2a4cc5cce04289c7428f39339d5
-ms.sourcegitcommit: 1c2efaeeeb4942591cf37f16edb64b3b41b9e83c
+ms.openlocfilehash: 6bb8d836281ebb4e98ef90957ab98d24e0c1342d
+ms.sourcegitcommit: f08ff7cfd17aedd9d2ca85b5df0666ca986c9aed
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/07/2021
-ms.locfileid: "53326602"
+ms.lasthandoff: 07/15/2021
+ms.locfileid: "53447905"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -976,22 +976,26 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 
 |**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
 |:-----|:-----|:-----|:-----|
-|MessageId|Edm.String|Nein|Ein Bezeichner für eine Chat- oder Kanalnachricht.|
-|Members|Collection(Self.[MicrosoftTeamsMember](#microsoftteamsmember-complex-type))|Nein|Eine Liste der Benutzer innerhalb eines Teams.|
-|TeamName|Edm.String|Nein|Der Name des überwachten Teams.|
-|TeamGuid|Edm.Guid|Nein|Die eindeutige ID des überwachten Teams.|
-|ChannelType|Edm.String|Nein|Der Typ des zu überwachenden Kanals (Standard/privat).|
-|ChannelName|Edm.String|Nein|Der Name des überwachten Kanals.|
-|ChannelGuid|Edm.Guid|Nein|Ein eindeutiger Bezeichner für den überwachten Kanal.|
-|ExtraProperties|Collection(Self.[KeyValuePair](#keyvaluepair-complex-type))|Nein|Eine Liste zusätzlicher Eigenschaften.|
-|AddOnType|Self.[AddOnType](#addontype)|Nein|Der Typ des Add-Ons, das dieses Ereignis generiert hat.|
-|AddonName|Edm.String|Nein|Der Name des Add-Ons, das das Ereignis generiert hat.|
 |AddOnGuid|Edm.Guid|Nein|Der eindeutige Bezeichner des Add-Ons, das das Ereignis generiert hat.|
-|TabType|Edm.String|Nein|Nur für Registerkartenereignisse vorhanden. Der Registerkartentyp, der das Ereignis generiert hat.|
-|Name|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Der Name der geänderten Einstellung.|
-|OldValue|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Alter Wert der Einstellung.|
-|NewValue|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Neuer Wert der Einstellung.|
+|AddOnName|Edm.String|Nein|Der Name des Add-Ons, das das Ereignis generiert hat.|
+|AddOnType|Self.[AddOnType](#addontype)|Nein|Der Typ des Add-Ons, das dieses Ereignis generiert hat.|
+|ChannelGuid|Edm.Guid|Nein|Ein eindeutiger Bezeichner für den überwachten Kanal.|
+|ChannelName|Edm.String|Nein|Der Name des überwachten Kanals.|
+|ChannelType|Edm.String|Nein|Der Typ des zu überwachenden Kanals (Standard/privat).|
+|ExtraProperties|Collection(Self.[KeyValuePair](#keyvaluepair-complex-type))|Nein|Eine Liste zusätzlicher Eigenschaften.|
+|HostedContents|Sammlung (Self.[HostedContent](#hostedcontent-complex-type))|Nein|Eine Sammlung von Inhalten, die von Chat- oder Kanalnachrichten gehostet werden.|
+|Members|Collection(Self.[MicrosoftTeamsMember](#microsoftteamsmember-complex-type))|Nein|Eine Liste der Benutzer innerhalb eines Teams.|
+|MessageId|Edm.String|Nein|Ein Bezeichner für eine Chat- oder Kanalnachricht.|
 |MessageURLs|Edm.String|Nein|Für jede URL vorhanden, die in Teams-Nachrichten gesendet wurde.|
+|Nachrichten|Sammlung (Self.[Message](#message-complex-type))|Nein|Eine Sammlung von Chat- oder Kanalnachrichten.|
+|MessageSizeInBytes|Edm.Int64|Nein|Die Größe einer Chat- oder Kanalnachricht in Bytes mit UTF-16-Codierung.|
+|Name|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Der Name der geänderten Einstellung.|
+|NewValue|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Neuer Wert der Einstellung.|
+|OldValue|Edm.String|Nein|Nur für Einstellungsereignisse vorhanden. Alter Wert der Einstellung.|
+|SubscriptionId|Edm.String|Nein|Ein eindeutiger Bezeichner eines Microsoft Graph-Änderungsbenachrichtigungsabonnements.|
+|TabType|Edm.String|Nein|Nur für Registerkartenereignisse vorhanden. Der Registerkartentyp, der das Ereignis generiert hat.|
+|TeamGuid|Edm.Guid|Nein|Die eindeutige ID des überwachten Teams.|
+|TeamName|Edm.String|Nein|Der Name des überwachten Teams.|
 ||||
 
 ### <a name="microsoftteamsmember-complex-type"></a>Komplexer MicrosoftTeamsMember-Typ
@@ -1033,6 +1037,32 @@ Die unter [Durchsuchen des Überwachungsprotokolls im Security & Compliance Cent
 |3|Tab|Eine Microsoft Teams-Registerkarte.|
 ||||
 
+### <a name="hostedcontent-complex-type"></a>HostedContent komplexer Typ
+
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+|Id|Edm.String|Ja|Ein eindeutiger Bezeichner des von einer Nachricht gehosteten Inhalts.|
+|SizeInBytes|Edm.Int64|Nein|Die Größe des von einer Nachricht gehosteten Inhalts in Bytes.|
+|||||
+
+### <a name="message-complex-type"></a>Komplexer Nachrichtentyp
+
+|**Parameter**|**Typ**|**Erforderlich?**|**Beschreibung**|
+|:-----|:-----|:-----|:-----|
+|AADGroupId|Edm.String|Nein|Ein eindeutiger Bezeichner der Gruppe in Azure Active Directory, zu der die Nachricht gehört.|
+|Id|Edm.String|Ja|Ein eindeutiger Bezeichner für die Chat- oder Kanalnachricht.|
+|ChannelGuid|Edm.String|Nein|Ein eindeutiger Bezeichner für den Kanal, zu dem die Nachricht gehört.|
+|ChannelName|Edm.String|Nein|Der Name des Kanals, zu dem die Nachricht gehört.|
+|ChannelType|Edm.String|Nein|Der Typ des Kanals, zu dem die Nachricht gehört.|
+|ChatName|Edm.String|Nein|Der Name des Chats, zu dem die Nachricht gehört.|
+|ChatThreadId|Edm.String|Nein|Ein eindeutiger Bezeichner für den Chat, zu dem die Nachricht gehört.|
+|ParentMessageId|Edm.String|Nein|Ein eindeutiger Bezeichner für die übergeordnete Chat- oder Kanalnachricht.|
+|SizeInBytes|Edm.Int64|Nein|Die Größe der Nachricht in Bytes mit UTF-16-Codierung.|
+|TeamGuid|Edm.String|Nein|Ein eindeutiger Bezeichner für den Team, zu dem die Nachricht gehört.|
+|TeamName|Edm.String|Nein|Der Name des Teams, zu dem die Nachricht gehört.|
+|Version|Edm.String|Nein|Die Version der Chat- oder Kanalnachricht.|
+|||||
+ 
 ## <a name="microsoft-defender-for-office-365-and-threat-investigation-and-response-schema"></a>Microsoft Defender für Office 365 und Threat Investigation and Response-Schema
 
 [Microsoft Defender für Office 365](/office365/securitycompliance/office-365-atp)- und Threat Investigation and Response-Ereignisse stehen jetzt für Office 365-Kunden zur Verfügung, die einen Defender für Office 365 Plan 1, Defender für Office 365 Plan 2 oder ein E5-Abonnement haben. Jedes Ereignis im Defender für Office 365-Feed entspricht Folgendem, das als Bedrohung eingestuft wurde:

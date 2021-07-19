@@ -7,12 +7,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 92eb7f2838e673992a778043075b6c0ef3f8d133
-ms.sourcegitcommit: e998d2175540269e94db529e74532efd4c43fab9
+ms.openlocfilehash: c8eb59433b49c9735ddfefea0d1e6804e8937439
+ms.sourcegitcommit: f08ff7cfd17aedd9d2ca85b5df0666ca986c9aed
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "50094983"
+ms.lasthandoff: 07/15/2021
+ms.locfileid: "53447898"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365-Verwaltungsaktivitäts-API – Referenz
 
@@ -30,7 +30,7 @@ Weitere Informationen über die Daten, die von der Office 365-Verwaltungsaktivit
 
 ## <a name="working-with-the-office-365-management-activity-api"></a>Verwenden der Office 365-Verwaltungsaktivitäts-API
 
-Die Office 365-Verwaltungsaktivitäts-API aggregiert Aktionen und Ereignissen in mandantenspezifische Inhalts-Blobs, die durch den Typ und die Quelle der darin enthaltenen Inhalte klassifiziert werden. Derzeit werden die folgenden Inhaltstypen unterstützt:
+Die Office 365-Verwaltungsaktivitäts-API aggregiert Aktionen und Ereignisse in mandantenspezifische Inhalts-Blobs, die durch den Typ und die Quelle der darin enthaltenen Inhalte klassifiziert werden. Derzeit werden die folgenden Inhaltstypen unterstützt:
 
 - Audit.AzureActiveDirectory
     
@@ -547,11 +547,11 @@ Beim Auflisten des Benachrichtigungsverlaufs für einen Zeitraum wird die Anzahl
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-NextPageUrl: https://manage.office.com/api/v1/{tenant_id}/activity/feed/subscriptions/content?contentType=Audit.SharePoint&amp;startTime=2015-10-01&amp;endTime=2015-10-02&amp;nextPage=2015101900R022885001761
+NextPageUri: https://manage.office.com/api/v1/{tenant_id}/activity/feed/subscriptions/content?contentType=Audit.SharePoint&amp;startTime=2015-10-01&amp;endTime=2015-10-02&amp;nextPage=2015101900R022885001761
 
 ```
 
-Um den gesamten verfügbaren Inhalt für einen angegebenen Zeitraum aufzulisten, müssen Sie möglicherweise mehrere Seiten abrufen, bis eine Antwort ohne den Header **NextPageUrl** empfangen wird.
+Um den gesamten verfügbaren Inhalt für einen angegebenen Zeitraum aufzulisten, müssen Sie möglicherweise mehrere Seiten abrufen, bis eine Antwort ohne den Header **NextPageUri** empfangen wird.
 
 ## <a name="retrieve-resource-friendly-names"></a>Abrufen von Ressourcen-Anzeigenamen
 
