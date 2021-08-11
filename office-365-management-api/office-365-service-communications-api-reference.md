@@ -7,24 +7,27 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 7cd91d9a43090b4731a11df701e0bf1aa340800e
-ms.sourcegitcommit: e7f345710dc63003704399419f784c4a9b5fc529
+ms.openlocfilehash: 883c7026ea41794e290208bed73b8da4f8ce90861cd2a1f8193e731e5dd1a4ef
+ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/02/2020
-ms.locfileid: "48830469"
+ms.lasthandoff: 08/05/2021
+ms.locfileid: "54274340"
 ---
 # <a name="office-365-service-communications-api-reference"></a>Office 365-Dienstkommunikations-API – Referenz
 
+> [!IMPORTANT]
+> Die Dienstintegritäts- und Kommunikations-API in Microsoft Graph ist jetzt verfügbar. Die Microsoft Graph-API ersetzt die Dienstkommunikations-API, die in diesem Artikel dokumentiert ist. Die Legacyversion der Dienstkommunikations-API wird ab dem 17. Dezember 2021 eingestellt. Weitere Informationen zur neuen Microsoft Graph-API finden Sie unter [Übersicht über den Zugriff auf Dienstintegrität und Kommunikation über Microsoft Graph](/graph/service-communications-concept-overview).
+
 Sie können die Office 365-Dienstkommunikations-API V2 verwenden, um Zugriff auf die folgenden Daten zu erhalten:
 
-- **Get Services** : Erhalt der Liste der abonnierten Dienste.
+- **Get Services**: Erhalt der Liste der abonnierten Dienste.
 
-- **Get Current Status** : Erhalten Sie eine Echtzeitansicht der aktuellen und laufenden Dienstincidents.
+- **Get Current Status**: Erhalten Sie eine Echtzeitansicht der aktuellen und laufenden Dienstincidents.
 
-- **Get Historical Status** : Erhalten Sie eine Verlaufsanzeige von Dienstincidents.
+- **Get Historical Status**: Erhalten Sie eine Verlaufsanzeige von Dienstincidents.
 
-- **Get Messages** : Suchen Sie nach Incident- und Message Center-Kommunikation.
+- **Get Messages**: Suchen Sie nach Incident- und Message Center-Kommunikation.
 
 Aktuell enthält die Office 365-Dienstkommunikations-API Daten für Office 365, Yammer, Dynamics CRM und Microsoft Intune-Clouddienste.
 
@@ -36,9 +39,9 @@ Die Stamm-URL der API enthält einen Mandantenbezeichner, der die Operationen ei
 https://manage.office.com/api/v1.0/{tenant_identifier}/ServiceComms/{operation}
 ```
 
-Die **Office 365 Dienstkommunikations-API** ist ein REST-Dienst, mit dem Sie Lösungen mit einer beliebigen Websprache und Hosting-Umgebung entwickeln können, die HTTPS- und X.509-Zertifikate unterstützt. Die API basiert auf **Microsoft Azure Active Directory** und dem **OAuth2** -Protokoll für Authentifizierung und Autorisierung. Um von Ihrer Anwendung aus auf die API zugreifen zu können, müssen Sie diese zuerst in Azure AD registrieren und dann mit Berechtigungen im entsprechenden Bereich konfigurieren. Dadurch kann die Anwendung OAuth2-Zugriffstoken anfordern, die für das Aufrufen der API erforderlich sind. Weitere Informationen über das Registrieren und Konfigurieren einer Anwendung in Azure AD finden Sie unter [Office 365-Verwaltungs-APIs – erste Schritte](get-started-with-office-365-management-apis.md).
+Die **Office 365 Dienstkommunikations-API** ist ein REST-Dienst, mit dem Sie Lösungen mit einer beliebigen Websprache und Hosting-Umgebung entwickeln können, die HTTPS- und X.509-Zertifikate unterstützt. Die API basiert auf **Microsoft Azure Active Directory** und dem **OAuth2**-Protokoll für Authentifizierung und Autorisierung. Um von Ihrer Anwendung aus auf die API zugreifen zu können, müssen Sie diese zuerst in Azure AD registrieren und dann mit Berechtigungen im entsprechenden Bereich konfigurieren. Dadurch kann die Anwendung OAuth2-Zugriffstoken anfordern, die für das Aufrufen der API erforderlich sind. Weitere Informationen über das Registrieren und Konfigurieren einer Anwendung in Azure AD finden Sie unter [Office 365-Verwaltungs-APIs – erste Schritte](get-started-with-office-365-management-apis.md).
 
-Alle API-Anforderungen erfordern einen HTTP-Header für die Autorisierung mit einem gültigen OAuth2-JWT-Zugriffstoken von Azure AD, das den **ServiceHealth.Read** -Anspruchenthält; der Mandantenbezeichner muss dem Mandantenbezeichner in der Stamm-URL entsprechen.
+Alle API-Anforderungen erfordern einen HTTP-Header für die Autorisierung mit einem gültigen OAuth2-JWT-Zugriffstoken von Azure AD, das den **ServiceHealth.Read**-Anspruchenthält; der Mandantenbezeichner muss dem Mandantenbezeichner in der Stamm-URL entsprechen.
 
 ```json
 Authorization: Bearer {OAuth2 token}
@@ -278,7 +281,7 @@ Die Statusdefinitionen umfassen die folgenden Werte:
 - PostIncidentReportPublished
 - ServiceOperational
 
-Eine Beschreibung dieser Statusdefinitionen finden Sie unter [Überprüfen des Microsoft 365-Dienststatus](https://docs.microsoft.com/microsoft-365/enterprise/view-service-health#status-definitions).
+Eine Beschreibung dieser Statusdefinitionen finden Sie unter [Überprüfen des Microsoft 365-Dienststatus](/enterprise/view-service-health#status-definitions).
 
 ## <a name="get-historical-status"></a>Get Historical Status
 
@@ -464,7 +467,6 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
     ]
 }
 ```
-
 
 ## <a name="errors"></a>Fehler
 

@@ -7,12 +7,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: d954cc97320953ed35d6e46cb118395469c93394
-ms.sourcegitcommit: 24ef06fd001f273d16be72733509b5ec202d3ebb
+ms.openlocfilehash: 086b40d0207fba761db66d918d74dc872ae66c9471ceced91d2b4b6dfe73ac1e
+ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/03/2021
-ms.locfileid: "50418188"
+ms.lasthandoff: 08/05/2021
+ms.locfileid: "54274350"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Häufig gestellte Fragen und Problembehandlung der Office 365-Verwaltungsaktivitäts-API
 
@@ -55,7 +55,7 @@ Nein. In letzter Zeit gab es längere Wartezeiten für Benachrichtigungen bei Ve
 
 **Wie lange bleibt der Inhalt zum Abruf über die API verfügbar?**
 
-Inhalte können während sieben Tagen nach Benachrichtigung über die Verfügbarkeit von Inhalten über die API abgerufen werden. Auch wenn sich die Benachrichtigung ungewöhnlich lange verzögert (beispielsweise bei einer Serviceunterbrechung), haben Sie dennoch 7 Tage nach der ersten Verfügbarkeit der Benachrichtigung, um das mit dem ursprünglichen Ereignis verknüpfte Inhalts-Blob herunterzuladen.
+Inhalte können während 7 Tage nach Benachrichtigung über die Verfügbarkeit von Inhalten über die API abgerufen werden. Auch wenn sich die Benachrichtigung ungewöhnlich lange verzögert (beispielsweise bei einer Serviceunterbrechung), haben Sie dennoch 7 Tage nach der ersten Verfügbarkeit der Benachrichtigung, um das mit dem ursprünglichen Ereignis verknüpfte Inhalts-Blob herunterzuladen.
 
 **Kann ich die Verwaltungsaktivitäts-API für eine bestimmte Ereignis-ID oder einen bestimmten RecordType oder andere Eigenschaften im Inhalts-Blob abfragen?**
 
@@ -78,7 +78,7 @@ Allen Organisationen ist anfänglich eine Baseline von 2 000-Anforderungen pro M
 
 **Warum werden in den Auditprotokollen für Azure Active Directory-Aktivitäten "TargetUpdatedProperties" nicht mehr in "ExtendedProperties" enthalten?**
 
-"TargetUpdatedProperties" wurden in "ExtendedProperties" angezeigt. Sie wurden jedoch aus ExtendedProperties entfernt und werden nun in ModifiedProperties angezeigt.
+"TargetUpdatedProperties" wurden in "ExtendedProperties" angezeigt. Sie wurden jedoch aus „ExtendedProperties“ entfernt und werden nun in „ModifiedProperties“ angezeigt.
 
 **Warum sind keine Überwachungsprotokolle mit UserAccountNotFound „LogonError“ für Azure Active Directory (Azure AD)-Anmeldeaktivitäten über die Verwaltungsaktivitäts-API verfügbar?**
 
@@ -86,7 +86,7 @@ Seit November 2020 werden Überwachungsprotokolle für Azure AD-Anmeldeaktivitä
 
 ## <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
-Jeder, der die Office 365-Verwaltungsaktivitäts-API verwendet, sollte wissen, dass es keine Abfrage nach Ereignisspezifika gibt, wie Datum des Ereignisses, von welcher Websitesammlung ein Ereignis ausgelöst wurde oder Ereignistyp. Stattdessen erstellen Sie Abonnements für spezielle Arbeitslasten (beispielsweise SharePoint oder Azure AD), und jedes Abonnement ist mandantenspezifisch.
+Jeder, der die Office 365-Verwaltungsaktivitäts-API verwendet, sollte wissen, dass es keine Abfrage nach Ereignisspezifika gibt, wie z. B. Datum des Ereignisses, von welcher Websitesammlung ein Ereignis ausgelöst wurde oder der Ereignistyp. Stattdessen erstellen Sie Abonnements für spezielle Arbeitslasten (beispielsweise SharePoint oder Azure AD), und jedes Abonnement ist mandantenspezifisch.
 
 In den folgenden Abschnitten werden die am häufigsten gestellten Fragen zusammengefasst, die Kunden über die Office 365-Verwaltungsaktivitäts-API haben:
 
