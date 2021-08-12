@@ -78,7 +78,7 @@ Allen Organisationen ist anfänglich eine Baseline von 2 000-Anforderungen pro M
 
 **Warum werden in den Auditprotokollen für Azure Active Directory-Aktivitäten "TargetUpdatedProperties" nicht mehr in "ExtendedProperties" enthalten?**
 
-"TargetUpdatedProperties" wurden in "ExtendedProperties" angezeigt. Sie wurden jedoch aus „ExtendedProperties“ entfernt und werden nun in „ModifiedProperties“ angezeigt.
+"TargetUpdatedProperties" wurden in "ExtendedProperties" angezeigt. Sie wurden jedoch aus "ExtendedProperties" entfernt und werden nun in "ModifiedProperties" angezeigt.
 
 **Warum sind keine Überwachungsprotokolle mit UserAccountNotFound „LogonError“ für Azure Active Directory (Azure AD)-Anmeldeaktivitäten über die Verwaltungsaktivitäts-API verfügbar?**
 
