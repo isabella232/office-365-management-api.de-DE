@@ -6,13 +6,13 @@ description: Das Office 365-Verwaltungsaktivitäts-API-Schema wird als Datendien
 ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
-localization_priority: Priority
-ms.openlocfilehash: 696b624beaff188d51313ce248ffabbbad421a1b5014e5b61da1cb86c8e18dbd
-ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
+ms.localizationpriority: high
+ms.openlocfilehash: 57c9fb5adcb92d2fd04c6377b7f9a320bbcc8a83
+ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/05/2021
-ms.locfileid: "54274339"
+ms.lasthandoff: 08/25/2021
+ms.locfileid: "58510160"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365-Verwaltungsaktivitäts-API-Schema
 
@@ -908,17 +908,17 @@ Die Benutzer-ID und der UserKey für diese Ereignisse sind immer SecurityComplia
 |**Parameter**|**Typ**|**Erforderlich**|**Description**|
 |:-----|:-----|:-----|:-----|
 |AlertId|Edm.Guid|Ja|Die GUID der Warnung.|
-|AlertType|Self.String|Ja|Die Art der Warnung. Zu den Warnungstypen gehören: <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>System</p></li><li><p>Benutzerdefiniert</p></li>|
+|AlertType|Self.String|Ja|Die Art der Warnung. Zu den Warnungstypen gehören: <ul><li>System</li><li>Benutzerdefiniert|
 |Name|Edm.String|Ja|Der Name der Warnung.|
 |PolicyId|Edm.Guid|Nein|Die GUID der Richtlinie, die die Warnung ausgelöst hat.|
-|Status|Edm.String|Nein|Der Status der Warnung. Zu den Statuswerten gehören: <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Aktiv</p></li><li><p>Wird untersucht</p></li><li><p>Gelöst</p></li><li><p>Geschlossen</p></li></ul>|
-|Severity|Edm.String|Nein|Der Schweregrad der Warnung. Zu den Schweregraden gehören: <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Niedrig</p></li><li><p>Mittel</p></li><li><p>Hoch</p></li></ul>|
-|Kategorie|Edm.String|Nein|Die Kategorie der Warnung. Zu den Kategorien gehören: <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>AccessGovernance</p></li><li><p>DataGovernance</p></li><li><p>DataLossPrevention</p></li><li><p>InsiderRiskManagement</p></li><li><p>MailFlow</p></li><li><p>ThreatManagement</p></li><li><p>Andere</p></li></ul>|
-|Quelle|Edm.String|Nein|Die Quelle der Warnung. Zu den Quellen gehören: <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Office 365 Security & Compliance</p></li><li><p>Cloud-App-Sicherheit</p></li></ul>|
+|Status|Edm.String|Nein|Der Status der Warnung. Zu den Statuswerten gehören: <ul><li><p>Aktiv</li><li>Wird untersucht</li><li>Gelöst</li><li>Geschlossen|
+|Severity|Edm.String|Nein|Der Schweregrad der Warnung. Zu den Schweregraden gehören: <ul><li>Niedrig</li><li>Mittel</li><li>Hoch</li></ul>|
+|Kategorie|Edm.String|Nein|Die Kategorie der Warnung. Zu den Kategorien gehören: <ul><li>AccessGovernance</li><li>DataGovernance</li><li>DataLossPrevention</li><li>InsiderRiskManagement</li><li>MailFlow</li><li>ThreatManagement</li><li>Andere|
+|Quelle|Edm.String|Nein|Die Quelle der Warnung. Zu den Quellen gehören: <ul><li>Office 365 Security & Compliance</li><li>Cloud-App-Sicherheit|
 |Kommentare|Edm.String|Nein|Kommentare von Benutzer, die die Warnung angezeigt haben. Standardmäßig "Neue Warnung"|
 |Daten|Edm.String|Nein|Der detaillierte Datenblob der Warnung oder Warnungsentität.|
 |AlertEntityId|Edm.String|Nein|Die ID für die Warnungsentität. Dieser Parameter ist nur für AlertEntityGenerated-Ereignisse anwendbar.|
-|EntityType|Edm.String|Nein|Typ der Warnung oder Warnungsentität. Die Entitätstypen umfassen: <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Benutzer</p></li><li><p>Empfänger</p></li><li><p>Absender</p></li><li><p>MalwareFamily</p></li></ul>Dieser Parameter ist nur für AlertEntityGenerated-Ereignisse anwendbar.|
+|EntityType|Edm.String|Nein|Typ der Warnung oder Warnungsentität. Die Entitätstypen umfassen: <ul><li>Benutzer</li><li>Empfänger</li><li>Absender</li><li>MalwareFamily</li></ul>Dieser Parameter ist nur für AlertEntityGenerated-Ereignisse anwendbar.|
 |||||
 
 ## <a name="yammer-schema"></a>Yammer-Schema

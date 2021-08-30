@@ -6,13 +6,13 @@ description: Fasst die häufigsten Fragen zusammen, die der Microsoft-Support im
 ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
-localization_priority: Priority
-ms.openlocfilehash: 086b40d0207fba761db66d918d74dc872ae66c9471ceced91d2b4b6dfe73ac1e
-ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
+ms.localizationpriority: high
+ms.openlocfilehash: a5bceab7d18553824b604609d71c50a05f4d65d6
+ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/05/2021
-ms.locfileid: "54274350"
+ms.lasthandoff: 08/25/2021
+ms.locfileid: "58510153"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Häufig gestellte Fragen und Problembehandlung der Office 365-Verwaltungsaktivitäts-API
 
@@ -35,11 +35,11 @@ Informationen zu den ersten Schritten mit der Office 365-Verwaltungsaktivitäts-
 
 **Was geschieht, wenn ich die Überwachung meiner Office 365-Organisation deaktivieren möchte? Erhalte ich weiterhin Ereignisse über die Verwaltungsaktivitäts-API?**
 
-Nein. Die einheitliche Überwachung von Office 365 muss für Ihre Organisation aktiviert sein, damit Datensätze über die Verwaltungsaktivitäts-API abgerufen werden können. Weitere Anweisungen finden Sie unter [Die Überwachungsprotokollsuche ein- oder ausschalten](https://docs.microsoft.com/microsoft-365/compliance/turn-audit-log-search-on-or-off).
+Nein. Die einheitliche Überwachung von Office 365 muss für Ihre Organisation aktiviert sein, damit Datensätze über die Verwaltungsaktivitäts-API abgerufen werden können. Weitere Anweisungen finden Sie unter [Die Überwachungsprotokollsuche ein- oder ausschalten](/microsoft-365/compliance/turn-audit-log-search-on-or-off).
 
 **Welche Ereignisse werden für einen bestimmten Office 365-Dienst überwacht?**
 
-Die Dokumentation für das Office 365-Verwaltungsaktivitäts-API-Schema enthält eine umfassende Liste der Ereignisse. Einzelheiten hierzu finden Sie unter „Office 365-Verwaltungsaktivitäts-API – Schema“. Eine Liste der Ereignisse für die meisten Office 365-Dienste, die überwacht werden, finden Sie auch im Abschnitt „Überwachte Aktivitäten“ in [Durchsuchen des Überwachungsprotokolls im Security & Compliance Center](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#audited-activities).
+Die Dokumentation für das Office 365-Verwaltungsaktivitäts-API-Schema enthält eine umfassende Liste der Ereignisse. Einzelheiten hierzu finden Sie unter „Office 365-Verwaltungsaktivitäts-API – Schema“. Eine Liste der Ereignisse für die meisten Office 365-Dienste, die überwacht werden, finden Sie auch im Abschnitt „Überwachte Aktivitäten“ in [Durchsuchen des Überwachungsprotokolls im Security & Compliance Center](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#audited-activities).
 
 **Gibt es Unterschiede in den Datensätzen, die von der Verwaltungsaktivitäts-API abgerufen werden, und den Datensätzen, die mit dem Überwachungsprotokoll-Suchtool im Microsoft 365 Compliance Center zurückgegeben werden?**
 
@@ -82,7 +82,7 @@ Allen Organisationen ist anfänglich eine Baseline von 2 000-Anforderungen pro M
 
 **Warum sind keine Überwachungsprotokolle mit UserAccountNotFound „LogonError“ für Azure Active Directory (Azure AD)-Anmeldeaktivitäten über die Verwaltungsaktivitäts-API verfügbar?**
 
-Seit November 2020 werden Überwachungsprotokolle für Azure AD-Anmeldeaktivitäten in das einheitliche Überwachungsprotokoll von Azure AD Event Hubs integriert. Als Ergebnis dieser Änderung ist das Auffüllen der Eigenschaft 2LogonError2 mit dem Wert „UserAccountNotFound“ nicht möglich. Ab der ersten Februarwoche 2021 entspricht die [ErrorCode-Eigenschaft im Azure AD-Anmeldeprüfungsschema](https://docs.microsoft.com/office/office-365-management-api/office-365-management-activity-api-schema#azure-active-directory-secure-token-service-sts-logon-schema) nun den [AADSTS-Fehlercodes](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#lookup-current-error-code-information). Außerdem wird der Parameter „UserId“ für UserAccountNotFound-Fehler nicht mit dem Benutzernamen aus der versuchten Anmeldung aufgefüllt, da dieser Benutzername nicht im Azure AD-Verzeichnis der Organisation vorhanden ist.
+Seit November 2020 werden Überwachungsprotokolle für Azure AD-Anmeldeaktivitäten in das einheitliche Überwachungsprotokoll von Azure AD Event Hubs integriert. Als Ergebnis dieser Änderung ist das Auffüllen der Eigenschaft 2LogonError2 mit dem Wert „UserAccountNotFound“ nicht möglich. Ab der ersten Februarwoche 2021 entspricht die [ErrorCode-Eigenschaft im Azure AD-Anmeldeprüfungsschema](/office/office-365-management-api/office-365-management-activity-api-schema#azure-active-directory-secure-token-service-sts-logon-schema) nun den [AADSTS-Fehlercodes](/azure/active-directory/develop/reference-aadsts-error-codes#lookup-current-error-code-information). Außerdem wird der Parameter „UserId“ für UserAccountNotFound-Fehler nicht mit dem Benutzernamen aus der versuchten Anmeldung aufgefüllt, da dieser Benutzername nicht im Azure AD-Verzeichnis der Organisation vorhanden ist.
 
 ## <a name="troubleshooting-the-office-365-management-activity-api"></a>Problembehandlung bei der Office 365-Verwaltungsaktivitäts-API
 
@@ -112,13 +112,13 @@ Die häufigsten Fragen stammen von Kunden, die Drittanbieterprodukte zum Herunte
 
 ### <a name="enabling-unified-audit-logging-in-office-365"></a>Aktivieren der einheitliche Überwachungsprotokollierung in Office 365
 
-Wenn Sie gerade eine App eingerichtet haben, die versucht, die Verwaltungsaktivitäts-API zu verwenden, und dies nicht funktioniert, stellen Sie sicher, dass Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktiviert haben. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Weitere Anweisungen finden Sie unter [Aktivieren oder Deaktivieren der Office 365-Überwachungsprotokollsuche](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off).
+Wenn Sie gerade eine App eingerichtet haben, die versucht, die Verwaltungsaktivitäts-API zu verwenden, und dies nicht funktioniert, stellen Sie sicher, dass Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktiviert haben. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Weitere Anweisungen finden Sie unter [Aktivieren oder Deaktivieren der Office 365-Überwachungsprotokollsuche](/microsoft-365/compliance/turn-audit-log-search-on-or-off).
 
 Wenn die einheitliche Überwachung nicht aktiviert ist, wird in der Regel eine Fehlermeldung angezeigt, die folgende Zeichenfolge enthält: `Microsoft.Office.Compliance.Audit``.DataServiceException: Tenant <tenantID> does not exist.`
 
 ### <a name="connecting-to-the-api"></a>Herstellen einer Verbindung mit der API
 
-Die meisten Anwendungen stellen mit einem einfachen OAuth2-Fluss mit Client-Anmeldeinformationen eine Verbindung zur API her. Daher ist der erste Schritt das Erstellen einer Azure AD-Anwendung, die die Berechtigungen für den Zugriff auf die Daten der Verwaltungsaktivitäts-API hat. In diesem Artikel werden nicht die Schritte zum Erstellen einer Azure AD-App-Registrierung erläutert. Weitere Informationen finden Sie unter [Registrieren Ihrer Anwendung mit Ihrem Azure Active Directory-Mandanten](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications).
+Die meisten Anwendungen stellen mit einem einfachen OAuth2-Fluss mit Client-Anmeldeinformationen eine Verbindung zur API her. Daher ist der erste Schritt das Erstellen einer Azure AD-Anwendung, die die Berechtigungen für den Zugriff auf die Daten der Verwaltungsaktivitäts-API hat. In diesem Artikel werden nicht die Schritte zum Erstellen einer Azure AD-App-Registrierung erläutert. Weitere Informationen finden Sie unter [Registrieren Ihrer Anwendung mit Ihrem Azure Active Directory-Mandanten](/azure/active-directory/develop/active-directory-integrating-applications).
 
 #### <a name="azure-application-permissions"></a>Azure-Anwendungsberechtigungen
 

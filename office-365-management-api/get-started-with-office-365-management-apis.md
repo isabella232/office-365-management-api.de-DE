@@ -6,13 +6,13 @@ description: Die APIs verwenden Azure AD, um Authentifizierungsdienste bereitzus
 ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
 ms.date: ''
-localization_priority: Priority
-ms.openlocfilehash: 64406bc52070f89223142fbf06313c9357d97a79311a2f00c95bfa4c829147e1
-ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
+ms.localizationpriority: high
+ms.openlocfilehash: 96a0cd71c55251160117d1ae598c8935479b6780
+ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/05/2021
-ms.locfileid: "54274270"
+ms.lasthandoff: 08/25/2021
+ms.locfileid: "58510146"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Erste Schritte mit den Office 365-Verwaltungs-APIs
 
@@ -33,7 +33,7 @@ Das folgende Diagramm zeigt die Abfolge von Genehmigungs- und Zugriffstoken-Anfr
 ![Initialer Authorisierungsvorgang für Verwaltungs-APIs](images/authorization-flow.png)
 
 > [!IMPORTANT]
-> Bevor Sie über die Office 365-Verwaltungsaktivitäts-API auf Daten zugreifen können, müssen Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktivieren. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Anweisungen hierzu finden Sie unter [Aktivieren und Deaktivieren der Office 365-Überwachungsprotokollsuche](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off). <br/><br/>Wenn Sie nur die Office 365-Dienstkommunikations-API verwenden, ist die Aktivierung der einheitlichen Überwachungsprotokollierung nicht nötig.
+> Bevor Sie über die Office 365-Verwaltungsaktivitäts-API auf Daten zugreifen können, müssen Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktivieren. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Anweisungen hierzu finden Sie unter [Aktivieren und Deaktivieren der Office 365-Überwachungsprotokollsuche](/office365/securitycompliance/turn-audit-log-search-on-or-off). <br/><br/>Wenn Sie nur die Office 365-Dienstkommunikations-API verwenden, ist die Aktivierung der einheitlichen Überwachungsprotokollierung nicht nötig.
 
 ## <a name="register-your-application-in-azure-ad"></a>Registrieren Sie Ihre Anwendung in Azure AD.
 
@@ -42,7 +42,7 @@ Die Office 365-Management-APIs verwenden Azure AD zur sicheren Authentifizierung
 
 ### <a name="prerequisites"></a>Voraussetzungen
 
-Wenn Sie die Anwendung in Azure AD registriert haben, benötigen Sie ein Abonnement für Office 365 und ein Abonnement für Azure, das mit Ihrem Office 365-Abonnement verknüpft ist. Für den Anfang können Sie Testabonnements sowohl für Office 365 als auch für Azure verwenden. Weitere Informationen finden Sie unter [Willkommen beim Office 365-Entwicklerprogramm](https://docs.microsoft.com/office/developer-program/office-365-developer-program).
+Wenn Sie die Anwendung in Azure AD registriert haben, benötigen Sie ein Abonnement für Office 365 und ein Abonnement für Azure, das mit Ihrem Office 365-Abonnement verknüpft ist. Für den Anfang können Sie Testabonnements sowohl für Office 365 als auch für Azure verwenden. Weitere Informationen finden Sie unter [Willkommen beim Office 365-Entwicklerprogramm](/office/developer-program/office-365-developer-program).
 
 
 ### <a name="use-the-azure-management-portal-to-register-your-application-in-azure-ad"></a>Nutzen Sie das Azure-Verwaltungsportal, um Ihre Anwendung in Azure AD zu registrieren.
@@ -80,7 +80,7 @@ Nachdem Sie einen Microsoft-Mandanten mit den entsprechenden Abonnements haben, 
 
 Nachdem Ihre Anwendung registriert ist, gibt es mehrere wichtige Eigenschaften, die Sie angeben müssen, die bestimmen, wie Ihre Anwendung in Azure AD funktioniert und wie Mandantenadministratoren Ihrer Anwendung die Genehmigung für den Zugriff auf ihre Daten mittels den Office 365-Management-APIs erteilen.
 
-Weitere Informationen zur Anwensungskonfiguration in Azure AD im Allgemeinen finden Sie unter [Anwendungs-Objekteigenschaften](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects).
+Weitere Informationen zur Anwensungskonfiguration in Azure AD im Allgemeinen finden Sie unter [Anwendungs-Objekteigenschaften](/azure/active-directory/develop/active-directory-application-objects).
 
 
 1. **CLIENT-ID**. Dieser Wert wird von Azure AD automatisch generiert. Ihre Anwendung wird diesen Wert beim Anfordern von Genehmigungen von Mandantenadministratoren und beim Anfordern von „Nur App“-Token aus Azure AD verwenden.
@@ -334,7 +334,7 @@ Das zurückgegebene Zugriffstoken ist ein JWT-Token und enthält Informationen �
 
 Sobald die Mandanten-ID bekannt ist, kann Ihre Anwendung Dienst-zu-Dienst-Anrufe zu Azure AD durchführen, um weitere Zugriffstoken anzufordern, wenn vorhandene ihre Gültigkeit verlieren. Diese Token enthalten ausschließlich Informationen über die anfragende Anwendung und nicht über den Administrator, der die erste Zustimmung erteilt hat. Dienst-zu-Dienst-Aufrufe erfordern, dass Ihre Anwendung ein X.509-Zertifikat verwendet, um Client Assertion in Form eines base64-codierten, SHA256-signierten JWT Bearer-Token zu erstellen.
 
-Wenn Sie die Anwendung in .NET entwickeln, können Sie mithilfe der [Azure Active Directory Authentication Library (ADAL)](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries) Client Assertions erstellen. Andere Entwicklungsplattformen sollten ähnliche Bibliotheken haben.
+Wenn Sie die Anwendung in .NET entwickeln, können Sie mithilfe der [Azure Active Directory Authentication Library (ADAL)](/azure/active-directory/develop/active-directory-authentication-libraries) Client Assertions erstellen. Andere Entwicklungsplattformen sollten ähnliche Bibliotheken haben.
 
 Ein nicht codiertes JWT-Token besteht aus einer Kopfzeile und einer Nutzlast, die die folgenden Eigenschaften haben.
 
