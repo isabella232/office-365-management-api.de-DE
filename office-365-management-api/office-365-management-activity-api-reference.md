@@ -6,26 +6,26 @@ description: Verwenden Sie die Office 365-Verwaltungsaktivitäts-API zum Abrufen
 ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: ''
-localization_priority: Priority
-ms.openlocfilehash: 6d2f013a79d444a596dab1423ac2c731fb86a8df4358c99480705a2a8f23bbe1
-ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
+ms.localizationpriority: high
+ms.openlocfilehash: ba8913806f13719e0851ea5a3574ac7847ab35f5
+ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/05/2021
-ms.locfileid: "54274329"
+ms.lasthandoff: 08/25/2021
+ms.locfileid: "58510138"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365-Verwaltungsaktivitäts-API – Referenz
 
 Verwenden Sie die Office 365-Verwaltungsaktivitäts-API zum Abrufen von Informationen über Benutzer-, Verwaltungs-, System- und Richtlinienaktionen und -ereignisse aus Office 365 und Azure AD-Aktivitätsprotokollen. 
 
-Sie können die Aktionen und Ereignisse aus den Office 365- und Microsoft Azure Active Directory-Überwachungs- und -Aktivitätsprotokollen verwenden, um Lösungen zu erstellen, die Überwachung, Analysen und Datenvisualisierung bereitstellen. Anhand dieser Lösungen haben Organisationen einen besseren Einblick in die Aktionen, die mit ihren Inhalten ausgeführt werden. Diese Aktionen und Ereignisse sind auch in den Office 365-Aktivitätsberichten verfügbar. Weitere Informationen finden Sie unter [Durchsuchen des Überwachungsprotokolls im Office 365 Security & Compliance Center](https://support.office.com/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c).
+Sie können die Aktionen und Ereignisse aus den Office 365- und Microsoft Azure Active Directory-Überwachungs- und -Aktivitätsprotokollen verwenden, um Lösungen zu erstellen, die Überwachung, Analysen und Datenvisualisierung bereitstellen. Anhand dieser Lösungen haben Organisationen einen besseren Einblick in die Aktionen, die mit ihren Inhalten ausgeführt werden. Diese Aktionen und Ereignisse sind auch in den Office 365-Aktivitätsberichten verfügbar. Weitere Informationen finden Sie unter [Durchsuchen des Überwachungsprotokolls in Microsoft 365](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance).
 
 Die Office 365-Verwaltungsaktivitäts-API ist ein REST-Webdienst, mit dem Sie Lösungen in einer beliebigen Sprache und mit jeder Hosting-Umgebung, die HTTPS- und X.509-Zertifikate unterstützt, entwickeln können. Die API basiert auf Azure AD und dem OAuth2-Protokoll für Authentifizierung und Autorisierung. Um von Ihrer Anwendung aus auf die API zugreifen zu können, müssen Sie diese zuerst in Azure AD registrieren und dann mit den entsprechenden Berechtigungen konfigurieren. Dadurch kann die Anwendung OAuth2-Zugriffstoken anfordern, die sie zum Aufrufen der API benötigt. Weitere Informationen finden Sie unter [Erste Schritte mit den Office 365-Verwaltungs-APIs](get-started-with-office-365-management-apis.md).
 
 Weitere Informationen über die Daten, die von der Office 365-Verwaltungsaktivitäts-API zurückgegeben werden, finden Sie unter [Office 365-Verwaltungsaktivitäts-API-Schema](office-365-management-activity-api-schema.md).
 
 > [!IMPORTANT]
-> Bevor Sie über die Office 365-Verwaltungsaktivitäts-API auf Daten zugreifen können, müssen Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktivieren. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Weitere Anweisungen finden Sie unter [Aktivieren oder Deaktivieren der Office 365-Überwachungsprotokollsuche](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off).
+> Bevor Sie über die Office 365-Verwaltungsaktivitäts-API auf Daten zugreifen können, müssen Sie die einheitliche Überwachungsprotokollierung für Ihre Office 365-Organisation aktivieren. Dazu aktivieren Sie das Office 365-Überwachungsprotokoll. Weitere Anweisungen finden Sie unter [Aktivieren oder Deaktivieren der Office 365-Überwachungsprotokollsuche](/microsoft-365/compliance/turn-audit-log-search-on-or-off).
 
 
 ## <a name="working-with-the-office-365-management-activity-api"></a>Verwenden der Office 365-Verwaltungsaktivitäts-API
@@ -130,7 +130,7 @@ Dieser Vorgang beginnt mit dem Abonnement für den angegebenen Inhaltstyp. Wenn 
 |**Pfad**| `/subscriptions/start?contentType={ContentType}`||
 |**Parameter**|contentType|Muss ein gültiger Inhaltstyp sein.|
 ||PublisherIdentifier|Die Mandanten-GUID des Herstellers, der mit der API codiert. Dies ist **nicht** die Anwendungs-GUID oder die GUID des Kunden, der die Anwendung nutzt, sondern die GUID des Unternehmens, das den Code schreibt. Dieser Parameter wird zum Drosseln der Anforderungsrate verwendet. Stellen Sie sicher, dass dieser Parameter in allen ausgegebenen Anforderungen angegeben ist, um ein dediziertes Kontingent zu erhalten. Alle Anforderungen, die ohne diesen Parameter empfangen werden, teilen sich dasselbe Kontingent.|
-|**Body**|webhook|Optionales JSON-Objekt mit drei Eigenschaften:<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>address</b>: Erforderlicher HTTPS-Endpunkt, der Benachrichtigungen empfangen kann.  Es wird eine Testnachricht an den Webhook gesendet, um ihn zu überprüfen, bevor das Abonnements erstellt wird.</p></li><li><p><b>AuthId</b>: Optionale Zeichenfolge, die als WebHook-AuthID-Header in Benachrichtigungen einbezogen wird, die an den Webhook gesendet werden. Dies ist eine Methode zum Erkennen und Autorisieren der Quelle, aus der die Anforderung an den Webhook stammt.</p></li><li><p><b>expiration</b>: Optionale datetime-Angabe, die ein Datum und eine Uhrzeit angibt, nach deren Ablauf keine Benachrichtigungen mehr an den Webhook gesendet werden sollen.</p></li></ul>|
+|**Body**|webhook|Optionales JSON-Objekt mit drei Eigenschaften:<ul><li>**address**</b>: Erforderlicher HTTPS-Endpunkt, der Benachrichtigungen empfangen kann.  Es wird eine Testnachricht an den Webhook gesendet, um ihn zu überprüfen, bevor das Abonnements erstellt wird.</li><li>**AuthId**: Optionale Zeichenfolge, die als WebHook-AuthID-Header in Benachrichtigungen einbezogen wird, die an den Webhook gesendet werden. Dies ist eine Methode zum Erkennen und Autorisieren der Quelle, aus der die Anforderung an den Webhook stammt.</li><li>**expiration**: Optionale datetime-Angabe, die ein Datum und eine Uhrzeit angibt, nach deren Ablauf keine Benachrichtigungen mehr an den Webhook gesendet werden sollen.|
 |**Antwort**|contentType|Der im Aufruf angegebene Inhaltstyp.|
 ||status|Der Status des Abonnements. Wenn ein Abonnement deaktiviert ist, können Sie keine Inhalte auflisten oder abrufen.|
 ||webhook|Die im Aufruf angegeben Webhook Eigenschaften mit dem Status des Webhooks. Wenn der Webhook deaktiviert ist, erhalten Sie keine Benachrichtigung. Sie können jedoch weiterhin Inhalt auflisten und abrufen, vorausgesetzt, das Abonnement ist  aktiviert.|
@@ -171,8 +171,6 @@ Content-Type: application/json; charset=utf-8
 }
 
 ```
-
-
 ## <a name="webhook-validation"></a>Webhook-Überprüfung
 
 Wenn der /start-Vorgang aufgerufen wird und ein Webhook angegeben ist, senden wir eine Überprüfungsbenachrichtigung an die angegebene Webhook-Adresse, um zu überprüfen, ob ein aktiver Listener die Benachrichtigungen annehmen und verarbeiten kann. Wenn wir keine „HTTP 200 OK“-Antwort erhalten, wird das Abonnement nicht erstellt. Wenn „/start“ alternativ aufgerufen wird, um einen Webhook zu einem vorhandenen Abonnement hinzuzufügen und die Antwort „HTTP 200 OK“ nicht empfangen wird, wird der Webhook nicht hinzugefügt, und das Abonnement bleibt unverändert.
@@ -190,7 +188,6 @@ Webhook-ValidationCode: (random opaque string)
 }
 
 ```
-
 
 #### <a name="sample-response"></a>Beispielantwort
 
@@ -240,7 +237,7 @@ Dieser Vorgang gibt eine Sammlung der aktuellen Abonnements zusammen mit den zug
 |**Pfad**| `/subscriptions/list`||
 |**Parameter**|PublisherIdentifier|Die Mandanten-GUID des Herstellers, der mit der API codiert. Dies ist **nicht** die Anwendungs-GUID oder die GUID des Kunden, der die Anwendung nutzt, sondern die GUID des Unternehmens, das den Code schreibt. Dieser Parameter wird zum Drosseln der Anforderungsrate verwendet. Stellen Sie sicher, dass dieser Parameter in allen ausgegebenen Anforderungen angegeben ist, um ein dediziertes Kontingent zu erhalten. Alle Anforderungen, die ohne diesen Parameter empfangen werden, teilen sich dasselbe Kontingent.|
 |**Body**|(leer)||
-|**Antwort**|JSON-Array|Jedes Abonnement wird durch ein JSON-Objekt mit drei Eigenschaften dargestellt:<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>contentType</b>: Gibt den Inhaltstyp an.</p></li><li><p><b>status</b>: Gibt den Status des Abonnements an.</p></li><li><p><b>webhook</b>: Gibt den konfigurierten Webhook zusammen mit seinem Status an (aktiviert, deaktiviert, abgelaufen).  Wenn ein Abonnement keinen Webhook hat, ist die Webhook-Eigenschaft zwar vorhanden, hat jedoch den Wert „null“.</p></li></ul>|
+|**Antwort**|JSON-Array|Jedes Abonnement wird durch ein JSON-Objekt mit drei Eigenschaften dargestellt:<ul><li>**contentType**: Gibt den Inhaltstyp an.</li><li>**status**: Gibt den Status des Abonnements an.</li><li>**webhook**: Gibt den konfigurierten Webhook zusammen mit seinem Status an (aktiviert, deaktiviert, abgelaufen).  Wenn ein Abonnement keinen Webhook hat, ist die Webhook-Eigenschaft zwar vorhanden, hat jedoch den Wert „null“.|
 
 
 #### <a name="sample-request"></a>Beispielanfrage
@@ -290,8 +287,8 @@ Dieser Vorgang listet den Inhalt auf, der aktuell zum Abrufen für den angegeben
 |**Pfad**| `/subscriptions/content?contentType={ContentType}&amp;startTime={0}&amp;endTime={1}`||
 |**Parameter**|contentType|Muss ein gültiger Inhaltstyp sein.|
 ||PublisherIdentifier|Die Mandanten-GUID des Herstellers, der mit der API codiert. Dies ist **nicht** die Anwendungs-GUID oder die GUID des Kunden, der die Anwendung nutzt, sondern die GUID des Unternehmens, das den Code schreibt. Dieser Parameter wird zum Drosseln der Anforderungsrate verwendet. Stellen Sie sicher, dass dieser Parameter in allen ausgegebenen Anforderungen angegeben ist, um ein dediziertes Kontingent zu erhalten. Alle Anforderungen, die ohne diesen Parameter empfangen werden, teilen sich dasselbe Kontingent.|
-||startTime endTime|Optionale Datums- und Uhrzeitangabe (UTC), die den Zeitraum angibt, in dem Inhalte zurückgegeben werden sollen, basierend darauf, wann der Inhalt verfügbar wurde. Der Zeitraum bezieht die Startzeit (startTime < = contentCreated) mit ein, schließt die Endzeit (contentCreated < endTime) jedoch aus, damit nicht überlappende, inkrementierende Zeitintervalle zum Blättern durch den verfügbaren Inhalte verwendet werden können.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>YYYY-MM-DD</p></li><li><p>YYYY-MM-DDTHH:MM</p></li><li><p>YYYY-MM-DDTHH:MM:SS</p></li></ul>Es müssen beide angegeben werden (oder beide nicht angegeben werden), und die Zeitangaben dürfen nicht mehr als 24 Stunden auseinander liegen, wobei die Startzeit nicht mehr als sieben Tagen in der Vergangenheit liegen darf. Wenn „startTime“ und „endTime“ ausgelassen werden, wird standardmäßig der in den letzten 24 Stunden verfügbare Inhalt zurückgegeben.<p>**HINWEIS**: Obwohl es möglich ist, eine Startzeit und Endzeit anzugeben, die mehr als 24 Stunden auseinander liegen, wird dies nicht empfohlen. Wenn Sie länger als 24 Stunden Ergebnisse als Antwort auf eine Anforderung erhalten, kann es sich hierbei außerdem nur um Teilergebnisse handeln, die nicht berücksichtigt werden sollten. Die Anforderung sollte mit einem Intervall von nicht mehr als 24 Stunden zwischen der Startzeit und Endzeit ausgegeben werden.</p>|
-|**Antwort**|JSON-Array|Die verfügbare Inhalte werden durch JSON-Objekte mit den folgenden Eigenschaften dargestellt:<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>contentType</b>: Gibt den Inhaltstyp an.</p></li><li><p><b>contentId</b>: Eine verdeckte Zeichenfolge, die den Inhalt eindeutig identifiziert.</p></li><li><p><b>contentUri</b>: Die URL zum Abrufen von Inhalt.</p></li><li><p><b>contentCreated</b>: Datum und Uhrzeit, wann der Inhalt verfügbar wurde.</p></li><li><p><b>contentExpiration</b>: Datum und Uhrzeit, nach dem der Inhalt nicht mehr abgerufen werden kann.</p></li></ul>|
+||startTime endTime|Optionale Datums- und Uhrzeitangabe (UTC), die den Zeitraum angibt, in dem Inhalte zurückgegeben werden sollen, basierend darauf, wann der Inhalt verfügbar wurde. Der Zeitraum bezieht die Startzeit (startTime < = contentCreated) mit ein, schließt die Endzeit (contentCreated < endTime) jedoch aus, damit nicht überlappende, inkrementierende Zeitintervalle zum Blättern durch den verfügbaren Inhalte verwendet werden können.<ul><li>YYYY-MM-DD</li><li>YYYY-MM-DDTHH:MM</li><li>YYYY-MM-DDTHH:MM:SS</ul>Es müssen beide angegeben werden (oder beide nicht angegeben werden), und die Zeitangaben dürfen nicht mehr als 24 Stunden auseinander liegen, wobei die Startzeit nicht mehr als sieben Tagen in der Vergangenheit liegen darf. Wenn „startTime“ und „endTime“ ausgelassen werden, wird standardmäßig der in den letzten 24 Stunden verfügbare Inhalt zurückgegeben.<p>**HINWEIS**: Obwohl es möglich ist, eine Startzeit und Endzeit anzugeben, die mehr als 24 Stunden auseinander liegen, wird dies nicht empfohlen. Wenn Sie länger als 24 Stunden Ergebnisse als Antwort auf eine Anforderung erhalten, kann es sich hierbei außerdem nur um Teilergebnisse handeln, die nicht berücksichtigt werden sollten. Die Anforderung sollte mit einem Intervall von nicht mehr als 24 Stunden zwischen der Startzeit und Endzeit ausgegeben werden.</p>|
+|**Antwort**|JSON-Array|Die verfügbare Inhalte werden durch JSON-Objekte mit den folgenden Eigenschaften dargestellt:<ul><li>**contentType**: Gibt den Inhaltstyp an.</li><li>**contentId**: Eine verdeckte Zeichenfolge, die den Inhalt eindeutig identifiziert.</li><li> **contentUri**: Die URL zum Abrufen von Inhalt.</li><li>**contentCreated**: Datum und Uhrzeit, wann der Inhalt verfügbar wurde.</li><li> **contentExpiration**: Datum und Uhrzeit, nach dem der Inhalt nicht mehr abgerufen werden kann.|
 
 
 #### <a name="sample-request"></a>Beispielanfrage
@@ -321,7 +318,6 @@ Content-Type: application/json; charset=utf-8
 
 ```
 
-
 ### <a name="pagination"></a>Paginierung
 
 Beim Auflisten des Inhalts für einen Zeitraum wird die Anzahl der zurückgegebenen Ergebnisse beschränkt, um Zeitüberschreitungen bei der Antwort zu vermeiden. Wenn im angegebenen Zeitraum mehr Ergebnisse vorliegen, als in einer einzelnen Antwort zurückgegeben werden können, werden die Ergebnisse abgeschnitten und es wird ein Header zur Antwort hinzugefügt, der die URL zum Abrufen der nächsten Seite mit Ergebnissen angibt. Die URL enthält dieselben _startTime_- und _endTime_-Parameter, die in der ursprünglichen Anforderung angegeben wurden, zusammen mit einem Parameter, der die interne ID der nächsten Seite angibt. Wenn _startTime_ und _endTime_ in der ursprünglichen Anforderung nicht angegeben werden, werden sie auf ein 24-Stunden-Intervall festgelegt, das der ursprünglichen Anforderung voranging.
@@ -346,17 +342,17 @@ Die Benachrichtigung erfolgt als HTTP POST über TLS (TLS 1.0 und höher) an die
 Der Text der Anforderung enthält ein Array mit einem oder mehreren JSON-Objekten, die die verfügbaren Inhalts-Blobs darstellen. Die Anzahl der Inhalts-Blobs in den Benachrichtigungen ist beschränkt, um die Größe der Benachrichtigung relativ klein zu halten. Da sich diese Beschränkung ändern kann, sollte die Implementierung die Länge des Arrays abfragen, anstatt eine feste Größe zu erwarten. Jedes Objekt enthält die gleichen, vom /content-Vorgang zurückgegebenen Eigenschaften zusammen mit der GUID des Mandanten, zu dem die Daten gehören, und der GUID der Anwendung, die die Abonnements erstellt hat. Dadurch kann der Webhook einen Kontext herstellen, wenn er mit mehreren Mandanten und Anwendungen verwendet wird.
 
 - **tenantId**: Die GUID des Mandanten, zu dem der Inhalt gehört.
-    
+
 - **clientId**: Die GUID der Anwendung, die das Abonnement erstellt hat.
-    
+
 - **contentType**: Gibt den Inhaltstyp an.
-    
+
 - **contentId**: Eine verdeckte Zeichenfolge, die den Inhalt eindeutig identifiziert.
-    
+
 - **contentUri**: Die URL zum Abrufen von Inhalt.
-    
+
 - **contentCreated**: Datum und Uhrzeit, wann der Inhalt verfügbar wurde.
-    
+
 - **contentExpiration**: Datum und Uhrzeit, nach dem der Inhalt nicht mehr abgerufen werden kann.
     
 Nachfolgend ist ein Beispiel für eine Benachrichtigung angegeben.
@@ -381,11 +377,9 @@ Webhook-AuthID: o365activityapinotification
 
 ```
 
-
 ## <a name="notification-failure-and-retry"></a>Fehler bei Benachrichtigungen und Wiederholen
 
 Das Benachrichtigungssystem sendet Benachrichtigungen, sobald neuer Inhalt verfügbar ist. Wenn wir beim Senden von Benachrichtigungen übermäßig viele Fehler auftreten, vergrößert unser Wiederholungsmechanismus die Zeit zwischen den Wiederholungsversuche beträchtlich. Wenn weiterhin Fehler auftreten, behalten wir uns das Recht vor, den Webhook zu deaktivieren und keine Benachrichtigungen mehr zu senden. Der /start-Vorgang kann verwendet werden, um einen deaktivierten Webhook wieder zu aktivieren.
-
 
 ## <a name="retrieving-content"></a>Abrufen von Inhalten
 
@@ -493,7 +487,6 @@ Content-Type: application/json; charset=utf-8
 
 ```
 
-
 ## <a name="list-notifications"></a>Auflisten von Benachrichtigungen
 
 Dieser Vorgang listet alle Benachrichtigungsversuche für den angegebenen Inhaltstyp auf. Wenn Sie beim Starten des Abonnements für den Inhaltstyp keinen Webhook angegeben haben, sind keine abzurufenden Benachrichtigungen verfügbar. Da bei Fehlern das Abrufen von Benachrichtigungen wiederholt wird, kann dieser Vorgang mehrere Benachrichtigungen für denselben Inhalt zurückgeben. Außerdem entspricht die Reihenfolge, in der die Benachrichtigungen gesendet werden, nicht unbedingt der Reihenfolge, in der die Inhalte verfügbar wurden (insbesondere dann, wenn Fehler und Wiederholungen vorliegen). 
@@ -506,7 +499,7 @@ Sie können diesen Vorgang verwenden, um Probleme im Zusammenhang mit Webhooks u
 |**Pfad**| `/subscriptions/notifications?contentType={ContentType}&amp;startTime={0}&amp;endTime={1}`||
 |**Parameter**|contentType|Muss ein gültiger Inhaltstyp sein.|
 ||PublisherIdentifier|Die Mandanten-GUID des Herstellers, der mit der API codiert. Dies ist **nicht** die Anwendungs-GUID oder die GUID des Kunden, der die Anwendung nutzt, sondern die GUID des Unternehmens, das den Code schreibt. Dieser Parameter wird zum Drosseln der Anforderungsrate verwendet. Stellen Sie sicher, dass dieser Parameter in allen ausgegebenen Anforderungen angegeben ist, um ein dediziertes Kontingent zu erhalten. Alle Anforderungen, die ohne diesen Parameter empfangen werden, teilen sich dasselbe Kontingent.|
-||startTime endTime|Optionale Datums- und Uhrzeitangabe (UTC), die den Zeitraum angibt, in dem Inhalte zurückgegeben werden sollen, basierend darauf, wann der Inhalt verfügbar wurde. Der Zeitraum bezieht _startTime_ (_startTime_ < = contentCreated) mit ein, schließt die _endTime_ (_contentCreated_ < endTime) jedoch aus, damit nicht überlappende, inkrementierende Zeitintervalle zum Blättern durch den verfügbaren Inhalte verwendet werden können.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>YYYY-MM-DD</p></li><li><p>YYYY-MM-DDTHH:MM</p></li><li><p>YYYY-MM-DDTHH:MM:SS</p></li></ul>Es müssen beide angegeben werden (oder beide nicht angegeben werden), und die Zeitangaben dürfen nicht mehr als 24 Stunden auseinander liegen, wobei die Startzeit nicht mehr als sieben Tagen in der Vergangenheit liegen darf. Wenn _startTime_ und _endTime_ ausgelassen werden, wird standardmäßig der in den letzten 24 Stunden verfügbare Inhalt zurückgegeben.|
+||startTime endTime|Optionale Datums- und Uhrzeitangabe (UTC), die den Zeitraum angibt, in dem Inhalte zurückgegeben werden sollen, basierend darauf, wann der Inhalt verfügbar wurde. Der Zeitraum bezieht _startTime_ (_startTime_ < = contentCreated) mit ein, schließt die _endTime_ (_contentCreated_ < endTime) jedoch aus, damit nicht überlappende, inkrementierende Zeitintervalle zum Blättern durch den verfügbaren Inhalte verwendet werden können.<ul><li>YYYY-MM-DD</li><li>YYYY-MM-DDTHH:MM</li><li>YYYY-MM-DDTHH:MM:SS</ul>Es müssen beide angegeben werden (oder beide nicht angegeben werden), und die Zeitangaben dürfen nicht mehr als 24 Stunden auseinander liegen, wobei die Startzeit nicht mehr als sieben Tagen in der Vergangenheit liegen darf. Wenn _startTime_ und _endTime_ ausgelassen werden, wird standardmäßig der in den letzten 24 Stunden verfügbare Inhalt zurückgegeben.|
 |**Antwort**|JSON-Array|Die Benachrichtigungen werden durch JSON-Objekte mit den folgenden Eigenschaften dargestellt: <ul><li>**contentType**: Gibt den Inhaltstyp an.</li><li>**contentId**: Eine verdeckte Zeichenfolge, die den Inhalt eindeutig identifiziert.</li><li>**contentUri**: Die URL zum Abrufen von Inhalt. </li><li>**contentCreated**: Datum und Uhrzeit, wann der Inhalt verfügbar wurde.</li><li>**contentExpiration**: Datum und Uhrzeit, nach dem der Inhalt nicht mehr abgerufen werden kann.</li><li>**notificationSent**: Datum und Uhrzeit des Sendens der Benachrichtigung.</li><li>**notificationStatus**: Gibt an, ob das Senden der Benachrichtigung erfolgreich war oder fehlgeschlagen ist.</li></ul>|
 
 #### <a name="sample-request"></a>Beispielanfrage
@@ -564,7 +557,7 @@ Dieser Vorgang ruft Anzeigenamen für Objekte im Datenfeed ab, die durch GUIDs i
 |**Parameter**|PublisherIdentifier|Die Mandanten-GUID des Herstellers, der mit der API codiert. Dies ist **nicht** die Anwendungs-GUID oder die GUID des Kunden, der die Anwendung nutzt, sondern die GUID des Unternehmens, das den Code schreibt. Dieser Parameter wird zum Drosseln der Anforderungsrate verwendet. Stellen Sie sicher, dass dieser Parameter in allen ausgegebenen Anforderungen angegeben ist, um ein dediziertes Kontingent zu erhalten. Alle Anforderungen, die ohne diesen Parameter empfangen werden, teilen sich dasselbe Kontingent.|
 |**Headers**|Accept-Language|Header, der die gewünschte Sprache für lokalisierte Namen angibt. Verwenden Sie zum Beispiel „en-US“ für Englisch oder „es“ für Spanisch. Die Standardsprache (en-US) wird zurückgegeben, wenn dieser Header nicht vorhanden ist.|
 |**Body**|(leer)||
-|**Antwort**|JSON-Array|Die verfügbare Inhalte werden durch JSON-Objekte mit den folgenden Eigenschaften dargestellt:<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>id</b>: Gibt die GUID des Typs für vertrauliche Informationen an.</p></li><li><p><b>name</b>: Der Anzeigename des Typs für vertrauliche Informationen.</p></li></ul>|
+|**Antwort**|JSON-Array|Die verfügbare Inhalte werden durch JSON-Objekte mit den folgenden Eigenschaften dargestellt:<ul><li>**id**</b>: Gibt die GUID des Typs für vertrauliche Informationen an.</li><li>**name**: Der Anzeigename des Typs für vertrauliche Informationen.</p></li></ul>|
 
 #### <a name="sample-request"></a>Beispielanfrage
 
@@ -602,7 +595,7 @@ Organisationen, die über die Office 365-Verwaltungsaktivitäts-API auf Überwac
 
 Wir wechseln von einem Grenzwert auf Herausgeberebene zu einem Grenzwert auf Mandantenebene. Dadurch erhält jede Organisation ein eigenes, vollständig zugewiesenes Bandbreitenkontingent erhält für den Zugriff auf ihre Überwachungsdaten. Allen Organisationen ist anfänglich eine Baseline von 2.000-Anforderungen pro Minute zugeordnet. Dies ist kein statischer, vordefinierter Grenzwert, sondern ein Wert, der auf der Grundlage einer Kombination von Faktoren angepasst wird, beispielweise basierend auf der Anzahl der Arbeitsplätze in der Organisation. Office 365- und Microsoft 365 E5-Organisationen erhalten etwa doppelt so viel Bandbreite wie Nicht-E5-Organisationen. Zum Schutz des Diensts gibt es auch eine Obergrenze für die maximale Bandbreite.
 
-Weitere Informationen finden Sie im Abschnitt "Zugriff mit hoher Bandbreite auf die Office 365-Verwaltungsaktivitäts-API" in [Erweiterte Überwachung in Microsoft 365](https://docs.microsoft.com/microsoft-365/compliance/advanced-audit#high-bandwidth-access-to-the-office-365-management-activity-api).
+Weitere Informationen finden Sie im Abschnitt "Zugriff mit hoher Bandbreite auf die Office 365-Verwaltungsaktivitäts-API" in [Erweiterte Überwachung in Microsoft 365](/compliance/advanced-audit#high-bandwidth-access-to-the-office-365-management-activity-api).
 
 > [!NOTE] 
 > Zwar kann jeder Mandant anfänglich bis zu 2.000 Anforderungen pro Minute senden, Microsoft kann aber keine Antwortrate garantieren. Die Antwortrate hängt von verschiedenen Faktoren ab, z. B. der Leistung des Clientsystems, der Netzwerkkapazität und der Geschwindigkeit des Netzwerks. 
@@ -626,24 +619,25 @@ Wenn der Dienst einen Fehler feststellt, meldet er den Fehlerantwortcode an den 
 |||
 |:-----|:-----|
 |Code|Nachricht|
-|AF10001|Der Berechtigungssatz ({0}), der in der Anforderung gesendet wurde, enthielt nicht die erwartete Berechtigung **ActivityFeed.Read**.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = die im Zugriffstoken festgelegte Berechtigung.</p></li></ul>|
-|AF20001|Fehlender Parameter: {0} <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = der Name des fehlenden Parameters.</p></li></ul>|
-|AF20002|Ungültiger Parametertyp: {0} Erwarteter Typ: {1}<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = der Name des ungültigen Parameters.</p></li><li><p>{1} = der erwartete Typ (int, datetime, guid).</p></li></ul>|
-|AF20003|Angegebener Ablauf {0} ist auf ein Datum und eine Uhrzeit in der Vergangenheit festgelegt.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = der im API-Aufruf übergebene Ablauf.</p></li></ul>|
-|AF20010|Die in der URL ({0}) übergebene Mandanten-ID stimmt nicht mit der im Zugriffstoken ({1}) übergebenen Mandanten-ID überein.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = in der URL übergebene Mandanten-ID.</p></li><li><p>{1} = im Zugriffstoken übergebene Mandanten-ID.</p></li></ul>|
-|AF20011|Angegebene Mandanten-ID ({0}) ist im System nicht vorhanden oder wurde gelöscht. <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>   {0} = in der URL übergebene Mandanten-ID.</p></li></ul>|
-|AF20012|Angegebene Mandanten-ID ({0}) ist im System falsch konfiguriert. <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>    {0} = in der URL übergebene Mandanten-ID.</p></li></ul>|
-|AF20013|Die in der URL ({0}) übergebene Mandanten-ID ist keine gültige GUID.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p> {0} = in der URL übergebene Mandanten-ID.</p></li></ul>|
+|AF10001|Der Berechtigungssatz ({0}), der in der Anforderung gesendet wurde, enthielt nicht die erwartete Berechtigung **ActivityFeed.Read**.<br/><br/>{0} = die im Zugriffstoken festgelegte Berechtigung.</p></li></ul>|
+|AF20001|Fehlender Parameter: {0} <br/><br/>{0} = der Name des fehlenden Parameters.</p></li></ul>|
+|AF20002|Ungültiger Parametertyp: {0} Erwarteter Typ: {1}<br/><br/>{0} = der Name des ungültigen Parameters.</p>{1} = der erwartete Typ (int, datetime, guid).</p></li></ul>|
+|AF20003|Angegebener Ablauf {0} ist auf ein Datum und eine Uhrzeit in der Vergangenheit festgelegt.<br/><br/>{0} = der im API-Aufruf übergebene Ablauf.</p></li></ul>|
+|AF20010|Die in der URL ({0}) übergebene Mandanten-ID stimmt nicht mit der im Zugriffstoken ({1}) übergebenen Mandanten-ID überein.<br/><br/>{0} = in der URL übergebene Mandanten-ID{1} = im Zugriffstoken übergebene Mandanten-ID</p></li></ul>|
+|AF20011|Angegebene Mandanten-ID ({0}) ist im System nicht vorhanden oder wurde gelöscht. <br/><br/> {0} = in der URL übergebene Mandanten-ID.</p></li></ul>|
+|AF20012|Angegebene Mandanten-ID ({0}) ist im System falsch konfiguriert. <br/><br/>  {0} = in der URL übergebene Mandanten-ID.</p></li></ul>|
+|AF20013|Die in der URL ({0}) übergebene Mandanten-ID ist keine gültige GUID.<br/><br/>   {0} = in der URL übergebene Mandanten-ID.</p></li></ul>|
 |AF20020|Der angegebene Inhaltstyp ist ungültig.|
-|AF20021|Der Webhook-Endpunkt {{0}) konnte nicht überprüft werden. {1}<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = Webhookadresse.</p></li><li><p>{1} = „Der Endpunkt hat nicht HTTP 200 zurückgegeben.“ oder „Die Adresse muss mit HTTPS beginnen.“</p></li></ul>|
+|AF20021|Der Webhook-Endpunkt {{0}) konnte nicht überprüft werden. {1}<br/><br/>{0} = Webhookadresse.<br/><br/>{1} = „Der Endpunkt hat nicht HTTP 200 zurückgegeben.“ oder „Die Adresse muss mit HTTPS beginnen.“</p></li></ul>|
 |AF20022|Kein Abonnement für den angegebenen Inhaltstyp gefunden.|
-|AF20023|Das Abonnement wurde von {0} deaktiviert.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = „ein Mandant“ oder „ein Dienstadministrator“.</p></li></ul>|
+|AF20023|Das Abonnement wurde von {0} deaktiviert.<br/><br/>{0} = „ein Mandant“ oder „ein Dienstadministrator“.</p></li></ul>|
 |AF20030|Es muss sowohl die Startzeit als auch die Endzeit angegeben werden (oder beide nicht angegeben werden), und die Zeitangaben dürfen nicht mehr als 24 Stunden auseinander liegen, wobei die Startzeit nicht mehr als sieben Tagen in der Vergangenheit liegen darf.|
-|AF20031|Ungültige nextPage-Eingabe: {0}.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = der in der URL übergebene Indikator für die nächste Seite</p></li></ul>|
-|AF20050|Der angegebene Inhalt ({0}) ist nicht vorhanden.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = Ressourcen-ID oder Ressourcen-URL</p></li></ul>|
-|AF20051|Mit dem Schlüssel {0} angeforderter Inhalt ist bereits abgelaufen. Inhalt, der älter als 7 Tage ist, kann nicht abgerufen werden.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>•    {0} = Ressourcen-ID oder Ressourcen-URL</p></li></ul>|
-|AF20052|Inhalts-ID {0} in der URL ist ungültig.<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = Ressourcen-ID oder Ressourcen-URL</p></li></ul>|
+|AF20031|Ungültige nextPage-Eingabe: {0}.<br/><br/>{0} = der in der URL übergebene Indikator für die nächste Seite</p></li></ul>|
+|AF20050|Der angegebene Inhalt ({0}) ist nicht vorhanden.<br/><br/>{0} = Ressourcen-ID oder Ressourcen-URL</p></li></ul>|
+|AF20051|Mit dem Schlüssel {0} angeforderter Inhalt ist bereits abgelaufen. Inhalt, der älter als 7 Tage ist, kann nicht abgerufen werden.<<br/><br/>  {0} = Ressourcen-ID oder Ressourcen-URL</p></li></ul>|
+|AF20052|Inhalts-ID {0} in der URL ist ungültig.<br/><br/>{0} = Ressourcen-ID oder Ressourcen-URL</p></li></ul>|
 |AF20053|Im Header „Accept-Language“ darf nur eine Sprache vorhanden sein.|
 |AF20054|Ungültige Syntax im Accept-Language-Header.|
-|AF429|Zu viele Anforderungen. Method={0}, PublisherId={1}<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = HTTP-Methode</p></li><li><p>{1} = Mandanten-GUID, die als PublisherIdentifier verwendet wird.</p></li></ul>|
+|AF429|Zu viele Anforderungen. Method={0}, PublisherId={1}<br/><br/>{0} = HTTP-Methode<br/><br/>{1} = Mandanten-GUID, die als PublisherIdentifier verwendet wird.</p></li></ul>|
 |AF50000|Ein interner Fehler ist aufgetreten. Wiederholen Sie die Anforderung.|
+|||
