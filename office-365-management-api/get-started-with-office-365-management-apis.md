@@ -7,12 +7,12 @@ ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: 96a0cd71c55251160117d1ae598c8935479b6780
-ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
+ms.openlocfilehash: ef4ea62f03eb9d536bf42234d9a9f5b28de005e8
+ms.sourcegitcommit: 6c9efd49e6406ee72edc7450afa811d6c660992c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/25/2021
-ms.locfileid: "58510146"
+ms.lasthandoff: 10/08/2021
+ms.locfileid: "60235894"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Erste Schritte mit den Office 365-Verwaltungs-APIs
 
@@ -26,7 +26,7 @@ Es gibt vier zentrale Schritte:
     
 3. **Fordern Sie ein Zugriffstoken von Azure AD an**. Mit den in Azure Active Directory konfigurierten Anmeldeinformationen Ihrer Anwendung fordert Ihre Anwendung fortlaufend zusätzliche Zugriffstoken für einen genehmigten Mandanten an, ohne dass eine weitere Interaktion mit einem Mandantenadministrator benötigt wird. Diese Zugriffstoken werden als „nur App“-Token bezeichnet, da sie keine Informationen zum Mandantenadministrator beinhalten.
     
-4. **Rufen Sie die Office 365-Management-APIs auf**. Die „nur App“-Zugriffstoken werden an die Office 365-Management-APIs übergeben, um Ihre Anwendung zu authentifizieren und zu autorisieren.
+4. **Aufruf der Office 365-Management-APIs**. Die Nur-App-Zugriffstoken werden an die Office 365-Management-APIs übergeben, um Ihre Anwendung zu authentifizieren und zu autorisieren.
     
 Das folgende Diagramm zeigt die Abfolge von Genehmigungs- und Zugriffstoken-Anfragen.
 
@@ -39,42 +39,39 @@ Das folgende Diagramm zeigt die Abfolge von Genehmigungs- und Zugriffstoken-Anfr
 
 Die Office 365-Management-APIs verwenden Azure AD zur sicheren Authentifizierung der Office 365-Mandantendaten. Für den Zugriff auf die Office 365-Management-APIs müssen Sie die Anwendung in Azure Active Directory registrieren, und als Teil der Konfiguration die Berechtigungsstufen, die Ihre Anwendung für den Zugriff auf die APIs benötigt, angeben.
 
-
 ### <a name="prerequisites"></a>Voraussetzungen
 
 Wenn Sie die Anwendung in Azure AD registriert haben, benötigen Sie ein Abonnement für Office 365 und ein Abonnement für Azure, das mit Ihrem Office 365-Abonnement verknüpft ist. Für den Anfang können Sie Testabonnements sowohl für Office 365 als auch für Azure verwenden. Weitere Informationen finden Sie unter [Willkommen beim Office 365-Entwicklerprogramm](/office/developer-program/office-365-developer-program).
 
-
-### <a name="use-the-azure-management-portal-to-register-your-application-in-azure-ad"></a>Nutzen Sie das Azure-Verwaltungsportal, um Ihre Anwendung in Azure AD zu registrieren.
+### <a name="use-the-azure-portal-to-register-your-application-in-azure-ad"></a>Nutzen Sie das Azure-Portal, um Ihre Anwendung in Azure AD zu registrieren.
 
 Nachdem Sie einen Microsoft-Mandanten mit den entsprechenden Abonnements haben, können Sie Ihre Anwendung in Azure AD registrieren.
 
-1. Melden Sie sich im [Azure-Verwaltungsportal](https://manage.windowsazure.com/) an, und verwenden Sie dabei die Anmeldeinformationen Ihres Microsoft-Mandanten, der über das Office 365-Abonnement verfügt, das Sie verwenden möchten. Sie können auf das Azure-Verwaltungsportal auch über einen Link zugreifen, der im linken Navigationsbereich im [Office Admin-Portal](https://portal.office.com/) erscheint.
-    
-2. Klicken Sie im linken Navigationsbereich auf Active Directory (1). Stellen Sie sicher, dass die Registerkarte Verzeichnis (2) ausgewählt ist, und klicken Sie dann auf den Verzeichnisnamen (3).
-    
-   ![Anmeldeseite für Office 365](images/o365-sign-up-page.png)
-    
-    
-3. Wählen Sie auf der Verzeichnisseite **Anwendungen**. Azure AD zeigt eine Liste der Anwendungen, die aktuell in Ihrem Mandanten installiert sind.
-    
-4. Wählen Sie **Hinzufügen** aus.
-    
-   ![Verwaltungsseite für Office 365](images/o365-admin-page.png)
-    
-    
-5. Wählen Sie **Add an application my organization is developing** aus.
-    
-6. Geben Sie den **Namen** Ihrer Anwendung ein, und geben Sie für den **Typ** WEB-ANWENDUNG UND/ODER WEB-API an.
-    
-7. Geben Sie die entsprechenden Eigenschaften der App ein:
-    
-   - **Anmelde-URL**. Die URL, mit der Benutzer sich anmelden und Ihre Anwendung verwenden können. Sie können dies später bei Bedarf ändern.
-    
-   - **App-ID-URI**. Der URI, der als ein eindeutiger logischer Identifikator verwendet wird. Der URI muss sich in einer überprüften benutzerdefinierten Domäne für einen externen Benutzer befinden, um Ihrer Anwendung Zugriff auf seine Daten in Windows Azure Active Directory zu gewähren. Wenn Ihr Microsoft-Mandant z. B. **contoso.onmicrosoft.com** ist, könnte die APP-ID URI **https://app.contoso.onmicrosoft.com** sein.
-    
-8. Die app ist jetzt mitIhre Anwendung ist jetzt für Azure AD registriert und wurde einer Client-ID zugewieden. Es gibt jedoch weitere wichtige Aspekte Ihrer Anwendung, die konfiguriert werden müssen.
-    
+1. Melden Sie sich im [Azure-Portal](https://portal.azure.com) an, und verwenden Sie dabei die Anmeldeinformationen Ihres Microsoft-Mandanten, der über das Office 365-Abonnement verfügt, das Sie verwenden möchten. Sie können auch über einen Link auf das Azure-Portal zugreifen, der im linken Navigationsbereich im [Microsoft 365 Admin Center](https://admin.microsoft.com/) angezeigt wird.
+
+2. Wählen Sie im linken Navigationsbereich **Azure Active Directory** (1) aus.
+
+   ![Hauptseite des Azure-Portals](images/AzurePortal1.png)
+
+3. Wählen Sie auf der Seite **Azure Active Directory** die Option **App-Registrierungen** (2) und dann **Neue Registrierung** (3) aus.
+
+   ![Seite „App-Registrierungen“ in Azure Active Directory](images/AzureAppRegistration2.png)
+
+4. Wählen Sie auf der Seite **App-Registrierungen** die Option **Neue Registrierung** aus.
+
+   Es wird eine neue Seite angezeigt, auf der Sie die Registrierung Ihrer App starten können.
+
+5. Führen Sie auf der Seite **Registrierung einer Anwendung** folgende Schritte aus:
+
+   ![App-Registrierungsprozess](images/AzureAppRegistration3.png)
+
+   1. Benennen Sie Ihre App.
+
+   2. Wählen Sie aus, wer die App verwenden und auf die API zugreifen kann.
+
+   3. Geben Sie bei Bedarf eine Umleitungs-URL für die Benutzerumleitung nach der Authentifizierung an.
+
+6. Klicken Sie auf **Registrieren**, um die neue App zu registrieren.
 
 ### <a name="configure-your-application-properties-in-azure-ad"></a>Konfigurieren Sie Ihre Anwendungseigenschaften in Azure AD
 
@@ -82,68 +79,69 @@ Nachdem Ihre Anwendung registriert ist, gibt es mehrere wichtige Eigenschaften, 
 
 Weitere Informationen zur Anwensungskonfiguration in Azure AD im Allgemeinen finden Sie unter [Anwendungs-Objekteigenschaften](/azure/active-directory/develop/active-directory-application-objects).
 
+1. **Client-ID**. Dieser Wert wird von Azure AD automatisch generiert. Ihre Anwendung wird diesen Wert beim Anfordern von Genehmigungen von Mandantenadministratoren und beim Anfordern von „Nur App“-Token aus Azure AD verwenden.
 
-1. **CLIENT-ID**. Dieser Wert wird von Azure AD automatisch generiert. Ihre Anwendung wird diesen Wert beim Anfordern von Genehmigungen von Mandantenadministratoren und beim Anfordern von „Nur App“-Token aus Azure AD verwenden.
-    
-2. **ANWENDUNG HAT MEHRERE MANDANTEN**. Für diese Eigenschaft muss **Ja** ausgewählt werden, damit Mandantenadministratoren Ihrer Anwendung die Genehmigung erteilen können, mit den Office 365-Management-APIs auf ihre Daten zuzugreifen. Wenn für diese Eigenschaft **Nein** ausgewählt ist, kann Ihre Anwendung ausschließlich auf Daten Ihres eigenen Mandanten zugreifen.
-    
-3. **ANTWORT-URL**. Dies ist die URL, zu der ein Mandantenadministrator weitergeleitet wird, nachdem er Ihrer Anwendung die Genehmigung für den Zugriff auf seine Daten mittels den Office 365 Management-APIs erteilt hat. Sie können bei Bedarf mehrere Antwort-URLs konfigurieren. Azure legt automatisch die erste so fest, dass sie mit der Anmelde-URL übereinstimmt, die Sie beim Erstellen der Anwendung angegeben haben, aber Sie können diesen Wert wenn nötig ändern.
-    
+2. **Die Anwendung hat mehrere Mandanten**. Für diese Eigenschaft muss **Ja** ausgewählt werden, damit Mandantenadministratoren Ihrer Anwendung die Genehmigung erteilen können, mit den Office 365-Management-APIs auf ihre Daten zuzugreifen. Wenn für diese Eigenschaft **Nein** ausgewählt ist, kann Ihre Anwendung ausschließlich auf Daten Ihres eigenen Mandanten zugreifen.
+
+3. **Antwort-URL**. Dies ist die URL, zu der ein Mandantenadministrator weitergeleitet wird, nachdem er Ihrer Anwendung die Genehmigung für den Zugriff auf seine Daten mittels den Office 365 Management-APIs erteilt hat. Sie können bei Bedarf mehrere Antwort-URLs konfigurieren. Azure legt automatisch die erste so fest, dass sie mit der Anmelde-URL übereinstimmt, die Sie beim Erstellen der Anwendung angegeben haben, aber Sie können diesen Wert wenn nötig ändern.
+
 Wählen Sie unbedingt **Speichern**, nachdem Sie Änderungen an dieser Eigenschaften vorgenommen haben.
-
 
 ### <a name="generate-a-new-key-for-your-application"></a>Erstellen Sie einen neuen Schlüssel für Ihre Anwendung
 
-Schlüssel werden auch als geheime Clientschlüssel bezeichnet und werden verwendet, ein Autorisierungscode gegen eine Zugriffstoken ausgetauscht wird.
+Schlüssel, auch als *geheime Clientschlüssel* bezeichnet, werden verwendet, wenn ein Autorisierungscode gegen eine Zugriffstoken ausgetauscht wird.
 
+1. Wählen Sie auf der Seite **Azure Active Directory** im Azure-Portal **App-Registrierungen** und dann Ihre Anwendung aus.
 
-1. Wählen Sie im Azure Verwaltungsportal Ihre Anwendung und wählen Sie **konfigurieren** im oberen Menü. Blättern Sie nach unten zu **Schlüssel**.
-    
-2. Wählen Sie die Gültigkeitsdauer Ihres Schlüssels, und wählen Sie **Speichern**.
-    
-   ![Azure-Seite "Abonnieren"](images/azure-subscription-page.png)
-    
-    
-3. Azure zeigt den App-Schlüssel nur nach dem Speichern an. Klicken Sie auf das Symbol Zwischenablage, um das Client-Geheimnis in die Zwischenablage zu kopieren.
-    
-   ![Azure-Seite "Portal"](images/azure-portal-page.png)
+    ![Auswahl der App, die Sie gerade registriert haben](images/AzureAppRegistration4.png)
 
-   > [!IMPORTANT] 
-   > Azure zeigt das Client-Geheimnis nur zum Zeitpunkt der ersten Generierung an. Sie können nicht zu dieser Seite zurücknavigieren und den geheimen Clientschlüssel später abrufen.
+2. Nachdem die Seite für Ihre App angezeigt wurde, wählen Sie **Zertifikate & Geheimnisse** (1) im linken Bereich aus. Auf dieser Seite können Sie Zertifikate hochladen und neue geheime Clientschlüssel (2) erstellen.
+
+    ![Die Seite „Zertifikate und Geheimnisse“ der App](images\AzureAppRegistrationCertificatesSecrets.png)
+
+3. Auf der Seite **Zertifikate und Geheimnisse** (1) wählen Sie **Neuer geheimer Clientschlüssel** (2) aus, geben eine Beschreibung ein, wählen die Dauer für Ihren Schlüssel (3) aus, und wählen dann **Hinzufügen** (4) aus.
+
+   ![Erstellen eines geheimen Clientschlüssels](images\AzureAppRegistration5.png)
+
+4. Nach dem Erstellen des geheimen Clientschlüssels wird der Wert unter **geheimer Clientschlüssel** (2) angezeigt. Klicken Sie auf das Symbol „Zwischenablage“ (3), um den Wert des geheimen Clientschlüssels in die Zwischenablage zu kopieren.
+
+   ![Kopieren Sie den Wert des geheimen Clientschlüssels in die Zwischenablage, und speichern Sie ihn zur späteren Verwendung.](images\AzureAppRegistration6.png)
+
+   > [!IMPORTANT]
+   > Azure zeigt den Wert des geheimen Clientschlüssels nur zum Zeitpunkt der ersten Generierung an. Sie können nicht zu dieser Seite zurückkehren und den Wert des geheimen Clientschlüssels später abrufen. Stellen Sie sicher, dass Sie ihn kopieren und an einem sicheren Ort speichern, damit Sie ihn später verwenden können.
 
 ### <a name="configure-an-x509-certificate-to-enable-service-to-service-calls"></a>Konfigurieren eines x. 509-Zertifikats, um Dienst-zu-Dienst-Aufrufe zu ermöglichen
 
-Eine Anwendung, die im Hintergrund ausgeführt wird, wie ein Dämonprozess oder ein Dienst, kann Client-Anmeldeinformationen nutzen, um ein „Nur App“-Zugriffstoken anzufordern, ohne fortlaufend eine Genehmigung vom Mandantenadministrator anzufordern, nachdem eine erste Genehmigung erteilt wurde. 
+Eine Anwendung, die im Hintergrund ausgeführt wird, wie ein Dämonprozess oder ein Dienst, kann Client-Anmeldeinformationen nutzen, um ein „Nur App“-Zugriffstoken anzufordern, ohne fortlaufend eine Genehmigung vom Mandantenadministrator anzufordern, nachdem eine erste Genehmigung erteilt wurde.
 
 Weitere Informationen finden Sie unter [Dienst-zu-Dienst-Anrufe mithilfe von Client-Anmeldeinformationen](https://msdn.microsoft.com/library/azure/dn645543.aspx).
 
 Sie müssen ein X.509-Zertifikat für Ihre Anwendung erstellen, das als Client-Anmeldedaten dient, wenn ein „Nur App“-Token von Azure AD angefordert wird. Dieser Prozess besteht aus zwei Schritten:
 
 - Rufen Sie ein X.509-Zertifikat ab. Sie können ein selbstsigniertes Zertifikat oder ein von einer öffentlichen, vertrauenswürdigen Zertifizierungsstelle ausgestelltes Zertifikat verwenden..
-    
+
 - Ändern Sie Ihr Anwendungsmanifest, um den Fingerabdruck und den öffentlichen Schlüssel Ihres Zertifikats einzuschließen.
-    
+
 Die folgenden Anweisungen zeigen Ihnen, wie Sie das Visual Studio oder das Windows SDK _Makecert_ tool verwenden, um ein selbstsigniertes Zertifikat zu erstellen und den öffentlichen Schlüssel in eine base64-codierte Datei zu exportieren.
 
-
 1. Führen Sie in der Befehlszeile Folgendes aus:
-    
-   ```
+
+   ```powershell
     makecert -r -pe -n "CN=MyCompanyName MyAppName Cert" -b 03/15/2015 -e 03/15/2017 -ss my -len 2048
    ```
 
-   > [!NOTE] 
+   > [!NOTE]
    > Wenn Sie das x. 509-Zertifikat generieren, stellen Sie sicher, dass die Länge des Schlüssels mindestens 2048 beträgt. Kürzere Schlüssellängen werden nicht als gültige Schlüssel akzeptiert.
 
-2. Öffnen Sie die Snap-In MMC-Zertifikate und verbinden Sie sich mit Ihrem Benutzerkonto. 
-    
-3. Suchen Sie das neue Zertifikat im Persönlichen Ordner und exportieren Sie den öffentlichen Schlüssel in eine base64-codierte Datei (z. B. mycompanyname.cer). Ihre Anwendung verwendet dieses Zertifikat zum Kommunizieren mit Azure AD. Stellen Sie daher sicher, dass Sie auch Zugriff auf den privat Schlüssel erhalten.
-    
-   > [!NOTE] 
+2. Öffnen Sie die Snap-In MMC-Zertifikate und verbinden Sie sich mit Ihrem Benutzerkonto.
+
+3. Suchen Sie das neue Zertifikat im Ordner „Persönlich“, und exportieren Sie den öffentlichen Schlüssel in eine base64-codierte Datei (z. B. `mycompanyname.cer`). Ihre Anwendung verwendet dieses Zertifikat zum Kommunizieren mit Azure AD. Stellen Sie daher sicher, dass Sie auch Zugriff auf den privat Schlüssel erhalten.
+
+   > [!NOTE]
    > Sie können Windows PowerShell verwenden, um den Fingerabdruck und den base64-codierten öffentlichen Schlüssel zu extrahieren. Andere Plattformen bieten ähnliche Tools zum Abrufen der Eigenschaften von Zertifikaten.
 
-4. Geben Sie in der Windows PowerShell-Eingabeaufforderung Folgendes ein und führen Sie es aus:
-    
+4. Geben Sie in einer Windows PowerShell-Eingabeaufforderung Folgendes ein und führen Sie es aus:
+
    ```powershell
     $cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
     $cer.Import("mycer.cer")
@@ -155,17 +153,16 @@ Die folgenden Anweisungen zeigen Ihnen, wie Sie das Visual Studio oder das Windo
    ```
 
 5. Speichern Sie die Werte für `$base64Thumbprint`, `$base64Value`, und `$keyid`, die verwendet werden, wenn Sie Ihr Anwendungsmanifest in den nächsten Schritten aktualisieren.
-    
+
    Mit den aus dem Zertifikat extrahierten Werten und der generierten Schlüssel-ID müssen Sie nun Ihr Anwendungsmanifest in Azure AD aktualisieren.
-    
-6. Wählen Sie im Azure Verwaltungsportal Ihre Anwendung und wählen Sie **konfigurieren** im oberen Menü.
-    
-7. Wählen Sie in der Befehlsleiste **Manifest verwalten**, und wählen Sie dann **Manifest herunterladen**.
-    
-   ![Anzeige des Kommandozeilenzertifikats](images/command-line-certificate-display.png)
-    
-    
-8. Öffnen Sie das heruntergeladene Manifest zur Bearbeitung und ersetzen Sie die leere KeyCredentials -Eigenschaft durch die folgende JSON:
+
+6. Wechseln Sie im Azure-Portal zu **App-Registrierungen** > **Alle Anwendungen**, wählen Sie Ihre Anwendung und dann **Manifest** im linken Bereich aus.
+
+7. Wählen Sie in der oberen Navigationsleiste auf der Seite **Manifest** (1) die Option **Download** (2) aus.
+
+   ![Herunterladen des Manifests zum Bearbeiten](images/AzureAppRegistration7.png)
+
+8. Öffnen Sie das heruntergeladene Manifest in einem Editor, und ersetzen Sie die leere Eigenschaft *keyCredentials* durch die folgende JSON:
     
    ```json
       "keyCredentials": [
@@ -179,43 +176,40 @@ Die folgenden Anweisungen zeigen Ihnen, wie Sie das Visual Studio oder das Windo
     ],
    ```
 
-
-   > [!NOTE] 
+   > [!NOTE]
    > Die [KeyCredentials](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#KeyCredentialType)-Eigenschaft ist eine Sammlung, die es ermöglicht, mehrere X.509-Zertifikate für Rollover-Szenarien hochzuladen oder Zertifikate für Kompromiss-Szenarien zu löschen.
 
 9. Speichern Sie Ihre Änderungen und laden Sie die aktualisierte App-Manifestdatei hoch, indem Sie auf **Manifest verwalten** in der Befehlsleiste klicken, **Manifest hochladen** wählen, zu Ihrer aktualisierten Manifestdatei navigieren und diese dann auswählen.
-    
 
 ### <a name="specify-the-permissions-your-app-requires-to-access-the-office-365-management-apis"></a>Geben Sie die Berechtigungen, die Ihre Anwnedung benötigt, um auf die Office 365-Management-APIs zuzugreifen, an.
 
 Schließlich müssen Sie genau angeben, welche Berechtigungen Ihre Anwendung für die Office 365 Management-APIs benötigt. Zu diesem Zweck müssen Sie einen Zugriff auf die Office 365-Management-APIs zu Ihrer Anwendung hinzufügen und dann die Berechtigung(en) auswählen, die Sie benötigen.
 
+1. Wechseln Sie im Azure-Portal zu **App-Registrierungen** > **Alle Anwendungen**, wählen Sie Ihre Anwendung und dann **API-Berechtigungen** (1) im linken Bereich aus. Klicken Sie auf **Eine Berechtigung hinzufügen** (2), um die **Anforderungs-API-Berechtigung** (3) anzuzeigen.
 
-1. Wählen Sie im Azure Verwaltungsportal Ihre Anwendung und wählen Sie **konfigurieren** im oberen Menü. Scrollen Sie nach unten zu **Berechtigungen für andere Anwendungen** und wählen Sie **Anwendung hinzufügen** aus.
-    
-   ![Azure AD-Seite](images/azure-ad-page.png)
-    
-    
-2. Wählen Sie die **Office 365-Management-APIs** (1) so, dass sie in der **ausgewählter** Spalte (2) angezeigt werden, und wählen Sie dann das Häkchen unteren rechts (3), um Ihre Auswahl zu speichern und zurück zu Haupt-Konfigurationsseite Ihrer Anwendung zu gelangen.
-    
-   ![Azure AD-Seite "Apps"](images/azure-ad-apps-page.png)
-    
-    
-3. Die Office-Management-APIs werden jetzt in der Liste der Anwendungen angezeigt, für die Ihre Anwendung Berechtigungen benötigt. Wählen Sie sowohl unter **Anwendungsberechtigungen** als auch unter **delegierte Berechtigungen** die Berechtigungen aus, die Ihre Anwendung benötigt. Weitere Informationen zu den einzelnen Berechtigungen finden Sie unter den jeweiligen API-Referenzen.  
+   ![API-Berechtigungen hinzufügen](images/AzureAppRegistration8.png)
 
-   > [!NOTE] 
-   > Vier Berechtigungen für Aktivitätsberichte und Informationen zu Bedrohungen werden derzeit nicht verwendet und werden zukünftig entfernt. Aktivieren Sie keine der folgenden Berechtigungen, da sie nicht erforderlich sind.
-    
-   ![Dialogfeld "Eine Anwendung hinzufügen"](images/add-an-application-dialog.png)
-    
-    
-4. Klicken Sie auf **Speichern**, um die Konfiguration zu speichern.
-    
+2. Wählen Sie auf der Registerkarte **Microsoft-APIs** die Option **Office 365-Management-APIs** (4) aus.
+
+   ![Auswählen von Office 365-Management-APIs auf der Registerkarte „Microsoft-APIs“](images/AzureAppRegistration9.png)
+
+3. Wählen Sie auf der Flyoutseite die folgenden Berechtigungstypen (3) aus, die für Ihre App erforderlich sind, und klicken Sie dann auf **Berechtigungen hinzufügen**.
+
+   ![Auswählen von Berechtigungstypen für Ihre App](images/AzureAppRegistration10.png)
+
+   1. **Delegierte Berechtigungen**. Ermöglicht Ihrer Client-App das Ausführen von Vorgängen im Namen des angemeldeten Benutzers, z. B. das Lesen von E-Mails oder das Ändern des Benutzerprofils.
+
+   2. **Anwendungsberechtigungen**. Berechtigungen, die es der Client-App ermöglichen, sich selbst ohne Benutzerinteraktion oder -zustimmung zu authentifizieren, z. B. eine App, die von Hintergrunddiensten oder Daemon-Apps verwendet wird.
+
+4. Office-Management-APIs werden jetzt in der Liste der Anwendungen angezeigt, für die Ihre App Berechtigungen benötigt. Wählen Sie bei Bedarf sowohl unter **Anwendungsberechtigungen** als auch unter **Delegierte Berechtigungen** die Berechtigungen aus, die Ihre Anwendung benötigt. Weitere Informationen zu den einzelnen Berechtigungen finden Sie unter den jeweiligen API-Referenzen.  
+
+   ![API-Berechtigungen für Ihre App](images/AzureAppRegistration11.png)
+
+5. Wählen Sie **Administrator-Zustimmung für „Mandantenname“ gewähren** aus, um den Berechtigungen zuzustimmen, die Ihrer App erteilt wurden.
 
 ## <a name="get-office-365-tenant-admin-consent"></a>Erhalten Sie die Genehmigung durch einen Office 365-Mandantenadmin.
 
 Nun, da Ihre Anwendung mit den Berechtigungen konfiguriert ist, die sie für die Verwendung der Office 365-Management APIs benötigt, muss ein Mandantenadministrator diese Berechtigungen ausdrücklich für Ihre Anwendung gewähren, damit Sie mittels der APIs auf dessen Mandantendaten zugreifen können. Um eine Genehmigung zu erteilen, muss sich der Mandantenadministrator in Azure AD anmelden. Dafür verwendet er die folgende eigens konstruierte URL, mittels derer er die von Ihrer Anwendung angefragten Berechtigungen einsehen kann. Dieser Schritt ist nicht erforderlich, wenn Sie APIs verwenden, um auf Daten aus Ihrem eigenen Mandanten zuzugreifen.
-
 
 ```http
 https://login.windows.net/common/oauth2/authorize?response_type=code&resource=https%3A%2F%2Fmanage.office.com&client_id={your_client_id}&redirect_uri={your_redirect_url }
@@ -231,10 +225,9 @@ https://login.windows.net/common/oauth2/authorize?response_type=code&resource=ht
 
 Sie können die genehmigte URL testen, indem Sie diese in einen Browser kopieren und sich mit den Anmeldedaten eines Office 365-Admin für einen anderen Mandanten, als der, den Sie für die Registrierung der Anwendung verwendet haben, anmelden. Ihnen wird die Anfrage zur Berechtigungserteilung zur Nutzung der Office-Management-APIs für Ihre Anwendung angezeigt.
 
+![Seite „Berechtigungszustimmung“](images/AzureAppRegistration12.png)
 
-![Azure AD-Seite "App hinzugefügt"](images/azure-ad-app-added-page.png)
-
-Nachdem Sie **Annehmen** ausgewählt haben, werden Sie zu der angegebenen Seite weitergeleitet und die Abfrage-Zeichenfolge wird einen Code enthalten. 
+Nachdem Sie **Annehmen** ausgewählt haben, werden Sie zu der angegebenen Seite weitergeleitet und die Abfrage-Zeichenfolge wird einen Code enthalten.
 
 Beispiel:
 
@@ -243,7 +236,6 @@ http://www.mycompany.com/myapp/?code=AAABAAAAvPM1KaPlrEqdFSB...
 ```
 
 Ihre Anwendung verwendet diesen Autorisierungscode, um ein Zugriffstoken von Azure AD zu erhalten, aus dem die Mandanten-ID extrahiert werden kann. Nachdem Sie die Mandanten-ID extrahiert und gespeichert haben, können Sie nachfolgende Zugriffstoken beziehen, ohne dass eine Anmeldung als Mandantenadministrator notwendig ist.
-
 
 ## <a name="request-access-tokens-from-azure-ad"></a>Fordern Sie ein Zugriffstoken von Azure AD an.
 
@@ -287,7 +279,7 @@ resource=https%3A%2F%2Fmanage.office.com&amp;client_id=a6099727-6b7b-482c-b509-1
 
 <br/>
 
-Der Inhalt der Antwort wird einige Eigenschaften enthalten, darunter das Zugriffstoken. 
+Der Inhalt der Antwort wird einige Eigenschaften enthalten, darunter das Zugriffstoken.
 
 #### <a name="sample-response"></a>Beispielantwort
 
@@ -334,7 +326,7 @@ Das zurückgegebene Zugriffstoken ist ein JWT-Token und enthält Informationen �
 
 Sobald die Mandanten-ID bekannt ist, kann Ihre Anwendung Dienst-zu-Dienst-Anrufe zu Azure AD durchführen, um weitere Zugriffstoken anzufordern, wenn vorhandene ihre Gültigkeit verlieren. Diese Token enthalten ausschließlich Informationen über die anfragende Anwendung und nicht über den Administrator, der die erste Zustimmung erteilt hat. Dienst-zu-Dienst-Aufrufe erfordern, dass Ihre Anwendung ein X.509-Zertifikat verwendet, um Client Assertion in Form eines base64-codierten, SHA256-signierten JWT Bearer-Token zu erstellen.
 
-Wenn Sie die Anwendung in .NET entwickeln, können Sie mithilfe der [Azure Active Directory Authentication Library (ADAL)](/azure/active-directory/develop/active-directory-authentication-libraries) Client Assertions erstellen. Andere Entwicklungsplattformen sollten ähnliche Bibliotheken haben.
+Wenn Sie Ihre Anwendung in .NET entwickeln, können Sie die [Azure AD-Authentifizierungsbibliothek](/azure/active-directory/develop/active-directory-authentication-libraries) (Azure AD Authentication Library, ADAL) verwenden, um Clientzusicherungen zu erstellen. Andere Entwicklungsplattformen sollten über ähnliche Bibliotheken verfügen.
 
 Ein nicht codiertes JWT-Token besteht aus einer Kopfzeile und einer Nutzlast, die die folgenden Eigenschaften haben.
 
@@ -449,11 +441,11 @@ Nachdem Sie die Anwendung in Azure AD registriert und die erforderlichen Berecht
 
 - **Die Zustimmungsfunktionalität**. Um die Zustimmung Ihrer Kunden zu erhalten, müssen Sie diese in einem Browser zur Azure AD-Webseite weiterleiten, indem Sie die speziell erstellte URL verwenden, die vorher hier beschrieben wurde. Sie müssen zudem über eine Webseite verfügen, zu der Azure AD den Administrator weiterleitet, wenn dieser seine Zustimmung erteilt hat. Diese Webseite muss den Autorisierungscode aus der URL extrahieren und diesen verwenden, um ein Zugriffstoken anzufordern, von dem sie die Mandanten-ID erält.
     
-- **Speichern Sie die Mandanten-ID in Ihrem System**. Diese wird beim Anfordern des Zugriffstoken von Azure AD und beim Aufrufen der Office-Management-APIs benötigt.
+- **Speichern der Mandanten-ID in Ihrem System**. Diese wird beim Anfordern des Zugriffstoken von Azure AD und beim Aufrufen der Office-Management-APIs benötigt.
     
-- **Verwalten von Zugriffstoken**. Sie benötigen eine Komponente, die nach Bedarf Zugriffstoken anfordert und verwaltet. Wenn Ihre App in regelmäßigen Abständen die APIs aufruft, kann sie Token nach Bedarf anfordern. Wenn sie die APIs ständig zum Abrufen von Daten aufruft, kann sie Token in regelmäßigen Abständen (z. B. alle 45 Minuten) anfordern.
+- **Verwaltung von Zugriffstoken**. Sie werden eine Komponente benötigen, die Zugriffstoken bei Bedarf anfordert und verwaltet. Wenn Ihre App die APIs regelmäßig aufruft, kann sie Token bei Bedarf anfordern, oder wenn sie die APIs kontinuierlich aufruft, um Daten abzurufen, kann sie Token in regelmäßigen Abständen anfordern (z. B. alle 45 Minuten).
     
 - **Implementieren eines Webhook-Listener** je nach Bedarf der jeweiligen-API, die Sie verwenden.
     
-- **Abrufen und Speichern von Daten**. Sie benötigen eine Komponente, die Daten für jeden Mandanten, abruft, entweder kontinuierlich oder als Reaktion auf Webhook-Benachrichtigungen, je nach der bestimmten-API, die Sie verwenden.
+- **Datenabruf und Speicherung**. Sie werden eine Komponente benötigen, die Daten für jeden Mandanten abruft, entweder durch kontinuierliches Abrufen oder als Reaktion auf Webhook-Benachrichtigungen, abhängig von der jeweiligen API, die Sie verwenden.
     
